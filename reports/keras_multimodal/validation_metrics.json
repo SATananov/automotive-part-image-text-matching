@@ -1,0 +1,69 @@
+{
+  "model": "Keras Multimodal Neural Network",
+  "input_modality": "image_and_text",
+  "evaluation_split": "validation",
+  "test_split_used": false,
+  "sample_count": 12,
+  "accuracy": 0.16666666666666666,
+  "macro_f1": 0.14393939393939395,
+  "true_distribution": {
+    "MATCH": 4,
+    "PARTIAL_MATCH": 4,
+    "MISMATCH": 4
+  },
+  "predicted_distribution": {
+    "MATCH": 1,
+    "PARTIAL_MATCH": 7,
+    "MISMATCH": 4
+  },
+  "per_class": {
+    "MATCH": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 4
+    },
+    "PARTIAL_MATCH": {
+      "precision": 0.14285714285714285,
+      "recall": 0.25,
+      "f1": 0.18181818181818182,
+      "support": 4
+    },
+    "MISMATCH": {
+      "precision": 0.25,
+      "recall": 0.25,
+      "f1": 0.25,
+      "support": 4
+    }
+  },
+  "confusion_matrix": [
+    [
+      0,
+      3,
+      1
+    ],
+    [
+      1,
+      1,
+      2
+    ],
+    [
+      0,
+      3,
+      1
+    ]
+  ],
+  "confusion_matrix_labels": [
+    "MATCH",
+    "PARTIAL_MATCH",
+    "MISMATCH"
+  ],
+  "training": {
+    "epochs_completed": 31,
+    "best_epoch": 21,
+    "best_validation_loss": 1.09348726272583,
+    "vocabulary_size": 20,
+    "parameter_count": 31715,
+    "random_state": 42
+  }
+}

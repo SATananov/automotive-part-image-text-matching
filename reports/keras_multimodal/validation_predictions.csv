@@ -1,0 +1,13 @@
+sample_id,part_group_id,image_id,image_path,part_category,description,true_label,predicted_label,is_correct,probability_MATCH,probability_PARTIAL_MATCH,probability_MISMATCH
+alternator_002_01_match,alternator_002,alternator_002_01,data/development/images/alternator_002_01.png,alternator,Automotive alternator.,MATCH,PARTIAL_MATCH,False,0.36202267,0.36782956,0.27014774
+alternator_002_01_mismatch,alternator_002,alternator_002_01,data/development/images/alternator_002_01.png,alternator,Automotive brake disc.,MISMATCH,PARTIAL_MATCH,False,0.33636147,0.34207746,0.32156107
+alternator_002_01_partial_match,alternator_002,alternator_002_01,data/development/images/alternator_002_01.png,alternator,Automotive starter motor.,PARTIAL_MATCH,MISMATCH,False,0.3282694,0.28511813,0.38661253
+brake_disc_002_01_match,brake_disc_002,brake_disc_002_01,data/development/images/brake_disc_002_01.png,brake_disc,Automotive brake disc.,MATCH,PARTIAL_MATCH,False,0.33709043,0.34238914,0.3205204
+brake_disc_002_01_mismatch,brake_disc_002,brake_disc_002_01,data/development/images/brake_disc_002_01.png,brake_disc,Automotive shock absorber.,MISMATCH,MISMATCH,True,0.307669,0.26776406,0.42456692
+brake_disc_002_01_partial_match,brake_disc_002,brake_disc_002_01,data/development/images/brake_disc_002_01.png,brake_disc,Automotive brake pad set.,PARTIAL_MATCH,MATCH,False,0.37343553,0.35458836,0.27197608
+coil_spring_001_01_match,coil_spring_001,coil_spring_001_01,data/development/images/coil_spring_001_01.png,coil_spring,Automotive coil spring.,MATCH,PARTIAL_MATCH,False,0.35958833,0.36860743,0.2718042
+coil_spring_001_01_mismatch,coil_spring_001,coil_spring_001_01,data/development/images/coil_spring_001_01.png,coil_spring,Automotive headlight assembly.,MISMATCH,PARTIAL_MATCH,False,0.32917818,0.3413375,0.32948428
+coil_spring_001_01_partial_match,coil_spring_001,coil_spring_001_01,data/development/images/coil_spring_001_01.png,coil_spring,Automotive shock absorber.,PARTIAL_MATCH,MISMATCH,False,0.30828682,0.2680136,0.4236995
+shock_absorber_002_01_match,shock_absorber_002,shock_absorber_002_01,data/development/images/shock_absorber_002_01.png,shock_absorber,Automotive shock absorber.,MATCH,MISMATCH,False,0.30723777,0.26756212,0.42520007
+shock_absorber_002_01_mismatch,shock_absorber_002,shock_absorber_002_01,data/development/images/shock_absorber_002_01.png,shock_absorber,Automotive headlight assembly.,MISMATCH,PARTIAL_MATCH,False,0.32823145,0.34094262,0.33082598
+shock_absorber_002_01_partial_match,shock_absorber_002,shock_absorber_002_01,data/development/images/shock_absorber_002_01.png,shock_absorber,Automotive coil spring.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.35874617,0.36807975,0.2731741
