@@ -1,0 +1,26 @@
+﻿# Python virtual environment
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Testing and notebook cache
+.pytest_cache/
+.ipynb_checkpoints/
+
+# IDE settings
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Generated model files
+*.keras
+*.h5
+
+# Generated reports
+reports/*.png
+reports/*.csv
+reports/*.json
