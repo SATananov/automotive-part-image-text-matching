@@ -1,0 +1,59 @@
+{
+  "model": "Image pixels + Logistic Regression",
+  "evaluation_split": "validation",
+  "sample_count": 12,
+  "accuracy": 0.3333333333333333,
+  "macro_f1": 0.16666666666666666,
+  "true_distribution": {
+    "MATCH": 4,
+    "PARTIAL_MATCH": 4,
+    "MISMATCH": 4
+  },
+  "predicted_distribution": {
+    "MATCH": 12,
+    "PARTIAL_MATCH": 0,
+    "MISMATCH": 0
+  },
+  "per_class": {
+    "MATCH": {
+      "precision": 0.3333333333333333,
+      "recall": 1.0,
+      "f1": 0.5,
+      "support": 4
+    },
+    "PARTIAL_MATCH": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 4
+    },
+    "MISMATCH": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 4
+    }
+  },
+  "confusion_matrix": [
+    [
+      4,
+      0,
+      0
+    ],
+    [
+      4,
+      0,
+      0
+    ],
+    [
+      4,
+      0,
+      0
+    ]
+  ],
+  "confusion_matrix_labels": [
+    "MATCH",
+    "PARTIAL_MATCH",
+    "MISMATCH"
+  ]
+}
