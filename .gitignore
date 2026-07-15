@@ -24,3 +24,7 @@ Thumbs.db
 reports/*.png
 reports/*.csv
 reports/*.json
+
+data/real/staging/
+
+data/real/originals/
