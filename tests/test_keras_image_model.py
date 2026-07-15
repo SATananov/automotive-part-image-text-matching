@@ -24,8 +24,8 @@ from src.train_keras_image_model import (
 def test_image_datasets_are_loaded_without_overlap() -> None:
     train_dataframe, validation_dataframe = load_datasets()
 
-    assert len(train_dataframe) == 36
-    assert len(validation_dataframe) == 12
+    assert len(train_dataframe) == 90
+    assert len(validation_dataframe) == 30
 
     train_groups = set(
         train_dataframe["part_group_id"]
@@ -185,7 +185,7 @@ def test_prediction_table_contains_probabilities() -> None:
         probabilities,
     )
 
-    assert len(prediction_table) == 12
+    assert len(prediction_table) == 30
     assert "predicted_label" in prediction_table
     assert "probability_MATCH" in prediction_table
     assert "probability_PARTIAL_MATCH" in prediction_table
@@ -208,7 +208,7 @@ def test_generated_image_metrics_use_validation_only() -> None:
     assert metrics["input_modality"] == "image"
     assert metrics["evaluation_split"] == "validation"
     assert metrics["test_split_used"] is False
-    assert metrics["sample_count"] == 12
+    assert metrics["sample_count"] == 30
 
     assert 0.0 <= metrics["accuracy"] <= 1.0
     assert 0.0 <= metrics["macro_f1"] <= 1.0

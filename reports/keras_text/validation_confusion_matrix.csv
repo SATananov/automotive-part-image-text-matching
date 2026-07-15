@@ -1,4 +1,4 @@
 ,predicted_MATCH,predicted_PARTIAL_MATCH,predicted_MISMATCH
-actual_MATCH,1,1,2
-actual_PARTIAL_MATCH,1,1,2
-actual_MISMATCH,0,0,4
+actual_MATCH,0,5,5
+actual_PARTIAL_MATCH,0,5,5
+actual_MISMATCH,0,0,10

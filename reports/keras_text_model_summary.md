@@ -6,8 +6,8 @@ The image input and test split were not used.
 
 ## Dataset
 
-- Training samples: 36
-- Validation samples: 12
+- Training samples: 90
+- Validation samples: 30
 
 ## Architecture
 
@@ -22,15 +22,15 @@ The image input and test split were not used.
 
 - Vocabulary size: 20
 - Maximum epochs: 60
-- Completed epochs: 47
-- Best epoch: 39
-- Best validation loss: 1.0380
+- Completed epochs: 60
+- Best epoch: 57
+- Best validation loss: 0.9258
 - Trainable parameters: 1795
 
 ## Validation results
 
 - Accuracy: 0.5000
-- Macro F1: 0.4444
+- Macro F1: 0.3889
 
 ## Notes
 

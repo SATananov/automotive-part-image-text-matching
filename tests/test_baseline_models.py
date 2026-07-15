@@ -21,8 +21,8 @@ from src.run_baseline_models import (
 def test_baseline_datasets_are_loaded() -> None:
     train_dataframe, validation_dataframe = load_datasets()
 
-    assert len(train_dataframe) == 36
-    assert len(validation_dataframe) == 12
+    assert len(train_dataframe) == 90
+    assert len(validation_dataframe) == 30
 
     train_groups = set(train_dataframe["part_group_id"])
     validation_groups = set(
@@ -54,8 +54,8 @@ def test_majority_baseline_returns_valid_predictions() -> None:
     )
 
     assert metrics["evaluation_split"] == "validation"
-    assert metrics["sample_count"] == 12
-    assert len(predictions) == 12
+    assert metrics["sample_count"] == 30
+    assert len(predictions) == 30
 
     assert set(
         predictions["predicted_label"]
@@ -74,8 +74,8 @@ def test_text_baseline_returns_valid_predictions() -> None:
 
     assert model is not None
     assert metrics["evaluation_split"] == "validation"
-    assert metrics["sample_count"] == 12
-    assert len(predictions) == 12
+    assert metrics["sample_count"] == 30
+    assert len(predictions) == 30
 
     assert set(
         predictions["predicted_label"]
@@ -94,8 +94,8 @@ def test_image_baseline_returns_valid_predictions() -> None:
 
     assert model is not None
     assert metrics["evaluation_split"] == "validation"
-    assert metrics["sample_count"] == 12
-    assert len(predictions) == 12
+    assert metrics["sample_count"] == 30
+    assert len(predictions) == 30
 
     assert set(
         predictions["predicted_label"]
@@ -147,4 +147,4 @@ def test_generated_baseline_reports_use_validation() -> None:
         )
 
         assert metrics["evaluation_split"] == "validation"
-        assert metrics["sample_count"] == 12
+        assert metrics["sample_count"] == 30

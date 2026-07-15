@@ -6,8 +6,8 @@ The text description and test split were not used.
 
 ## Dataset
 
-- Training samples: 36
-- Validation samples: 12
+- Training samples: 90
+- Validation samples: 30
 
 ## Architecture
 
@@ -22,8 +22,8 @@ The text description and test split were not used.
 ## Training
 
 - Maximum epochs: 60
-- Completed epochs: 26
-- Best epoch: 18
+- Completed epochs: 14
+- Best epoch: 6
 - Best validation loss: 1.0986
 - Trainable parameters: 25763
 
@@ -36,7 +36,7 @@ The text description and test split were not used.
 
 | Model | Accuracy | Macro F1 |
 |---|---:|---:|
-| Keras text neural network | 0.5000 | 0.4444 |
+| Keras text neural network | 0.5000 | 0.3889 |
 | Keras image neural network | 0.3333 | 0.1667 |
 
 ## Notes

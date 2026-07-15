@@ -3,54 +3,54 @@
   "input_modality": "image",
   "evaluation_split": "validation",
   "test_split_used": false,
-  "sample_count": 12,
+  "sample_count": 30,
   "accuracy": 0.3333333333333333,
   "macro_f1": 0.16666666666666666,
   "true_distribution": {
-    "MATCH": 4,
-    "PARTIAL_MATCH": 4,
-    "MISMATCH": 4
+    "MATCH": 10,
+    "PARTIAL_MATCH": 10,
+    "MISMATCH": 10
   },
   "predicted_distribution": {
-    "MATCH": 0,
+    "MATCH": 30,
     "PARTIAL_MATCH": 0,
-    "MISMATCH": 12
+    "MISMATCH": 0
   },
   "per_class": {
     "MATCH": {
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1": 0.0,
-      "support": 4
+      "precision": 0.3333333333333333,
+      "recall": 1.0,
+      "f1": 0.5,
+      "support": 10
     },
     "PARTIAL_MATCH": {
       "precision": 0.0,
       "recall": 0.0,
       "f1": 0.0,
-      "support": 4
+      "support": 10
     },
     "MISMATCH": {
-      "precision": 0.3333333333333333,
-      "recall": 1.0,
-      "f1": 0.5,
-      "support": 4
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 10
     }
   },
   "confusion_matrix": [
     [
+      10,
       0,
-      0,
-      4
+      0
     ],
     [
+      10,
       0,
-      0,
-      4
+      0
     ],
     [
+      10,
       0,
-      0,
-      4
+      0
     ]
   ],
   "confusion_matrix_labels": [
@@ -59,9 +59,9 @@
     "MISMATCH"
   ],
   "training": {
-    "epochs_completed": 26,
-    "best_epoch": 18,
-    "best_validation_loss": 1.0986132621765137,
+    "epochs_completed": 14,
+    "best_epoch": 6,
+    "best_validation_loss": 1.0986192226409912,
     "parameter_count": 25763,
     "random_state": 42
   }

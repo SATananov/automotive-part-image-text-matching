@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from src.dataset_config import LABELS
+from src.dataset_config import LABELS, PART_CATEGORIES
 from src.create_grouped_split import (
     load_metadata,
     split_grouped_dataframe,
@@ -39,9 +39,9 @@ def test_expected_group_counts() -> None:
         test_dataframe,
     ) = create_splits()
 
-    assert train_dataframe["part_group_id"].nunique() == 12
-    assert validation_dataframe["part_group_id"].nunique() == 4
-    assert test_dataframe["part_group_id"].nunique() == 4
+    assert train_dataframe["part_group_id"].nunique() == 30
+    assert validation_dataframe["part_group_id"].nunique() == 10
+    assert test_dataframe["part_group_id"].nunique() == 10
 
 
 def test_part_groups_do_not_overlap() -> None:
@@ -152,3 +152,23 @@ def test_grouped_split_is_reproducible() -> None:
         assert list(first_dataframe["sample_id"]) == list(
             second_dataframe["sample_id"]
         )
+
+def test_each_split_contains_all_categories() -> None:
+    (
+        _,
+        train_dataframe,
+        validation_dataframe,
+        test_dataframe,
+    ) = create_splits()
+
+    expected_categories = set(PART_CATEGORIES)
+
+    for dataframe in (
+        train_dataframe,
+        validation_dataframe,
+        test_dataframe,
+    ):
+        assert set(
+            dataframe["part_category"]
+        ) == expected_categories
+

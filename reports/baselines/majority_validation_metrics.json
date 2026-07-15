@@ -1,16 +1,16 @@
 {
   "model": "Majority baseline",
   "evaluation_split": "validation",
-  "sample_count": 12,
+  "sample_count": 30,
   "accuracy": 0.3333333333333333,
   "macro_f1": 0.16666666666666666,
   "true_distribution": {
-    "MATCH": 4,
-    "PARTIAL_MATCH": 4,
-    "MISMATCH": 4
+    "MATCH": 10,
+    "PARTIAL_MATCH": 10,
+    "MISMATCH": 10
   },
   "predicted_distribution": {
-    "MATCH": 12,
+    "MATCH": 30,
     "PARTIAL_MATCH": 0,
     "MISMATCH": 0
   },
@@ -19,34 +19,34 @@
       "precision": 0.3333333333333333,
       "recall": 1.0,
       "f1": 0.5,
-      "support": 4
+      "support": 10
     },
     "PARTIAL_MATCH": {
       "precision": 0.0,
       "recall": 0.0,
       "f1": 0.0,
-      "support": 4
+      "support": 10
     },
     "MISMATCH": {
       "precision": 0.0,
       "recall": 0.0,
       "f1": 0.0,
-      "support": 4
+      "support": 10
     }
   },
   "confusion_matrix": [
     [
-      4,
+      10,
       0,
       0
     ],
     [
-      4,
+      10,
       0,
       0
     ],
     [
-      4,
+      10,
       0,
       0
     ]

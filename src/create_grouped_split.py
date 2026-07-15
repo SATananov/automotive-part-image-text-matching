@@ -4,9 +4,8 @@ import json
 from pathlib import Path
 
 import pandas as pd
-from sklearn.model_selection import GroupShuffleSplit
 
-from src.dataset_config import LABELS, METADATA_COLUMNS
+from src.dataset_config import LABELS, METADATA_COLUMNS, PART_CATEGORIES
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -47,6 +46,10 @@ TRAIN_RATIO = 0.60
 VALIDATION_RATIO = 0.20
 TEST_RATIO = 0.20
 
+TRAIN_GROUPS_PER_CATEGORY = 3
+VALIDATION_GROUPS_PER_CATEGORY = 1
+TEST_GROUPS_PER_CATEGORY = 1
+
 
 def load_metadata() -> pd.DataFrame:
     dataframe = pd.read_csv(INPUT_METADATA_PATH)
@@ -78,58 +81,79 @@ def sort_split(dataframe: pd.DataFrame) -> pd.DataFrame:
 def split_grouped_dataframe(
     dataframe: pd.DataFrame,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    first_splitter = GroupShuffleSplit(
-        n_splits=1,
-        train_size=TRAIN_RATIO,
-        random_state=RANDOM_STATE,
+    split_groups: dict[str, list[str]] = {
+        "train": [],
+        "validation": [],
+        "test": [],
+    }
+
+    expected_groups_per_category = (
+        TRAIN_GROUPS_PER_CATEGORY
+        + VALIDATION_GROUPS_PER_CATEGORY
+        + TEST_GROUPS_PER_CATEGORY
     )
 
-    train_indices, remaining_indices = next(
-        first_splitter.split(
-            dataframe,
-            groups=dataframe["part_group_id"],
+    for category in PART_CATEGORIES:
+        category_groups = sorted(
+            dataframe.loc[
+                dataframe["part_category"].eq(category),
+                "part_group_id",
+            ]
+            .drop_duplicates()
+            .tolist()
         )
-    )
 
-    train_dataframe = dataframe.iloc[train_indices].copy()
-    remaining_dataframe = dataframe.iloc[remaining_indices].copy()
+        if len(category_groups) != expected_groups_per_category:
+            raise ValueError(
+                f"Category '{category}' contains "
+                f"{len(category_groups)} groups; "
+                f"expected {expected_groups_per_category}."
+            )
 
-    relative_test_ratio = (
-        TEST_RATIO
-        / (VALIDATION_RATIO + TEST_RATIO)
-    )
+        train_end = TRAIN_GROUPS_PER_CATEGORY
 
-    second_splitter = GroupShuffleSplit(
-        n_splits=1,
-        test_size=relative_test_ratio,
-        random_state=RANDOM_STATE,
-    )
-
-    validation_indices, test_indices = next(
-        second_splitter.split(
-            remaining_dataframe,
-            groups=remaining_dataframe["part_group_id"],
+        validation_end = (
+            train_end
+            + VALIDATION_GROUPS_PER_CATEGORY
         )
-    )
 
-    validation_dataframe = (
-        remaining_dataframe
-        .iloc[validation_indices]
-        .copy()
-    )
+        split_groups["train"].extend(
+            category_groups[:train_end]
+        )
 
-    test_dataframe = (
-        remaining_dataframe
-        .iloc[test_indices]
-        .copy()
-    )
+        split_groups["validation"].extend(
+            category_groups[
+                train_end:validation_end
+            ]
+        )
+
+        split_groups["test"].extend(
+            category_groups[validation_end:]
+        )
+
+    train_dataframe = dataframe[
+        dataframe["part_group_id"].isin(
+            split_groups["train"]
+        )
+    ].copy()
+
+    validation_dataframe = dataframe[
+        dataframe["part_group_id"].isin(
+            split_groups["validation"]
+        )
+    ].copy()
+
+    test_dataframe = dataframe[
+        dataframe["part_group_id"].isin(
+            split_groups["test"]
+        )
+    ].copy()
 
     return (
         sort_split(train_dataframe),
         sort_split(validation_dataframe),
         sort_split(test_dataframe),
     )
-
 
 def validate_split_integrity(
     original_dataframe: pd.DataFrame,
@@ -292,7 +316,7 @@ def build_report(
 ) -> dict[str, object]:
     return {
         "status": "PASS",
-        "random_state": RANDOM_STATE,
+        "split_strategy": "category_balanced_deterministic",
         "requested_ratios": {
             "train": TRAIN_RATIO,
             "validation": VALIDATION_RATIO,
@@ -361,7 +385,7 @@ def write_reports(
         "",
         f"**Status:** {report['status']}",
         "",
-        f"- Random state: {report['random_state']}",
+        f"- Split strategy: {report['split_strategy']}",
         "- Grouping column: `part_group_id`",
         "",
         "## Split summary",

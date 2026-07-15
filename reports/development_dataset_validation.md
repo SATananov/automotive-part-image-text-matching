@@ -4,22 +4,22 @@
 
 ## Dataset summary
 
-- Samples: 60
-- Images: 20
-- Physical part groups: 20
+- Samples: 150
+- Images: 50
+- Physical part groups: 50
 
 ## Label distribution
 
-- MATCH: 20
-- MISMATCH: 20
-- PARTIAL_MATCH: 20
+- MATCH: 50
+- MISMATCH: 50
+- PARTIAL_MATCH: 50
 
 ## Image validation
 
-- Checked images: 20
-- Formats: {'PNG': 20}
-- Modes: {'RGB': 20}
-- Dimensions: {'224x224': 20}
+- Checked images: 50
+- Formats: {'PNG': 50}
+- Modes: {'RGB': 50}
+- Dimensions: {'224x224': 50}
 
 ## Validation errors
 

@@ -23,9 +23,9 @@ def read_rows() -> list[dict[str, str]]:
 def test_development_dataset_has_expected_size() -> None:
     rows = read_rows()
 
-    assert len(rows) == 60
-    assert len({row["image_id"] for row in rows}) == 20
-    assert len({row["part_group_id"] for row in rows}) == 20
+    assert len(rows) == 150
+    assert len({row["image_id"] for row in rows}) == 50
+    assert len({row["part_group_id"] for row in rows}) == 50
 
 
 def test_development_dataset_is_balanced() -> None:
@@ -33,9 +33,9 @@ def test_development_dataset_is_balanced() -> None:
     label_counts = Counter(row["label"] for row in rows)
 
     assert label_counts == {
-        "MATCH": 20,
-        "PARTIAL_MATCH": 20,
-        "MISMATCH": 20,
+        "MATCH": 50,
+        "PARTIAL_MATCH": 50,
+        "MISMATCH": 50,
     }
 
 

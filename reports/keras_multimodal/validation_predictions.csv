@@ -1,13 +1,31 @@
 sample_id,part_group_id,image_id,image_path,part_category,description,true_label,predicted_label,is_correct,probability_MATCH,probability_PARTIAL_MATCH,probability_MISMATCH
-alternator_002_01_match,alternator_002,alternator_002_01,data/development/images/alternator_002_01.png,alternator,Automotive alternator.,MATCH,PARTIAL_MATCH,False,0.36202267,0.36782956,0.27014774
-alternator_002_01_mismatch,alternator_002,alternator_002_01,data/development/images/alternator_002_01.png,alternator,Automotive brake disc.,MISMATCH,PARTIAL_MATCH,False,0.33636147,0.34207746,0.32156107
-alternator_002_01_partial_match,alternator_002,alternator_002_01,data/development/images/alternator_002_01.png,alternator,Automotive starter motor.,PARTIAL_MATCH,MISMATCH,False,0.3282694,0.28511813,0.38661253
-brake_disc_002_01_match,brake_disc_002,brake_disc_002_01,data/development/images/brake_disc_002_01.png,brake_disc,Automotive brake disc.,MATCH,PARTIAL_MATCH,False,0.33709043,0.34238914,0.3205204
-brake_disc_002_01_mismatch,brake_disc_002,brake_disc_002_01,data/development/images/brake_disc_002_01.png,brake_disc,Automotive shock absorber.,MISMATCH,MISMATCH,True,0.307669,0.26776406,0.42456692
-brake_disc_002_01_partial_match,brake_disc_002,brake_disc_002_01,data/development/images/brake_disc_002_01.png,brake_disc,Automotive brake pad set.,PARTIAL_MATCH,MATCH,False,0.37343553,0.35458836,0.27197608
-coil_spring_001_01_match,coil_spring_001,coil_spring_001_01,data/development/images/coil_spring_001_01.png,coil_spring,Automotive coil spring.,MATCH,PARTIAL_MATCH,False,0.35958833,0.36860743,0.2718042
-coil_spring_001_01_mismatch,coil_spring_001,coil_spring_001_01,data/development/images/coil_spring_001_01.png,coil_spring,Automotive headlight assembly.,MISMATCH,PARTIAL_MATCH,False,0.32917818,0.3413375,0.32948428
-coil_spring_001_01_partial_match,coil_spring_001,coil_spring_001_01,data/development/images/coil_spring_001_01.png,coil_spring,Automotive shock absorber.,PARTIAL_MATCH,MISMATCH,False,0.30828682,0.2680136,0.4236995
-shock_absorber_002_01_match,shock_absorber_002,shock_absorber_002_01,data/development/images/shock_absorber_002_01.png,shock_absorber,Automotive shock absorber.,MATCH,MISMATCH,False,0.30723777,0.26756212,0.42520007
-shock_absorber_002_01_mismatch,shock_absorber_002,shock_absorber_002_01,data/development/images/shock_absorber_002_01.png,shock_absorber,Automotive headlight assembly.,MISMATCH,PARTIAL_MATCH,False,0.32823145,0.34094262,0.33082598
-shock_absorber_002_01_partial_match,shock_absorber_002,shock_absorber_002_01,data/development/images/shock_absorber_002_01.png,shock_absorber,Automotive coil spring.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.35874617,0.36807975,0.2731741
+air_filter_004_01_match,air_filter_004,air_filter_004_01,data/development/images/air_filter_004_01.png,air_filter,Automotive air filter.,MATCH,MATCH,True,0.9891199,0.010876749,3.3740753e-06
+air_filter_004_01_mismatch,air_filter_004,air_filter_004_01,data/development/images/air_filter_004_01.png,air_filter,Automotive starter motor.,MISMATCH,MISMATCH,True,0.0058882134,0.43218085,0.5619309
+air_filter_004_01_partial_match,air_filter_004,air_filter_004_01,data/development/images/air_filter_004_01.png,air_filter,Automotive oil filter.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.009437849,0.5272408,0.4633213
+alternator_004_01_match,alternator_004,alternator_004_01,data/development/images/alternator_004_01.png,alternator,Automotive alternator.,MATCH,MATCH,True,0.92187357,0.07754242,0.000583947
+alternator_004_01_mismatch,alternator_004,alternator_004_01,data/development/images/alternator_004_01.png,alternator,Automotive brake disc.,MISMATCH,MISMATCH,True,0.0760692,0.41012844,0.5138024
+alternator_004_01_partial_match,alternator_004,alternator_004_01,data/development/images/alternator_004_01.png,alternator,Automotive starter motor.,PARTIAL_MATCH,MISMATCH,False,0.03072049,0.3957365,0.573543
+brake_disc_004_01_match,brake_disc_004,brake_disc_004_01,data/development/images/brake_disc_004_01.png,brake_disc,Automotive brake disc.,MATCH,MISMATCH,False,0.41546583,0.075042315,0.50949186
+brake_disc_004_01_mismatch,brake_disc_004,brake_disc_004_01,data/development/images/brake_disc_004_01.png,brake_disc,Automotive shock absorber.,MISMATCH,MISMATCH,True,0.36083192,0.045176152,0.59399194
+brake_disc_004_01_partial_match,brake_disc_004,brake_disc_004_01,data/development/images/brake_disc_004_01.png,brake_disc,Automotive brake pad set.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.15917395,0.84074,8.605051e-05
+brake_pad_004_01_match,brake_pad_004,brake_pad_004_01,data/development/images/brake_pad_004_01.png,brake_pad,Automotive brake pad set.,MATCH,MATCH,True,0.9537381,0.046164095,9.777715e-05
+brake_pad_004_01_mismatch,brake_pad_004,brake_pad_004_01,data/development/images/brake_pad_004_01.png,brake_pad,Automotive shock absorber.,MISMATCH,MISMATCH,True,0.039623458,0.35063496,0.6097416
+brake_pad_004_01_partial_match,brake_pad_004,brake_pad_004_01,data/development/images/brake_pad_004_01.png,brake_pad,Automotive brake disc.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.041682743,0.5005714,0.45774585
+coil_spring_004_01_match,coil_spring_004,coil_spring_004_01,data/development/images/coil_spring_004_01.png,coil_spring,Automotive coil spring.,MATCH,MATCH,True,0.9952153,0.0047843987,3.5317595e-07
+coil_spring_004_01_mismatch,coil_spring_004,coil_spring_004_01,data/development/images/coil_spring_004_01.png,coil_spring,Automotive headlight assembly.,MISMATCH,MISMATCH,True,0.001911511,0.40600199,0.59208655
+coil_spring_004_01_partial_match,coil_spring_004,coil_spring_004_01,data/development/images/coil_spring_004_01.png,coil_spring,Automotive shock absorber.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.0057119294,0.530404,0.46388412
+headlight_004_01_match,headlight_004,headlight_004_01,data/development/images/headlight_004_01.png,headlight,Automotive headlight assembly.,MATCH,MATCH,True,0.54644907,0.008515985,0.44503504
+headlight_004_01_mismatch,headlight_004,headlight_004_01,data/development/images/headlight_004_01.png,headlight,Automotive oil filter.,MISMATCH,MATCH,False,0.5036351,0.008263258,0.48810166
+headlight_004_01_partial_match,headlight_004,headlight_004_01,data/development/images/headlight_004_01.png,headlight,Automotive taillight assembly.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.008421814,0.99157363,4.5007646e-06
+oil_filter_004_01_match,oil_filter_004,oil_filter_004_01,data/development/images/oil_filter_004_01.png,oil_filter,Automotive oil filter.,MATCH,MATCH,True,0.51491463,0.02607929,0.4590061
+oil_filter_004_01_mismatch,oil_filter_004,oil_filter_004_01,data/development/images/oil_filter_004_01.png,oil_filter,Automotive starter motor.,MISMATCH,MISMATCH,True,0.32461408,0.06667731,0.6087086
+oil_filter_004_01_partial_match,oil_filter_004,oil_filter_004_01,data/development/images/oil_filter_004_01.png,oil_filter,Automotive air filter.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.03823649,0.96176183,1.6914685e-06
+shock_absorber_004_01_match,shock_absorber_004,shock_absorber_004_01,data/development/images/shock_absorber_004_01.png,shock_absorber,Automotive shock absorber.,MATCH,MISMATCH,False,0.475912,0.034360792,0.48972723
+shock_absorber_004_01_mismatch,shock_absorber_004,shock_absorber_004_01,data/development/images/shock_absorber_004_01.png,shock_absorber,Automotive headlight assembly.,MISMATCH,MISMATCH,True,0.30115643,0.04536501,0.6534786
+shock_absorber_004_01_partial_match,shock_absorber_004,shock_absorber_004_01,data/development/images/shock_absorber_004_01.png,shock_absorber,Automotive coil spring.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.026820537,0.9731793,1.13574906e-07
+starter_004_01_match,starter_004,starter_004_01,data/development/images/starter_004_01.png,starter,Automotive starter motor.,MATCH,MATCH,True,0.49833193,0.030475786,0.47119227
+starter_004_01_mismatch,starter_004,starter_004_01,data/development/images/starter_004_01.png,starter,Automotive brake disc.,MISMATCH,MATCH,False,0.53354514,0.026759252,0.43969563
+starter_004_01_partial_match,starter_004,starter_004_01,data/development/images/starter_004_01.png,starter,Automotive alternator.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.041924886,0.95790535,0.00016981746
+taillight_004_01_match,taillight_004,taillight_004_01,data/development/images/taillight_004_01.png,taillight,Automotive taillight assembly.,MATCH,MATCH,True,0.97740376,0.022567281,2.8938766e-05
+taillight_004_01_mismatch,taillight_004,taillight_004_01,data/development/images/taillight_004_01.png,taillight,Automotive oil filter.,MISMATCH,PARTIAL_MATCH,False,0.015647532,0.4987739,0.48557854
+taillight_004_01_partial_match,taillight_004,taillight_004_01,data/development/images/taillight_004_01.png,taillight,Automotive headlight assembly.,PARTIAL_MATCH,MISMATCH,False,0.0057105687,0.40814236,0.5861471

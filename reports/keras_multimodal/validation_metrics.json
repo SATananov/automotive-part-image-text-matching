@@ -3,54 +3,54 @@
   "input_modality": "image_and_text",
   "evaluation_split": "validation",
   "test_split_used": false,
-  "sample_count": 12,
-  "accuracy": 0.16666666666666666,
-  "macro_f1": 0.14393939393939395,
+  "sample_count": 30,
+  "accuracy": 0.7666666666666667,
+  "macro_f1": 0.7695906432748538,
   "true_distribution": {
-    "MATCH": 4,
-    "PARTIAL_MATCH": 4,
-    "MISMATCH": 4
+    "MATCH": 10,
+    "PARTIAL_MATCH": 10,
+    "MISMATCH": 10
   },
   "predicted_distribution": {
-    "MATCH": 1,
-    "PARTIAL_MATCH": 7,
-    "MISMATCH": 4
+    "MATCH": 10,
+    "PARTIAL_MATCH": 9,
+    "MISMATCH": 11
   },
   "per_class": {
     "MATCH": {
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1": 0.0,
-      "support": 4
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 10
     },
     "PARTIAL_MATCH": {
-      "precision": 0.14285714285714285,
-      "recall": 0.25,
-      "f1": 0.18181818181818182,
-      "support": 4
+      "precision": 0.8888888888888888,
+      "recall": 0.8,
+      "f1": 0.8421052631578947,
+      "support": 10
     },
     "MISMATCH": {
-      "precision": 0.25,
-      "recall": 0.25,
-      "f1": 0.25,
-      "support": 4
+      "precision": 0.6363636363636364,
+      "recall": 0.7,
+      "f1": 0.6666666666666666,
+      "support": 10
     }
   },
   "confusion_matrix": [
     [
+      8,
       0,
-      3,
-      1
-    ],
-    [
-      1,
-      1,
       2
     ],
     [
       0,
-      3,
-      1
+      8,
+      2
+    ],
+    [
+      2,
+      1,
+      7
     ]
   ],
   "confusion_matrix_labels": [
@@ -59,9 +59,9 @@
     "MISMATCH"
   ],
   "training": {
-    "epochs_completed": 31,
-    "best_epoch": 21,
-    "best_validation_loss": 1.09348726272583,
+    "epochs_completed": 80,
+    "best_epoch": 80,
+    "best_validation_loss": 0.4599468410015106,
     "vocabulary_size": 20,
     "parameter_count": 31715,
     "random_state": 42

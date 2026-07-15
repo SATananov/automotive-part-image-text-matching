@@ -104,6 +104,6 @@ def test_complete_development_dataset_passes_validation() -> None:
 
     assert report["status"] == "PASS"
     assert report["errors"] == []
-    assert report["sample_count"] == 60
-    assert report["image_count"] == 20
-    assert report["part_group_count"] == 20
+    assert report["sample_count"] == 150
+    assert report["image_count"] == 50
+    assert report["part_group_count"] == 50

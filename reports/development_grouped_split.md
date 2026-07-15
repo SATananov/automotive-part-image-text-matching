@@ -2,24 +2,24 @@
 
 **Status:** PASS
 
-- Random state: 42
+- Split strategy: category_balanced_deterministic
 - Grouping column: `part_group_id`
 
 ## Split summary
 
 | Split | Samples | Images | Part groups |
 |---|---:|---:|---:|
-| Train | 36 | 12 | 12 |
-| Validation | 12 | 4 | 4 |
-| Test | 12 | 4 | 4 |
+| Train | 90 | 30 | 30 |
+| Validation | 30 | 10 | 10 |
+| Test | 30 | 10 | 10 |
 
 ## Label distribution
 
 | Split | MATCH | PARTIAL_MATCH | MISMATCH |
 |---|---:|---:|---:|
-| Train | 12 | 12 | 12 |
-| Validation | 4 | 4 | 4 |
-| Test | 4 | 4 | 4 |
+| Train | 30 | 30 | 30 |
+| Validation | 10 | 10 | 10 |
+| Test | 10 | 10 | 10 |
 
 ## Leakage check
 

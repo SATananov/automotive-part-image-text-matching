@@ -6,8 +6,8 @@ The test split was not used.
 
 ## Dataset
 
-- Training samples: 36
-- Validation samples: 12
+- Training samples: 90
+- Validation samples: 30
 
 ## Architecture
 
@@ -37,23 +37,23 @@ The test split was not used.
 
 - Vocabulary size: 20
 - Maximum epochs: 80
-- Completed epochs: 31
-- Best epoch: 21
-- Best validation loss: 1.0935
+- Completed epochs: 80
+- Best epoch: 80
+- Best validation loss: 0.4599
 - Parameters: 31715
 
 ## Validation results
 
-- Accuracy: 0.1667
-- Macro F1: 0.1439
+- Accuracy: 0.7667
+- Macro F1: 0.7696
 
 ## Model comparison
 
 | Model | Accuracy | Macro F1 |
 |---|---:|---:|
-| Keras text neural network | 0.5000 | 0.4444 |
+| Keras text neural network | 0.5000 | 0.3889 |
 | Keras image neural network | 0.3333 | 0.1667 |
-| Keras multimodal neural network | 0.1667 | 0.1439 |
+| Keras multimodal neural network | 0.7667 | 0.7696 |
 
 ## Notes
 

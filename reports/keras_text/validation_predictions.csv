@@ -1,13 +1,31 @@
 sample_id,part_group_id,image_id,part_category,description,true_label,predicted_label,is_correct,probability_MATCH,probability_PARTIAL_MATCH,probability_MISMATCH
-alternator_002_01_match,alternator_002,alternator_002_01,alternator,Automotive alternator.,MATCH,MATCH,True,0.448684,0.431878,0.119438
-alternator_002_01_mismatch,alternator_002,alternator_002_01,alternator,Automotive brake disc.,MISMATCH,MISMATCH,True,0.25815737,0.3655823,0.37626028
-alternator_002_01_partial_match,alternator_002,alternator_002_01,alternator,Automotive starter motor.,PARTIAL_MATCH,MISMATCH,False,0.22464342,0.27879867,0.49655798
-brake_disc_002_01_match,brake_disc_002,brake_disc_002_01,brake_disc,Automotive brake disc.,MATCH,MISMATCH,False,0.25815737,0.3655823,0.37626028
-brake_disc_002_01_mismatch,brake_disc_002,brake_disc_002_01,brake_disc,Automotive shock absorber.,MISMATCH,MISMATCH,True,0.18741049,0.24797267,0.56461686
-brake_disc_002_01_partial_match,brake_disc_002,brake_disc_002_01,brake_disc,Automotive brake pad set.,PARTIAL_MATCH,MATCH,False,0.4956898,0.39464116,0.109669015
-coil_spring_001_01_match,coil_spring_001,coil_spring_001_01,coil_spring,Automotive coil spring.,MATCH,PARTIAL_MATCH,False,0.4337973,0.4528285,0.11337421
-coil_spring_001_01_mismatch,coil_spring_001,coil_spring_001_01,coil_spring,Automotive headlight assembly.,MISMATCH,MISMATCH,True,0.27161092,0.33139732,0.3969917
-coil_spring_001_01_partial_match,coil_spring_001,coil_spring_001_01,coil_spring,Automotive shock absorber.,PARTIAL_MATCH,MISMATCH,False,0.18741049,0.24797267,0.56461686
-shock_absorber_002_01_match,shock_absorber_002,shock_absorber_002_01,shock_absorber,Automotive shock absorber.,MATCH,MISMATCH,False,0.18741049,0.24797267,0.56461686
-shock_absorber_002_01_mismatch,shock_absorber_002,shock_absorber_002_01,shock_absorber,Automotive headlight assembly.,MISMATCH,MISMATCH,True,0.27161092,0.33139732,0.3969917
-shock_absorber_002_01_partial_match,shock_absorber_002,shock_absorber_002_01,shock_absorber,Automotive coil spring.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.4337973,0.4528285,0.11337421
+air_filter_004_01_match,air_filter_004,air_filter_004_01,air_filter,Automotive air filter.,MATCH,PARTIAL_MATCH,False,0.4945994,0.5000411,0.005359499
+air_filter_004_01_mismatch,air_filter_004,air_filter_004_01,air_filter,Automotive starter motor.,MISMATCH,MISMATCH,True,0.25289774,0.24713774,0.49996454
+air_filter_004_01_partial_match,air_filter_004,air_filter_004_01,air_filter,Automotive oil filter.,PARTIAL_MATCH,MISMATCH,False,0.25392804,0.25334883,0.49272317
+alternator_004_01_match,alternator_004,alternator_004_01,alternator,Automotive alternator.,MATCH,PARTIAL_MATCH,False,0.49713844,0.49993175,0.0029297809
+alternator_004_01_mismatch,alternator_004,alternator_004_01,alternator,Automotive brake disc.,MISMATCH,MISMATCH,True,0.26941615,0.24880546,0.48177835
+alternator_004_01_partial_match,alternator_004,alternator_004_01,alternator,Automotive starter motor.,PARTIAL_MATCH,MISMATCH,False,0.25289774,0.24713774,0.49996454
+brake_disc_004_01_match,brake_disc_004,brake_disc_004_01,brake_disc,Automotive brake disc.,MATCH,MISMATCH,False,0.26941618,0.2488055,0.4817784
+brake_disc_004_01_mismatch,brake_disc_004,brake_disc_004_01,brake_disc,Automotive shock absorber.,MISMATCH,MISMATCH,True,0.25516775,0.25549248,0.4893397
+brake_disc_004_01_partial_match,brake_disc_004,brake_disc_004_01,brake_disc,Automotive brake pad set.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.48123607,0.5150724,0.0036915166
+brake_pad_004_01_match,brake_pad_004,brake_pad_004_01,brake_pad,Automotive brake pad set.,MATCH,PARTIAL_MATCH,False,0.48123607,0.5150724,0.0036915166
+brake_pad_004_01_mismatch,brake_pad_004,brake_pad_004_01,brake_pad,Automotive shock absorber.,MISMATCH,MISMATCH,True,0.25516775,0.25549248,0.4893397
+brake_pad_004_01_partial_match,brake_pad_004,brake_pad_004_01,brake_pad,Automotive brake disc.,PARTIAL_MATCH,MISMATCH,False,0.26941615,0.24880546,0.48177835
+coil_spring_004_01_match,coil_spring_004,coil_spring_004_01,coil_spring,Automotive coil spring.,MATCH,PARTIAL_MATCH,False,0.49478558,0.5027626,0.0024517723
+coil_spring_004_01_mismatch,coil_spring_004,coil_spring_004_01,coil_spring,Automotive headlight assembly.,MISMATCH,MISMATCH,True,0.24514472,0.25743136,0.497424
+coil_spring_004_01_partial_match,coil_spring_004,coil_spring_004_01,coil_spring,Automotive shock absorber.,PARTIAL_MATCH,MISMATCH,False,0.25516775,0.25549248,0.4893397
+headlight_004_01_match,headlight_004,headlight_004_01,headlight,Automotive headlight assembly.,MATCH,MISMATCH,False,0.2451447,0.25743136,0.49742395
+headlight_004_01_mismatch,headlight_004,headlight_004_01,headlight,Automotive oil filter.,MISMATCH,MISMATCH,True,0.25392804,0.25334883,0.49272317
+headlight_004_01_partial_match,headlight_004,headlight_004_01,headlight,Automotive taillight assembly.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.48744804,0.5063746,0.0061772997
+oil_filter_004_01_match,oil_filter_004,oil_filter_004_01,oil_filter,Automotive oil filter.,MATCH,MISMATCH,False,0.25392804,0.25334883,0.49272317
+oil_filter_004_01_mismatch,oil_filter_004,oil_filter_004_01,oil_filter,Automotive starter motor.,MISMATCH,MISMATCH,True,0.25289774,0.24713774,0.49996454
+oil_filter_004_01_partial_match,oil_filter_004,oil_filter_004_01,oil_filter,Automotive air filter.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.4945994,0.5000411,0.005359499
+shock_absorber_004_01_match,shock_absorber_004,shock_absorber_004_01,shock_absorber,Automotive shock absorber.,MATCH,MISMATCH,False,0.25516775,0.25549248,0.4893397
+shock_absorber_004_01_mismatch,shock_absorber_004,shock_absorber_004_01,shock_absorber,Automotive headlight assembly.,MISMATCH,MISMATCH,True,0.2451447,0.25743136,0.49742395
+shock_absorber_004_01_partial_match,shock_absorber_004,shock_absorber_004_01,shock_absorber,Automotive coil spring.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.49478564,0.5027626,0.0024517723
+starter_004_01_match,starter_004,starter_004_01,starter,Automotive starter motor.,MATCH,MISMATCH,False,0.25289774,0.24713774,0.49996454
+starter_004_01_mismatch,starter_004,starter_004_01,starter,Automotive brake disc.,MISMATCH,MISMATCH,True,0.26941615,0.24880546,0.48177835
+starter_004_01_partial_match,starter_004,starter_004_01,starter,Automotive alternator.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.49713844,0.49993175,0.0029297809
+taillight_004_01_match,taillight_004,taillight_004_01,taillight,Automotive taillight assembly.,MATCH,PARTIAL_MATCH,False,0.48744804,0.5063746,0.0061772997
+taillight_004_01_mismatch,taillight_004,taillight_004_01,taillight,Automotive oil filter.,MISMATCH,MISMATCH,True,0.25392804,0.25334883,0.49272317
+taillight_004_01_partial_match,taillight_004,taillight_004_01,taillight,Automotive headlight assembly.,PARTIAL_MATCH,MISMATCH,False,0.24514472,0.25743136,0.497424

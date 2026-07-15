@@ -6,16 +6,16 @@ The test split was not used.
 
 ## Dataset
 
-- Training samples: 36
-- Validation samples: 12
-- Training label distribution: {'MATCH': 12, 'MISMATCH': 12, 'PARTIAL_MATCH': 12}
+- Training samples: 90
+- Validation samples: 30
+- Training label distribution: {'MATCH': 30, 'MISMATCH': 30, 'PARTIAL_MATCH': 30}
 
 ## Results
 
 | Model | Accuracy | Macro F1 |
 |---|---:|---:|
 | Majority baseline | 0.3333 | 0.1667 |
-| TF-IDF + Logistic Regression | 0.1667 | 0.1439 |
+| TF-IDF + Logistic Regression | 0.5000 | 0.3889 |
 | Image pixels + Logistic Regression | 0.3333 | 0.1667 |
 
 ## Interpretation

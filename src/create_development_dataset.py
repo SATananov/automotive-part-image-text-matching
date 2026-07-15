@@ -21,7 +21,7 @@ METADATA_PATH = OUTPUT_DIRECTORY / "metadata.csv"
 SUMMARY_PATH = PROJECT_ROOT / "reports" / "development_dataset_summary.md"
 
 IMAGE_SIZE = 224
-PARTS_PER_CATEGORY = 2
+PARTS_PER_CATEGORY = 5
 
 DISPLAY_NAMES = {
     "starter": "starter motor",
