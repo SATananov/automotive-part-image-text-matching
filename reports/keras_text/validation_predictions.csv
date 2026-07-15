@@ -1,0 +1,13 @@
+sample_id,part_group_id,image_id,part_category,description,true_label,predicted_label,is_correct,probability_MATCH,probability_PARTIAL_MATCH,probability_MISMATCH
+alternator_002_01_match,alternator_002,alternator_002_01,alternator,Automotive alternator.,MATCH,MATCH,True,0.448684,0.431878,0.119438
+alternator_002_01_mismatch,alternator_002,alternator_002_01,alternator,Automotive brake disc.,MISMATCH,MISMATCH,True,0.25815737,0.3655823,0.37626028
+alternator_002_01_partial_match,alternator_002,alternator_002_01,alternator,Automotive starter motor.,PARTIAL_MATCH,MISMATCH,False,0.22464342,0.27879867,0.49655798
+brake_disc_002_01_match,brake_disc_002,brake_disc_002_01,brake_disc,Automotive brake disc.,MATCH,MISMATCH,False,0.25815737,0.3655823,0.37626028
+brake_disc_002_01_mismatch,brake_disc_002,brake_disc_002_01,brake_disc,Automotive shock absorber.,MISMATCH,MISMATCH,True,0.18741049,0.24797267,0.56461686
+brake_disc_002_01_partial_match,brake_disc_002,brake_disc_002_01,brake_disc,Automotive brake pad set.,PARTIAL_MATCH,MATCH,False,0.4956898,0.39464116,0.109669015
+coil_spring_001_01_match,coil_spring_001,coil_spring_001_01,coil_spring,Automotive coil spring.,MATCH,PARTIAL_MATCH,False,0.4337973,0.4528285,0.11337421
+coil_spring_001_01_mismatch,coil_spring_001,coil_spring_001_01,coil_spring,Automotive headlight assembly.,MISMATCH,MISMATCH,True,0.27161092,0.33139732,0.3969917
+coil_spring_001_01_partial_match,coil_spring_001,coil_spring_001_01,coil_spring,Automotive shock absorber.,PARTIAL_MATCH,MISMATCH,False,0.18741049,0.24797267,0.56461686
+shock_absorber_002_01_match,shock_absorber_002,shock_absorber_002_01,shock_absorber,Automotive shock absorber.,MATCH,MISMATCH,False,0.18741049,0.24797267,0.56461686
+shock_absorber_002_01_mismatch,shock_absorber_002,shock_absorber_002_01,shock_absorber,Automotive headlight assembly.,MISMATCH,MISMATCH,True,0.27161092,0.33139732,0.3969917
+shock_absorber_002_01_partial_match,shock_absorber_002,shock_absorber_002_01,shock_absorber,Automotive coil spring.,PARTIAL_MATCH,PARTIAL_MATCH,True,0.4337973,0.4528285,0.11337421
