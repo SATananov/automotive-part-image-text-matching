@@ -121,6 +121,20 @@ COMMANDS: dict[str, CommandSpec] = {
             "safeguards."
         ),
     ),
+    "import-first-real-batch": CommandSpec(
+        module="src.import_first_real_batch",
+        description=(
+            "Import descriptively named first-batch photographs from the "
+            "local capture inbox into immutable originals storage."
+        ),
+    ),
+    "verify-step-009-4": CommandSpec(
+        module="src.verify_step_009_4",
+        description=(
+            "Verify first-batch file naming, capture checklist, and local "
+            "import safeguards."
+        ),
+    ),
 }
 
 

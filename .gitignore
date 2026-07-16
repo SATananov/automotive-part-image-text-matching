@@ -36,3 +36,7 @@ data/real/staging/*
 data/real/processed/.automotive_step009_1_*/
 data/real/annotations/.*.tmp
 data/real/processed/.*.tmp
+
+# Local capture inbox is never committed.
+data/real/capture_inbox/*
+!data/real/capture_inbox/.gitkeep

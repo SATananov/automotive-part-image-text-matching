@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "readiness": "AWAITING_LOCAL_FILES",
+  "live_state_unchanged": "PASS",
+  "counts": {
+    "planned_files": 20,
+    "inbox_files_found": 0,
+    "newly_imported": 0,
+    "originals_available": 0
+  },
+  "errors": [],
+  "warnings": []
+}

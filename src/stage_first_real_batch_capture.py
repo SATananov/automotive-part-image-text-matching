@@ -103,14 +103,22 @@ def read_plan() -> tuple[pd.DataFrame, list[str]]:
     )
 
 
-def find_capture_candidates(intake_id: str) -> list[Path]:
+def capture_filename_stem(row: pd.Series) -> str:
+    return f"{row_value(row, 'part_group_id')}_{row_value(row, 'view')}"
+
+
+def find_capture_candidates(
+    intake_id: str,
+    semantic_stem: str,
+) -> list[Path]:
     if not FIRST_BATCH_ORIGINALS_DIRECTORY.exists():
         return []
+    allowed_stems = {intake_id, semantic_stem}
     return sorted(
         path
         for path in FIRST_BATCH_ORIGINALS_DIRECTORY.iterdir()
         if path.is_file()
-        and path.stem == intake_id
+        and path.stem in allowed_stems
         and path.suffix.lower() in ALLOWED_IMAGE_EXTENSIONS
     )
 
@@ -124,7 +132,7 @@ def capture_relative_path(path: Path | None) -> str:
         return str(path)
 
 
-def unexpected_capture_files(expected_ids: set[str]) -> list[str]:
+def unexpected_capture_files(expected_stems: set[str]) -> list[str]:
     if not FIRST_BATCH_ORIGINALS_DIRECTORY.exists():
         return []
 
@@ -134,7 +142,7 @@ def unexpected_capture_files(expected_ids: set[str]) -> list[str]:
             continue
         if path.suffix.lower() not in ALLOWED_IMAGE_EXTENSIONS:
             continue
-        if path.stem not in expected_ids:
+        if path.stem not in expected_stems:
             unexpected.append(capture_relative_path(path))
     return unexpected
 
@@ -428,8 +436,12 @@ def stage_first_batch_capture() -> dict[str, Any]:
         write_outputs(report, inventory, queue_draft)
         return report
 
-    expected_ids = set(plan["intake_id"])
-    unexpected = unexpected_capture_files(expected_ids)
+    expected_stems = set(plan["intake_id"])
+    expected_stems.update(
+        capture_filename_stem(row)
+        for _, row in plan.iterrows()
+    )
+    unexpected = unexpected_capture_files(expected_stems)
     if unexpected:
         errors.append(
             "Unexpected image files in the first-batch originals directory: "
@@ -446,7 +458,10 @@ def stage_first_batch_capture() -> dict[str, Any]:
     for _, row in plan.iterrows():
         intake_id = row_value(row, "intake_id")
         staging_path = PROJECT_ROOT / row_value(row, "staging_path")
-        candidates = find_capture_candidates(intake_id)
+        candidates = find_capture_candidates(
+            intake_id,
+            capture_filename_stem(row),
+        )
         source_paths[intake_id] = candidates[0] if len(candidates) == 1 else None
 
         if len(candidates) > 1:

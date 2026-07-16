@@ -8,6 +8,7 @@ from src.dataset_config import PART_CATEGORIES, PART_FAMILIES
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 REAL_DATASET_ROOT = PROJECT_ROOT / "data" / "real"
 REAL_ORIGINALS_DIRECTORY = REAL_DATASET_ROOT / "originals"
+REAL_CAPTURE_INBOX_DIRECTORY = REAL_DATASET_ROOT / "capture_inbox"
 REAL_STAGING_DIRECTORY = REAL_DATASET_ROOT / "staging"
 REAL_ANNOTATIONS_DIRECTORY = REAL_DATASET_ROOT / "annotations"
 REAL_PART_GROUPS_PATH = REAL_ANNOTATIONS_DIRECTORY / "part_groups.csv"
@@ -27,8 +28,14 @@ REAL_APPROVAL_LOG_PATH = (
 FIRST_BATCH_PLAN_PATH = (
     REAL_ANNOTATIONS_DIRECTORY / "first_batch_plan.csv"
 )
+FIRST_BATCH_CAPTURE_FILE_MAP_PATH = (
+    REAL_ANNOTATIONS_DIRECTORY / "first_batch_capture_file_map.csv"
+)
 FIRST_BATCH_PREVIEW_PATH = (
     REAL_PROCESSED_DIRECTORY / "first_batch_queue_preview.csv"
+)
+FIRST_BATCH_CAPTURE_INBOX_DIRECTORY = (
+    REAL_CAPTURE_INBOX_DIRECTORY / "batch_001"
 )
 FIRST_BATCH_ORIGINALS_DIRECTORY = (
     REAL_ORIGINALS_DIRECTORY / "batch_001"
@@ -38,6 +45,9 @@ FIRST_BATCH_CAPTURE_INVENTORY_PATH = (
 )
 FIRST_BATCH_REVIEW_QUEUE_DRAFT_PATH = (
     REAL_PROCESSED_DIRECTORY / "first_batch_review_queue_draft.csv"
+)
+FIRST_BATCH_LOCAL_IMPORT_INVENTORY_PATH = (
+    REAL_PROCESSED_DIRECTORY / "first_batch_local_import_inventory.csv"
 )
 
 FIRST_BATCH_PLAN_COLUMNS = (
@@ -54,6 +64,31 @@ FIRST_BATCH_PLAN_COLUMNS = (
     "partial_description",
     "mismatch_description",
     "notes",
+)
+
+FIRST_BATCH_CAPTURE_FILE_MAP_COLUMNS = (
+    "batch_id",
+    "batch_item_id",
+    "intake_id",
+    "capture_filename",
+    "part_group_id",
+    "part_category",
+    "view",
+    "staging_path",
+)
+
+FIRST_BATCH_LOCAL_IMPORT_INVENTORY_COLUMNS = (
+    *FIRST_BATCH_CAPTURE_FILE_MAP_COLUMNS,
+    "inbox_source_path",
+    "inbox_source_status",
+    "original_destination_path",
+    "import_status",
+    "sha256",
+    "file_size_bytes",
+    "width",
+    "height",
+    "mode",
+    "format",
 )
 
 FIRST_BATCH_PREVIEW_COLUMNS = (

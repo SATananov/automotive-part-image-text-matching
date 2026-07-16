@@ -431,13 +431,14 @@ and run `apply-real-intake` only after the review report is accepted.
 
 ## Step 009.3 capture, staging, and review readiness
 
-Store the local original photographs for the first batch under
-`data/real/originals/batch_001/`. The filename stem must be one reserved
-`intake_id` from `first_batch_plan.csv`; JPEG and PNG are accepted. Do not add
-unplanned image files to this directory and do not use two extensions for the
-same intake ID.
+Place first-batch photographs in `data/real/capture_inbox/batch_001/`
+using the exact descriptive names from `first_batch_capture_file_map.csv`, such
+as `real_starter_001_front.jpg`. JPEG and PNG are accepted. Run
+`import-first-real-batch` to copy the unchanged bytes into
+`data/real/originals/batch_001/`. Do not add unplanned files or use two
+extensions for one planned capture.
 
-Run:
+After local import, run:
 
 ```powershell
 python -m src.project_cli stage-first-real-batch-capture
@@ -468,3 +469,15 @@ Run the verifier with:
 ```powershell
 python -m src.project_cli verify-step-009-3
 ```
+
+## First-batch descriptive file naming and local import
+
+The first controlled batch uses exact descriptive filenames rather than raw intake identifiers:
+
+```text
+real_<part_category>_001_<view>.jpg
+```
+
+The canonical mapping is `data/real/annotations/first_batch_capture_file_map.csv`, and the operator checklist is `reports/real_dataset/first_batch_capture_checklist.md`.
+
+Local photographs must be placed in `data/real/capture_inbox/batch_001/` and imported with `python -m src.project_cli import-first-real-batch`. The importer copies original bytes without pixel conversion, preserves the inbox files, detects duplicates and destination conflicts, and proves that staging and live dataset state remain unchanged. Only after the import report reaches `READY_FOR_STAGING` should the Step 009.3 staging command be run.

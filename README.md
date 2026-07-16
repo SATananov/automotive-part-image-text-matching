@@ -276,22 +276,18 @@ python -m src.project_cli verify-step-009-2
 ## First real batch capture, staging and review readiness
 
 Step 009.3 turns the committed `batch_001` plan into a controlled local
-capture workflow without approving any image. Save the original photographs
-under:
+capture workflow without approving any image. Step 009.4 adds the supported
+file-naming and local-import boundary. Place descriptively named JPEG or PNG
+files in:
 
 ```text
-data/real/originals/batch_001/
+data/real/capture_inbox/batch_001/
 ```
 
-Use one file per reserved intake ID. Supported source extensions are JPEG and
-PNG, for example:
-
-```text
-data/real/originals/batch_001/intake_000001.jpg
-data/real/originals/batch_001/intake_000002.png
-```
-
-Run the capture and staging command from the repository root:
+Use names such as `real_starter_001_front.jpg` and run
+`import-first-real-batch`. The importer copies the original bytes into
+`data/real/originals/batch_001/`. Then run the capture and staging command from
+the repository root:
 
 ```powershell
 python -m src.project_cli stage-first-real-batch-capture
@@ -325,4 +321,66 @@ Verify the Step 009.3 safeguards with:
 
 ```powershell
 python -m src.project_cli verify-step-009-3
+```
+
+## First real batch file naming and local import
+
+Use descriptive filenames for the 20 first-batch photographs. Do not name local photographs with internal `intake_` identifiers. The required pattern is:
+
+```text
+real_<part_category>_001_<view>.jpg
+```
+
+Examples:
+
+```text
+real_starter_001_front.jpg
+real_starter_001_detail.jpg
+real_brake_disc_001_front.jpg
+real_air_filter_001_detail.jpg
+```
+
+The exact filename-to-intake mapping is committed in:
+
+```text
+data/real/annotations/first_batch_capture_file_map.csv
+```
+
+The complete capture checklist is:
+
+```text
+reports/real_dataset/first_batch_capture_checklist.md
+```
+
+Place renamed JPEG or PNG files in the ignored local inbox:
+
+```text
+data/real/capture_inbox/batch_001/
+```
+
+Then run:
+
+```powershell
+python -m src.project_cli import-first-real-batch
+```
+
+The importer copies original bytes into `data/real/originals/batch_001/` without image conversion. It blocks unclear filenames, duplicate content, unreadable images, multiple extensions for one planned photograph, and conflicts with an existing original. Writes are transactional and do not modify staging, annotations, the live queue, approval log, or approved manifest.
+
+Review:
+
+```text
+data/real/processed/first_batch_local_import_inventory.csv
+reports/real_dataset/first_batch_local_import_readiness.md
+```
+
+When the readiness is `READY_FOR_STAGING`, continue with:
+
+```powershell
+python -m src.project_cli stage-first-real-batch-capture
+```
+
+The staging workflow accepts the new descriptive filenames and still supports the earlier technical intake stems for backward compatibility. Verify the naming and import safeguards with:
+
+```powershell
+python -m src.project_cli verify-step-009-4
 ```
