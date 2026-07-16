@@ -66,6 +66,26 @@ COMMANDS: dict[str, CommandSpec] = {
         module="src.verify_step_009",
         description="Verify the Step 009 real-data intake foundation.",
     ),
+    "review-real-intake": CommandSpec(
+        module="src.review_real_sample_intake",
+        description=(
+            "Review staged real samples, metadata, image quality, "
+            "duplicates, and approval decisions without modifying the dataset."
+        ),
+    ),
+    "apply-real-intake": CommandSpec(
+        module="src.apply_real_sample_intake",
+        description=(
+            "Apply reviewed real-sample approvals and rejections "
+            "transactionally."
+        ),
+    ),
+    "verify-step-009-1": CommandSpec(
+        module="src.verify_step_009_1",
+        description=(
+            "Verify the Step 009.1 sample intake and approval workflow."
+        ),
+    ),
 }
 
 

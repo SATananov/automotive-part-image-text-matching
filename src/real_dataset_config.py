@@ -7,13 +7,21 @@ from src.dataset_config import PART_CATEGORIES, PART_FAMILIES
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 REAL_DATASET_ROOT = PROJECT_ROOT / "data" / "real"
+REAL_ORIGINALS_DIRECTORY = REAL_DATASET_ROOT / "originals"
+REAL_STAGING_DIRECTORY = REAL_DATASET_ROOT / "staging"
 REAL_ANNOTATIONS_DIRECTORY = REAL_DATASET_ROOT / "annotations"
 REAL_PART_GROUPS_PATH = REAL_ANNOTATIONS_DIRECTORY / "part_groups.csv"
 REAL_IMAGES_PATH = REAL_ANNOTATIONS_DIRECTORY / "images.csv"
+REAL_SAMPLE_INTAKE_PATH = (
+    REAL_ANNOTATIONS_DIRECTORY / "sample_intake.csv"
+)
 REAL_PROCESSED_DIRECTORY = REAL_DATASET_ROOT / "processed"
 REAL_PROCESSED_IMAGES_DIRECTORY = REAL_PROCESSED_DIRECTORY / "images"
 REAL_IMAGE_MANIFEST_PATH = (
     REAL_PROCESSED_DIRECTORY / "real_image_manifest.csv"
+)
+REAL_APPROVAL_LOG_PATH = (
+    REAL_PROCESSED_DIRECTORY / "approval_log.csv"
 )
 DEVELOPMENT_IMAGES_DIRECTORY = (
     PROJECT_ROOT / "data" / "development" / "images"
@@ -56,6 +64,39 @@ REAL_IMAGE_INTAKE_MANIFEST_COLUMNS = (
     "format",
 )
 
+SAMPLE_INTAKE_COLUMNS = (
+    "intake_id",
+    "staging_path",
+    "part_group_id",
+    "part_family",
+    "part_category",
+    "view",
+    "source",
+    "match_description",
+    "partial_description",
+    "mismatch_description",
+    "decision",
+    "rejection_reason",
+    "notes",
+)
+
+APPROVAL_LOG_COLUMNS = (
+    "intake_id",
+    "decision",
+    "part_group_id",
+    "image_id",
+    "processed_image_path",
+    "sha256",
+    "width",
+    "height",
+    "mode",
+    "format",
+    "quality_status",
+    "processed_at_utc",
+    "rejection_reason",
+    "notes",
+)
+
 ALLOWED_IMAGE_VIEWS = (
     "front",
     "rear",
@@ -77,6 +118,12 @@ APPROVAL_VALUES = (
     "no",
 )
 
+INTAKE_DECISION_VALUES = (
+    "pending",
+    "approved",
+    "rejected",
+)
+
 CATEGORY_TO_FAMILY = {
     category: family
     for family, categories in PART_FAMILIES.items()
@@ -85,6 +132,16 @@ CATEGORY_TO_FAMILY = {
 
 REAL_DATASET_CATEGORIES = PART_CATEGORIES
 REAL_ID_PREFIX = "real_"
+INTAKE_ID_PREFIX = "intake_"
+
+MIN_IMAGE_WIDTH = 128
+MIN_IMAGE_HEIGHT = 128
+RECOMMENDED_IMAGE_WIDTH = 512
+RECOMMENDED_IMAGE_HEIGHT = 512
+MAX_IMAGE_ASPECT_RATIO = 4.0
+LOW_LUMINANCE_WARNING = 20.0
+HIGH_LUMINANCE_WARNING = 235.0
+LOW_CONTRAST_WARNING = 10.0
 
 TARGET_GROUPS_PER_CATEGORY = 10
 TARGET_IMAGES_PER_GROUP = 2

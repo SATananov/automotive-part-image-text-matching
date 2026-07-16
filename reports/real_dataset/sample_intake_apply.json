@@ -1,0 +1,11 @@
+{
+  "counts": {
+    "approved": 0,
+    "rejected": 0,
+    "remaining_pending": 0
+  },
+  "errors": [],
+  "items": [],
+  "result": "NO_DECISIONS",
+  "status": "PASS"
+}

@@ -266,3 +266,123 @@ Before a real-data version is accepted, verify that:
 ## Change control
 
 Changes to categories, families, allowed views, CSV columns, approval values, target counts, identifier format, or manifest schema must first be made in project configuration and tests. Update this protocol in the same commit so that code and collection instructions remain synchronized.
+
+## Step 009.1 sample intake and approval workflow
+
+The tracked intake queue is:
+
+```text
+data/real/annotations/sample_intake.csv
+```
+
+The tracked decision history is:
+
+```text
+data/real/processed/approval_log.csv
+```
+
+The queue is the only supported bridge between the ignored local staging directory and the approved reproducible dataset. Do not copy a photograph directly into `data/real/processed/images/` and do not edit the approval log manually.
+
+### Intake identifiers and staged files
+
+Use a monotonically increasing identifier with at least six digits:
+
+```text
+intake_000001
+intake_000002
+```
+
+Copy one candidate image directly under `data/real/staging/` and rename the file so that its filename stem equals the intake identifier:
+
+```text
+data/real/staging/intake_000001.jpg
+```
+
+The staging path must be project-relative, must not contain `..`, and must not point outside the staging directory. Supported source extensions are JPEG and PNG.
+
+### Queue decisions
+
+The `decision` column accepts exactly:
+
+- `pending` — validate and review the candidate without changing approved data;
+- `approved` — apply the candidate after review;
+- `rejected` — record the rejection without creating an approved image.
+
+A rejected row requires a clear `rejection_reason`. Pending and approved rows require the complete part-group metadata, label descriptions, view, source, and staged image file.
+
+### Review before approval
+
+Run:
+
+```powershell
+python -m src.project_cli review-real-intake
+```
+
+The review is read-only. It checks:
+
+- exact CSV schema and unique intake identifiers;
+- safe staged paths and filename-to-intake-ID consistency;
+- `real_` group namespace, category-family mapping, and label semantics;
+- conflicts with existing group and image annotations;
+- readable dimensions, image mode, file size, luminance, contrast, and aspect ratio;
+- exact SHA-256 duplicates within the queue;
+- overlap with approved real images and the development dataset;
+- repeated derived image IDs such as two rows for the same group and view.
+
+Minimum dimensions are enforced. Lower-than-recommended resolution, unusual luminance, low contrast, non-RGB input, and extreme aspect ratio are warnings that require manual judgment. A warning does not automatically reject a useful photograph.
+
+Review the generated reports:
+
+```text
+reports/real_dataset/sample_intake_review.json
+reports/real_dataset/sample_intake_review.md
+```
+
+### Transactional apply
+
+After the review report is acceptable and the intended rows are marked `approved` or `rejected`, run:
+
+```powershell
+python -m src.project_cli apply-real-intake
+```
+
+The apply operation is a transaction:
+
+1. Rebuild and validate the review report.
+2. Normalize approved photographs with EXIF orientation applied.
+3. Convert approved photographs to EXIF-free RGB PNG files.
+4. Build prospective part-group, image, queue, and approval-log tables.
+5. Recheck normalized hashes against approved real and development content.
+6. Write all files atomically.
+7. Regenerate the real image manifest and run the complete Step 009 validator.
+8. Keep the changes only when final validation passes.
+
+If any stage fails, the workflow restores the previous CSV files and reports and removes any newly created processed images.
+
+Approved rows create or update the approved physical group, add one image annotation, append one approval-log record, and leave the original staged source unchanged. Rejected rows append an audit record but do not create an image. Applied approved and rejected rows are removed from `sample_intake.csv`; `pending` rows remain for later review.
+
+### Processed image policy
+
+The processed filename is derived from the physical group and view:
+
+```text
+real_starter_101_front.png
+```
+
+The approved file is stored directly under:
+
+```text
+data/real/processed/images/
+```
+
+Normalization strips camera metadata and converts the pixel data to RGB PNG. This reduces privacy risk and makes the approved representation reproducible. The ignored originals and staging files remain local and are not part of the Git checkpoint.
+
+### Workflow verification
+
+Run:
+
+```powershell
+python -m src.project_cli verify-step-009-1
+```
+
+The verifier checks the intake and approval-log schemas, required modules and reports, CLI documentation, transaction safeguards, and the current queue review state.

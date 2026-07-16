@@ -75,6 +75,9 @@ python -m src.project_cli train-multimodal
 python -m src.project_cli verify-step-008-2
 python -m src.project_cli validate-real-data
 python -m src.project_cli verify-step-009
+python -m src.project_cli review-real-intake
+python -m src.project_cli apply-real-intake
+python -m src.project_cli verify-step-009-1
 ```
 
 The command modules are imported only when selected. Displaying CLI help or running a non-neural workflow does not import TensorFlow unnecessarily.
@@ -153,6 +156,44 @@ Verify the complete Step 009 foundation with:
 python -m src.project_cli verify-step-009
 ```
 
+## Real sample intake and approval workflow
+
+Step 009.1 adds a controlled queue for the first real photographs. Copy a candidate photograph to `data/real/staging/`, rename it to its intake identifier such as `intake_000001.jpg`, and add one row to:
+
+```text
+data/real/annotations/sample_intake.csv
+```
+
+Each queue row has one of three decisions:
+
+- `pending` - review the image and metadata but do not modify the dataset;
+- `approved` - normalize the photograph to an EXIF-free RGB PNG and add it to the approved annotations;
+- `rejected` - record the decision and reason without adding an image to the dataset.
+
+Always review the queue first:
+
+```powershell
+python -m src.project_cli review-real-intake
+```
+
+The review checks identifier and path safety, category-family mapping, description semantics, image readability and dimensions, luminance and contrast warnings, duplicate hashes, existing annotation conflicts, and development-data overlap. It does not modify annotations or processed images.
+
+After checking `reports/real_dataset/sample_intake_review.md`, apply the explicit decisions with:
+
+```powershell
+python -m src.project_cli apply-real-intake
+```
+
+The apply command is transactional. It updates `part_groups.csv`, `images.csv`, `approval_log.csv`, the approved image manifest, and the remaining queue only if the final real-dataset validation passes. Any failure restores the previous files and removes newly created processed images.
+
+Approved photographs are written to `data/real/processed/images/<image_id>.png`. The source file remains in the ignored staging directory until it is removed manually. Rejected and approved rows are removed from the queue after a successful apply; pending rows remain.
+
+Verify the complete workflow with:
+
+```powershell
+python -m src.project_cli verify-step-009-1
+```
+
 ## Tests
 
 Run the complete test suite from the repository root:
@@ -171,4 +212,10 @@ The Step 009 verifier checks the real-data directory boundary, annotation and ma
 
 ```powershell
 python -m src.project_cli verify-step-009
+```
+
+The Step 009.1 verifier checks the sample queue and approval-log schemas, CLI documentation, transactional safeguards, and the current review state:
+
+```powershell
+python -m src.project_cli verify-step-009-1
 ```

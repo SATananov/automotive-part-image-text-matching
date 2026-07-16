@@ -31,3 +31,8 @@ data/real/originals/*
 
 data/real/staging/*
 !data/real/staging/.gitkeep
+
+# Step 009.1 transactional temporary files are never committed.
+data/real/processed/.automotive_step009_1_*/
+data/real/annotations/.*.tmp
+data/real/processed/.*.tmp
