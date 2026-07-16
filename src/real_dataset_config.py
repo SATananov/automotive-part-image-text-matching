@@ -23,6 +23,39 @@ REAL_IMAGE_MANIFEST_PATH = (
 REAL_APPROVAL_LOG_PATH = (
     REAL_PROCESSED_DIRECTORY / "approval_log.csv"
 )
+
+FIRST_BATCH_PLAN_PATH = (
+    REAL_ANNOTATIONS_DIRECTORY / "first_batch_plan.csv"
+)
+FIRST_BATCH_PREVIEW_PATH = (
+    REAL_PROCESSED_DIRECTORY / "first_batch_queue_preview.csv"
+)
+
+FIRST_BATCH_PLAN_COLUMNS = (
+    "batch_id",
+    "batch_item_id",
+    "intake_id",
+    "staging_path",
+    "part_group_id",
+    "part_family",
+    "part_category",
+    "view",
+    "source",
+    "match_description",
+    "partial_description",
+    "mismatch_description",
+    "notes",
+)
+
+FIRST_BATCH_PREVIEW_COLUMNS = (
+    *FIRST_BATCH_PLAN_COLUMNS,
+    "file_present",
+    "queue_status",
+    "review_status",
+    "review_errors",
+    "review_warnings",
+)
+
 DEVELOPMENT_IMAGES_DIRECTORY = (
     PROJECT_ROOT / "data" / "development" / "images"
 )
@@ -133,6 +166,14 @@ CATEGORY_TO_FAMILY = {
 REAL_DATASET_CATEGORIES = PART_CATEGORIES
 REAL_ID_PREFIX = "real_"
 INTAKE_ID_PREFIX = "intake_"
+
+FIRST_BATCH_ID = "batch_001"
+FIRST_BATCH_GROUP_NUMBER = "001"
+FIRST_BATCH_VIEWS = ("front", "detail")
+FIRST_BATCH_EXPECTED_GROUPS = len(REAL_DATASET_CATEGORIES)
+FIRST_BATCH_EXPECTED_IMAGES = (
+    FIRST_BATCH_EXPECTED_GROUPS * len(FIRST_BATCH_VIEWS)
+)
 
 MIN_IMAGE_WIDTH = 128
 MIN_IMAGE_HEIGHT = 128

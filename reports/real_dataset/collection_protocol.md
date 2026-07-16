@@ -386,3 +386,45 @@ python -m src.project_cli verify-step-009-1
 ```
 
 The verifier checks the intake and approval-log schemas, required modules and reports, CLI documentation, transaction safeguards, and the current queue review state.
+
+## Step 009.2 first balanced batch
+
+The first controlled real-data batch is planned in
+`data/real/annotations/first_batch_plan.csv`. It contains 20 planned images
+from 10 physical parts: one part from every supported category and two views
+per part (`front` and `detail`). The plan is collection metadata only; it is
+not an approved dataset and does not prove that a physical part or photograph
+exists.
+
+Use the exact reserved intake IDs and staging filenames from the plan. A
+missing file is an expected `AWAITING_CAPTURE` condition. Do not insert plan
+rows directly into `sample_intake.csv` until the corresponding file exists and
+has been checked.
+
+Run preparation before editing the live intake queue:
+
+```powershell
+python -m src.project_cli prepare-first-real-batch
+```
+
+The preparation command validates category balance, identifiers, group/view
+coverage, metadata consistency, staging-file presence, quality checks, and
+conflicts with the live queue or approval log. It generates a queue preview
+but does not approve or modify real data.
+
+Run the controlled dry run after one or more planned files are captured:
+
+```powershell
+python -m src.project_cli dry-run-first-real-batch
+```
+
+The dry run simulates an approved decision only inside temporary storage. It
+normalizes captured candidates to temporary RGB PNG files, builds prospective
+annotations, applies duplicate and leakage checks, and verifies that the live
+annotations, queue, approval log, manifest, and processed images are unchanged.
+A successful dry run is evidence that the workflow can accept the candidates;
+it is not an approval decision.
+
+Actual intake still follows Step 009.1: copy reviewed rows into
+`sample_intake.csv`, keep them `pending` during review, set explicit decisions,
+and run `apply-real-intake` only after the review report is accepted.

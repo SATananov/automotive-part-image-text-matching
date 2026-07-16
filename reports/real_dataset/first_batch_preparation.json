@@ -1,0 +1,18 @@
+{
+  "batch_id": "batch_001",
+  "captured_review": {
+    "readiness": "NO_CAPTURED_FILES",
+    "status": "NOT_RUN"
+  },
+  "counts": {
+    "captured_files": 0,
+    "planned_groups": 10,
+    "planned_images": 20,
+    "processed_rows": 0,
+    "queued_rows": 0
+  },
+  "errors": [],
+  "readiness": "AWAITING_CAPTURE",
+  "status": "PASS",
+  "warnings": []
+}

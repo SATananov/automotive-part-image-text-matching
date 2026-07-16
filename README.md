@@ -219,3 +219,52 @@ The Step 009.1 verifier checks the sample queue and approval-log schemas, CLI do
 ```powershell
 python -m src.project_cli verify-step-009-1
 ```
+
+## First real sample batch preparation and dry run
+
+Step 009.2 defines a balanced first collection batch without adding invented
+real samples to the approved dataset. The committed plan is:
+
+```text
+data/real/annotations/first_batch_plan.csv
+```
+
+It reserves 20 planned images from 10 physical parts: one physical part from
+each configured category, with `front` and `detail` views. The plan uses
+`batch_001`, intake IDs `intake_000001` through `intake_000020`, and the
+`real_<category>_001` group namespace.
+
+Prepare or refresh the plan report and queue preview with:
+
+```powershell
+python -m src.project_cli prepare-first-real-batch
+```
+
+The command scans the expected staging paths, validates category balance,
+identifiers, views, metadata consistency, live-queue conflicts, and any files
+that have already been captured. It writes
+`data/real/processed/first_batch_queue_preview.csv` but does not change
+`sample_intake.csv`, approve an image, or modify the real dataset.
+
+Place photographs under `data/real/staging/` with the exact filenames listed
+in the plan. JPEG is the expected capture format for this first batch. Missing
+files produce the valid `AWAITING_CAPTURE` preparation state.
+
+Run the controlled intake simulation with:
+
+```powershell
+python -m src.project_cli dry-run-first-real-batch
+```
+
+The dry run reviews captured files, simulates approval and PNG normalization
+inside temporary storage, checks prospective annotations and duplicate
+protection, and compares live-state fingerprints before and after the
+simulation. It does not approve, queue, process, move, or delete real files.
+Manual review and the Step 009.1 commands remain mandatory before any actual
+approval.
+
+Verify all Step 009.2 safeguards with:
+
+```powershell
+python -m src.project_cli verify-step-009-2
+```

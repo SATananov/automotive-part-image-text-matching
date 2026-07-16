@@ -86,6 +86,27 @@ COMMANDS: dict[str, CommandSpec] = {
             "Verify the Step 009.1 sample intake and approval workflow."
         ),
     ),
+    "prepare-first-real-batch": CommandSpec(
+        module="src.prepare_first_real_batch",
+        description=(
+            "Validate the balanced first real-data batch plan and scan "
+            "captured staging files without changing the live queue."
+        ),
+    ),
+    "dry-run-first-real-batch": CommandSpec(
+        module="src.dry_run_first_real_batch",
+        description=(
+            "Simulate first-batch approvals in temporary storage and prove "
+            "that live real-data state is unchanged."
+        ),
+    ),
+    "verify-step-009-2": CommandSpec(
+        module="src.verify_step_009_2",
+        description=(
+            "Verify the Step 009.2 first-batch preparation and dry-run "
+            "safeguards."
+        ),
+    ),
 }
 
 

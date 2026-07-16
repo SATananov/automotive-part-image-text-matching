@@ -1,0 +1,17 @@
+{
+  "batch_id": "batch_001",
+  "counts": {
+    "captured_files": 0,
+    "planned_images": 20,
+    "prospective_groups": 0,
+    "prospective_images": 0,
+    "simulated_approved": 0
+  },
+  "errors": [],
+  "immutability": "PASS",
+  "items": [],
+  "result": "AWAITING_CAPTURE",
+  "simulation_decision": "approved",
+  "status": "PASS",
+  "warnings": []
+}
