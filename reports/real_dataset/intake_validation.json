@@ -1,0 +1,14 @@
+{
+  "annotation_counts": {
+    "approved_images": 0,
+    "approved_part_groups": 0,
+    "images": 0,
+    "part_groups": 0
+  },
+  "category_distribution": {},
+  "errors": [],
+  "manifest_rows": 0,
+  "readiness": "EMPTY_FOUNDATION",
+  "status": "PASS",
+  "warnings": []
+}

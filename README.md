@@ -73,6 +73,8 @@ python -m src.project_cli train-text
 python -m src.project_cli train-image
 python -m src.project_cli train-multimodal
 python -m src.project_cli verify-step-008-2
+python -m src.project_cli validate-real-data
+python -m src.project_cli verify-step-009
 ```
 
 The command modules are imported only when selected. Displaying CLI help or running a non-neural workflow does not import TensorFlow unnecessarily.
@@ -116,7 +118,7 @@ All rows from the same `part_group_id` remain in one split. This prevents photog
 
 The current models are selected and compared only on the validation split. The test split must remain unused until the final model and evaluation procedure are fixed.
 
-## Real dataset collection
+## Real dataset intake
 
 The generated dataset is only for pipeline development. The final experiment requires real photographs collected and annotated according to:
 
@@ -124,7 +126,32 @@ The generated dataset is only for pipeline development. The final experiment req
 reports/real_dataset/collection_protocol.md
 ```
 
-Original and staging photographs are intentionally excluded from Git. Only approved processed images and annotation tables should enter the reproducible dataset.
+The real dataset uses a separate `real_` identifier namespace and a dedicated directory tree:
+
+```text
+data/real/originals/                  local untouched photographs
+data/real/staging/                    local temporary review files
+data/real/processed/images/           approved reproducible images
+data/real/annotations/part_groups.csv physical-part annotations
+data/real/annotations/images.csv      image annotations
+data/real/processed/real_image_manifest.csv generated intake manifest
+```
+
+Original and staging photographs are excluded from Git. Approved processed images, annotation tables, and the generated manifest remain separate from `data/development/`.
+
+Validate the current intake and regenerate the approved-image manifest with:
+
+```powershell
+python -m src.project_cli validate-real-data
+```
+
+The validator checks schemas, identifiers, category-family mappings, approval relationships, safe paths, readable images, SHA-256 duplicates, repeated views, and overlap with development identifiers or image content. Empty annotation templates are accepted as an `EMPTY_FOUNDATION` state before collection begins.
+
+Verify the complete Step 009 foundation with:
+
+```powershell
+python -m src.project_cli verify-step-009
+```
 
 ## Tests
 
@@ -138,4 +165,10 @@ The Step 008.2 integrity verifier checks CLI module paths, documentation command
 
 ```powershell
 python -m src.project_cli verify-step-008-2
+```
+
+The Step 009 verifier checks the real-data directory boundary, annotation and manifest schemas, CLI registration, Git ignore policy, and the current intake validation state:
+
+```powershell
+python -m src.project_cli verify-step-009
 ```

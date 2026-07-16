@@ -55,6 +55,17 @@ COMMANDS: dict[str, CommandSpec] = {
         module="src.verify_step_008_2",
         description="Verify the Step 008.2 reproducibility safeguards.",
     ),
+    "validate-real-data": CommandSpec(
+        module="src.validate_real_dataset",
+        description=(
+            "Validate real-data annotations, approved images, hashes, "
+            "and development separation."
+        ),
+    ),
+    "verify-step-009": CommandSpec(
+        module="src.verify_step_009",
+        description="Verify the Step 009 real-data intake foundation.",
+    ),
 }
 
 

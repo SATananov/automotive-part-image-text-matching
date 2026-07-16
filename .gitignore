@@ -1,4 +1,4 @@
-﻿# Python virtual environment
+# Python virtual environment
 .venv/
 
 # Python cache
@@ -25,6 +25,9 @@ reports/*.png
 reports/*.csv
 reports/*.json
 
-data/real/staging/
+# Real-data originals and temporary staging are never committed.
+data/real/originals/*
+!data/real/originals/.gitkeep
 
-data/real/originals/
+data/real/staging/*
+!data/real/staging/.gitkeep
