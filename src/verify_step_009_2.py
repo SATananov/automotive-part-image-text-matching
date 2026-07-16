@@ -58,7 +58,7 @@ REQUIRED_FILES = (
     / "first_batch_dry_run.md",
     PROJECT_ROOT
     / "reports"
-    / "step_009_2_first_real_batch_preparation_dry_run.md",
+    / "real_dataset/first_batch_preparation_dry_run.md",
 )
 
 REQUIRED_COMMANDS = (

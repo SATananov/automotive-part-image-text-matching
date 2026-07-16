@@ -1,0 +1,21 @@
+{
+  "batch_id": "batch_001",
+  "counts": {
+    "newly_staged": 0,
+    "originals_found": 0,
+    "planned_images": 20,
+    "processed_rows": 0,
+    "queue_draft_rows": 0,
+    "queued_rows": 0,
+    "staged_files": 0
+  },
+  "errors": [],
+  "live_queue_unchanged": "PASS",
+  "preparation": {
+    "readiness": "AWAITING_CAPTURE",
+    "status": "PASS"
+  },
+  "readiness": "AWAITING_CAPTURE",
+  "status": "PASS",
+  "warnings": []
+}

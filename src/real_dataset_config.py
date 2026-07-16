@@ -30,6 +30,15 @@ FIRST_BATCH_PLAN_PATH = (
 FIRST_BATCH_PREVIEW_PATH = (
     REAL_PROCESSED_DIRECTORY / "first_batch_queue_preview.csv"
 )
+FIRST_BATCH_ORIGINALS_DIRECTORY = (
+    REAL_ORIGINALS_DIRECTORY / "batch_001"
+)
+FIRST_BATCH_CAPTURE_INVENTORY_PATH = (
+    REAL_PROCESSED_DIRECTORY / "first_batch_capture_inventory.csv"
+)
+FIRST_BATCH_REVIEW_QUEUE_DRAFT_PATH = (
+    REAL_PROCESSED_DIRECTORY / "first_batch_review_queue_draft.csv"
+)
 
 FIRST_BATCH_PLAN_COLUMNS = (
     "batch_id",
@@ -54,6 +63,22 @@ FIRST_BATCH_PREVIEW_COLUMNS = (
     "review_status",
     "review_errors",
     "review_warnings",
+)
+
+FIRST_BATCH_CAPTURE_INVENTORY_COLUMNS = (
+    *FIRST_BATCH_PLAN_COLUMNS,
+    "capture_source_path",
+    "capture_source_status",
+    "staging_status",
+    "staged_sha256",
+    "width",
+    "height",
+    "mode",
+    "format",
+    "review_status",
+    "review_errors",
+    "review_warnings",
+    "ready_for_queue",
 )
 
 DEVELOPMENT_IMAGES_DIRECTORY = (

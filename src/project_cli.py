@@ -107,6 +107,20 @@ COMMANDS: dict[str, CommandSpec] = {
             "safeguards."
         ),
     ),
+    "stage-first-real-batch-capture": CommandSpec(
+        module="src.stage_first_real_batch_capture",
+        description=(
+            "Normalize local batch_001 captures into staging and generate "
+            "a pending review queue draft without changing the live queue."
+        ),
+    ),
+    "verify-step-009-3": CommandSpec(
+        module="src.verify_step_009_3",
+        description=(
+            "Verify the Step 009.3 capture, staging, and review-readiness "
+            "safeguards."
+        ),
+    ),
 }
 
 

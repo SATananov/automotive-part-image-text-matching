@@ -428,3 +428,43 @@ it is not an approval decision.
 Actual intake still follows Step 009.1: copy reviewed rows into
 `sample_intake.csv`, keep them `pending` during review, set explicit decisions,
 and run `apply-real-intake` only after the review report is accepted.
+
+## Step 009.3 capture, staging, and review readiness
+
+Store the local original photographs for the first batch under
+`data/real/originals/batch_001/`. The filename stem must be one reserved
+`intake_id` from `first_batch_plan.csv`; JPEG and PNG are accepted. Do not add
+unplanned image files to this directory and do not use two extensions for the
+same intake ID.
+
+Run:
+
+```powershell
+python -m src.project_cli stage-first-real-batch-capture
+```
+
+The command is the supported bridge from local originals to temporary staging.
+It applies EXIF orientation, converts pixels to RGB, writes deterministic JPEG
+staging files, and preserves every original unchanged. It rejects duplicate
+originals, duplicate normalized content, exact overlap with development or
+approved real content, multiple source candidates, unexpected filenames, and
+existing staging destinations with different bytes. All new staging writes
+are rolled back if the subsequent Step 009.2 preparation review fails.
+
+The generated capture inventory records source presence, staging status, image
+metrics, review errors, warnings, and queue readiness for all 20 planned rows.
+The generated review queue draft contains only rows whose staged image has a
+`PASS` or `WARN` review status and whose intake ID is not already queued. Every
+draft decision remains `pending`.
+
+The draft must not be treated as a live approval queue. Compare it with the
+capture inventory and report, perform the manual visual review, and only then
+copy selected rows into `sample_intake.csv`. The Step 009.1 review and
+transactional apply commands remain mandatory. Step 009.3 never edits the live
+queue, approval log, approved manifest, or processed images.
+
+Run the verifier with:
+
+```powershell
+python -m src.project_cli verify-step-009-3
+```

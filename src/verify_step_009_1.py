@@ -55,7 +55,7 @@ REQUIRED_FILES = (
     / "sample_intake_apply.md",
     PROJECT_ROOT
     / "reports"
-    / "step_009_1_real_dataset_sample_intake_approval_workflow.md",
+    / "real_dataset/sample_intake_approval_workflow.md",
 )
 
 REQUIRED_COMMANDS = (

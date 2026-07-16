@@ -47,7 +47,7 @@ REQUIRED_FILES = (
     PROJECT_ROOT / "tests" / "test_real_dataset_intake.py",
     PROJECT_ROOT
     / "reports"
-    / "step_009_real_dataset_intake_validation_foundation.md",
+    / "real_dataset/intake_validation_foundation.md",
 )
 
 REQUIRED_COMMANDS = (

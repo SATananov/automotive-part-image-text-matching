@@ -78,6 +78,11 @@ python -m src.project_cli verify-step-009
 python -m src.project_cli review-real-intake
 python -m src.project_cli apply-real-intake
 python -m src.project_cli verify-step-009-1
+python -m src.project_cli prepare-first-real-batch
+python -m src.project_cli dry-run-first-real-batch
+python -m src.project_cli verify-step-009-2
+python -m src.project_cli stage-first-real-batch-capture
+python -m src.project_cli verify-step-009-3
 ```
 
 The command modules are imported only when selected. Displaying CLI help or running a non-neural workflow does not import TensorFlow unnecessarily.
@@ -267,4 +272,57 @@ Verify all Step 009.2 safeguards with:
 
 ```powershell
 python -m src.project_cli verify-step-009-2
+```
+## First real batch capture, staging and review readiness
+
+Step 009.3 turns the committed `batch_001` plan into a controlled local
+capture workflow without approving any image. Save the original photographs
+under:
+
+```text
+data/real/originals/batch_001/
+```
+
+Use one file per reserved intake ID. Supported source extensions are JPEG and
+PNG, for example:
+
+```text
+data/real/originals/batch_001/intake_000001.jpg
+data/real/originals/batch_001/intake_000002.png
+```
+
+Run the capture and staging command from the repository root:
+
+```powershell
+python -m src.project_cli stage-first-real-batch-capture
+```
+
+The command applies EXIF orientation, converts each source to a reproducible
+RGB JPEG staging file, checks exact duplicates and development overlap, and
+never overwrites a conflicting staging destination. New staging writes are
+transactional. Original photographs remain unchanged in the ignored originals
+directory.
+
+The command generates:
+
+```text
+data/real/processed/first_batch_capture_inventory.csv
+data/real/processed/first_batch_review_queue_draft.csv
+reports/real_dataset/first_batch_capture_readiness.md
+```
+
+The review queue draft contains only `pending` decisions. It is separate from
+`sample_intake.csv`; the live queue, approval log, manifest, and approved image
+directory are not modified. Review the inventory and report manually before
+copying acceptable draft rows into the live queue. Actual approval still uses
+`review-real-intake` followed by `apply-real-intake`.
+
+With no local photographs, the correct state is `AWAITING_CAPTURE`. A partial
+batch is `CAPTURE_IN_PROGRESS`. When all 20 planned files pass review, the
+state becomes `READY_FOR_MANUAL_QUEUE_IMPORT`.
+
+Verify the Step 009.3 safeguards with:
+
+```powershell
+python -m src.project_cli verify-step-009-3
 ```
