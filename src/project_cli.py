@@ -163,6 +163,27 @@ COMMANDS: dict[str, CommandSpec] = {
             "immutability safeguards."
         ),
     ),
+    "run-first-real-batch-capture-session": CommandSpec(
+        module="src.execute_first_batch_capture_session",
+        description=(
+            "Execute one safe first-batch capture cycle, import available "
+            "files, stage valid originals, and update runtime progress."
+        ),
+    ),
+    "refresh-first-real-batch-live-progress": CommandSpec(
+        module="src.refresh_first_batch_live_progress",
+        description=(
+            "Refresh the runtime-only first-batch live progress dashboard "
+            "without importing, staging, queueing, or approving files."
+        ),
+    ),
+    "verify-step-009-7": CommandSpec(
+        module="src.verify_step_009_7",
+        description=(
+            "Verify first-batch capture execution, runtime isolation, "
+            "rollback, and live progress safeguards."
+        ),
+    ),
 }
 
 

@@ -55,6 +55,30 @@ FIRST_BATCH_CAPTURE_SESSION_PATH = (
 FIRST_BATCH_CAPTURE_PROGRESS_PATH = (
     REAL_PROCESSED_DIRECTORY / "first_batch_capture_progress.csv"
 )
+FIRST_BATCH_RUNTIME_DIRECTORY = (
+    REAL_DATASET_ROOT / "runtime" / "first_batch_capture"
+)
+FIRST_BATCH_LIVE_PROGRESS_PATH = (
+    FIRST_BATCH_RUNTIME_DIRECTORY / "live_progress.csv"
+)
+FIRST_BATCH_LIVE_DASHBOARD_PATH = (
+    FIRST_BATCH_RUNTIME_DIRECTORY / "live_dashboard.html"
+)
+FIRST_BATCH_LIVE_DASHBOARD_JSON_PATH = (
+    FIRST_BATCH_RUNTIME_DIRECTORY / "live_dashboard.json"
+)
+FIRST_BATCH_LIVE_PROGRESS_SUMMARY_PATH = (
+    FIRST_BATCH_RUNTIME_DIRECTORY / "live_progress_summary.md"
+)
+FIRST_BATCH_LIVE_STATUS_PATH = (
+    FIRST_BATCH_RUNTIME_DIRECTORY / "execution_status.json"
+)
+FIRST_BATCH_LIVE_SUMMARY_PATH = (
+    FIRST_BATCH_RUNTIME_DIRECTORY / "execution_summary.md"
+)
+FIRST_BATCH_EXECUTION_JOURNAL_PATH = (
+    FIRST_BATCH_RUNTIME_DIRECTORY / "execution_journal.csv"
+)
 
 FIRST_BATCH_PLAN_COLUMNS = (
     "batch_id",
@@ -110,6 +134,21 @@ FIRST_BATCH_CAPTURE_SESSION_COLUMNS = (
     "detail_original_status",
     "pair_status",
     "next_action",
+)
+
+FIRST_BATCH_EXECUTION_JOURNAL_COLUMNS = (
+    "cycle_id",
+    "executed_at_utc",
+    "status",
+    "result",
+    "readiness",
+    "captured",
+    "newly_imported",
+    "newly_staged",
+    "review_ready",
+    "overall_progress_percent",
+    "live_dataset_unchanged",
+    "tracked_outputs_unchanged",
 )
 
 FIRST_BATCH_CAPTURE_PROGRESS_COLUMNS = (

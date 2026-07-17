@@ -40,3 +40,6 @@ data/real/processed/.*.tmp
 # Local capture inbox is never committed.
 data/real/capture_inbox/*
 !data/real/capture_inbox/.gitkeep
+
+# Live capture execution outputs are local runtime state.
+data/real/runtime/

@@ -514,3 +514,33 @@ The dashboard is read-only with respect to capture files and live dataset
 state. It may update only its own CSV, JSON, Markdown, and HTML snapshot. It
 must report `live_state_unchanged: PASS`. Approval still requires the existing
 manual review and transactional apply workflow.
+
+## First batch capture execution and live progress
+
+During the physical capture session, use the descriptive filenames from the
+capture map and place available files in the batch inbox. Run:
+
+```powershell
+python -m src.project_cli run-first-real-batch-capture-session
+```
+
+The supported execution cycle validates the inbox, imports unchanged bytes to
+local originals, stages deterministic review JPEG files, and updates a live
+runtime dashboard. The complete operator procedure is documented in
+`reports/real_dataset/first_batch_capture_execution_and_live_progress.md`.
+
+All live execution outputs belong under
+`data/real/runtime/first_batch_capture/`, which is ignored by Git. Runtime
+isolation prevents repeated progress updates from changing tracked reports.
+The cycle must report `live_dataset_unchanged: PASS` and
+`tracked_outputs_unchanged: PASS`. If a downstream phase fails, originals and
+staging created by that cycle are rolled back.
+
+A read-only update is available with:
+
+```powershell
+python -m src.project_cli refresh-first-real-batch-live-progress
+```
+
+Neither command edits the live intake queue or records approval decisions.
+Manual review and the existing transactional approval workflow remain required.

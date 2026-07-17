@@ -448,3 +448,32 @@ Verify the dashboard and progress safeguards with:
 ```powershell
 python -m src.project_cli verify-step-009-6
 ```
+
+## First-batch capture execution and live progress
+
+Run a safe operator cycle after adding one or more planned photographs to the
+local capture inbox:
+
+```powershell
+python -m src.project_cli run-first-real-batch-capture-session
+```
+
+The cycle imports valid captures, stages valid originals, refreshes the session
+worksheet, and writes a live dashboard under the Git-ignored
+`data/real/runtime/first_batch_capture/` directory. It rolls back originals
+and staging when a downstream operation fails and proves that the live queue,
+approval log, annotations, manifest, and tracked reports remain unchanged.
+
+Use the read-only refresh command between capture actions:
+
+```powershell
+python -m src.project_cli refresh-first-real-batch-live-progress
+```
+
+Open `data/real/runtime/first_batch_capture/live_dashboard.html` to see the
+latest pipeline progress. These commands never queue or approve samples.
+Verify the execution safeguards with:
+
+```powershell
+python -m src.project_cli verify-step-009-7
+```
