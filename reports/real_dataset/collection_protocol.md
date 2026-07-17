@@ -544,3 +544,21 @@ python -m src.project_cli refresh-first-real-batch-live-progress
 
 Neither command edits the live intake queue or records approval decisions.
 Manual review and the existing transactional approval workflow remain required.
+
+## First batch review queue activation and manual decisions
+
+A generated review queue draft is not a live approval queue. Activate validated pending rows only through:
+
+```powershell
+python -m src.project_cli activate-first-real-batch-review-queue
+```
+
+The activation command must prove that every candidate belongs to the canonical first-batch plan, matches its metadata, has not been processed before, and passes the existing staged-image review. Exact rows already in the live queue are treated idempotently. Conflicts block the complete transaction. Activation must not modify part groups, image annotations, the approval log, approved image manifest, or processed images.
+
+Prepare manual visual decisions with:
+
+```powershell
+python -m src.project_cli prepare-first-real-batch-manual-decisions
+```
+
+The runtime workbook preserves the operator fields `operator_decision`, `rejection_reason`, and `operator_notes`. A rejected row requires a reason. Decision preparation never edits the live queue and never applies an image. Automatic approval and automatic rejection are prohibited.

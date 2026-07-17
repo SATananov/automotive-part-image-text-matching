@@ -79,6 +79,27 @@ FIRST_BATCH_LIVE_SUMMARY_PATH = (
 FIRST_BATCH_EXECUTION_JOURNAL_PATH = (
     FIRST_BATCH_RUNTIME_DIRECTORY / "execution_journal.csv"
 )
+FIRST_BATCH_REVIEW_RUNTIME_DIRECTORY = (
+    REAL_DATASET_ROOT / "runtime" / "first_batch_review"
+)
+FIRST_BATCH_REVIEW_ACTIVATION_STATUS_PATH = (
+    FIRST_BATCH_REVIEW_RUNTIME_DIRECTORY / "review_queue_activation_status.json"
+)
+FIRST_BATCH_REVIEW_ACTIVATION_SUMMARY_PATH = (
+    FIRST_BATCH_REVIEW_RUNTIME_DIRECTORY / "review_queue_activation_summary.md"
+)
+FIRST_BATCH_MANUAL_DECISION_WORKBOOK_PATH = (
+    FIRST_BATCH_REVIEW_RUNTIME_DIRECTORY / "manual_decision_workbook.csv"
+)
+FIRST_BATCH_MANUAL_DECISION_GUIDE_PATH = (
+    FIRST_BATCH_REVIEW_RUNTIME_DIRECTORY / "manual_decision_guide.md"
+)
+FIRST_BATCH_MANUAL_DECISION_STATUS_PATH = (
+    FIRST_BATCH_REVIEW_RUNTIME_DIRECTORY / "manual_decision_status.json"
+)
+FIRST_BATCH_MANUAL_DECISION_SUMMARY_PATH = (
+    FIRST_BATCH_REVIEW_RUNTIME_DIRECTORY / "manual_decision_summary.md"
+)
 
 FIRST_BATCH_PLAN_COLUMNS = (
     "batch_id",
@@ -149,6 +170,28 @@ FIRST_BATCH_EXECUTION_JOURNAL_COLUMNS = (
     "overall_progress_percent",
     "live_dataset_unchanged",
     "tracked_outputs_unchanged",
+)
+
+FIRST_BATCH_MANUAL_DECISION_COLUMNS = (
+    "sequence",
+    "intake_id",
+    "part_group_id",
+    "part_category",
+    "view",
+    "staging_path",
+    "image_id",
+    "quality_status",
+    "width",
+    "height",
+    "format",
+    "review_errors",
+    "review_warnings",
+    "current_queue_decision",
+    "operator_decision",
+    "rejection_reason",
+    "operator_notes",
+    "decision_entry_status",
+    "next_action",
 )
 
 FIRST_BATCH_CAPTURE_PROGRESS_COLUMNS = (

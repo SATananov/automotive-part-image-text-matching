@@ -477,3 +477,27 @@ Verify the execution safeguards with:
 ```powershell
 python -m src.project_cli verify-step-009-7
 ```
+
+## First batch review queue and manual decision preparation
+
+When the live capture dashboard reports review-ready staged images, activate only the validated pending draft rows with:
+
+```powershell
+python -m src.project_cli activate-first-real-batch-review-queue
+```
+
+The command is transactional and idempotent. It checks the canonical first-batch plan, staged image review, duplicate safeguards, existing queue rows, and the approval log. It may update only `data/real/annotations/sample_intake.csv`; it never creates approval or rejection decisions.
+
+Prepare the runtime operator workbook with:
+
+```powershell
+python -m src.project_cli prepare-first-real-batch-manual-decisions
+```
+
+The workbook is stored under `data/real/runtime/first_batch_review/` and preserves operator entries between refreshes. Edit only the operator decision, rejection reason, and operator notes columns. The preparation command is read-only with respect to the live queue and approved dataset.
+
+Verify these safeguards with:
+
+```powershell
+python -m src.project_cli verify-step-009-8
+```

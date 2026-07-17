@@ -184,6 +184,27 @@ COMMANDS: dict[str, CommandSpec] = {
             "rollback, and live progress safeguards."
         ),
     ),
+    "activate-first-real-batch-review-queue": CommandSpec(
+        module="src.activate_first_batch_review_queue",
+        description=(
+            "Activate only validated pending first-batch draft rows in the "
+            "live review queue without recording decisions."
+        ),
+    ),
+    "prepare-first-real-batch-manual-decisions": CommandSpec(
+        module="src.prepare_first_batch_manual_decisions",
+        description=(
+            "Build and validate the runtime manual-decision workbook without "
+            "editing the live queue or approved dataset."
+        ),
+    ),
+    "verify-step-009-8": CommandSpec(
+        module="src.verify_step_009_8",
+        description=(
+            "Verify review-queue activation, manual decision preparation, "
+            "idempotency, and transaction safeguards."
+        ),
+    ),
 }
 
 
