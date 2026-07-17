@@ -495,3 +495,22 @@ python -m src.project_cli prepare-first-real-batch-session
 The generated `data/real/processed/first_batch_capture_session.csv` contains one row per physical part, the two descriptive filenames, inbox and originals status, pair readiness, and the next required action. The command must not modify the capture files, staging, annotations, live queue, approval log, or manifest.
 
 The session is complete for local import only when all 20 planned slots are available. Local import, staging, manual queue review, and approval remain separate operations.
+
+## First batch dashboard and progress tracking
+
+The first-batch operational state is summarized with:
+
+```powershell
+python -m src.project_cli build-first-real-batch-dashboard
+```
+
+The generated `first_batch_capture_progress.csv` has one row per planned
+photograph and records capture, import, staging, review, queue, decision, and
+approval state. The self-contained `first_batch_capture_dashboard.html` gives
+the operator summary cards, category progress, exact filenames, pipeline
+stages, percentages, and next actions.
+
+The dashboard is read-only with respect to capture files and live dataset
+state. It may update only its own CSV, JSON, Markdown, and HTML snapshot. It
+must report `live_state_unchanged: PASS`. Approval still requires the existing
+manual review and transactional apply workflow.

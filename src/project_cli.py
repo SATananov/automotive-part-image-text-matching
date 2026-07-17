@@ -149,6 +149,20 @@ COMMANDS: dict[str, CommandSpec] = {
             "preparation safeguards."
         ),
     ),
+    "build-first-real-batch-dashboard": CommandSpec(
+        module="src.build_first_batch_capture_dashboard",
+        description=(
+            "Build the first-batch capture dashboard and pipeline progress "
+            "snapshot without changing live real-data state."
+        ),
+    ),
+    "verify-step-009-6": CommandSpec(
+        module="src.verify_step_009_6",
+        description=(
+            "Verify first-batch dashboard, progress tracking, and "
+            "immutability safeguards."
+        ),
+    ),
 }
 
 

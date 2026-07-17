@@ -1,0 +1,112 @@
+{
+  "status": "PASS",
+  "readiness": "AWAITING_CAPTURE",
+  "live_state_unchanged": "PASS",
+  "overall_progress_percent": 0.0,
+  "counts": {
+    "planned": 20,
+    "captured": 0,
+    "imported": 0,
+    "staged": 0,
+    "review_ready": 0,
+    "queued": 0,
+    "decision_recorded": 0,
+    "approved": 0
+  },
+  "stage_counts": {
+    "AWAITING_CAPTURE": 20,
+    "CAPTURED": 0,
+    "IMPORTED": 0,
+    "STAGED": 0,
+    "REVIEW_READY": 0,
+    "QUEUED_FOR_DECISION": 0,
+    "DECISION_RECORDED": 0,
+    "APPROVED_DATASET": 0
+  },
+  "category_progress": [
+    {
+      "part_category": "starter",
+      "completed_slots": 0,
+      "planned_slots": 2,
+      "progress_percent": 0.0
+    },
+    {
+      "part_category": "alternator",
+      "completed_slots": 0,
+      "planned_slots": 2,
+      "progress_percent": 0.0
+    },
+    {
+      "part_category": "brake_disc",
+      "completed_slots": 0,
+      "planned_slots": 2,
+      "progress_percent": 0.0
+    },
+    {
+      "part_category": "brake_pad",
+      "completed_slots": 0,
+      "planned_slots": 2,
+      "progress_percent": 0.0
+    },
+    {
+      "part_category": "shock_absorber",
+      "completed_slots": 0,
+      "planned_slots": 2,
+      "progress_percent": 0.0
+    },
+    {
+      "part_category": "coil_spring",
+      "completed_slots": 0,
+      "planned_slots": 2,
+      "progress_percent": 0.0
+    },
+    {
+      "part_category": "headlight",
+      "completed_slots": 0,
+      "planned_slots": 2,
+      "progress_percent": 0.0
+    },
+    {
+      "part_category": "taillight",
+      "completed_slots": 0,
+      "planned_slots": 2,
+      "progress_percent": 0.0
+    },
+    {
+      "part_category": "oil_filter",
+      "completed_slots": 0,
+      "planned_slots": 2,
+      "progress_percent": 0.0
+    },
+    {
+      "part_category": "air_filter",
+      "completed_slots": 0,
+      "planned_slots": 2,
+      "progress_percent": 0.0
+    }
+  ],
+  "next_actions": [
+    {
+      "capture_filename": "real_starter_001_front.jpg",
+      "next_action": "Capture real_starter_001_front.jpg"
+    },
+    {
+      "capture_filename": "real_starter_001_detail.jpg",
+      "next_action": "Capture real_starter_001_detail.jpg"
+    },
+    {
+      "capture_filename": "real_alternator_001_front.jpg",
+      "next_action": "Capture real_alternator_001_front.jpg"
+    },
+    {
+      "capture_filename": "real_alternator_001_detail.jpg",
+      "next_action": "Capture real_alternator_001_detail.jpg"
+    },
+    {
+      "capture_filename": "real_brake_disc_001_front.jpg",
+      "next_action": "Capture real_brake_disc_001_front.jpg"
+    }
+  ],
+  "errors": [],
+  "warnings": []
+}

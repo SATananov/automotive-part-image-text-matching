@@ -414,3 +414,37 @@ Verify the operator guide and session-preparation safeguards with:
 ```powershell
 python -m src.project_cli verify-step-009-5
 ```
+
+## First real batch capture dashboard and progress tracking
+
+Build the local operator dashboard at any point during capture, import,
+staging, review, or approval:
+
+```powershell
+python -m src.project_cli build-first-real-batch-dashboard
+```
+
+The self-contained dashboard is written to:
+
+```text
+reports/real_dataset/first_batch_capture_dashboard.html
+```
+
+Its machine-readable and review outputs are:
+
+```text
+data/real/processed/first_batch_capture_progress.csv
+reports/real_dataset/first_batch_capture_dashboard.json
+reports/real_dataset/first_batch_capture_progress_summary.md
+```
+
+The dashboard tracks every planned photograph from `AWAITING_CAPTURE` through
+`APPROVED_DATASET`, shows the next required action, and reports overall and
+per-category progress. It does not copy, convert, queue, approve, reject, or
+delete data. Input fingerprints must remain unchanged.
+
+Verify the dashboard and progress safeguards with:
+
+```powershell
+python -m src.project_cli verify-step-009-6
+```

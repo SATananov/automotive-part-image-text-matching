@@ -52,6 +52,9 @@ FIRST_BATCH_LOCAL_IMPORT_INVENTORY_PATH = (
 FIRST_BATCH_CAPTURE_SESSION_PATH = (
     REAL_PROCESSED_DIRECTORY / "first_batch_capture_session.csv"
 )
+FIRST_BATCH_CAPTURE_PROGRESS_PATH = (
+    REAL_PROCESSED_DIRECTORY / "first_batch_capture_progress.csv"
+)
 
 FIRST_BATCH_PLAN_COLUMNS = (
     "batch_id",
@@ -106,6 +109,27 @@ FIRST_BATCH_CAPTURE_SESSION_COLUMNS = (
     "front_original_status",
     "detail_original_status",
     "pair_status",
+    "next_action",
+)
+
+FIRST_BATCH_CAPTURE_PROGRESS_COLUMNS = (
+    "batch_id",
+    "batch_item_id",
+    "intake_id",
+    "part_group_id",
+    "part_category",
+    "view",
+    "capture_filename",
+    "capture_status",
+    "import_status",
+    "staging_status",
+    "review_status",
+    "queue_status",
+    "decision_status",
+    "approval_status",
+    "pipeline_stage",
+    "stage_index",
+    "progress_percent",
     "next_action",
 )
 
