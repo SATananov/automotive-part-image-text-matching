@@ -135,6 +135,20 @@ COMMANDS: dict[str, CommandSpec] = {
             "import safeguards."
         ),
     ),
+    "prepare-first-real-batch-session": CommandSpec(
+        module="src.prepare_first_batch_capture_session",
+        description=(
+            "Generate the operator capture-session worksheet, missing-file "
+            "status, and next capture action without changing live data."
+        ),
+    ),
+    "verify-step-009-5": CommandSpec(
+        module="src.verify_step_009_5",
+        description=(
+            "Verify first-batch operator guidance and capture-session "
+            "preparation safeguards."
+        ),
+    ),
 }
 
 

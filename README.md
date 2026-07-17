@@ -384,3 +384,33 @@ The staging workflow accepts the new descriptive filenames and still supports th
 ```powershell
 python -m src.project_cli verify-step-009-4
 ```
+
+## First real batch operator guide and capture session
+
+Use the practical operator guide before photographing the first batch:
+
+```text
+reports/real_dataset/first_batch_operator_guide.md
+```
+
+Prepare or refresh the capture-session worksheet with:
+
+```powershell
+python -m src.project_cli prepare-first-real-batch-session
+```
+
+The command groups the 20 planned photographs into 10 physical-part pairs, reports the exact missing `front` and `detail` filenames, selects the next capture, and writes:
+
+```text
+data/real/processed/first_batch_capture_session.csv
+reports/real_dataset/first_batch_capture_session_readiness.json
+reports/real_dataset/first_batch_capture_session_readiness.md
+```
+
+The preparation command does not copy, convert, approve, queue, or delete photographs. It fingerprints the local inbox, immutable originals, staging, annotations, live queue, approval log, and manifest before and after the scan. Safe readiness values are `AWAITING_CAPTURE`, `CAPTURE_SESSION_IN_PROGRESS`, `READY_FOR_LOCAL_IMPORT`, and `READY_FOR_STAGING`.
+
+Verify the operator guide and session-preparation safeguards with:
+
+```powershell
+python -m src.project_cli verify-step-009-5
+```

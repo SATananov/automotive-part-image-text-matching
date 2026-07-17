@@ -1,0 +1,11 @@
+batch_id,sequence,part_group_id,part_category,front_filename,detail_filename,front_inbox_status,detail_inbox_status,front_original_status,detail_original_status,pair_status,next_action
+batch_001,1,real_starter_001,starter,real_starter_001_front.jpg,real_starter_001_detail.jpg,MISSING,MISSING,MISSING,MISSING,AWAITING_CAPTURE,"Capture missing view(s): front, detail"
+batch_001,2,real_alternator_001,alternator,real_alternator_001_front.jpg,real_alternator_001_detail.jpg,MISSING,MISSING,MISSING,MISSING,AWAITING_CAPTURE,"Capture missing view(s): front, detail"
+batch_001,3,real_brake_disc_001,brake_disc,real_brake_disc_001_front.jpg,real_brake_disc_001_detail.jpg,MISSING,MISSING,MISSING,MISSING,AWAITING_CAPTURE,"Capture missing view(s): front, detail"
+batch_001,4,real_brake_pad_001,brake_pad,real_brake_pad_001_front.jpg,real_brake_pad_001_detail.jpg,MISSING,MISSING,MISSING,MISSING,AWAITING_CAPTURE,"Capture missing view(s): front, detail"
+batch_001,5,real_shock_absorber_001,shock_absorber,real_shock_absorber_001_front.jpg,real_shock_absorber_001_detail.jpg,MISSING,MISSING,MISSING,MISSING,AWAITING_CAPTURE,"Capture missing view(s): front, detail"
+batch_001,6,real_coil_spring_001,coil_spring,real_coil_spring_001_front.jpg,real_coil_spring_001_detail.jpg,MISSING,MISSING,MISSING,MISSING,AWAITING_CAPTURE,"Capture missing view(s): front, detail"
+batch_001,7,real_headlight_001,headlight,real_headlight_001_front.jpg,real_headlight_001_detail.jpg,MISSING,MISSING,MISSING,MISSING,AWAITING_CAPTURE,"Capture missing view(s): front, detail"
+batch_001,8,real_taillight_001,taillight,real_taillight_001_front.jpg,real_taillight_001_detail.jpg,MISSING,MISSING,MISSING,MISSING,AWAITING_CAPTURE,"Capture missing view(s): front, detail"
+batch_001,9,real_oil_filter_001,oil_filter,real_oil_filter_001_front.jpg,real_oil_filter_001_detail.jpg,MISSING,MISSING,MISSING,MISSING,AWAITING_CAPTURE,"Capture missing view(s): front, detail"
+batch_001,10,real_air_filter_001,air_filter,real_air_filter_001_front.jpg,real_air_filter_001_detail.jpg,MISSING,MISSING,MISSING,MISSING,AWAITING_CAPTURE,"Capture missing view(s): front, detail"

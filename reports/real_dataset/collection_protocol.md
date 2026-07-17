@@ -481,3 +481,17 @@ real_<part_category>_001_<view>.jpg
 The canonical mapping is `data/real/annotations/first_batch_capture_file_map.csv`, and the operator checklist is `reports/real_dataset/first_batch_capture_checklist.md`.
 
 Local photographs must be placed in `data/real/capture_inbox/batch_001/` and imported with `python -m src.project_cli import-first-real-batch`. The importer copies original bytes without pixel conversion, preserves the inbox files, detects duplicates and destination conflicts, and proves that staging and live dataset state remain unchanged. Only after the import report reaches `READY_FOR_STAGING` should the Step 009.3 staging command be run.
+
+## First batch operator session
+
+The first capture session is organized by physical part rather than by technical intake identifier. The operator uses `reports/real_dataset/first_batch_operator_guide.md` and photographs each physical part as one `front` view and one meaningful `detail` view.
+
+Run the session preparation command at any point during capture:
+
+```powershell
+python -m src.project_cli prepare-first-real-batch-session
+```
+
+The generated `data/real/processed/first_batch_capture_session.csv` contains one row per physical part, the two descriptive filenames, inbox and originals status, pair readiness, and the next required action. The command must not modify the capture files, staging, annotations, live queue, approval log, or manifest.
+
+The session is complete for local import only when all 20 planned slots are available. Local import, staging, manual queue review, and approval remain separate operations.

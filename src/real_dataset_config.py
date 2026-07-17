@@ -49,6 +49,9 @@ FIRST_BATCH_REVIEW_QUEUE_DRAFT_PATH = (
 FIRST_BATCH_LOCAL_IMPORT_INVENTORY_PATH = (
     REAL_PROCESSED_DIRECTORY / "first_batch_local_import_inventory.csv"
 )
+FIRST_BATCH_CAPTURE_SESSION_PATH = (
+    REAL_PROCESSED_DIRECTORY / "first_batch_capture_session.csv"
+)
 
 FIRST_BATCH_PLAN_COLUMNS = (
     "batch_id",
@@ -89,6 +92,21 @@ FIRST_BATCH_LOCAL_IMPORT_INVENTORY_COLUMNS = (
     "height",
     "mode",
     "format",
+)
+
+FIRST_BATCH_CAPTURE_SESSION_COLUMNS = (
+    "batch_id",
+    "sequence",
+    "part_group_id",
+    "part_category",
+    "front_filename",
+    "detail_filename",
+    "front_inbox_status",
+    "detail_inbox_status",
+    "front_original_status",
+    "detail_original_status",
+    "pair_status",
+    "next_action",
 )
 
 FIRST_BATCH_PREVIEW_COLUMNS = (

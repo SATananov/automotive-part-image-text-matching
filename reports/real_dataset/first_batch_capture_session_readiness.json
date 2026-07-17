@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "readiness": "AWAITING_CAPTURE",
+  "live_state_unchanged": "PASS",
+  "counts": {
+    "planned_groups": 10,
+    "planned_files": 20,
+    "captured_slots": 0,
+    "missing_files": 20,
+    "complete_pairs": 0,
+    "originals_available": 0
+  },
+  "next_capture": [
+    "real_starter_001_front.jpg",
+    "real_starter_001_detail.jpg"
+  ],
+  "errors": [],
+  "warnings": []
+}
