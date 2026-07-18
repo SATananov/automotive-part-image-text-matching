@@ -33,9 +33,25 @@ These values describe the generated development dataset. They are not final real
 - `src/` - reusable project modules and command-line entry point;
 - `models/` - saved model artifacts;
 - `reports/` - dataset, training, and evaluation reports;
-- `notebooks/` - optional exploratory notebooks;
+- `notebooks/` - Jupyter presentation notebooks for the development experiment;
 - `app/` - reserved demonstration application directory;
 - `tests/` - automated tests.
+
+## Jupyter notebook
+
+The main development presentation is:
+
+```text
+notebooks/01_development_experiment.ipynb
+```
+
+Start Jupyter from the repository root:
+
+```powershell
+python -m jupyter notebook notebooks/01_development_experiment.ipynb
+```
+
+The notebook reads the committed development and validation artifacts, checks group isolation, compares all six models, and displays the multimodal confusion matrix, prediction examples, and training history. It does not load or evaluate the test split. Model retraining is disabled by default and can be enabled explicitly inside the notebook.
 
 ## Environment setup
 
