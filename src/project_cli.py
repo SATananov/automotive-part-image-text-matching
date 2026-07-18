@@ -227,6 +227,28 @@ COMMANDS: dict[str, CommandSpec] = {
             "controlled application, and full rollback safeguards."
         ),
     ),
+
+    "run-first-real-dataset-capture": CommandSpec(
+        module="src.run_first_real_dataset_capture",
+        description=(
+            "Run the safe first real-dataset capture, staging, "
+            "review, and manual-decision preparation cycle."
+        ),
+    ),
+    "finalize-first-real-dataset-ingestion": CommandSpec(
+        module="src.finalize_first_real_dataset_ingestion",
+        description=(
+            "Apply validated first-batch decisions and audit "
+            "approved real-sample ingestion."
+        ),
+    ),
+    "verify-step-010": CommandSpec(
+        module="src.verify_step_010",
+        description=(
+            "Verify first real-dataset capture, ingestion, "
+            "recapture, and rollback safeguards."
+        ),
+    ),
 }
 
 def build_parser() -> argparse.ArgumentParser:

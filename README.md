@@ -546,3 +546,39 @@ Verify Step 009.9 with:
 ```powershell
 python -m src.project_cli verify-step-009-9
 ```
+
+## First real dataset capture and approved sample ingestion
+
+Step 010 joins the capture, staging, review, and controlled decision layers into
+the first operational real-dataset workflow.
+
+After placing descriptively named photographs in
+`data/real/capture_inbox/batch_001/`, run:
+
+```powershell
+python -m src.project_cli run-first-real-dataset-capture
+```
+
+This command may import and stage local photographs, activate validated pending
+review rows, and refresh the runtime manual-decision workbook. It fingerprints
+the approved dataset and never creates automatic decisions.
+
+When validation reports `READY_TO_APPLY`, run:
+
+```powershell
+python -m src.project_cli finalize-first-real-dataset-ingestion
+```
+
+The finalization command requires the Step 009.9 fingerprinted plan, delegates
+writes to the controlled transactional layer, and audits the approval log,
+annotations, manifest, processed images, category coverage, front/detail pairs,
+and remaining queue.
+
+A complete 20-image batch becomes `FIRST_BATCH_INGESTED`. Rejected photographs
+produce `RECAPTURE_REQUIRED` while valid approved samples remain ingested.
+
+Verify Step 010 with:
+
+```powershell
+python -m src.project_cli verify-step-010
+```

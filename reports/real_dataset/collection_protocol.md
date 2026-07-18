@@ -594,3 +594,39 @@ Verify the safeguards with:
 ```powershell
 python -m src.project_cli verify-step-009-9
 ```
+
+## Step 010 — First real dataset capture and approved sample ingestion
+
+After adding one or more descriptively named photographs to the first-batch
+capture inbox, run:
+
+```powershell
+python -m src.project_cli run-first-real-dataset-capture
+```
+
+The command imports, stages, refreshes progress, activates validated pending
+review rows, and prepares the runtime manual-decision workbook. It proves that
+the approved dataset remains unchanged and never creates an automatic decision.
+
+Inspect and edit only the operator columns in:
+
+```text
+data/real/runtime/first_batch_review/manual_decision_workbook.csv
+```
+
+After readiness becomes `READY_TO_APPLY`, run:
+
+```powershell
+python -m src.project_cli finalize-first-real-dataset-ingestion
+```
+
+The command applies the exact Step 009.9 fingerprinted decisions, audits every
+approved output, and restores the pre-application snapshot if the audit fails.
+Rejected captures produce `RECAPTURE_REQUIRED`; the batch is complete only when
+all planned categories have approved front/detail pairs.
+
+Verify Step 010 with:
+
+```powershell
+python -m src.project_cli verify-step-010
+```
