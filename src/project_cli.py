@@ -205,8 +205,29 @@ COMMANDS: dict[str, CommandSpec] = {
             "idempotency, and transaction safeguards."
         ),
     ),
-}
 
+    "validate-first-real-batch-manual-decisions": CommandSpec(
+        module="src.validate_first_batch_manual_decisions",
+        description=(
+            "Validate the first-batch manual decision workbook and "
+            "create a fingerprinted runtime application plan."
+        ),
+    ),
+    "apply-first-real-batch-manual-decisions": CommandSpec(
+        module="src.apply_first_batch_manual_decisions",
+        description=(
+            "Apply the validated first-batch manual decisions through "
+            "the transactional real-sample intake workflow."
+        ),
+    ),
+    "verify-step-009-9": CommandSpec(
+        module="src.verify_step_009_9",
+        description=(
+            "Verify manual decision validation, stale-plan blocking, "
+            "controlled application, and full rollback safeguards."
+        ),
+    ),
+}
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(

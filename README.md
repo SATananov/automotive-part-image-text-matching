@@ -517,3 +517,32 @@ Verify these safeguards with:
 ```powershell
 python -m src.project_cli verify-step-009-8
 ```
+
+## Manual decision validation and controlled application
+
+Step 009.9 validates the operator decisions in the runtime workbook before any
+live queue or approved-dataset change. Build the fingerprinted application plan
+with:
+
+```powershell
+python -m src.project_cli validate-first-real-batch-manual-decisions
+```
+
+Application is allowed only when the validation readiness is
+`READY_TO_APPLY`. Apply the exact validated decisions with:
+
+```powershell
+python -m src.project_cli apply-first-real-batch-manual-decisions
+```
+
+The apply command rejects stale workbook, queue, or canonical-plan
+fingerprints. It delegates the actual approvals and rejections to the existing
+transactional intake workflow and adds an outer rollback snapshot for the live
+queue, annotations, approval log, manifest, tracked reports, and processed
+images.
+
+Verify Step 009.9 with:
+
+```powershell
+python -m src.project_cli verify-step-009-9
+```

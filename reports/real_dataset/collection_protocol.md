@@ -562,3 +562,35 @@ python -m src.project_cli prepare-first-real-batch-manual-decisions
 ```
 
 The runtime workbook preserves the operator fields `operator_decision`, `rejection_reason`, and `operator_notes`. A rejected row requires a reason. Decision preparation never edits the live queue and never applies an image. Automatic approval and automatic rejection are prohibited.
+
+## Step 009.9 — Manual decision validation and controlled application
+
+After Step 009.8 reports that all manual decisions are ready, validate the
+workbook against the current live queue, current staged-image review, and the
+canonical first-batch plan:
+
+```powershell
+python -m src.project_cli validate-first-real-batch-manual-decisions
+```
+
+Do not apply when readiness is anything other than `READY_TO_APPLY`. The
+validation plan is runtime-only and is bound to SHA-256 fingerprints of the
+queue, workbook, and canonical first-batch plan.
+
+Apply the validated decisions with:
+
+```powershell
+python -m src.project_cli apply-first-real-batch-manual-decisions
+```
+
+The apply command revalidates all inputs, rejects stale plans, updates only the
+explicit first-batch decisions, and delegates dataset writes to the
+transactional Step 009.1 intake application. A second transaction layer
+restores the queue, annotations, approval log, manifest, reports, and processed
+images if any downstream operation or post-application check fails.
+
+Verify the safeguards with:
+
+```powershell
+python -m src.project_cli verify-step-009-9
+```
