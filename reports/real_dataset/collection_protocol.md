@@ -630,3 +630,31 @@ Verify Step 010 with:
 ```powershell
 python -m src.project_cli verify-step-010
 ```
+
+## Step 010.1 — Open-license external development images
+
+Internet images are collected only into the separate external-data boundary:
+
+```text
+data/external/open_license/
+```
+
+They must never be relabeled as `warehouse_photo` or copied into the controlled
+Step 010 real-capture queue.
+
+Run:
+
+```powershell
+python -m src.project_cli collect-open-license-images
+python -m src.project_cli build-open-license-review-gallery
+python -m src.project_cli validate-open-license-images
+python -m src.project_cli verify-step-010-1
+```
+
+The collector accepts only JPEG or PNG files with an allowlisted public-domain,
+CC0, CC BY, or CC BY-SA license. It stores the Commons source page, creator or
+credit, license and license URL, download URL, dimensions, and SHA-256.
+
+All semantic category decisions remain manual. New rows are always `pending`;
+rejected rows require a reason. The external collection is not ready until each
+category has five manually approved images.

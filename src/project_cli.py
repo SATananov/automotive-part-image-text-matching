@@ -249,6 +249,35 @@ COMMANDS: dict[str, CommandSpec] = {
             "recapture, and rollback safeguards."
         ),
     ),
+
+    "collect-open-license-images": CommandSpec(
+        module="src.collect_open_license_images",
+        description=(
+            "Collect open-license automotive-part candidates from "
+            "Wikimedia Commons with source and license metadata."
+        ),
+    ),
+    "validate-open-license-images": CommandSpec(
+        module="src.validate_open_license_dataset",
+        description=(
+            "Validate open-license image files, attribution metadata, "
+            "hashes, and manual review decisions."
+        ),
+    ),
+    "build-open-license-review-gallery": CommandSpec(
+        module="src.build_open_license_review_gallery",
+        description=(
+            "Build the local HTML gallery for manual review of "
+            "open-license image candidates."
+        ),
+    ),
+    "verify-step-010-1": CommandSpec(
+        module="src.verify_step_010_1",
+        description=(
+            "Verify open-license collection, attribution, review, "
+            "validation, and dataset-boundary safeguards."
+        ),
+    ),
 }
 
 def build_parser() -> argparse.ArgumentParser:

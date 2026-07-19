@@ -43,3 +43,7 @@ data/real/capture_inbox/*
 
 # Live capture execution outputs are local runtime state.
 data/real/runtime/
+
+# Step 010.1 open-license collection runtime and temporary downloads.
+data/external/open_license/runtime/
+data/external/open_license/.collect_tmp_*/

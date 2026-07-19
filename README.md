@@ -582,3 +582,45 @@ Verify Step 010 with:
 ```powershell
 python -m src.project_cli verify-step-010
 ```
+
+## Open-license internet image collection
+
+Step 010.1 adds a separate external development-image collection. It does not
+replace or modify the real warehouse-photo workflow.
+
+Collect five Wikimedia Commons candidates for every project category with:
+
+```powershell
+python -m src.project_cli collect-open-license-images
+```
+
+The collector stores the source file page, download URL, creator or credit,
+license name, license URL, local SHA-256, dimensions, and modification note in:
+
+```text
+data/external/open_license/open_license_manifest.csv
+```
+
+Every new candidate remains `pending`. Build the local review gallery with:
+
+```powershell
+python -m src.project_cli build-open-license-review-gallery
+```
+
+Open `reports/external_dataset/open_license_review_gallery.html`, then edit only
+the operator columns in `data/external/open_license/open_license_review.csv`.
+
+Validate the files, metadata, licenses, hashes, and manual decisions with:
+
+```powershell
+python -m src.project_cli validate-open-license-images
+```
+
+The collection becomes `READY_FOR_EXTERNAL_DATASET` only when each of the ten
+categories has at least five manually approved images.
+
+Verify Step 010.1 with:
+
+```powershell
+python -m src.project_cli verify-step-010-1
+```
