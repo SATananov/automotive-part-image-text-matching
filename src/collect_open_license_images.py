@@ -587,12 +587,22 @@ def collect_open_license_images(
         for row in existing_manifest
         if row["sha256"]
     }
+    review_decision_by_asset_id = {
+        row["asset_id"]: row["operator_decision"].strip().lower()
+        for row in existing_review
+        if row["asset_id"]
+    }
     counts = {
         category: 0
         for category in OPEN_LICENSE_SEARCH_QUERIES
     }
     for row in existing_manifest:
-        counts[row["part_category"]] += 1
+        decision = review_decision_by_asset_id.get(
+            row["asset_id"],
+            "pending",
+        )
+        if decision != "rejected":
+            counts[row["part_category"]] += 1
 
     metadata_paths = (
         OPEN_LICENSE_MANIFEST_PATH,

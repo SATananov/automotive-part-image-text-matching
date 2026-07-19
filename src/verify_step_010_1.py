@@ -6,6 +6,8 @@ from typing import Callable
 from src.open_license_dataset_config import (
     COMMONS_API_URL,
     OPEN_LICENSE_MANIFEST_COLUMNS,
+    OPEN_LICENSE_SEARCH_LIMIT,
+    OPEN_LICENSE_SEARCH_QUERIES,
     OPEN_LICENSE_REVIEW_COLUMNS,
     OPEN_LICENSE_RUNTIME_DIRECTORY,
 )
@@ -160,6 +162,108 @@ def check_schemas_and_boundaries() -> list[str]:
             "The collector does not use the Wikimedia Commons API."
         )
 
+    if OPEN_LICENSE_SEARCH_LIMIT < 50:
+        errors.append(
+            "The Commons search limit is too small for the "
+            "expanded collection pass."
+        )
+
+    category_query_markers = {
+        "starter": "Electric starter motors",
+        "brake_disc": "Automobile disk brakes",
+        "coil_spring": "Coil spring automobile suspension",
+        "headlight": "Automobile headlamps",
+        "taillight": "Automobile rear lights",
+        "oil_filter": "Automobile oil filters",
+        "air_filter": "Automobile engine air filters",
+    }
+    for category, marker in category_query_markers.items():
+        queries = OPEN_LICENSE_SEARCH_QUERIES.get(category, ())
+        if not any(
+            "incategory:" in query and marker in query
+            for query in queries
+        ):
+            errors.append(
+                f"Expanded category query is missing for {category}: "
+                f"{marker}."
+            )
+
+    brake_pad_queries = OPEN_LICENSE_SEARCH_QUERIES.get(
+        "brake_pad",
+        (),
+    )
+    for filename in (
+        "Automobile brake pad.jpg",
+        "Brake pads.JPG",
+        "Brakepad.jpg",
+        "Performance Disk Brake Pads.jpg",
+    ):
+        if not any(
+            filename in query
+            for query in brake_pad_queries
+        ):
+            errors.append(
+                f"Targeted brake-pad query is missing: {filename}."
+            )
+
+    final_exact_queries = {
+        "starter": (
+            "MOTOR STARTER.jpg",
+            "Starter motor.JPG",
+            "Motor starter.jpg",
+        ),
+        "brake_disc": (
+            "Disc brakes.jpg",
+            "Disc brake car.jpg",
+            "Scheibenbremse(Kfz).JPG",
+            "Hamulec tarczowy.jpg",
+        ),
+        "brake_pad": (
+            "Brake pads.JPG",
+            "Performance Disk Brake Pads.jpg",
+            "Bremsbeläge-abgefahren.JPG",
+        ),
+    }
+    for category, filenames in final_exact_queries.items():
+        queries = OPEN_LICENSE_SEARCH_QUERIES.get(category, ())
+        for filename in filenames:
+            if not any(filename in query for query in queries):
+                errors.append(
+                    f"Final exact query is missing for {category}: "
+                    f"{filename}."
+                )
+
+    exact_last_queries = {
+        "starter": 'intitle:"Starter motor.JPG"',
+        "brake_disc": 'intitle:"Disc brake car.jpg"',
+    }
+    for category, required_query in exact_last_queries.items():
+        queries = OPEN_LICENSE_SEARCH_QUERIES.get(category, ())
+        if required_query not in queries:
+            errors.append(
+                f"Last exact query is missing for {category}: "
+                f"{required_query}."
+            )
+
+    final_replacement_titles = {
+        "starter": (
+            'intitle:"Automobile starter 2.JPG"',
+            'intitle:"Automobile starter.JPG"',
+        ),
+        "brake_disc": (
+            'intitle:"Brake Discs.jpg"',
+            'intitle:"Disk brake dsc03682.jpg"',
+        ),
+    }
+    for category, required_queries in final_replacement_titles.items():
+        queries = OPEN_LICENSE_SEARCH_QUERIES.get(category, ())
+        for required_query in required_queries:
+            if required_query not in queries:
+                errors.append(
+                    f"Exact final replacement query is missing for "
+                    f"{category}: {required_query}."
+                )
+
     return errors
 
 
@@ -186,6 +290,7 @@ def check_collection_safeguards() -> list[str]:
         "restore_files",
         ".collect_tmp_",
         "operator_decision",
+        'decision != "rejected"',
         "pending",
     )
     for marker in collector_markers:

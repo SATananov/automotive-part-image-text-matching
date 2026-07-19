@@ -1,0 +1,3 @@
+part_category,approved,rejected,replacement_needed,primary_title_query,fallback_title_query
+starter,4,11,1,"intitle:""Automobile starter 2.JPG""","intitle:""Automobile starter.JPG"""
+brake_disc,4,5,1,"intitle:""Brake Discs.jpg""","intitle:""Disk brake dsc03682.jpg"""

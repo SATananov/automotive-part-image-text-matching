@@ -15,6 +15,8 @@ import src.validate_open_license_dataset as validator
 from src.open_license_dataset_config import (
     OPEN_LICENSE_MANIFEST_COLUMNS,
     OPEN_LICENSE_REVIEW_COLUMNS,
+    OPEN_LICENSE_SEARCH_LIMIT,
+    OPEN_LICENSE_SEARCH_QUERIES,
 )
 
 
@@ -133,6 +135,116 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         newline="",
     ) as handle:
         return list(csv.DictReader(handle))
+
+
+
+def test_expanded_search_plan_uses_commons_categories():
+    assert OPEN_LICENSE_SEARCH_LIMIT >= 50
+
+    expected_category_queries = {
+        "alternator": "Automobile alternators",
+        "brake_disc": "Brake disks",
+        "brake_pad": "Brake pads",
+        "shock_absorber": "Automobile shock absorbers",
+        "coil_spring": "Coil spring automobile suspension",
+        "headlight": "Automobile headlamps",
+        "taillight": "Automobile rear lights",
+        "oil_filter": "Automobile oil filters",
+        "air_filter": "Automobile engine air filters",
+    }
+
+    for category, commons_category in (
+        expected_category_queries.items()
+    ):
+        queries = OPEN_LICENSE_SEARCH_QUERIES[category]
+        assert len(queries) >= 5
+        assert any(
+            "incategory:" in query
+            and commons_category in query
+            for query in queries
+        )
+
+
+
+
+def test_targeted_replacement_queries_are_automotive_specific():
+    starter_queries = OPEN_LICENSE_SEARCH_QUERIES["starter"]
+    brake_disc_queries = OPEN_LICENSE_SEARCH_QUERIES["brake_disc"]
+    brake_pad_queries = OPEN_LICENSE_SEARCH_QUERIES["brake_pad"]
+
+    assert any(
+        'incategory:"Electric starter motors"' in query
+        for query in starter_queries
+    )
+    assert any(
+        'incategory:"Automobile disk brakes"' in query
+        for query in brake_disc_queries
+    )
+
+    expected_brake_pad_files = {
+        "Automobile brake pad.jpg",
+        "Brake pads.JPG",
+        "Brakepad.jpg",
+        "Performance Disk Brake Pads.jpg",
+    }
+    for filename in expected_brake_pad_files:
+        assert any(
+            filename in query
+            for query in brake_pad_queries
+        )
+
+
+
+
+def test_final_exact_replacement_queries_are_registered():
+    starter_queries = OPEN_LICENSE_SEARCH_QUERIES["starter"]
+    brake_disc_queries = OPEN_LICENSE_SEARCH_QUERIES["brake_disc"]
+    brake_pad_queries = OPEN_LICENSE_SEARCH_QUERIES["brake_pad"]
+
+    for filename in (
+        "MOTOR STARTER.jpg",
+        "Starter motor.JPG",
+        "Motor starter.jpg",
+    ):
+        assert any(filename in query for query in starter_queries)
+
+    for filename in (
+        "Disc brakes.jpg",
+        "Disc brake car.jpg",
+        "Scheibenbremse(Kfz).JPG",
+        "Hamulec tarczowy.jpg",
+    ):
+        assert any(filename in query for query in brake_disc_queries)
+
+    for filename in (
+        "Brake pads.JPG",
+        "Performance Disk Brake Pads.jpg",
+        "Bremsbeläge-abgefahren.JPG",
+    ):
+        assert any(filename in query for query in brake_pad_queries)
+
+
+
+
+def test_last_two_queries_use_title_restriction():
+    starter_queries = OPEN_LICENSE_SEARCH_QUERIES["starter"]
+    brake_disc_queries = OPEN_LICENSE_SEARCH_QUERIES["brake_disc"]
+
+    assert 'intitle:"Starter motor.JPG"' in starter_queries
+    assert 'intitle:"Disc brake car.jpg"' in brake_disc_queries
+
+
+
+
+def test_exact_final_replacement_titles_are_registered():
+    starter_queries = OPEN_LICENSE_SEARCH_QUERIES["starter"]
+    brake_disc_queries = OPEN_LICENSE_SEARCH_QUERIES["brake_disc"]
+
+    assert 'intitle:"Automobile starter 2.JPG"' in starter_queries
+    assert 'intitle:"Automobile starter.JPG"' in starter_queries
+    assert 'intitle:"Brake Discs.jpg"' in brake_disc_queries
+    assert 'intitle:"Disk brake dsc03682.jpg"' in brake_disc_queries
+
 
 
 def test_license_allowlist():
@@ -365,6 +477,97 @@ def test_collection_preserves_review_decisions(
     )[0]
     assert preserved["operator_decision"] == "approved"
     assert preserved["operator_notes"] == "Visually confirmed."
+
+
+
+def test_rejected_candidate_is_replaced_without_redownloading_it(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+):
+    configure_paths(tmp_path, monkeypatch)
+    monkeypatch.setattr(
+        collector,
+        "OPEN_LICENSE_SEARCH_QUERIES",
+        {"starter": ("starter query",)},
+    )
+    monkeypatch.setattr(
+        collector,
+        "OPEN_LICENSE_TARGET_PER_CATEGORY",
+        1,
+    )
+
+    old_page = commons_page(
+        page_id=351,
+        title="Wrong_starter.jpg",
+    )
+    new_page = commons_page(
+        page_id=352,
+        title="Replacement_starter.jpg",
+    )
+
+    payload_by_run = [
+        {"query": {"pages": [old_page]}},
+        {"query": {"pages": [old_page, new_page]}},
+    ]
+    run_index = {"value": 0}
+
+    def fake_request(params):
+        return payload_by_run[run_index["value"]]
+
+    bytes_by_url = {
+        "https://upload.wikimedia.org/thumb/351.jpg": image_bytes(
+            color=(10, 10, 10)
+        ),
+        "https://upload.wikimedia.org/thumb/352.jpg": image_bytes(
+            color=(20, 20, 20)
+        ),
+    }
+
+    first_report = collector.collect_open_license_images(
+        request_json=fake_request,
+        download_bytes=lambda url: bytes_by_url[url],
+        sleep=lambda seconds: None,
+    )
+    assert first_report["added"] == 1
+
+    review_rows = read_csv(
+        collector.OPEN_LICENSE_REVIEW_PATH
+    )
+    review_rows[0]["operator_decision"] = "rejected"
+    review_rows[0]["rejection_reason"] = "Wrong category."
+    collector.atomic_write_csv(
+        collector.OPEN_LICENSE_REVIEW_PATH,
+        OPEN_LICENSE_REVIEW_COLUMNS,
+        review_rows,
+    )
+
+    run_index["value"] = 1
+    second_report = collector.collect_open_license_images(
+        request_json=fake_request,
+        download_bytes=lambda url: bytes_by_url[url],
+        sleep=lambda seconds: None,
+    )
+
+    assert second_report["added"] == 1
+    manifest_rows = read_csv(
+        collector.OPEN_LICENSE_MANIFEST_PATH
+    )
+    assert [
+        row["commons_page_id"]
+        for row in manifest_rows
+    ] == ["352", "351"] or [
+        row["commons_page_id"]
+        for row in manifest_rows
+    ] == ["351", "352"]
+    final_review = read_csv(
+        collector.OPEN_LICENSE_REVIEW_PATH
+    )
+    decisions = {
+        row["commons_title"]: row["operator_decision"]
+        for row in final_review
+    }
+    assert decisions["File:Wrong_starter.jpg"] == "rejected"
+    assert decisions["File:Replacement_starter.jpg"] == "pending"
 
 
 def write_complete_dataset(
