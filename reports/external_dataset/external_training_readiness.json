@@ -1,0 +1,30 @@
+{
+  "approved_external_images": 50,
+  "errors": [],
+  "external_samples": 150,
+  "external_split_groups": {
+    "test": 10,
+    "train": 30,
+    "validation": 10
+  },
+  "external_split_rows": {
+    "test": 30,
+    "train": 90,
+    "validation": 30
+  },
+  "integrated_split_groups": {
+    "test": 20,
+    "train": 60,
+    "validation": 20
+  },
+  "integrated_split_rows": {
+    "test": 60,
+    "train": 180,
+    "validation": 60
+  },
+  "readiness": "READY_FOR_TRAINING",
+  "status": "PASS",
+  "test_evaluation_permitted": false,
+  "test_locked": true,
+  "warnings": []
+}

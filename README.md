@@ -624,3 +624,37 @@ Verify Step 010.1 with:
 ```powershell
 python -m src.project_cli verify-step-010-1
 ```
+
+## External dataset integration and training readiness
+
+Step 010.2 converts the 50 manually approved open-license images into 150
+image-text samples. Each approved image becomes one independent external part
+group with `MATCH`, `PARTIAL_MATCH`, and `MISMATCH` descriptions.
+
+Build the external-only grouped split and the integrated development + external
+split with:
+
+```powershell
+python -m src.project_cli integrate-external-dataset
+```
+
+The deterministic external split uses three groups per category for training,
+one for validation, and one for the locked test split. All samples from the
+same `part_group_id` remain together.
+
+Validate the approved-image catalog, generated samples, group isolation,
+integrated split composition, image hashes, and test-lock fingerprints with:
+
+```powershell
+python -m src.project_cli validate-external-training-readiness
+```
+
+Verify the complete Step 010.2 workflow with:
+
+```powershell
+python -m src.project_cli verify-step-010-2
+```
+
+Training-ready inputs are `data/processed/integrated_train.csv` and
+`data/processed/integrated_validation.csv`. The integrated test split remains
+fingerprinted and locked. Step 010.2 does not train or evaluate a model.

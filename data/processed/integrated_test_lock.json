@@ -1,0 +1,19 @@
+{
+  "external_test_groups": 10,
+  "external_test_rows": 30,
+  "external_test_sha256": "88e5ebe557934bea2b613c3fd5f8cd96c66a534bcfc0e1612da29afb154811f8",
+  "integrated_test_groups": 20,
+  "integrated_test_rows": 60,
+  "integrated_test_sha256": "bb234229961b1d6d81f034f906d509ac48b06640a7d7c3359df477089b0cad62",
+  "locked_test_paths": [
+    "data/external/integrated/external_test.csv",
+    "data/processed/integrated_test.csv"
+  ],
+  "policy": "The test split remains locked until model selection and the final evaluation procedure are fixed.",
+  "test_evaluation_permitted": false,
+  "test_locked": true,
+  "training_inputs": [
+    "data/processed/integrated_train.csv",
+    "data/processed/integrated_validation.csv"
+  ]
+}

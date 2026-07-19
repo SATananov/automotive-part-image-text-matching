@@ -278,6 +278,28 @@ COMMANDS: dict[str, CommandSpec] = {
             "validation, and dataset-boundary safeguards."
         ),
     ),
+
+    "integrate-external-dataset": CommandSpec(
+        module="src.integrate_external_dataset",
+        description=(
+            "Build the approved open-license metadata, grouped split, "
+            "integrated development split, and locked test manifest."
+        ),
+    ),
+    "validate-external-training-readiness": CommandSpec(
+        module="src.validate_external_training_readiness",
+        description=(
+            "Validate external integration, group isolation, approved-image "
+            "provenance, and the locked-test training policy."
+        ),
+    ),
+    "verify-step-010-2": CommandSpec(
+        module="src.verify_step_010_2",
+        description=(
+            "Verify Step 010.2 external integration, grouped split, "
+            "training readiness, and test-lock safeguards."
+        ),
+    ),
 }
 
 def build_parser() -> argparse.ArgumentParser:

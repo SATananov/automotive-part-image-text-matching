@@ -1,0 +1,131 @@
+{
+  "approved_external_images": 50,
+  "approved_per_category": {
+    "air_filter": 5,
+    "alternator": 5,
+    "brake_disc": 5,
+    "brake_pad": 5,
+    "coil_spring": 5,
+    "headlight": 5,
+    "oil_filter": 5,
+    "shock_absorber": 5,
+    "starter": 5,
+    "taillight": 5
+  },
+  "external_samples": 150,
+  "external_splits": {
+    "test": {
+      "categories": 10,
+      "images": 10,
+      "label_distribution": {
+        "MATCH": 10,
+        "MISMATCH": 10,
+        "PARTIAL_MATCH": 10
+      },
+      "part_groups": 10,
+      "samples": 30,
+      "source_distribution": {
+        "wikimedia_commons_open_license": 30
+      }
+    },
+    "train": {
+      "categories": 10,
+      "images": 30,
+      "label_distribution": {
+        "MATCH": 30,
+        "MISMATCH": 30,
+        "PARTIAL_MATCH": 30
+      },
+      "part_groups": 30,
+      "samples": 90,
+      "source_distribution": {
+        "wikimedia_commons_open_license": 90
+      }
+    },
+    "validation": {
+      "categories": 10,
+      "images": 10,
+      "label_distribution": {
+        "MATCH": 10,
+        "MISMATCH": 10,
+        "PARTIAL_MATCH": 10
+      },
+      "part_groups": 10,
+      "samples": 30,
+      "source_distribution": {
+        "wikimedia_commons_open_license": 30
+      }
+    }
+  },
+  "group_overlap": {
+    "external_train_test": 0,
+    "external_train_validation": 0,
+    "external_validation_test": 0,
+    "integrated_train_test": 0,
+    "integrated_train_validation": 0,
+    "integrated_validation_test": 0
+  },
+  "integrated_splits": {
+    "test": {
+      "categories": 10,
+      "images": 20,
+      "label_distribution": {
+        "MATCH": 20,
+        "MISMATCH": 20,
+        "PARTIAL_MATCH": 20
+      },
+      "part_groups": 20,
+      "samples": 60,
+      "source_distribution": {
+        "generated_development": 30,
+        "wikimedia_commons_open_license": 30
+      }
+    },
+    "train": {
+      "categories": 10,
+      "images": 60,
+      "label_distribution": {
+        "MATCH": 60,
+        "MISMATCH": 60,
+        "PARTIAL_MATCH": 60
+      },
+      "part_groups": 60,
+      "samples": 180,
+      "source_distribution": {
+        "generated_development": 90,
+        "wikimedia_commons_open_license": 90
+      }
+    },
+    "validation": {
+      "categories": 10,
+      "images": 20,
+      "label_distribution": {
+        "MATCH": 20,
+        "MISMATCH": 20,
+        "PARTIAL_MATCH": 20
+      },
+      "part_groups": 20,
+      "samples": 60,
+      "source_distribution": {
+        "generated_development": 30,
+        "wikimedia_commons_open_license": 30
+      }
+    }
+  },
+  "readiness": "READY_FOR_TRAINING_VALIDATION",
+  "status": "PASS",
+  "test_lock": {
+    "external_test_sha256": "88e5ebe557934bea2b613c3fd5f8cd96c66a534bcfc0e1612da29afb154811f8",
+    "integrated_test_sha256": "bb234229961b1d6d81f034f906d509ac48b06640a7d7c3359df477089b0cad62",
+    "locked_test_paths": [
+      "data/external/integrated/external_test.csv",
+      "data/processed/integrated_test.csv"
+    ],
+    "test_evaluation_permitted": false,
+    "test_locked": true,
+    "training_inputs": [
+      "data/processed/integrated_train.csv",
+      "data/processed/integrated_validation.csv"
+    ]
+  }
+}
