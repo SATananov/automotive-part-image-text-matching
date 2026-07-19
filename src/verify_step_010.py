@@ -132,6 +132,8 @@ def check_safeguards() -> list[str]:
     for marker in (
         "approved_dataset_fingerprint",
         "This command never creates approval or rejection decisions.",
+        "to_json_compatible",
+        "allow_nan=False",
         "READY_TO_APPLY",
         "CAPTURE_WORKFLOW_BLOCKED",
     ):

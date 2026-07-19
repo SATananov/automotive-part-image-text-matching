@@ -1,7 +1,11 @@
 from __future__ import annotations
 
 import json
+import math
+from pathlib import Path
 from typing import Any, Callable
+
+import pandas as pd
 
 from src.activate_first_batch_review_queue import activate_review_queue
 from src.execute_first_batch_capture_session import execute_capture_cycle
@@ -127,10 +131,70 @@ def render_summary(report: dict[str, Any]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def to_json_compatible(value: Any) -> Any:
+    """Convert runtime report values to strict JSON-compatible data."""
+    if isinstance(value, pd.DataFrame):
+        return [
+            to_json_compatible(record)
+            for record in value.to_dict(orient="records")
+        ]
+    if isinstance(value, pd.Series):
+        return [
+            to_json_compatible(item)
+            for item in value.tolist()
+        ]
+    if isinstance(value, Path):
+        return value.as_posix()
+    if isinstance(value, dict):
+        return {
+            str(key): to_json_compatible(item)
+            for key, item in value.items()
+        }
+    if isinstance(value, (list, tuple)):
+        return [to_json_compatible(item) for item in value]
+    if isinstance(value, set):
+        return [
+            to_json_compatible(item)
+            for item in sorted(value, key=str)
+        ]
+    if value is pd.NA:
+        return None
+    if isinstance(value, float) and not math.isfinite(value):
+        return None
+    if isinstance(value, (str, int, float, bool)) or value is None:
+        return value
+
+    item_method = getattr(value, "item", None)
+    if callable(item_method):
+        try:
+            item = item_method()
+        except (TypeError, ValueError):
+            item = value
+        if item is not value:
+            return to_json_compatible(item)
+
+    isoformat_method = getattr(value, "isoformat", None)
+    if callable(isoformat_method):
+        try:
+            return isoformat_method()
+        except (TypeError, ValueError):
+            pass
+
+    return str(value)
+
+
 def write_outputs(report: dict[str, Any]) -> None:
+    serializable_report = to_json_compatible(report)
     atomic_write_text(
         CAPTURE_STATUS_PATH,
-        json.dumps(report, indent=2, sort_keys=True) + "\n",
+        json.dumps(
+            serializable_report,
+            indent=2,
+            sort_keys=True,
+            ensure_ascii=False,
+            allow_nan=False,
+        )
+        + "\n",
     )
     atomic_write_text(CAPTURE_SUMMARY_PATH, render_summary(report))
 

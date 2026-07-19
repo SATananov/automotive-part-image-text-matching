@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pandas as pd
@@ -116,6 +117,61 @@ def test_capture_workflow_keeps_approved_dataset_unchanged(
     assert report["readiness"] == "AWAITING_CAPTURE"
     assert report["approved_dataset_unchanged"] == "PASS"
 
+
+
+def test_capture_runtime_output_serializes_dataframe(
+    monkeypatch,
+):
+    written: dict[str, str] = {}
+
+    def capture_write(path, content):
+        written[path.name] = content
+
+    monkeypatch.setattr(
+        capture,
+        "atomic_write_text",
+        capture_write,
+    )
+
+    report = {
+        "status": "PASS",
+        "readiness": "CAPTURE_IN_PROGRESS",
+        "approved_dataset_unchanged": "PASS",
+        "capture": {
+            **capture_report(captured=2, ready=2),
+            "review_rows": pd.DataFrame(
+                [
+                    {
+                        "intake_id": "intake_000001",
+                        "quality_score": pd.NA,
+                        "captured_at": pd.Timestamp(
+                            "2026-07-18T10:00:00"
+                        ),
+                    }
+                ]
+            ),
+        },
+        "review_queue_activation": activation_report(),
+        "manual_decisions": manual_report(pending=2),
+        "decision_validation": validation_report(
+            "MANUAL_DECISIONS_REQUIRED"
+        ),
+        "ingestion_audit": audit_report(),
+        "errors": [],
+        "warnings": [],
+    }
+
+    capture.write_outputs(report)
+
+    status = json.loads(written["capture_status.json"])
+    assert status["capture"]["review_rows"] == [
+        {
+            "captured_at": "2026-07-18T10:00:00",
+            "intake_id": "intake_000001",
+            "quality_score": None,
+        }
+    ]
+    assert "capture_summary.md" in written
 
 def test_capture_workflow_reports_ready_to_apply(monkeypatch):
     monkeypatch.setattr(
