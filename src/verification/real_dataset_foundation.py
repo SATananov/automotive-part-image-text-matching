@@ -43,7 +43,7 @@ REQUIRED_FILES = (
     REAL_IMAGES_PATH,
     REAL_IMAGE_MANIFEST_PATH,
     PROJECT_ROOT / "src" / "validate_real_dataset.py",
-    PROJECT_ROOT / "src" / "verify_step_009.py",
+    PROJECT_ROOT / "src" / "verification" / "real_dataset_foundation.py",
     PROJECT_ROOT / "tests" / "test_real_dataset_intake.py",
     PROJECT_ROOT
     / "reports"
@@ -52,7 +52,7 @@ REQUIRED_FILES = (
 
 REQUIRED_COMMANDS = (
     "validate-real-data",
-    "verify-step-009",
+    "verify-real-dataset-foundation",
 )
 
 
@@ -237,7 +237,7 @@ def build_verification_report() -> dict[str, object]:
 def main() -> None:
     report = build_verification_report()
 
-    print("Step 009 verification")
+    print("Real dataset foundation verification")
 
     for check_name, check_errors in report["checks"].items():
         status = "PASS" if not check_errors else "FAIL"

@@ -17,7 +17,7 @@ from src.validate_first_batch_manual_decisions import (
 REQUIRED_FILES = (
     PROJECT_ROOT / "src" / "validate_first_batch_manual_decisions.py",
     PROJECT_ROOT / "src" / "apply_first_batch_manual_decisions.py",
-    PROJECT_ROOT / "src" / "verify_step_009_9.py",
+    PROJECT_ROOT / "src" / "verification" / "manual_decision_workflow.py",
     PROJECT_ROOT
     / "tests"
     / "test_first_batch_manual_decision_application.py",
@@ -34,7 +34,7 @@ EXPECTED_COMMANDS = {
     "apply-first-real-batch-manual-decisions": (
         "src.apply_first_batch_manual_decisions"
     ),
-    "verify-step-009-9": "src.verify_step_009_9",
+    "verify-manual-decisions": "src.verification.manual_decision_workflow",
 }
 
 SAFE_READINESS_VALUES = {
@@ -122,7 +122,7 @@ def check_runtime_and_schema() -> list[str]:
     if APPLICATION_PLAN_COLUMNS != expected_columns:
         errors.append(
             "Manual decision application plan columns differ from "
-            "the Step 009.9 schema."
+            "the Manual decision workflow schema."
         )
 
     if APPLICATION_PLAN_PATH.is_file():
@@ -222,7 +222,7 @@ def check_current_state() -> list[str]:
 
     if report.get("readiness") not in SAFE_READINESS_VALUES:
         errors.append(
-            "Unexpected current Step 009.9 readiness: "
+            "Unexpected current Manual decision workflow readiness: "
             f"{report.get('readiness')}."
         )
 
@@ -264,7 +264,7 @@ def main() -> None:
         run_check("current_state", check_current_state),
     ]
 
-    print("Step 009.9 verification")
+    print("Manual decision workflow verification")
     failed = False
     for name, errors in checks:
         status = "PASS" if not errors else "FAIL"

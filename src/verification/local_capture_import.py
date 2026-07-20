@@ -130,7 +130,7 @@ def validate_cli_and_documentation() -> list[str]:
     expected_commands = (
         "import-first-real-batch",
         "stage-first-real-batch-capture",
-        "verify-step-009-4",
+        "verify-local-capture-import",
     )
     for command in expected_commands:
         if command not in COMMANDS:
@@ -234,7 +234,7 @@ def build_verification_report() -> dict[str, object]:
 
 def main() -> None:
     report = build_verification_report()
-    print("Step 009.4 verification")
+    print("Local capture import verification")
     for name, status in report["checks"].items():
         print(f"- {name}: {status}")
     print(f"Status: {report['status']}")

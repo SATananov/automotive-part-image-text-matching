@@ -7,7 +7,7 @@ from types import SimpleNamespace
 import pytest
 
 from src.project_cli import COMMANDS, build_parser, run_command
-from src.verify_step_008_2 import (
+from src.verification.development_pipeline import (
     PROTOCOL_PATH,
     README_PATH,
     REQUIRED_PROTOCOL_HEADINGS,
@@ -89,10 +89,10 @@ def test_cli_loads_only_the_selected_command() -> None:
 def test_cli_parser_accepts_registered_command() -> None:
     parser = build_parser()
     arguments = parser.parse_args(
-        ["verify-step-008-2"]
+        ["verify-development-pipeline"]
     )
 
-    assert arguments.command_name == "verify-step-008-2"
+    assert arguments.command_name == "verify-development-pipeline"
 
 
 def test_cli_rejects_unknown_internal_command() -> None:

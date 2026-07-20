@@ -17,7 +17,7 @@ from src.real_dataset_config import (
 )
 import src.review_real_sample_intake as intake_review
 import src.validate_real_dataset as real_validator
-from src.verify_step_009_1 import build_verification_report
+from src.verification.sample_intake_workflow import build_verification_report
 
 
 def empty_frame(columns: tuple[str, ...]) -> pd.DataFrame:
@@ -483,8 +483,8 @@ def test_step_009_1_cli_commands_are_registered() -> None:
     assert COMMANDS["apply-real-intake"].module == (
         "src.apply_real_sample_intake"
     )
-    assert COMMANDS["verify-step-009-1"].module == (
-        "src.verify_step_009_1"
+    assert COMMANDS["verify-sample-intake"].module == (
+        "src.verification.sample_intake_workflow"
     )
 
 

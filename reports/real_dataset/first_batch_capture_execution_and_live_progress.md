@@ -100,7 +100,7 @@ apply remain mandatory.
 Run:
 
 ```powershell
-python -m src.project_cli verify-step-009-7
+python -m src.project_cli verify-capture-execution
 ```
 
 The verifier checks runtime isolation, CLI registration, semantic filenames,

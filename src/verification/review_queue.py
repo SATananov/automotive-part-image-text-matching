@@ -56,7 +56,7 @@ def check_structure() -> tuple[bool, list[str]]:
         TEST_PATH,
     )
     errors = [
-        f"Missing Step 009.8 file: {path.relative_to(PROJECT_ROOT)}."
+        f"Missing Review queue file: {path.relative_to(PROJECT_ROOT)}."
         for path in required
         if not path.is_file()
     ]
@@ -72,7 +72,7 @@ def check_cli_and_documentation() -> tuple[bool, list[str]]:
         "prepare-first-real-batch-manual-decisions": (
             "src.prepare_first_batch_manual_decisions"
         ),
-        "verify-step-009-8": "src.verify_step_009_8",
+        "verify-review-queue": "src.verification.review_queue",
     }
     for command, module in expected_commands.items():
         spec = COMMANDS.get(command)
@@ -199,7 +199,7 @@ def build_verification_report() -> dict[str, object]:
 
 def main() -> None:
     report = build_verification_report()
-    print("Step 009.8 verification")
+    print("Review queue verification")
     for name, status in report["checks"].items():
         print(f"- {name}: {status}")
     print(f"Status: {report['status']}")

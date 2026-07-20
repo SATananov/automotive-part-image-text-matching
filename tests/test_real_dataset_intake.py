@@ -12,7 +12,7 @@ from src.real_dataset_config import (
     REAL_IMAGE_INTAKE_MANIFEST_COLUMNS,
 )
 import src.validate_real_dataset as real_validator
-from src.verify_step_009 import build_verification_report
+from src.verification.real_dataset_foundation import build_verification_report
 
 
 def make_part_groups(
@@ -301,7 +301,7 @@ def test_step_009_cli_commands_are_registered() -> None:
     assert COMMANDS["validate-real-data"].module == (
         "src.validate_real_dataset"
     )
-    assert COMMANDS["verify-step-009"].module == "src.verify_step_009"
+    assert COMMANDS["verify-real-dataset-foundation"].module == "src.verification.real_dataset_foundation"
 
 
 def test_step_009_verification_passes() -> None:

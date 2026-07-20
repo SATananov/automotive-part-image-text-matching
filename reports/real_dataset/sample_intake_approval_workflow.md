@@ -25,7 +25,7 @@ Expected commands:
 ```powershell
 python -m src.project_cli review-real-intake
 python -m src.project_cli apply-real-intake
-python -m src.project_cli verify-step-009-1
+python -m src.project_cli verify-sample-intake
 ```
 
 Expected state:

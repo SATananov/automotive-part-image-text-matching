@@ -76,5 +76,5 @@ This directory is excluded from Git.
 Run:
 
 ```powershell
-python -m src.project_cli verify-step-009-9
+python -m src.project_cli verify-manual-decisions
 ```

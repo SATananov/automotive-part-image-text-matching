@@ -35,12 +35,12 @@ REQUIRED_FILES = (
     PROJECT_ROOT / "src" / "external_dataset_integration_config.py",
     PROJECT_ROOT / "src" / "integrate_external_dataset.py",
     PROJECT_ROOT / "src" / "validate_external_training_readiness.py",
-    PROJECT_ROOT / "src" / "verify_step_010_2.py",
+    PROJECT_ROOT / "src" / "verification" / "external_dataset_integration.py",
     PROJECT_ROOT / "tests" / "test_external_dataset_integration.py",
     PROJECT_ROOT
     / "reports"
     / "external_dataset"
-    / "step_010_2_external_dataset_integration.md",
+    / "external_dataset_integration.md",
     APPROVED_EXTERNAL_CATALOG_PATH,
     EXTERNAL_METADATA_PATH,
     EXTERNAL_TRAIN_PATH,
@@ -65,7 +65,7 @@ EXPECTED_COMMANDS = {
     "validate-external-training-readiness": (
         "src.validate_external_training_readiness"
     ),
-    "verify-step-010-2": "src.verify_step_010_2",
+    "verify-external-dataset-integration": "src.verification.external_dataset_integration",
 }
 
 
@@ -118,7 +118,7 @@ def check_cli_and_documentation() -> list[str]:
         PROJECT_ROOT
         / "reports"
         / "external_dataset"
-        / "step_010_2_external_dataset_integration.md"
+        / "external_dataset_integration.md"
     ).read_text(encoding="utf-8-sig")
 
     for command in EXPECTED_COMMANDS:
@@ -129,7 +129,7 @@ def check_cli_and_documentation() -> list[str]:
             )
         if command_text not in step_document:
             errors.append(
-                f"Step 010.2 documentation is missing: "
+                f"External dataset integration documentation is missing: "
                 f"{command_text}."
             )
 
@@ -259,39 +259,39 @@ def check_current_state() -> list[str]:
         report = validate_external_training_readiness()
     except Exception as error:
         return [
-            f"Current Step 010.2 validation failed: {error}."
+            f"Current External dataset integration validation failed: {error}."
         ]
 
     errors: list[str] = []
 
     if report.get("status") != "PASS":
         errors.append(
-            "Step 010.2 validation status is not PASS."
+            "External dataset integration validation status is not PASS."
         )
 
     if report.get("readiness") != "READY_FOR_TRAINING":
         errors.append(
-            "Step 010.2 is not READY_FOR_TRAINING."
+            "External dataset integration is not READY_FOR_TRAINING."
         )
 
     if report.get("approved_external_images") != 50:
         errors.append(
-            "Step 010.2 does not contain 50 approved external images."
+            "External dataset integration does not contain 50 approved external images."
         )
 
     if report.get("external_samples") != 150:
         errors.append(
-            "Step 010.2 does not contain 150 external samples."
+            "External dataset integration does not contain 150 external samples."
         )
 
     if report.get("test_locked") is not True:
         errors.append(
-            "Step 010.2 current state does not report a locked test split."
+            "External dataset integration current state does not report a locked test split."
         )
 
     if report.get("test_evaluation_permitted") is not False:
         errors.append(
-            "Step 010.2 current state permits test evaluation."
+            "External dataset integration current state permits test evaluation."
         )
 
     return errors
@@ -332,7 +332,7 @@ def main() -> None:
 
     failed = False
 
-    print("Step 010.2 verification")
+    print("External dataset integration verification")
     for name, errors in checks:
         status = "PASS" if not errors else "FAIL"
         print(f"- {name}: {status}")

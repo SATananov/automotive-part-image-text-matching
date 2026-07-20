@@ -80,5 +80,5 @@ state and contains no current timestamp.
 Verify the implementation with:
 
 ```powershell
-python -m src.project_cli verify-step-009-6
+python -m src.project_cli verify-capture-dashboard
 ```

@@ -62,7 +62,7 @@ def validate_structure() -> list[str]:
         TEST_PATH,
     )
     return [
-        f"Missing Step 009.3 file: {path.relative_to(PROJECT_ROOT)}."
+        f"Missing Capture staging file: {path.relative_to(PROJECT_ROOT)}."
         for path in required
         if not path.is_file()
     ]
@@ -89,7 +89,7 @@ def validate_cli_and_documentation() -> list[str]:
     errors: list[str] = []
     expected_commands = (
         "stage-first-real-batch-capture",
-        "verify-step-009-3",
+        "verify-capture-staging",
     )
     for command in expected_commands:
         if command not in COMMANDS:
@@ -107,7 +107,7 @@ def validate_cli_and_documentation() -> list[str]:
     for fragment in required_fragments:
         if fragment not in readme and fragment not in protocol:
             errors.append(
-                f"Step 009.3 documentation is missing '{fragment}'."
+                f"Capture staging documentation is missing '{fragment}'."
             )
     return errors
 
@@ -135,17 +135,17 @@ def validate_safeguards() -> list[str]:
 
 def validate_current_report() -> list[str]:
     if not CAPTURE_JSON_PATH.is_file():
-        return ["Current Step 009.3 capture report is missing."]
+        return ["Current Capture staging capture report is missing."]
     try:
         report = json.loads(CAPTURE_JSON_PATH.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as error:
-        return [f"Cannot read Step 009.3 capture report: {error}."]
+        return [f"Cannot read Capture staging capture report: {error}."]
 
     errors: list[str] = []
     if report.get("status") != "PASS":
-        errors.append("Current Step 009.3 capture report is not PASS.")
+        errors.append("Current Capture staging capture report is not PASS.")
     if report.get("live_queue_unchanged") != "PASS":
-        errors.append("Step 009.3 report does not prove live-queue immutability.")
+        errors.append("Capture staging report does not prove live-queue immutability.")
     allowed_readiness = {
         "AWAITING_CAPTURE",
         "CAPTURE_IN_PROGRESS",
@@ -155,7 +155,7 @@ def validate_current_report() -> list[str]:
     }
     if report.get("readiness") not in allowed_readiness:
         errors.append(
-            "Current Step 009.3 readiness is not an accepted safe state."
+            "Current Capture staging readiness is not an accepted safe state."
         )
     return errors
 
@@ -184,7 +184,7 @@ def build_verification_report() -> dict[str, object]:
 
 def main() -> None:
     report = build_verification_report()
-    print("Step 009.3 verification")
+    print("Capture staging verification")
     for name, status in report["checks"].items():
         print(f"- {name}: {status}")
     print(f"Status: {report['status']}")

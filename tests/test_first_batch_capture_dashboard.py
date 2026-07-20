@@ -17,7 +17,7 @@ from src.real_dataset_config import (
     REAL_IMAGE_INTAKE_MANIFEST_COLUMNS,
     SAMPLE_INTAKE_COLUMNS,
 )
-from src.verify_step_009_6 import (
+from src.verification.capture_dashboard import (
     DASHBOARD_GUIDE_PATH,
     build_verification_report,
 )
@@ -451,7 +451,7 @@ def test_html_renderer_escapes_operator_values() -> None:
 
 def test_project_cli_registers_dashboard_commands() -> None:
     assert "build-first-real-batch-dashboard" in COMMANDS
-    assert "verify-step-009-6" in COMMANDS
+    assert "verify-capture-dashboard" in COMMANDS
 
 
 def test_dashboard_guide_uses_semantic_filename() -> None:

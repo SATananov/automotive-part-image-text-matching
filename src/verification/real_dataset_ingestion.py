@@ -15,14 +15,14 @@ REQUIRED_FILES = (
     PROJECT_ROOT
     / "src"
     / "finalize_first_real_dataset_ingestion.py",
-    PROJECT_ROOT / "src" / "verify_step_010.py",
+    PROJECT_ROOT / "src" / "verification" / "real_dataset_ingestion.py",
     PROJECT_ROOT
     / "tests"
     / "test_first_real_dataset_capture_and_ingestion.py",
     PROJECT_ROOT
     / "reports"
     / "real_dataset"
-    / "step_010_first_real_dataset_capture_and_ingestion.md",
+    / "real_dataset_capture_and_ingestion.md",
 )
 
 EXPECTED_COMMANDS = {
@@ -32,7 +32,7 @@ EXPECTED_COMMANDS = {
     "finalize-first-real-dataset-ingestion": (
         "src.finalize_first_real_dataset_ingestion"
     ),
-    "verify-step-010": "src.verify_step_010",
+    "verify-real-dataset-ingestion": "src.verification.real_dataset_ingestion",
 }
 
 SAFE_READINESS = {
@@ -111,7 +111,7 @@ def check_runtime_boundary() -> list[str]:
         )
     except ValueError:
         errors.append(
-            "Step 010 outputs are outside the runtime boundary."
+            "Real dataset capture and ingestion outputs are outside the runtime boundary."
         )
     return errors
 
@@ -168,7 +168,7 @@ def check_current_state() -> list[str]:
     readiness = report.get("readiness")
     if readiness not in SAFE_READINESS:
         errors.append(
-            f"Unexpected current Step 010 readiness: {readiness}."
+            f"Unexpected current Real dataset capture and ingestion readiness: {readiness}."
         )
     if (
         readiness == "FIRST_BATCH_INGESTED"
@@ -200,7 +200,7 @@ def main() -> None:
     ]
 
     failed = False
-    print("Step 010 verification")
+    print("Real dataset capture and ingestion verification")
     for name, errors in checks:
         status = "PASS" if not errors else "FAIL"
         print(f"- {name}: {status}")

@@ -11,7 +11,7 @@ Completed.
 - Documented the complete reproducible workflow and direct module invocation rules in `README.md`.
 - Replaced the truncated real-dataset collection protocol with complete naming, annotation, approval, privacy, leakage, and validation rules.
 - Normalized `requirements-lock.txt` from UTF-16 LE to plain UTF-8.
-- Added `src/verify_step_008_2.py` for deterministic integrity checks.
+- Added `src/verification/development_pipeline.py` for deterministic integrity checks.
 - Added automated tests for CLI registration, Markdown fence balance, documentation coverage, protocol schema coverage, and lock-file encoding.
 
 ## Supported CLI
@@ -24,7 +24,7 @@ python -m src.project_cli run-baselines
 python -m src.project_cli train-text
 python -m src.project_cli train-image
 python -m src.project_cli train-multimodal
-python -m src.project_cli verify-step-008-2
+python -m src.project_cli verify-development-pipeline
 ```
 
 ## Reproducibility policy

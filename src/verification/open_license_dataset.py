@@ -22,14 +22,14 @@ REQUIRED_FILES = (
     PROJECT_ROOT / "src" / "collect_open_license_images.py",
     PROJECT_ROOT / "src" / "validate_open_license_dataset.py",
     PROJECT_ROOT / "src" / "build_open_license_review_gallery.py",
-    PROJECT_ROOT / "src" / "verify_step_010_1.py",
+    PROJECT_ROOT / "src" / "verification" / "open_license_dataset.py",
     PROJECT_ROOT
     / "tests"
     / "test_open_license_image_collection.py",
     PROJECT_ROOT
     / "reports"
     / "external_dataset"
-    / "step_010_1_open_license_collection.md",
+    / "open_license_dataset_workflow.md",
 )
 
 EXPECTED_COMMANDS = {
@@ -42,7 +42,7 @@ EXPECTED_COMMANDS = {
     "build-open-license-review-gallery": (
         "src.build_open_license_review_gallery"
     ),
-    "verify-step-010-1": "src.verify_step_010_1",
+    "verify-open-license-dataset": "src.verification.open_license_dataset",
 }
 
 SAFE_READINESS = {
@@ -327,7 +327,7 @@ def check_current_state() -> list[str]:
     readiness = report.get("readiness")
     if readiness not in SAFE_READINESS:
         errors.append(
-            f"Unexpected Step 010.1 readiness: {readiness}."
+            f"Unexpected Open-license dataset readiness: {readiness}."
         )
     if (
         readiness == "READY_FOR_EXTERNAL_DATASET"
@@ -368,7 +368,7 @@ def main() -> None:
     ]
 
     failed = False
-    print("Step 010.1 verification")
+    print("Open-license dataset verification")
     for name, errors in checks:
         status = "PASS" if not errors else "FAIL"
         print(f"- {name}: {status}")

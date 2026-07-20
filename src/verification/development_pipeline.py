@@ -12,7 +12,7 @@ from src.real_dataset_config import (
 )
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 README_PATH = PROJECT_ROOT / "README.md"
 PROTOCOL_PATH = (
     PROJECT_ROOT
@@ -214,7 +214,7 @@ def build_verification_report() -> dict[str, object]:
 def main() -> None:
     report = build_verification_report()
 
-    print("Step 008.2 verification")
+    print("Development pipeline verification")
 
     for check_name, check_errors in report["checks"].items():
         status = "PASS" if not check_errors else "FAIL"

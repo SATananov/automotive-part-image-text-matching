@@ -240,7 +240,7 @@ The command validates schemas, required values, identifiers, family/category map
 Run the Step 009 foundation verifier with:
 
 ```powershell
-python -m src.project_cli verify-step-009
+python -m src.project_cli verify-real-dataset-foundation
 ```
 
 An empty pair of annotation templates is a valid `EMPTY_FOUNDATION` state. The validator remains `PASS` until collection begins, while still generating an empty manifest with the correct schema.
@@ -382,7 +382,7 @@ Normalization strips camera metadata and converts the pixel data to RGB PNG. Thi
 Run:
 
 ```powershell
-python -m src.project_cli verify-step-009-1
+python -m src.project_cli verify-sample-intake
 ```
 
 The verifier checks the intake and approval-log schemas, required modules and reports, CLI documentation, transaction safeguards, and the current queue review state.
@@ -467,7 +467,7 @@ queue, approval log, approved manifest, or processed images.
 Run the verifier with:
 
 ```powershell
-python -m src.project_cli verify-step-009-3
+python -m src.project_cli verify-capture-staging
 ```
 
 ## First-batch descriptive file naming and local import
@@ -592,7 +592,7 @@ images if any downstream operation or post-application check fails.
 Verify the safeguards with:
 
 ```powershell
-python -m src.project_cli verify-step-009-9
+python -m src.project_cli verify-manual-decisions
 ```
 
 ## Step 010 — First real dataset capture and approved sample ingestion
@@ -628,7 +628,7 @@ all planned categories have approved front/detail pairs.
 Verify Step 010 with:
 
 ```powershell
-python -m src.project_cli verify-step-010
+python -m src.project_cli verify-real-dataset-ingestion
 ```
 
 ## Step 010.1 — Open-license external development images
@@ -648,7 +648,7 @@ Run:
 python -m src.project_cli collect-open-license-images
 python -m src.project_cli build-open-license-review-gallery
 python -m src.project_cli validate-open-license-images
-python -m src.project_cli verify-step-010-1
+python -m src.project_cli verify-open-license-dataset
 ```
 
 The collector accepts only JPEG or PNG files with an allowlisted public-domain,

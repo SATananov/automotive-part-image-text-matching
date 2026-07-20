@@ -83,7 +83,7 @@ def validate_cli_and_documentation() -> list[str]:
     errors: list[str] = []
     expected_commands = (
         "build-first-real-batch-dashboard",
-        "verify-step-009-6",
+        "verify-capture-dashboard",
     )
     for command in expected_commands:
         if command not in COMMANDS:
@@ -152,7 +152,7 @@ def validate_safeguards() -> list[str]:
 def validate_semantic_names() -> list[str]:
     forbidden = list((PROJECT_ROOT / "reports").rglob("step_009_6*"))
     return [
-        "Step 009.6 permanent report uses a technical step filename: "
+        "Capture dashboard permanent report uses a technical step filename: "
         f"{path.relative_to(PROJECT_ROOT)}."
         for path in forbidden
     ]
@@ -217,7 +217,7 @@ def build_verification_report() -> dict[str, object]:
 
 def main() -> None:
     report = build_verification_report()
-    print("Step 009.6 verification")
+    print("Capture dashboard verification")
     for name, status in report["checks"].items():
         print(f"- {name}: {status}")
     print(f"Status: {report['status']}")

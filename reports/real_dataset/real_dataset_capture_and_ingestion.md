@@ -63,5 +63,5 @@ and readiness becomes `RECAPTURE_REQUIRED`.
 ## Verification
 
 ```powershell
-python -m src.project_cli verify-step-010
+python -m src.project_cli verify-real-dataset-ingestion
 ```

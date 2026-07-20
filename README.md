@@ -88,17 +88,17 @@ python -m src.project_cli run-baselines
 python -m src.project_cli train-text
 python -m src.project_cli train-image
 python -m src.project_cli train-multimodal
-python -m src.project_cli verify-step-008-2
+python -m src.project_cli verify-development-pipeline
 python -m src.project_cli validate-real-data
-python -m src.project_cli verify-step-009
+python -m src.project_cli verify-real-dataset-foundation
 python -m src.project_cli review-real-intake
 python -m src.project_cli apply-real-intake
-python -m src.project_cli verify-step-009-1
+python -m src.project_cli verify-sample-intake
 python -m src.project_cli prepare-first-real-batch
 python -m src.project_cli dry-run-first-real-batch
-python -m src.project_cli verify-step-009-2
+python -m src.project_cli verify-first-batch-preparation
 python -m src.project_cli stage-first-real-batch-capture
-python -m src.project_cli verify-step-009-3
+python -m src.project_cli verify-capture-staging
 ```
 
 The command modules are imported only when selected. Displaying CLI help or running a non-neural workflow does not import TensorFlow unnecessarily.
@@ -116,7 +116,7 @@ python -m src.project_cli train-text
 python -m src.project_cli train-image
 python -m src.project_cli train-multimodal
 python -m pytest -q
-python -m src.project_cli verify-step-008-2
+python -m src.project_cli verify-development-pipeline
 ```
 
 Neural-network training can produce small numeric differences across hardware and TensorFlow builds. Random seeds and deterministic TensorFlow operations are configured where supported.
@@ -174,7 +174,7 @@ The validator checks schemas, identifiers, category-family mappings, approval re
 Verify the complete Step 009 foundation with:
 
 ```powershell
-python -m src.project_cli verify-step-009
+python -m src.project_cli verify-real-dataset-foundation
 ```
 
 ## Real sample intake and approval workflow
@@ -212,7 +212,7 @@ Approved photographs are written to `data/real/processed/images/<image_id>.png`.
 Verify the complete workflow with:
 
 ```powershell
-python -m src.project_cli verify-step-009-1
+python -m src.project_cli verify-sample-intake
 ```
 
 ## Tests
@@ -226,19 +226,19 @@ python -m pytest -q
 The Step 008.2 integrity verifier checks CLI module paths, documentation commands, Markdown fences, the real-data protocol, and UTF-8 lock-file encoding:
 
 ```powershell
-python -m src.project_cli verify-step-008-2
+python -m src.project_cli verify-development-pipeline
 ```
 
 The Step 009 verifier checks the real-data directory boundary, annotation and manifest schemas, CLI registration, Git ignore policy, and the current intake validation state:
 
 ```powershell
-python -m src.project_cli verify-step-009
+python -m src.project_cli verify-real-dataset-foundation
 ```
 
 The Step 009.1 verifier checks the sample queue and approval-log schemas, CLI documentation, transactional safeguards, and the current review state:
 
 ```powershell
-python -m src.project_cli verify-step-009-1
+python -m src.project_cli verify-sample-intake
 ```
 
 ## First real sample batch preparation and dry run
@@ -287,7 +287,7 @@ approval.
 Verify all Step 009.2 safeguards with:
 
 ```powershell
-python -m src.project_cli verify-step-009-2
+python -m src.project_cli verify-first-batch-preparation
 ```
 ## First real batch capture, staging and review readiness
 
@@ -336,7 +336,7 @@ state becomes `READY_FOR_MANUAL_QUEUE_IMPORT`.
 Verify the Step 009.3 safeguards with:
 
 ```powershell
-python -m src.project_cli verify-step-009-3
+python -m src.project_cli verify-capture-staging
 ```
 
 ## First real batch file naming and local import
@@ -398,7 +398,7 @@ python -m src.project_cli stage-first-real-batch-capture
 The staging workflow accepts the new descriptive filenames and still supports the earlier technical intake stems for backward compatibility. Verify the naming and import safeguards with:
 
 ```powershell
-python -m src.project_cli verify-step-009-4
+python -m src.project_cli verify-local-capture-import
 ```
 
 ## First real batch operator guide and capture session
@@ -428,7 +428,7 @@ The preparation command does not copy, convert, approve, queue, or delete photog
 Verify the operator guide and session-preparation safeguards with:
 
 ```powershell
-python -m src.project_cli verify-step-009-5
+python -m src.project_cli verify-capture-session
 ```
 
 ## First real batch capture dashboard and progress tracking
@@ -462,7 +462,7 @@ delete data. Input fingerprints must remain unchanged.
 Verify the dashboard and progress safeguards with:
 
 ```powershell
-python -m src.project_cli verify-step-009-6
+python -m src.project_cli verify-capture-dashboard
 ```
 
 ## First-batch capture execution and live progress
@@ -491,7 +491,7 @@ latest pipeline progress. These commands never queue or approve samples.
 Verify the execution safeguards with:
 
 ```powershell
-python -m src.project_cli verify-step-009-7
+python -m src.project_cli verify-capture-execution
 ```
 
 ## First batch review queue and manual decision preparation
@@ -515,7 +515,7 @@ The workbook is stored under `data/real/runtime/first_batch_review/` and preserv
 Verify these safeguards with:
 
 ```powershell
-python -m src.project_cli verify-step-009-8
+python -m src.project_cli verify-review-queue
 ```
 
 ## Manual decision validation and controlled application
@@ -544,7 +544,7 @@ images.
 Verify Step 009.9 with:
 
 ```powershell
-python -m src.project_cli verify-step-009-9
+python -m src.project_cli verify-manual-decisions
 ```
 
 ## First real dataset capture and approved sample ingestion
@@ -580,7 +580,7 @@ produce `RECAPTURE_REQUIRED` while valid approved samples remain ingested.
 Verify Step 010 with:
 
 ```powershell
-python -m src.project_cli verify-step-010
+python -m src.project_cli verify-real-dataset-ingestion
 ```
 
 ## Open-license internet image collection
@@ -622,7 +622,7 @@ categories has at least five manually approved images.
 Verify Step 010.1 with:
 
 ```powershell
-python -m src.project_cli verify-step-010-1
+python -m src.project_cli verify-open-license-dataset
 ```
 
 ## External dataset integration and training readiness
@@ -652,9 +652,18 @@ python -m src.project_cli validate-external-training-readiness
 Verify the complete Step 010.2 workflow with:
 
 ```powershell
-python -m src.project_cli verify-step-010-2
+python -m src.project_cli verify-external-dataset-integration
 ```
 
 Training-ready inputs are `data/processed/integrated_train.csv` and
 `data/processed/integrated_validation.csv`. The integrated test split remains
 fingerprinted and locked. Step 010.2 does not train or evaluate a model.
+
+## Project verification
+
+Run the complete set of integrity, dataset, workflow, and test-lock
+verifications from the repository root:
+
+```powershell
+python -m src.project_cli verify-project
+```

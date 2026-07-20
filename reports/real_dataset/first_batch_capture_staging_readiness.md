@@ -37,5 +37,5 @@ Live queue unchanged: PASS
 
 ```powershell
 python -m src.project_cli stage-first-real-batch-capture
-python -m src.project_cli verify-step-009-3
+python -m src.project_cli verify-capture-staging
 ```

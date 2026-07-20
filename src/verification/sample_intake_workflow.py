@@ -33,7 +33,7 @@ REQUIRED_FILES = (
     REAL_APPROVAL_LOG_PATH,
     PROJECT_ROOT / "src" / "review_real_sample_intake.py",
     APPLY_MODULE_PATH,
-    PROJECT_ROOT / "src" / "verify_step_009_1.py",
+    PROJECT_ROOT / "src" / "verification" / "sample_intake_workflow.py",
     PROJECT_ROOT
     / "tests"
     / "test_real_sample_intake_workflow.py",
@@ -61,7 +61,7 @@ REQUIRED_FILES = (
 REQUIRED_COMMANDS = (
     "review-real-intake",
     "apply-real-intake",
-    "verify-step-009-1",
+    "verify-sample-intake",
 )
 
 
@@ -157,7 +157,7 @@ def validate_gitignore_safeguards() -> list[str]:
 
     if missing:
         return [
-            "Missing Step 009.1 temporary-file ignore rules: "
+            "Missing Sample intake workflow temporary-file ignore rules: "
             f"{missing}."
         ]
 
@@ -230,7 +230,7 @@ def build_verification_report() -> dict[str, object]:
 def main() -> None:
     report = build_verification_report()
 
-    print("Step 009.1 verification")
+    print("Sample intake workflow verification")
 
     for check_name, check_errors in report["checks"].items():
         status = "PASS" if not check_errors else "FAIL"

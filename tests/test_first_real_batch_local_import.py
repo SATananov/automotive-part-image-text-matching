@@ -13,7 +13,7 @@ from src.real_dataset_config import (
     FIRST_BATCH_CAPTURE_FILE_MAP_COLUMNS,
     FIRST_BATCH_LOCAL_IMPORT_INVENTORY_COLUMNS,
 )
-from src.verify_step_009_4 import build_verification_report
+from src.verification.local_capture_import import build_verification_report
 from tests.test_first_real_batch_capture import (
     configure_capture_project,
     write_unique_image,
@@ -355,7 +355,7 @@ def test_filename_map_must_match_plan(
 
 def test_project_cli_registers_local_import_commands() -> None:
     assert "import-first-real-batch" in COMMANDS
-    assert "verify-step-009-4" in COMMANDS
+    assert "verify-local-capture-import" in COMMANDS
 
 
 def test_semantic_filename_can_be_staged_by_step_009_3(

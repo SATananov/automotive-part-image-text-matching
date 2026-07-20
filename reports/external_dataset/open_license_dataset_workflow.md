@@ -97,5 +97,5 @@ approved images.
 ## Verification
 
 ```powershell
-python -m src.project_cli verify-step-010-1
+python -m src.project_cli verify-open-license-dataset
 ```

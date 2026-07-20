@@ -62,7 +62,7 @@ def validate_cli_and_documentation() -> list[str]:
     expected_commands = (
         "run-first-real-batch-capture-session",
         "refresh-first-real-batch-live-progress",
-        "verify-step-009-7",
+        "verify-capture-execution",
     )
     for command in expected_commands:
         if command not in COMMANDS:
@@ -187,7 +187,7 @@ def validate_current_status() -> list[str]:
 def validate_semantic_names() -> list[str]:
     forbidden = list((PROJECT_ROOT / "reports").rglob("step_009_7*"))
     return [
-        "Step 009.7 permanent report uses a technical step filename: "
+        "Capture execution permanent report uses a technical step filename: "
         f"{path.relative_to(PROJECT_ROOT)}."
         for path in forbidden
     ]
@@ -216,7 +216,7 @@ def build_verification_report() -> dict[str, object]:
 
 def main() -> None:
     report = build_verification_report()
-    print("Step 009.7 verification")
+    print("Capture execution verification")
     for name, status in report["checks"].items():
         print(f"- {name}: {status}")
     print(f"Status: {report['status']}")

@@ -33,5 +33,5 @@ Live-state immutability: PASS
 ```powershell
 python -m src.project_cli prepare-first-real-batch
 python -m src.project_cli dry-run-first-real-batch
-python -m src.project_cli verify-step-009-2
+python -m src.project_cli verify-first-batch-preparation
 ```

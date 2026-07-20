@@ -109,5 +109,5 @@ READY_FOR_TRAINING
 Run:
 
 ```powershell
-python -m src.project_cli verify-step-010-2
+python -m src.project_cli verify-external-dataset-integration
 ```

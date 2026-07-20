@@ -38,7 +38,7 @@ REQUIRED_FILES = (
     FIRST_BATCH_PREVIEW_PATH,
     PREPARATION_MODULE_PATH,
     DRY_RUN_MODULE_PATH,
-    PROJECT_ROOT / "src" / "verify_step_009_2.py",
+    PROJECT_ROOT / "src" / "verification" / "first_batch_preparation.py",
     PROJECT_ROOT / "tests" / "test_first_real_batch_dry_run.py",
     PROJECT_ROOT
     / "reports"
@@ -64,7 +64,7 @@ REQUIRED_FILES = (
 REQUIRED_COMMANDS = (
     "prepare-first-real-batch",
     "dry-run-first-real-batch",
-    "verify-step-009-2",
+    "verify-first-batch-preparation",
 )
 
 
@@ -136,7 +136,7 @@ def validate_cli_and_documentation() -> list[str]:
     for phrase in required_phrases:
         if phrase.lower() not in combined:
             errors.append(
-                f"Step 009.2 documentation is missing phrase: {phrase}"
+                f"First batch preparation documentation is missing phrase: {phrase}"
             )
 
     return errors
@@ -230,7 +230,7 @@ def build_verification_report() -> dict[str, object]:
 def main() -> None:
     report = build_verification_report()
 
-    print("Step 009.2 verification")
+    print("First batch preparation verification")
     for check_name, check_errors in report["checks"].items():
         status = "PASS" if not check_errors else "FAIL"
         print(f"- {check_name}: {status}")

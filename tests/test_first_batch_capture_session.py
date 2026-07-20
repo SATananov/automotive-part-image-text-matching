@@ -15,7 +15,7 @@ from src.real_dataset_config import (
     FIRST_BATCH_CAPTURE_SESSION_COLUMNS,
     FIRST_BATCH_PLAN_COLUMNS,
 )
-from src.verify_step_009_5 import (
+from src.verification.capture_session_readiness import (
     OPERATOR_GUIDE_PATH,
     build_verification_report,
 )
@@ -336,7 +336,7 @@ def test_json_and_markdown_reports_are_written(
 
 def test_project_cli_registers_capture_session_commands() -> None:
     assert "prepare-first-real-batch-session" in COMMANDS
-    assert "verify-step-009-5" in COMMANDS
+    assert "verify-capture-session" in COMMANDS
 
 
 def test_operator_guide_uses_semantic_filename() -> None:

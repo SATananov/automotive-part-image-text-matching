@@ -16,7 +16,7 @@ from src.real_dataset_config import (
     PART_GROUP_COLUMNS,
     SAMPLE_INTAKE_COLUMNS,
 )
-from src.verify_step_009_8 import build_verification_report
+from src.verification.review_queue import build_verification_report
 
 
 def sample_plan_row() -> dict[str, str]:
@@ -477,7 +477,7 @@ def test_step_009_8_cli_commands_are_registered() -> None:
     assert COMMANDS["prepare-first-real-batch-manual-decisions"].module == (
         "src.prepare_first_batch_manual_decisions"
     )
-    assert COMMANDS["verify-step-009-8"].module == "src.verify_step_009_8"
+    assert COMMANDS["verify-review-queue"].module == "src.verification.review_queue"
 
 
 def test_current_step_009_8_verifier_passes() -> None:

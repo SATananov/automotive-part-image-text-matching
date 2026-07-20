@@ -25,7 +25,7 @@ The annotation templates are intentionally empty. This is a valid `EMPTY_FOUNDAT
 
 ```powershell
 python -m src.project_cli validate-real-data
-python -m src.project_cli verify-step-009
+python -m src.project_cli verify-real-dataset-foundation
 python -m pytest -q
 ```
 

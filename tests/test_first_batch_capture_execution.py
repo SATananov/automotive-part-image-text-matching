@@ -16,7 +16,7 @@ from src.real_dataset_config import (
     FIRST_BATCH_EXECUTION_JOURNAL_COLUMNS,
     SAMPLE_INTAKE_COLUMNS,
 )
-from src.verify_step_009_7 import (
+from src.verification.capture_execution import (
     EXECUTION_GUIDE_PATH,
     build_verification_report,
 )
@@ -681,7 +681,7 @@ def test_execution_status_has_required_fields(
 def test_step_009_7_cli_commands_are_registered() -> None:
     assert "run-first-real-batch-capture-session" in COMMANDS
     assert "refresh-first-real-batch-live-progress" in COMMANDS
-    assert "verify-step-009-7" in COMMANDS
+    assert "verify-capture-execution" in COMMANDS
 
 
 def test_execution_guide_uses_semantic_filename() -> None:

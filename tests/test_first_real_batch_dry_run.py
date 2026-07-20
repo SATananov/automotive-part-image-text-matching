@@ -13,7 +13,7 @@ from src.real_dataset_config import (
     FIRST_BATCH_PLAN_COLUMNS,
     FIRST_BATCH_PREVIEW_COLUMNS,
 )
-from src.verify_step_009_2 import build_verification_report
+from src.verification.first_batch_preparation import build_verification_report
 from tests.test_real_sample_intake_workflow import (
     configure_temporary_project,
     write_pattern_image,
@@ -300,7 +300,7 @@ def test_preparation_does_not_copy_plan_into_live_queue(
 def test_step_009_2_commands_are_registered() -> None:
     assert "prepare-first-real-batch" in COMMANDS
     assert "dry-run-first-real-batch" in COMMANDS
-    assert "verify-step-009-2" in COMMANDS
+    assert "verify-first-batch-preparation" in COMMANDS
 
 
 def test_current_step_009_2_verifier_passes() -> None:

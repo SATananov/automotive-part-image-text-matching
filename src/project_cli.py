@@ -51,8 +51,8 @@ COMMANDS: dict[str, CommandSpec] = {
         description="Train and evaluate the Keras multimodal model.",
         requires_tensorflow=True,
     ),
-    "verify-step-008-2": CommandSpec(
-        module="src.verify_step_008_2",
+    "verify-development-pipeline": CommandSpec(
+        module="src.verification.development_pipeline",
         description="Verify the Step 008.2 reproducibility safeguards.",
     ),
     "validate-real-data": CommandSpec(
@@ -62,8 +62,8 @@ COMMANDS: dict[str, CommandSpec] = {
             "and development separation."
         ),
     ),
-    "verify-step-009": CommandSpec(
-        module="src.verify_step_009",
+    "verify-real-dataset-foundation": CommandSpec(
+        module="src.verification.real_dataset_foundation",
         description="Verify the Step 009 real-data intake foundation.",
     ),
     "review-real-intake": CommandSpec(
@@ -80,8 +80,8 @@ COMMANDS: dict[str, CommandSpec] = {
             "transactionally."
         ),
     ),
-    "verify-step-009-1": CommandSpec(
-        module="src.verify_step_009_1",
+    "verify-sample-intake": CommandSpec(
+        module="src.verification.sample_intake_workflow",
         description=(
             "Verify the Step 009.1 sample intake and approval workflow."
         ),
@@ -100,8 +100,8 @@ COMMANDS: dict[str, CommandSpec] = {
             "that live real-data state is unchanged."
         ),
     ),
-    "verify-step-009-2": CommandSpec(
-        module="src.verify_step_009_2",
+    "verify-first-batch-preparation": CommandSpec(
+        module="src.verification.first_batch_preparation",
         description=(
             "Verify the Step 009.2 first-batch preparation and dry-run "
             "safeguards."
@@ -114,8 +114,8 @@ COMMANDS: dict[str, CommandSpec] = {
             "a pending review queue draft without changing the live queue."
         ),
     ),
-    "verify-step-009-3": CommandSpec(
-        module="src.verify_step_009_3",
+    "verify-capture-staging": CommandSpec(
+        module="src.verification.capture_staging",
         description=(
             "Verify the Step 009.3 capture, staging, and review-readiness "
             "safeguards."
@@ -128,8 +128,8 @@ COMMANDS: dict[str, CommandSpec] = {
             "local capture inbox into immutable originals storage."
         ),
     ),
-    "verify-step-009-4": CommandSpec(
-        module="src.verify_step_009_4",
+    "verify-local-capture-import": CommandSpec(
+        module="src.verification.local_capture_import",
         description=(
             "Verify first-batch file naming, capture checklist, and local "
             "import safeguards."
@@ -142,8 +142,8 @@ COMMANDS: dict[str, CommandSpec] = {
             "status, and next capture action without changing live data."
         ),
     ),
-    "verify-step-009-5": CommandSpec(
-        module="src.verify_step_009_5",
+    "verify-capture-session": CommandSpec(
+        module="src.verification.capture_session_readiness",
         description=(
             "Verify first-batch operator guidance and capture-session "
             "preparation safeguards."
@@ -156,8 +156,8 @@ COMMANDS: dict[str, CommandSpec] = {
             "snapshot without changing live real-data state."
         ),
     ),
-    "verify-step-009-6": CommandSpec(
-        module="src.verify_step_009_6",
+    "verify-capture-dashboard": CommandSpec(
+        module="src.verification.capture_dashboard",
         description=(
             "Verify first-batch dashboard, progress tracking, and "
             "immutability safeguards."
@@ -177,8 +177,8 @@ COMMANDS: dict[str, CommandSpec] = {
             "without importing, staging, queueing, or approving files."
         ),
     ),
-    "verify-step-009-7": CommandSpec(
-        module="src.verify_step_009_7",
+    "verify-capture-execution": CommandSpec(
+        module="src.verification.capture_execution",
         description=(
             "Verify first-batch capture execution, runtime isolation, "
             "rollback, and live progress safeguards."
@@ -198,8 +198,8 @@ COMMANDS: dict[str, CommandSpec] = {
             "editing the live queue or approved dataset."
         ),
     ),
-    "verify-step-009-8": CommandSpec(
-        module="src.verify_step_009_8",
+    "verify-review-queue": CommandSpec(
+        module="src.verification.review_queue",
         description=(
             "Verify review-queue activation, manual decision preparation, "
             "idempotency, and transaction safeguards."
@@ -220,8 +220,8 @@ COMMANDS: dict[str, CommandSpec] = {
             "the transactional real-sample intake workflow."
         ),
     ),
-    "verify-step-009-9": CommandSpec(
-        module="src.verify_step_009_9",
+    "verify-manual-decisions": CommandSpec(
+        module="src.verification.manual_decision_workflow",
         description=(
             "Verify manual decision validation, stale-plan blocking, "
             "controlled application, and full rollback safeguards."
@@ -242,8 +242,8 @@ COMMANDS: dict[str, CommandSpec] = {
             "approved real-sample ingestion."
         ),
     ),
-    "verify-step-010": CommandSpec(
-        module="src.verify_step_010",
+    "verify-real-dataset-ingestion": CommandSpec(
+        module="src.verification.real_dataset_ingestion",
         description=(
             "Verify first real-dataset capture, ingestion, "
             "recapture, and rollback safeguards."
@@ -271,8 +271,8 @@ COMMANDS: dict[str, CommandSpec] = {
             "open-license image candidates."
         ),
     ),
-    "verify-step-010-1": CommandSpec(
-        module="src.verify_step_010_1",
+    "verify-open-license-dataset": CommandSpec(
+        module="src.verification.open_license_dataset",
         description=(
             "Verify open-license collection, attribution, review, "
             "validation, and dataset-boundary safeguards."
@@ -293,13 +293,20 @@ COMMANDS: dict[str, CommandSpec] = {
             "provenance, and the locked-test training policy."
         ),
     ),
-    "verify-step-010-2": CommandSpec(
-        module="src.verify_step_010_2",
+    "verify-external-dataset-integration": CommandSpec(
+        module="src.verification.external_dataset_integration",
         description=(
             "Verify Step 010.2 external integration, grouped split, "
             "training readiness, and test-lock safeguards."
         ),
     ),
+    "verify-project": CommandSpec(
+        module="src.verification.project_verification",
+        description=(
+            "Run all project integrity and dataset workflow verifications."
+        ),
+    ),
+
 }
 
 def build_parser() -> argparse.ArgumentParser:

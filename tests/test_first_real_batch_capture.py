@@ -14,7 +14,7 @@ from src.real_dataset_config import (
     FIRST_BATCH_EXPECTED_IMAGES,
     SAMPLE_INTAKE_COLUMNS,
 )
-from src.verify_step_009_3 import build_verification_report
+from src.verification.capture_staging import build_verification_report
 from tests.test_first_real_batch_dry_run import configure_batch_project
 
 
@@ -324,7 +324,7 @@ def test_failed_post_stage_preparation_rolls_back(
 
 def test_step_009_3_commands_are_registered() -> None:
     assert "stage-first-real-batch-capture" in COMMANDS
-    assert "verify-step-009-3" in COMMANDS
+    assert "verify-capture-staging" in COMMANDS
 
 
 def test_current_step_009_3_verifier_passes() -> None:
