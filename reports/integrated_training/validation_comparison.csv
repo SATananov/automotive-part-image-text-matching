@@ -1,0 +1,7 @@
+validation_rank,model_slug,model,input_modality,integrated_validation_accuracy,integrated_validation_macro_f1,development_validation_accuracy,development_validation_macro_f1,accuracy_change,macro_f1_change,test_split_used
+1,keras_multimodal,Keras Multimodal Neural Network,image_and_text,0.5333333333333333,0.520827129859388,0.7666666666666667,0.7695906432748538,-0.2333333333333334,-0.24876351341546588,False
+2,text_tfidf_logistic_regression,TF-IDF + Logistic Regression,text,0.4166666666666667,0.32996632996632996,0.5,0.38888888888888884,-0.08333333333333331,-0.058922558922558876,False
+3,keras_text,Keras Text Neural Network,text,0.4166666666666667,0.32996632996632996,0.5,0.38888888888888884,-0.08333333333333331,-0.058922558922558876,False
+4,majority,Majority baseline,none,0.3333333333333333,0.16666666666666666,0.3333333333333333,0.16666666666666666,0.0,0.0,False
+5,image_pixels_logistic_regression,Image pixels + Logistic Regression,image,0.3333333333333333,0.16666666666666666,0.3333333333333333,0.16666666666666666,0.0,0.0,False
+6,keras_image,Keras Image Neural Network,image,0.3333333333333333,0.16666666666666666,0.3333333333333333,0.16666666666666666,0.0,0.0,False

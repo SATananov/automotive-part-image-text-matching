@@ -21,6 +21,7 @@ VERIFICATION_MODULES = (
     "src.verification.real_dataset_ingestion",
     "src.verification.open_license_dataset",
     "src.verification.external_dataset_integration",
+    "src.verification.integrated_training_validation",
 )
 
 

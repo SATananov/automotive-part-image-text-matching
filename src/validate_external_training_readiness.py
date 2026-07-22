@@ -55,6 +55,12 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def sha256_canonical_csv(path: Path) -> str:
+    content = path.read_bytes()
+    canonical = content.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return hashlib.sha256(canonical).hexdigest()
+
+
 def atomic_write_text(
     path: Path,
     content: str,
@@ -537,8 +543,13 @@ def validate_external_training_readiness() -> dict[str, Any]:
                 "A locked test path appears in training inputs."
             )
 
+        if test_lock.get("hash_normalization") != "utf-8-lf":
+            errors.append(
+                "The test lock does not declare canonical UTF-8/LF hashing."
+            )
+
         if EXTERNAL_TEST_PATH.is_file():
-            actual_hash = sha256_file(EXTERNAL_TEST_PATH)
+            actual_hash = sha256_canonical_csv(EXTERNAL_TEST_PATH)
             if (
                 test_lock.get("external_test_sha256")
                 != actual_hash
@@ -548,7 +559,7 @@ def validate_external_training_readiness() -> dict[str, Any]:
                 )
 
         if INTEGRATED_TEST_PATH.is_file():
-            actual_hash = sha256_file(INTEGRATED_TEST_PATH)
+            actual_hash = sha256_canonical_csv(INTEGRATED_TEST_PATH)
             if (
                 test_lock.get("integrated_test_sha256")
                 != actual_hash

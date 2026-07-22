@@ -2,6 +2,7 @@
   "external_test_groups": 10,
   "external_test_rows": 30,
   "external_test_sha256": "88e5ebe557934bea2b613c3fd5f8cd96c66a534bcfc0e1612da29afb154811f8",
+  "hash_normalization": "utf-8-lf",
   "integrated_test_groups": 20,
   "integrated_test_rows": 60,
   "integrated_test_sha256": "bb234229961b1d6d81f034f906d509ac48b06640a7d7c3359df477089b0cad62",

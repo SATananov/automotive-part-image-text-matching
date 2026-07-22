@@ -556,9 +556,12 @@ def test_end_to_end_integration_writes_locked_test(
         lock["training_inputs"]
     )
 
-    assert lock["integrated_test_sha256"] == hashlib.sha256(
-        paths["INTEGRATED_TEST_PATH"].read_bytes()
-    ).hexdigest()
+    assert lock["hash_normalization"] == "utf-8-lf"
+    assert lock["integrated_test_sha256"] == (
+        readiness.sha256_canonical_csv(
+            paths["INTEGRATED_TEST_PATH"]
+        )
+    )
 
 
 def test_project_relative_path_uses_portable_posix_format(
@@ -606,3 +609,16 @@ def test_split_manifest_schema_and_group_rows():
     }
     assert set(manifest["sample_count"].astype(int)) == {3}
     assert set(manifest["image_count"].astype(int)) == {1}
+
+
+def test_canonical_csv_hash_is_newline_independent(
+    tmp_path: Path,
+) -> None:
+    lf_path = tmp_path / "lf.csv"
+    crlf_path = tmp_path / "crlf.csv"
+    lf_path.write_bytes(b"a,b\n1,2\n")
+    crlf_path.write_bytes(b"a,b\r\n1,2\r\n")
+
+    assert readiness.sha256_canonical_csv(lf_path) == (
+        readiness.sha256_canonical_csv(crlf_path)
+    )

@@ -694,3 +694,21 @@ def test_execution_guide_uses_semantic_filename() -> None:
 def test_current_step_009_7_verifier_passes() -> None:
     report = build_verification_report()
     assert report["status"] == "PASS", report["errors"]
+
+
+def test_verifier_accepts_clean_checkpoint_without_runtime_outputs(
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    import src.verification.capture_execution as verifier
+
+    runtime = tmp_path / "data" / "real" / "runtime" / "first_batch_capture"
+    paths = tuple(runtime / path.name for path in verifier.RUNTIME_ARTIFACT_PATHS)
+    monkeypatch.setattr(verifier, "FIRST_BATCH_RUNTIME_DIRECTORY", runtime)
+    monkeypatch.setattr(verifier, "RUNTIME_ARTIFACT_PATHS", paths)
+    monkeypatch.setattr(verifier, "FIRST_BATCH_EXECUTION_JOURNAL_PATH", paths[-1])
+    monkeypatch.setattr(verifier, "FIRST_BATCH_LIVE_STATUS_PATH", paths[2])
+
+    assert verifier.validate_structure() == []
+    assert verifier.validate_journal_schema() == []
+    assert verifier.validate_current_status() == []

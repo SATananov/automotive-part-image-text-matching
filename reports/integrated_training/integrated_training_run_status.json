@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "readiness": "VALIDATION_COMPARISON_COMPLETE",
+  "model_count": 6,
+  "best_model_slug": "keras_multimodal",
+  "best_model": "Keras Multimodal Neural Network",
+  "best_validation_accuracy": 0.5333333333333333,
+  "best_validation_macro_f1": 0.520827129859388,
+  "keras_backend": "tensorflow",
+  "training_sample_count": 180,
+  "validation_sample_count": 60,
+  "test_split_used": false,
+  "test_evaluation_permitted": false,
+  "locked_test_fingerprints_unchanged": true,
+  "locked_test_fingerprints": {
+    "data/external/integrated/external_test.csv": "88e5ebe557934bea2b613c3fd5f8cd96c66a534bcfc0e1612da29afb154811f8",
+    "data/processed/integrated_test.csv": "bb234229961b1d6d81f034f906d509ac48b06640a7d7c3359df477089b0cad62"
+  },
+  "comparison_csv": "reports/integrated_training/validation_comparison.csv",
+  "summary": "reports/integrated_training/integrated_training_validation_summary.md"
+}

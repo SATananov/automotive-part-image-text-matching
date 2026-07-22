@@ -300,6 +300,21 @@ COMMANDS: dict[str, CommandSpec] = {
             "training readiness, and test-lock safeguards."
         ),
     ),
+    "run-integrated-training-validation": CommandSpec(
+        module="src.run_integrated_training_validation",
+        description=(
+            "Train six integrated baselines and neural models and compare "
+            "them on validation without loading the locked test split."
+        ),
+        requires_tensorflow=True,
+    ),
+    "verify-integrated-training-validation": CommandSpec(
+        module="src.verification.integrated_training_validation",
+        description=(
+            "Verify integrated training outputs, validation comparison, "
+            "and locked-test safeguards."
+        ),
+    ),
     "verify-project": CommandSpec(
         module="src.verification.project_verification",
         description=(

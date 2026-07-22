@@ -37,24 +37,44 @@ TEST_PATH = PROJECT_ROOT / "tests" / "test_first_batch_capture_execution.py"
 GITIGNORE_PATH = PROJECT_ROOT / ".gitignore"
 
 
+RUNTIME_ARTIFACT_PATHS = (
+    FIRST_BATCH_LIVE_DASHBOARD_PATH,
+    FIRST_BATCH_LIVE_PROGRESS_PATH,
+    FIRST_BATCH_LIVE_STATUS_PATH,
+    FIRST_BATCH_LIVE_SUMMARY_PATH,
+    FIRST_BATCH_EXECUTION_JOURNAL_PATH,
+)
+
+
+def runtime_artifacts_present() -> tuple[Path, ...]:
+    return tuple(path for path in RUNTIME_ARTIFACT_PATHS if path.is_file())
+
+
 def validate_structure() -> list[str]:
     required = (
         EXECUTION_GUIDE_PATH,
         WORKFLOW_MODULE_PATH,
         REFRESH_MODULE_PATH,
         TEST_PATH,
-        FIRST_BATCH_LIVE_DASHBOARD_PATH,
-        FIRST_BATCH_LIVE_PROGRESS_PATH,
-        FIRST_BATCH_LIVE_STATUS_PATH,
-        FIRST_BATCH_LIVE_SUMMARY_PATH,
-        FIRST_BATCH_EXECUTION_JOURNAL_PATH,
     )
-    return [
+    errors = [
         "Missing capture-execution file: "
         f"{path.relative_to(PROJECT_ROOT)}."
         for path in required
         if not path.is_file()
     ]
+
+    present_runtime = runtime_artifacts_present()
+    if present_runtime and len(present_runtime) != len(RUNTIME_ARTIFACT_PATHS):
+        missing_runtime = [
+            path for path in RUNTIME_ARTIFACT_PATHS if not path.is_file()
+        ]
+        errors.extend(
+            "Partial capture runtime state is missing: "
+            f"{path.relative_to(PROJECT_ROOT)}."
+            for path in missing_runtime
+        )
+    return errors
 
 
 def validate_cli_and_documentation() -> list[str]:
@@ -132,6 +152,8 @@ def validate_safeguards() -> list[str]:
 
 
 def validate_journal_schema() -> list[str]:
+    if not runtime_artifacts_present():
+        return []
     if not FIRST_BATCH_EXECUTION_JOURNAL_PATH.is_file():
         return ["Capture execution journal is missing."]
     try:
@@ -153,6 +175,8 @@ def validate_journal_schema() -> list[str]:
 
 
 def validate_current_status() -> list[str]:
+    if not runtime_artifacts_present():
+        return []
     if not FIRST_BATCH_LIVE_STATUS_PATH.is_file():
         return ["Current capture execution status is missing."]
     try:

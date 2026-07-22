@@ -659,6 +659,38 @@ Training-ready inputs are `data/processed/integrated_train.csv` and
 `data/processed/integrated_validation.csv`. The integrated test split remains
 fingerprinted and locked. Step 010.2 does not train or evaluate a model.
 
+## Integrated training baselines and validation comparison
+
+Step 010.3 trains three classical references and three Keras neural models on
+`data/processed/integrated_train.csv`. It compares all six models only on
+`data/processed/integrated_validation.csv`.
+
+Run the complete integrated training workflow with:
+
+```powershell
+python -m src.project_cli run-integrated-training-validation
+```
+
+The workflow checks the canonical UTF-8/LF fingerprints of both locked test
+CSVs before and after training. The locked test split was not loaded as model data, used for model fitting,
+used for model selection, or evaluated.
+
+Generated metrics, predictions, confusion matrices, neural training histories,
+and the ranked six-model comparison are written below:
+
+```text
+reports/integrated_training/
+```
+
+Verify the outputs and the locked-test policy with:
+
+```powershell
+python -m src.project_cli verify-integrated-training-validation
+```
+
+The test split remains locked until the final model and evaluation procedure
+are fixed explicitly in a later controlled step.
+
 ## Project verification
 
 Run the complete set of integrity, dataset, workflow, and test-lock

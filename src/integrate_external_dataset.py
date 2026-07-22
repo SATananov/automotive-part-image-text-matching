@@ -760,6 +760,7 @@ def build_integration_report(
         "test_lock": {
             "test_locked": True,
             "test_evaluation_permitted": False,
+            "hash_normalization": "utf-8-lf",
             "external_test_sha256": external_test_sha256,
             "integrated_test_sha256": integrated_test_sha256,
             "training_inputs": [
