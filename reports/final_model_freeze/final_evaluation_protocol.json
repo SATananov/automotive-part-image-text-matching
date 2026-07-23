@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "protocol_state": "FROZEN_NOT_AUTHORIZED",
+  "primary_final_evaluation_dataset": "data/processed/integrated_test.csv",
+  "secondary_locked_component_dataset": "data/external/integrated/external_test.csv",
+  "secondary_dataset_policy": "Do not evaluate it separately. Source-specific results must be derived only as a predefined slice of the integrated test ledger.",
+  "evaluation_mode": "single_authorized_run",
+  "model_reconstruction_policy": "Reconstruct exactly once from the frozen model recipe using only the frozen train and validation inputs, then evaluate once.",
+  "required_metrics": [
+    "accuracy",
+    "macro_precision",
+    "macro_recall",
+    "macro_f1",
+    "per_class_precision_recall_f1_support",
+    "confusion_matrix",
+    "per_category_accuracy_and_macro_f1",
+    "per_source_accuracy_and_macro_f1",
+    "prediction_ledger"
+  ],
+  "label_order": [
+    "MATCH",
+    "PARTIAL_MATCH",
+    "MISMATCH"
+  ],
+  "reporting_rules": {
+    "zero_division": 0,
+    "macro_average": "unweighted_across_all_three_labels",
+    "confusion_matrix_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "probability_columns_required": true,
+    "sample_identifiers_required": true,
+    "category_and_source_slices_predeclared": true
+  },
+  "one_shot_rules": [
+    "No architecture, preprocessing, seed, optimizer, epoch, threshold, or label change after test access.",
+    "No candidate comparison or model selection on test metrics.",
+    "No repeated run unless a documented technical failure invalidates all outputs before interpretation.",
+    "Publish all predefined metrics, including weak classes and slices.",
+    "Fingerprint locked artifacts before and after the authorized run."
+  ],
+  "future_authorization_requirements": [
+    "Step 010.5 freeze artifacts committed and unchanged.",
+    "Clean synchronized Git checkpoint.",
+    "Separate explicit Step 010.6 authorization artifact.",
+    "Locked-test fingerprints equal the committed contract.",
+    "No new validation-guided model change after this freeze."
+  ],
+  "future_output_contract": {
+    "metrics_json": "reports/final_test_evaluation/final_test_metrics.json",
+    "confusion_matrix_csv": "reports/final_test_evaluation/final_test_confusion_matrix.csv",
+    "prediction_ledger_csv": "reports/final_test_evaluation/final_test_predictions.csv",
+    "category_metrics_csv": "reports/final_test_evaluation/final_test_category_metrics.csv",
+    "source_metrics_csv": "reports/final_test_evaluation/final_test_source_metrics.csv",
+    "summary_markdown": "reports/final_test_evaluation/final_test_evaluation_summary.md"
+  },
+  "test_split_used": false,
+  "test_evaluation_permitted": false,
+  "final_test_evaluation_authorized": false
+}

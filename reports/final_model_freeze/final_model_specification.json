@@ -1,0 +1,98 @@
+{
+  "status": "PASS",
+  "freeze_state": "FROZEN",
+  "selection_checkpoint_commit": "be7a3fb",
+  "final_model_slug": "keras_multimodal",
+  "final_model": "Keras Multimodal Neural Network",
+  "final_model_family": "reference_multimodal",
+  "selection_decision": "REFERENCE_RETAINED",
+  "selection_evidence": {
+    "step0103_best_model_slug": "keras_multimodal",
+    "step0103_validation_accuracy": 0.5333333333333333,
+    "step0103_validation_macro_f1": 0.520827129859388,
+    "step0104_selected_candidate_slug": "reference_multimodal",
+    "step0104_decision": "REFERENCE_RETAINED",
+    "step0104_improvements_accepted": false
+  },
+  "frozen_object": "architecture_preprocessing_training_and_checkpoint_selection_recipe",
+  "serialized_weights_committed": false,
+  "weights_policy": "Step 010.3 did not commit serialized weights. A later separately authorized final-evaluation step may reconstruct the model exactly once from this frozen recipe before the one-shot test evaluation.",
+  "input_contract": {
+    "image_shape": [
+      24,
+      24,
+      3
+    ],
+    "image_mode": "RGB",
+    "image_resize": "PIL_bilinear",
+    "model_rescaling": "1/255",
+    "text_token_pattern": "[a-z0-9]+",
+    "text_lowercase": true,
+    "text_sequence_length": 12,
+    "text_embedding_dimension": 16,
+    "text_padding_index": 0,
+    "text_oov_index": 1,
+    "vocabulary_order": "frequency_descending_then_token_ascending",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ]
+  },
+  "architecture_contract": {
+    "model_name": "keras_multimodal_classifier",
+    "text_branch": [
+      "Embedding(vocabulary_size,16)",
+      "GlobalAveragePooling1D",
+      "Dense(32,relu)"
+    ],
+    "image_branch": [
+      "Rescaling(1/255)",
+      "Flatten",
+      "Dense(64,relu)",
+      "Dense(32,relu)"
+    ],
+    "fusion": [
+      "Concatenate",
+      "Dense(64,relu)",
+      "Dropout(0.15)",
+      "Dense(3,softmax)"
+    ],
+    "trainable_parameter_count": 117987,
+    "architecture_source": "reports/integrated_training/keras_multimodal/model_architecture.txt",
+    "architecture_sha256": "4af72dbed97d9cf28678c60febb2601f327da30a4c8d27423868c45db89ddf41"
+  },
+  "training_contract": {
+    "training_input": "data/processed/integrated_train.csv",
+    "validation_input": "data/processed/integrated_validation.csv",
+    "random_state": 42,
+    "deterministic_operations": "enabled_where_supported",
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "loss": "SparseCategoricalCrossentropy",
+    "metric": "SparseCategoricalAccuracy",
+    "batch_size": 32,
+    "maximum_epochs": 100,
+    "shuffle": true,
+    "early_stopping_monitor": "val_loss",
+    "early_stopping_patience": 15,
+    "restore_best_weights": true,
+    "checkpoint_selection_rule": "minimum_validation_loss"
+  },
+  "validation_evidence": {
+    "metrics_source": "reports/integrated_training/keras_multimodal/validation_metrics.json",
+    "metrics_sha256": "2445d5000a705f0468be972d6ab191b8d73f49d83b8a2ed4db7ecbd44d88f4ea",
+    "accuracy": 0.5333333333333333,
+    "macro_f1": 0.520827129859388,
+    "best_epoch": 93,
+    "best_validation_loss": 0.9812883734703064
+  },
+  "environment_contract": {
+    "requirements_lock": "requirements-lock.txt",
+    "requirements_lock_sha256": "1c40aa22e2107d38701af93dd0901936a49f79062f17bfc3f25d8a2f15b361f6",
+    "keras_backend": "tensorflow"
+  },
+  "test_split_used": false,
+  "test_evaluation_permitted": false,
+  "final_test_evaluation_authorized": false
+}

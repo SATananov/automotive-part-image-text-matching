@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "selection_checkpoint_commit": "be7a3fb",
+  "source_artifact_sha256": {
+    "reports/integrated_training/integrated_training_run_status.json": "98162a8e53e4f16d9e9d5714ddf896793327d0eadb6b7498c0a730731f1378ae",
+    "reports/validation_model_improvement/model_selection_decision.json": "8254157b777d3b8fc52a83ce80a4d1363b737add5976f59d75a5e7080ee6d559",
+    "reports/validation_model_improvement/validation_model_improvement_status.json": "ffe46052f0cbe6fa08c0317794bcb9de07fe93d79e6140998f1238b5b3768376",
+    "reports/validation_model_improvement/experiment_registry.json": "03a276a1e8b1610ad9f58410de4a3a8d4bb1b1f0f2a1765318cd5a24a959d487",
+    "data/processed/integrated_test_lock.json": "2c28c06a16848344197d3ff6f683799a43edc0821360a2d98c8534c28bde6643",
+    "reports/integrated_training/keras_multimodal/model_architecture.txt": "4af72dbed97d9cf28678c60febb2601f327da30a4c8d27423868c45db89ddf41",
+    "reports/integrated_training/keras_multimodal/validation_metrics.json": "2445d5000a705f0468be972d6ab191b8d73f49d83b8a2ed4db7ecbd44d88f4ea",
+    "requirements-lock.txt": "1c40aa22e2107d38701af93dd0901936a49f79062f17bfc3f25d8a2f15b361f6"
+  },
+  "source_artifact_count": 8,
+  "locked_test_csv_fingerprints_copied_from_committed_lock": true,
+  "locked_test_csv_files_opened": false,
+  "generated_artifacts": [
+    "reports/final_model_freeze/final_model_specification.json",
+    "reports/final_model_freeze/final_evaluation_protocol.json",
+    "reports/final_model_freeze/locked_test_contract.json",
+    "reports/final_model_freeze/final_test_authorization.json",
+    "reports/final_model_freeze/final_model_and_locked_test_evaluation_protocol_summary.md",
+    "reports/final_model_freeze/final_model_freeze_status.json"
+  ],
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "generated_artifact_sha256": {
+    "reports/final_model_freeze/final_model_specification.json": "17fd6d527fc183008161f123ba92047d1ec9a26d786f5529dc42bf044ae1b2b8",
+    "reports/final_model_freeze/final_evaluation_protocol.json": "a6d42689e8421aa1df249e719f2ff6d2ae8d424f99f35a9931eee676e9a37f01",
+    "reports/final_model_freeze/locked_test_contract.json": "4e08c9a7373e02d77e22e3cd893963bfee02def03712eb8f57540acfbfc64f37",
+    "reports/final_model_freeze/final_test_authorization.json": "11c31d5e902ccfcff1cce35a3804b0238ea6b524aeadbf1c2745adcb37ef1a94",
+    "reports/final_model_freeze/final_model_and_locked_test_evaluation_protocol_summary.md": "207ec96a589d5ee8c4b76fe7b98fefa46c72f2689a1b89fe83afbdbd8c8f741a"
+  }
+}

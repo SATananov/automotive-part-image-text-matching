@@ -332,6 +332,20 @@ COMMANDS: dict[str, CommandSpec] = {
             "selection gates, and locked-test safeguards."
         ),
     ),
+    "freeze-final-model-evaluation-protocol": CommandSpec(
+        module="src.freeze_final_model_and_evaluation_protocol",
+        description=(
+            "Freeze the selected final model recipe and one-shot evaluation "
+            "protocol without opening or authorizing the locked test split."
+        ),
+    ),
+    "verify-final-model-freeze": CommandSpec(
+        module="src.verification.final_model_and_evaluation_protocol",
+        description=(
+            "Verify the final model recipe, evaluation protocol, artifact "
+            "fingerprints, and closed locked-test authorization gate."
+        ),
+    ),
     "verify-project": CommandSpec(
         module="src.verification.project_verification",
         description=(

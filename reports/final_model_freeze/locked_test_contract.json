@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "contract_state": "LOCKED_AFTER_PROTOCOL_FREEZE",
+  "locked_test_paths": [
+    "data/external/integrated/external_test.csv",
+    "data/processed/integrated_test.csv"
+  ],
+  "locked_test_fingerprints": {
+    "data/external/integrated/external_test.csv": "88e5ebe557934bea2b613c3fd5f8cd96c66a534bcfc0e1612da29afb154811f8",
+    "data/processed/integrated_test.csv": "bb234229961b1d6d81f034f906d509ac48b06640a7d7c3359df477089b0cad62"
+  },
+  "hash_normalization": "utf-8-lf",
+  "integrated_test_rows": 60,
+  "integrated_test_groups": 20,
+  "external_test_rows": 30,
+  "external_test_groups": 10,
+  "authorized_current_inputs": [
+    "data/processed/integrated_train.csv",
+    "data/processed/integrated_validation.csv"
+  ],
+  "step0105_test_csv_opened": false,
+  "test_split_used": false,
+  "test_evaluation_permitted": false,
+  "final_test_evaluation_authorized": false,
+  "unlock_policy": "Protocol freeze alone does not unlock test data. A separate future authorization transition is mandatory."
+}

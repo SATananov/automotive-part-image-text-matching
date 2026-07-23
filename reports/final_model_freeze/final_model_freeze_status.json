@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "readiness": "FINAL_MODEL_AND_EVALUATION_PROTOCOL_FROZEN_TEST_LOCKED",
+  "final_model_slug": "keras_multimodal",
+  "final_model": "Keras Multimodal Neural Network",
+  "final_model_family": "reference_multimodal",
+  "selection_decision": "REFERENCE_RETAINED",
+  "selection_checkpoint_commit": "be7a3fb",
+  "serialized_weights_committed": false,
+  "protocol_frozen": true,
+  "test_lock_preserved": true,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "test_evaluation_permitted": false,
+  "final_test_evaluation_authorized": false,
+  "manifest": "reports/final_model_freeze/final_model_freeze_manifest.json",
+  "summary": "reports/final_model_freeze/final_model_and_locked_test_evaluation_protocol_summary.md"
+}

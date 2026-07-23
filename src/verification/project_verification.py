@@ -23,6 +23,7 @@ VERIFICATION_MODULES = (
     "src.verification.external_dataset_integration",
     "src.verification.integrated_training_validation",
     "src.verification.validation_model_improvement",
+    "src.verification.final_model_and_evaluation_protocol",
 )
 
 

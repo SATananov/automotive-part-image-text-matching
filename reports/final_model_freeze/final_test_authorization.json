@@ -1,0 +1,12 @@
+{
+  "status": "LOCKED",
+  "authorization_version": 1,
+  "authorized": false,
+  "authorized_step": null,
+  "authorized_at": null,
+  "authorization_reason": "Step 010.5 freezes the model and evaluation protocol but does not authorize access to the locked test split.",
+  "required_next_transition": "SEPARATE_CONTROLLED_STEP_010_6",
+  "test_split_used": false,
+  "test_evaluation_permitted": false,
+  "final_test_evaluation_authorized": false
+}

@@ -734,3 +734,19 @@ verifications from the repository root:
 ```powershell
 python -m src.project_cli verify-project
 ```
+
+<!-- FINAL_MODEL_FREEZE_START -->
+## Final model and locked-test evaluation protocol freeze
+
+Step 010.5 freezes the selected Step 010.3 `keras_multimodal` reference model recipe after the Step 010.4 `REFERENCE_RETAINED` decision. The frozen contract includes the architecture, preprocessing, label order, random seed, optimizer, early-stopping checkpoint rule, environment fingerprint, final metrics, and one-shot reporting procedure.
+
+Create or refresh the committed freeze artifacts with:
+
+    python -m src.project_cli freeze-final-model-evaluation-protocol
+
+Verify the complete freeze and closed authorization gate with:
+
+    python -m src.project_cli verify-final-model-freeze
+
+The locked test CSV files were not opened, parsed, trained on, predicted on, or evaluated by this workflow. Test authorization remains `false`. Protocol freeze alone does not unlock either test file; a separate controlled Step 010.6 is required before the one-shot final evaluation.
+<!-- FINAL_MODEL_FREEZE_END -->
