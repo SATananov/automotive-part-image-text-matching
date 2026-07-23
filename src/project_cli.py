@@ -346,6 +346,20 @@ COMMANDS: dict[str, CommandSpec] = {
             "fingerprints, and closed locked-test authorization gate."
         ),
     ),
+    "build-final-exam-notebook": CommandSpec(
+        module="src.build_final_exam_notebook",
+        description=(
+            "Build and execute the final exam research notebook from "
+            "committed train and validation evidence without test access."
+        ),
+    ),
+    "verify-final-exam-notebook": CommandSpec(
+        module="src.verification.final_exam_notebook",
+        description=(
+            "Verify the executed final exam notebook, research narrative, "
+            "references, saved outputs, and locked-test safeguards."
+        ),
+    ),
     "verify-project": CommandSpec(
         module="src.verification.project_verification",
         description=(

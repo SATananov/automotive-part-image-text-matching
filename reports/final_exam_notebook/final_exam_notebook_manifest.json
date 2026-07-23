@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "base_checkpoint_commit": "d517668",
+  "hash_normalization": "utf-8-lf",
+  "notebook_sha256": "6ab134edb49d345a5b900bf3fb1f3552c31e56c706aea2ee23a94bb7d70d0c41",
+  "source_artifact_sha256": {
+    "data/processed/integrated_train.csv": "e6718db44a8a36b613146420b4d92464c5e0733eafff6426798e0a6b78477067",
+    "data/processed/integrated_validation.csv": "f67fdde466364dc994cfabef04986de923ccdd8364d1f6dac3616ed47dfca2a5",
+    "reports/integrated_training/validation_comparison.csv": "3708cd03644d93dda3b64fb6cc4c746ecb93f16cc4f168c17dd4265e36868a44",
+    "reports/integrated_training/integrated_training_run_status.json": "98162a8e53e4f16d9e9d5714ddf896793327d0eadb6b7498c0a730731f1378ae",
+    "reports/integrated_training/keras_multimodal/validation_metrics.json": "2445d5000a705f0468be972d6ab191b8d73f49d83b8a2ed4db7ecbd44d88f4ea",
+    "reports/integrated_training/keras_multimodal/validation_confusion_matrix.csv": "d15cbe59d3b76bfdeb57375ea182e7be73aba464f96d340a99fdb21b9a578ab2",
+    "reports/integrated_training/keras_multimodal/validation_predictions.csv": "330a0054afca30cafb7afe23d73c92182b1fb1808e81274c8dee1781b0351f1f",
+    "reports/validation_model_improvement/controlled_experiment_comparison.csv": "addb5da585792fae98df5845730b455ffb0670299d656e757fddf0b585c61f4e",
+    "reports/validation_model_improvement/validation_error_analysis.csv": "2b981c98b3ccc592f68c4c2e705a6d8895a99842080e4bb84bc29d8f584b90c8",
+    "reports/validation_model_improvement/model_selection_decision.json": "8254157b777d3b8fc52a83ce80a4d1363b737add5976f59d75a5e7080ee6d559",
+    "reports/final_model_freeze/final_model_specification.json": "17fd6d527fc183008161f123ba92047d1ec9a26d786f5529dc42bf044ae1b2b8",
+    "reports/final_model_freeze/final_evaluation_protocol.json": "a6d42689e8421aa1df249e719f2ff6d2ae8d424f99f35a9931eee676e9a37f01",
+    "reports/final_model_freeze/final_model_freeze_status.json": "5f67e43ad51a059f269657bb7b65d9b662fbe6f9b878c86590395165f1d0e533",
+    "reports/final_model_freeze/final_test_authorization.json": "11c31d5e902ccfcff1cce35a3804b0238ea6b524aeadbf1c2745adcb37ef1a94",
+    "reports/final_model_freeze/locked_test_contract.json": "4e08c9a7373e02d77e22e3cd893963bfee02def03712eb8f57540acfbfc64f37"
+  },
+  "generated_artifact_sha256": {
+    "notebooks/02_final_exam_project.ipynb": "6ab134edb49d345a5b900bf3fb1f3552c31e56c706aea2ee23a94bb7d70d0c41",
+    "reports/final_exam_notebook/final_exam_notebook_status.json": "21c14ee21dee8d01fc7b36cd1e2d6e0c7a0f1eefd5db2c207ac6ef593b0df9a2",
+    "reports/final_exam_notebook/final_exam_notebook_summary.md": "f16fab1f13f803753b3a28a129bd0eb2826cb23f5dc0a8e77bad0bf3ad47f7be"
+  },
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false
+}

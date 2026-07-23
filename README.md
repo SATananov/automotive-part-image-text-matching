@@ -37,21 +37,29 @@ These values describe the generated development dataset. They are not final real
 - `app/` - reserved demonstration application directory;
 - `tests/` - automated tests.
 
-## Jupyter notebook
+## Jupyter notebooks
 
-The main development presentation is:
+The main exam presentation is the executed notebook:
+
+```text
+notebooks/02_final_exam_project.ipynb
+```
+
+Build, verify, and open it from the repository root:
+
+```powershell
+python -m src.project_cli build-final-exam-notebook
+python -m src.project_cli verify-final-exam-notebook
+python -m jupyter notebook notebooks/02_final_exam_project.ipynb
+```
+
+The notebook integrates the complete validation-only research narrative: problem definition, previous research, data acquisition and licensing, grouped splitting, six model families, development and integrated validation results, error analysis, controlled model selection, final model freeze, testing, limitations, conclusion, and references. It contains saved tables and visualizations and does not retrain models or access the locked test split.
+
+The earlier development notebook remains available as historical evidence:
 
 ```text
 notebooks/01_development_experiment.ipynb
 ```
-
-Start Jupyter from the repository root:
-
-```powershell
-python -m jupyter notebook notebooks/01_development_experiment.ipynb
-```
-
-The notebook reads the committed development and validation artifacts, checks group isolation, compares all six models, and displays the multimodal confusion matrix, prediction examples, and training history. It does not load or evaluate the test split. Model retraining is disabled by default and can be enabled explicitly inside the notebook.
 
 ## Environment setup
 
@@ -750,3 +758,24 @@ Verify the complete freeze and closed authorization gate with:
 
 The locked test CSV files were not opened, parsed, trained on, predicted on, or evaluated by this workflow. Test authorization remains `false`. Protocol freeze alone does not unlock either test file; a separate controlled Step 010.6 is required before the one-shot final evaluation.
 <!-- FINAL_MODEL_FREEZE_END -->
+
+<!-- FINAL_EXAM_NOTEBOOK_START -->
+## Final exam notebook and research narrative
+
+Step 010.6 creates and verifies the executed final exam notebook without changing the frozen model or opening the locked test split.
+
+```powershell
+python -m src.project_cli build-final-exam-notebook
+python -m src.project_cli verify-final-exam-notebook
+```
+
+The final notebook is generated from committed train, validation, model-comparison, error-analysis, and model-freeze artifacts. It includes related work, clear visualizations, limitations, and formal references. The committed notebook contains saved outputs for direct review on GitHub.
+
+Current Step 010.6 policy:
+
+- model retraining: `false`;
+- model selection change: `false`;
+- locked test CSV access: `false`;
+- test split used: `false`;
+- final test evaluation authorized: `false`.
+<!-- FINAL_EXAM_NOTEBOOK_END -->

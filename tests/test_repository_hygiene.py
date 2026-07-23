@@ -25,6 +25,8 @@ SEMANTIC_VERIFIERS = (
     "src/verification/real_dataset_ingestion.py",
     "src/verification/integrated_training_validation.py",
     "src/verification/validation_model_improvement.py",
+    "src/verification/final_model_and_evaluation_protocol.py",
+    "src/verification/final_exam_notebook.py",
 )
 
 OLD_COMMANDS = (
@@ -61,6 +63,8 @@ NEW_COMMANDS = (
     "verify-real-dataset-ingestion",
     "verify-integrated-training-validation",
     "verify-validation-model-improvement",
+    "verify-final-model-freeze",
+    "verify-final-exam-notebook",
 )
 
 TEXT_EXTENSIONS = {

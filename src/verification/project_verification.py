@@ -24,6 +24,7 @@ VERIFICATION_MODULES = (
     "src.verification.integrated_training_validation",
     "src.verification.validation_model_improvement",
     "src.verification.final_model_and_evaluation_protocol",
+    "src.verification.final_exam_notebook",
 )
 
 

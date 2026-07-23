@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "readiness": "FINAL_EXAM_NOTEBOOK_INTEGRATED_TEST_LOCKED",
+  "base_checkpoint_commit": "d517668",
+  "notebook": "notebooks/02_final_exam_project.ipynb",
+  "cell_count": 31,
+  "markdown_cell_count": 16,
+  "code_cell_count": 15,
+  "executed_code_cell_count": 15,
+  "output_count": 19,
+  "display_output_count": 18,
+  "related_work_source_count": 6,
+  "base_verified_test_count": 275,
+  "base_verified_warning_count": 154,
+  "final_model_slug": "keras_multimodal",
+  "selection_decision": "REFERENCE_RETAINED",
+  "protocol_state": "FROZEN_NOT_AUTHORIZED",
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "model_retraining_performed": false,
+  "model_selection_changed": false,
+  "final_test_evaluation_authorized": false
+}
