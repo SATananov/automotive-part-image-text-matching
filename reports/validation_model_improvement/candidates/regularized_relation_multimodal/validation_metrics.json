@@ -1,0 +1,136 @@
+{
+  "candidate_slug": "regularized_relation_multimodal",
+  "candidate": "Regularized Relation-Aware Multimodal",
+  "description": "Uses relation features with stronger dropout, a smaller fusion layer, and a lower learning rate to reduce overfitting.",
+  "evaluation_split": "integrated_validation",
+  "training_sample_count": 180,
+  "sample_count": 60,
+  "aggregate_probability_method": "mean_across_fixed_seeds",
+  "seeds": [
+    42,
+    52,
+    62
+  ],
+  "seed_results": [
+    {
+      "seed": 42,
+      "accuracy": 0.4166666666666667,
+      "macro_f1": 0.33052321691422454,
+      "epochs_completed": 60,
+      "best_epoch": 60,
+      "best_validation_loss": 1.0689219236373901
+    },
+    {
+      "seed": 52,
+      "accuracy": 0.4166666666666667,
+      "macro_f1": 0.3848833159177987,
+      "epochs_completed": 60,
+      "best_epoch": 58,
+      "best_validation_loss": 1.0682107210159302
+    },
+    {
+      "seed": 62,
+      "accuracy": 0.4166666666666667,
+      "macro_f1": 0.32996632996632996,
+      "epochs_completed": 60,
+      "best_epoch": 59,
+      "best_validation_loss": 1.06305730342865
+    }
+  ],
+  "mean_seed_accuracy": 0.4166666666666667,
+  "std_seed_accuracy": 0.0,
+  "mean_seed_macro_f1": 0.3484576209327844,
+  "std_seed_macro_f1": 0.025757859281187102,
+  "accuracy": 0.4166666666666667,
+  "macro_f1": 0.32996632996632996,
+  "per_class": {
+    "MATCH": {
+      "precision": 0.4,
+      "recall": 0.5,
+      "f1": 0.4444444444444444,
+      "support": 20
+    },
+    "PARTIAL_MATCH": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 20
+    },
+    "MISMATCH": {
+      "precision": 0.42857142857142855,
+      "recall": 0.75,
+      "f1": 0.5454545454545454,
+      "support": 20
+    }
+  },
+  "confusion_matrix": [
+    [
+      10,
+      0,
+      10
+    ],
+    [
+      10,
+      0,
+      10
+    ],
+    [
+      5,
+      0,
+      15
+    ]
+  ],
+  "confusion_matrix_labels": [
+    "MATCH",
+    "PARTIAL_MATCH",
+    "MISMATCH"
+  ],
+  "worst_class_f1": 0.0,
+  "parameter_count": 120827,
+  "keras_backend": "tensorflow",
+  "data_contract": {
+    "training_input_path": "data/processed/integrated_train.csv",
+    "validation_input_path": "data/processed/integrated_validation.csv",
+    "training_sample_count": 180,
+    "validation_sample_count": 60,
+    "training_group_count": 60,
+    "validation_group_count": 20,
+    "train_validation_group_overlap": 0,
+    "training_profile": {
+      "samples": 180,
+      "images": 60,
+      "groups": 60,
+      "categories": 10,
+      "label_distribution": {
+        "MATCH": 60,
+        "PARTIAL_MATCH": 60,
+        "MISMATCH": 60
+      },
+      "source_distribution": {
+        "generated_development": 90,
+        "wikimedia_commons_open_license": 90
+      }
+    },
+    "validation_profile": {
+      "samples": 60,
+      "images": 20,
+      "groups": 20,
+      "categories": 10,
+      "label_distribution": {
+        "MATCH": 20,
+        "PARTIAL_MATCH": 20,
+        "MISMATCH": 20
+      },
+      "source_distribution": {
+        "generated_development": 30,
+        "wikimedia_commons_open_license": 30
+      }
+    },
+    "evaluation_split": "integrated_validation",
+    "test_split_used": false,
+    "test_evaluation_permitted": false,
+    "random_state": 42
+  },
+  "test_split_used": false,
+  "test_evaluation_permitted": false
+}

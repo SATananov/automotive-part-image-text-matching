@@ -1,0 +1,4 @@
+validation_rank,candidate_slug,candidate,aggregate_validation_accuracy,aggregate_validation_macro_f1,mean_seed_accuracy,std_seed_accuracy,mean_seed_macro_f1,std_seed_macro_f1,worst_class_f1,parameter_count,test_split_used
+1,relation_aware_multimodal,Relation-Aware Multimodal,0.5,0.4878812636165577,0.4833333333333334,0.03600411499115477,0.46456035987208244,0.039604423501582095,0.4375,122595,False
+2,reference_multimodal,Reference Multimodal,0.4166666666666667,0.3333333333333333,0.39444444444444443,0.05665577237325318,0.3582727403047808,0.049966380240853765,0.0,117987,False
+3,regularized_relation_multimodal,Regularized Relation-Aware Multimodal,0.4166666666666667,0.32996632996632996,0.4166666666666667,0.0,0.3484576209327844,0.025757859281187102,0.0,120827,False

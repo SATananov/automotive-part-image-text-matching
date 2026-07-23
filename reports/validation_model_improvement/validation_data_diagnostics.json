@@ -1,0 +1,157 @@
+{
+  "status": "PASS",
+  "training_samples": 180,
+  "validation_samples": 60,
+  "train_validation_group_overlap": 0,
+  "train_validation_exact_image_hash_overlap": 0,
+  "shared_image_hashes": [],
+  "train_validation_exact_description_overlap": 14,
+  "shared_descriptions": [
+    "automotive air filter.",
+    "automotive alternator.",
+    "automotive brake disc.",
+    "automotive brake pad set.",
+    "automotive brake pad.",
+    "automotive coil spring.",
+    "automotive engine air filter.",
+    "automotive engine oil filter.",
+    "automotive headlight assembly.",
+    "automotive oil filter.",
+    "automotive shock absorber.",
+    "automotive starter motor.",
+    "automotive suspension coil spring.",
+    "automotive taillight assembly."
+  ],
+  "cross_label_description_count": 14,
+  "cross_label_descriptions": [
+    {
+      "description": "automotive air filter.",
+      "labels": [
+        "MATCH",
+        "PARTIAL_MATCH"
+      ],
+      "sample_count": 8
+    },
+    {
+      "description": "automotive alternator.",
+      "labels": [
+        "MATCH",
+        "MISMATCH",
+        "PARTIAL_MATCH"
+      ],
+      "sample_count": 20
+    },
+    {
+      "description": "automotive brake disc.",
+      "labels": [
+        "MATCH",
+        "MISMATCH",
+        "PARTIAL_MATCH"
+      ],
+      "sample_count": 28
+    },
+    {
+      "description": "automotive brake pad set.",
+      "labels": [
+        "MATCH",
+        "PARTIAL_MATCH"
+      ],
+      "sample_count": 8
+    },
+    {
+      "description": "automotive brake pad.",
+      "labels": [
+        "MATCH",
+        "MISMATCH",
+        "PARTIAL_MATCH"
+      ],
+      "sample_count": 12
+    },
+    {
+      "description": "automotive coil spring.",
+      "labels": [
+        "MATCH",
+        "PARTIAL_MATCH"
+      ],
+      "sample_count": 8
+    },
+    {
+      "description": "automotive engine air filter.",
+      "labels": [
+        "MATCH",
+        "MISMATCH",
+        "PARTIAL_MATCH"
+      ],
+      "sample_count": 12
+    },
+    {
+      "description": "automotive engine oil filter.",
+      "labels": [
+        "MATCH",
+        "MISMATCH",
+        "PARTIAL_MATCH"
+      ],
+      "sample_count": 12
+    },
+    {
+      "description": "automotive headlight assembly.",
+      "labels": [
+        "MATCH",
+        "MISMATCH",
+        "PARTIAL_MATCH"
+      ],
+      "sample_count": 28
+    },
+    {
+      "description": "automotive oil filter.",
+      "labels": [
+        "MATCH",
+        "MISMATCH",
+        "PARTIAL_MATCH"
+      ],
+      "sample_count": 16
+    },
+    {
+      "description": "automotive shock absorber.",
+      "labels": [
+        "MATCH",
+        "MISMATCH",
+        "PARTIAL_MATCH"
+      ],
+      "sample_count": 28
+    },
+    {
+      "description": "automotive starter motor.",
+      "labels": [
+        "MATCH",
+        "MISMATCH",
+        "PARTIAL_MATCH"
+      ],
+      "sample_count": 28
+    },
+    {
+      "description": "automotive suspension coil spring.",
+      "labels": [
+        "MATCH",
+        "MISMATCH",
+        "PARTIAL_MATCH"
+      ],
+      "sample_count": 12
+    },
+    {
+      "description": "automotive taillight assembly.",
+      "labels": [
+        "MATCH",
+        "MISMATCH",
+        "PARTIAL_MATCH"
+      ],
+      "sample_count": 20
+    }
+  ],
+  "risk_flags": [
+    "exact_text_overlap_across_train_validation",
+    "same_description_used_with_multiple_labels"
+  ],
+  "test_split_used": false,
+  "test_evaluation_permitted": false
+}

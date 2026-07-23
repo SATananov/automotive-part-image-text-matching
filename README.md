@@ -691,6 +691,41 @@ python -m src.project_cli verify-integrated-training-validation
 The test split remains locked until the final model and evaluation procedure
 are fixed explicitly in a later controlled step.
 
+## Validation error analysis and controlled model improvement
+
+Step 010.4 analyzes the integrated validation errors and compares one frozen
+reference architecture with two predefined multimodal improvements. Every
+candidate is trained with the same three fixed seeds, early-stopping policy,
+training split, validation split, and model-selection rules.
+
+Run the workflow with:
+
+```powershell
+python -m src.project_cli run-validation-error-analysis-model-improvement
+```
+
+The workflow loads only `data/processed/integrated_train.csv` and
+`data/processed/integrated_validation.csv`. It records exact-image and text
+overlap diagnostics, per-class and per-category errors, high-confidence errors,
+candidate disagreements, multi-seed stability, and the controlled selection
+decision below:
+
+```text
+reports/validation_model_improvement/
+```
+
+The locked test split was not loaded, evaluated, used for candidate ranking, or
+used by the acceptance gate. Step 010.4 never authorizes final test evaluation.
+
+Verify the complete workflow with:
+
+```powershell
+python -m src.project_cli verify-validation-model-improvement
+```
+
+The selection decision may accept a stable validation improvement or retain the
+reference model when the predefined acceptance thresholds are not met.
+
 ## Project verification
 
 Run the complete set of integrity, dataset, workflow, and test-lock

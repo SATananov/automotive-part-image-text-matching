@@ -23,6 +23,8 @@ SEMANTIC_VERIFIERS = (
     "src/verification/open_license_dataset.py",
     "src/verification/external_dataset_integration.py",
     "src/verification/real_dataset_ingestion.py",
+    "src/verification/integrated_training_validation.py",
+    "src/verification/validation_model_improvement.py",
 )
 
 OLD_COMMANDS = (
@@ -57,6 +59,8 @@ NEW_COMMANDS = (
     "verify-open-license-dataset",
     "verify-external-dataset-integration",
     "verify-real-dataset-ingestion",
+    "verify-integrated-training-validation",
+    "verify-validation-model-improvement",
 )
 
 TEXT_EXTENSIONS = {

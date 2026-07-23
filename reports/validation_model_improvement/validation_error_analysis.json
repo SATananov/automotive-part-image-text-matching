@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "selected_candidate_slug": "reference_multimodal",
+  "validation_sample_count": 60,
+  "correct_count": 25,
+  "error_count": 35,
+  "error_rate": 0.5833333333333334,
+  "confusion_pairs": {
+    "PARTIAL_MATCH->MATCH": 10,
+    "PARTIAL_MATCH->MISMATCH": 10,
+    "MATCH->MISMATCH": 10,
+    "MISMATCH->MATCH": 4,
+    "MISMATCH->PARTIAL_MATCH": 1
+  },
+  "errors_by_category": {
+    "air_filter": {
+      "errors": 3,
+      "samples": 6,
+      "error_rate": 0.5
+    },
+    "alternator": {
+      "errors": 3,
+      "samples": 6,
+      "error_rate": 0.5
+    },
+    "brake_disc": {
+      "errors": 4,
+      "samples": 6,
+      "error_rate": 0.6666666666666666
+    },
+    "brake_pad": {
+      "errors": 3,
+      "samples": 6,
+      "error_rate": 0.5
+    },
+    "coil_spring": {
+      "errors": 3,
+      "samples": 6,
+      "error_rate": 0.5
+    },
+    "headlight": {
+      "errors": 4,
+      "samples": 6,
+      "error_rate": 0.6666666666666666
+    },
+    "oil_filter": {
+      "errors": 4,
+      "samples": 6,
+      "error_rate": 0.6666666666666666
+    },
+    "shock_absorber": {
+      "errors": 4,
+      "samples": 6,
+      "error_rate": 0.6666666666666666
+    },
+    "starter": {
+      "errors": 4,
+      "samples": 6,
+      "error_rate": 0.6666666666666666
+    },
+    "taillight": {
+      "errors": 3,
+      "samples": 6,
+      "error_rate": 0.5
+    }
+  },
+  "errors_by_source": {
+    "generated_development": {
+      "errors": 15,
+      "samples": 30,
+      "error_rate": 0.5
+    },
+    "wikimedia_commons_open_license": {
+      "errors": 20,
+      "samples": 30,
+      "error_rate": 0.6666666666666666
+    }
+  },
+  "high_confidence_error_threshold": 0.6,
+  "high_confidence_error_count": 0,
+  "highest_confidence_errors": [],
+  "test_split_used": false,
+  "test_evaluation_permitted": false
+}

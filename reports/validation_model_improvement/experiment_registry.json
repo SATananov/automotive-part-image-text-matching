@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "protocol": "fixed_candidates_fixed_seeds_validation_only",
+  "candidate_order": [
+    "reference_multimodal",
+    "relation_aware_multimodal",
+    "regularized_relation_multimodal"
+  ],
+  "candidate_descriptions": {
+    "reference_multimodal": "Exact Step 010.3 multimodal architecture, retrained under the same controlled multi-seed protocol.",
+    "relation_aware_multimodal": "Adds elementwise product and absolute-difference relation features between equal-width text and image representations.",
+    "regularized_relation_multimodal": "Uses relation features with stronger dropout, a smaller fusion layer, and a lower learning rate to reduce overfitting."
+  },
+  "seeds": [
+    42,
+    52,
+    62
+  ],
+  "max_epochs": 60,
+  "early_stopping_patience": 8,
+  "batch_size": 32,
+  "keras_backend": "tensorflow",
+  "step0103_reference_validation_accuracy": 0.5333333333333333,
+  "step0103_reference_validation_macro_f1": 0.520827129859388,
+  "test_split_used": false,
+  "test_evaluation_permitted": false
+}

@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "readiness": "MODEL_IMPROVEMENT_DECISION_COMPLETE",
+  "decision": "REFERENCE_RETAINED",
+  "selected_candidate_slug": "reference_multimodal",
+  "selected_candidate": "Reference Multimodal",
+  "selected_validation_accuracy": 0.4166666666666667,
+  "selected_validation_macro_f1": 0.3333333333333333,
+  "selected_mean_seed_macro_f1": 0.3582727403047808,
+  "candidate_count": 3,
+  "seeds_per_candidate": 3,
+  "keras_backend": "tensorflow",
+  "validation_error_count": 35,
+  "test_split_used": false,
+  "test_evaluation_permitted": false,
+  "final_test_evaluation_authorized": false,
+  "locked_test_fingerprints_unchanged": true,
+  "locked_test_fingerprints": {
+    "data/external/integrated/external_test.csv": "88e5ebe557934bea2b613c3fd5f8cd96c66a534bcfc0e1612da29afb154811f8",
+    "data/processed/integrated_test.csv": "bb234229961b1d6d81f034f906d509ac48b06640a7d7c3359df477089b0cad62"
+  },
+  "comparison_csv": "reports/validation_model_improvement/controlled_experiment_comparison.csv",
+  "selection_decision": "reports/validation_model_improvement/model_selection_decision.json",
+  "summary": "reports/validation_model_improvement/validation_error_analysis_and_model_improvement_summary.md"
+}

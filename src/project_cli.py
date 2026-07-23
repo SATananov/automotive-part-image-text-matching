@@ -315,6 +315,23 @@ COMMANDS: dict[str, CommandSpec] = {
             "and locked-test safeguards."
         ),
     ),
+    "run-validation-error-analysis-model-improvement": CommandSpec(
+        module=(
+            "src.run_validation_error_analysis_and_model_improvement"
+        ),
+        description=(
+            "Analyze integrated validation errors and compare predefined "
+            "multimodal improvements without using the locked test split."
+        ),
+        requires_tensorflow=True,
+    ),
+    "verify-validation-model-improvement": CommandSpec(
+        module="src.verification.validation_model_improvement",
+        description=(
+            "Verify validation error analysis, controlled experiments, "
+            "selection gates, and locked-test safeguards."
+        ),
+    ),
     "verify-project": CommandSpec(
         module="src.verification.project_verification",
         description=(

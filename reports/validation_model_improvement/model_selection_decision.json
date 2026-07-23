@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "decision": "REFERENCE_RETAINED",
+  "reference_candidate_slug": "reference_multimodal",
+  "selected_candidate_slug": "reference_multimodal",
+  "selected_candidate": "Reference Multimodal",
+  "selection_metric": "mean_seed_macro_f1_with_incumbent_guard",
+  "incumbent_validation_accuracy": 0.5333333333333333,
+  "incumbent_validation_macro_f1": 0.520827129859388,
+  "selected_mean_seed_macro_f1": 0.3582727403047808,
+  "selected_aggregate_validation_macro_f1": 0.3333333333333333,
+  "selected_aggregate_validation_accuracy": 0.4166666666666667,
+  "acceptance_gate": {
+    "minimum_mean_seed_macro_f1_gain": 0.01,
+    "maximum_incumbent_aggregate_macro_f1_regression": 0.01,
+    "maximum_aggregate_accuracy_regression": 0.02,
+    "maximum_worst_class_f1_regression": 0.05
+  },
+  "evaluated_improvements": [
+    {
+      "candidate_slug": "relation_aware_multimodal",
+      "mean_seed_macro_f1_gain": 0.10628761956730165,
+      "aggregate_accuracy_change": 0.08333333333333331,
+      "worst_class_f1_change": 0.4375,
+      "incumbent_validation_macro_f1_change": -0.032945866242830246,
+      "incumbent_validation_accuracy_change": -0.033333333333333326,
+      "passes_acceptance_gate": false
+    },
+    {
+      "candidate_slug": "regularized_relation_multimodal",
+      "mean_seed_macro_f1_gain": -0.009815119371996417,
+      "aggregate_accuracy_change": 0.0,
+      "worst_class_f1_change": 0.0,
+      "incumbent_validation_macro_f1_change": -0.190860799893058,
+      "incumbent_validation_accuracy_change": -0.11666666666666664,
+      "passes_acceptance_gate": false
+    }
+  ],
+  "test_split_used": false,
+  "test_evaluation_permitted": false,
+  "final_test_evaluation_authorized": false
+}

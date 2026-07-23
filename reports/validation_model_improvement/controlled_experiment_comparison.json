@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "selection_metric": "mean_seed_macro_f1_with_incumbent_guard",
+  "candidate_count": 3,
+  "candidates": [
+    {
+      "validation_rank": 1,
+      "candidate_slug": "relation_aware_multimodal",
+      "candidate": "Relation-Aware Multimodal",
+      "aggregate_validation_accuracy": 0.5,
+      "aggregate_validation_macro_f1": 0.4878812636165577,
+      "mean_seed_accuracy": 0.4833333333333334,
+      "std_seed_accuracy": 0.03600411499115477,
+      "mean_seed_macro_f1": 0.46456035987208244,
+      "std_seed_macro_f1": 0.039604423501582095,
+      "worst_class_f1": 0.4375,
+      "parameter_count": 122595,
+      "test_split_used": false
+    },
+    {
+      "validation_rank": 2,
+      "candidate_slug": "reference_multimodal",
+      "candidate": "Reference Multimodal",
+      "aggregate_validation_accuracy": 0.4166666666666667,
+      "aggregate_validation_macro_f1": 0.3333333333333333,
+      "mean_seed_accuracy": 0.39444444444444443,
+      "std_seed_accuracy": 0.05665577237325318,
+      "mean_seed_macro_f1": 0.3582727403047808,
+      "std_seed_macro_f1": 0.049966380240853765,
+      "worst_class_f1": 0.0,
+      "parameter_count": 117987,
+      "test_split_used": false
+    },
+    {
+      "validation_rank": 3,
+      "candidate_slug": "regularized_relation_multimodal",
+      "candidate": "Regularized Relation-Aware Multimodal",
+      "aggregate_validation_accuracy": 0.4166666666666667,
+      "aggregate_validation_macro_f1": 0.32996632996632996,
+      "mean_seed_accuracy": 0.4166666666666667,
+      "std_seed_accuracy": 0.0,
+      "mean_seed_macro_f1": 0.3484576209327844,
+      "std_seed_macro_f1": 0.025757859281187102,
+      "worst_class_f1": 0.0,
+      "parameter_count": 120827,
+      "test_split_used": false
+    }
+  ],
+  "test_split_used": false,
+  "test_evaluation_permitted": false
+}

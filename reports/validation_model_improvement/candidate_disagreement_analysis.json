@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "sample_count": 60,
+  "candidate_count": 3,
+  "disagreement_count": 13,
+  "unanimously_correct_count": 22,
+  "unanimously_wrong_count": 27,
+  "test_split_used": false,
+  "test_evaluation_permitted": false
+}
