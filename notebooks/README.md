@@ -2,11 +2,10 @@
 
 ## Final exam project
 
-The main exam presentation is:
+The main exam presentation is the committed executed notebook:
 
-```text
-notebooks/02_final_exam_project.ipynb
-```
+- [Open `02_final_exam_project.ipynb` directly on GitHub](https://github.com/SATananov/automotive-part-image-text-matching/blob/main/notebooks/02_final_exam_project.ipynb)
+- Repository path: `notebooks/02_final_exam_project.ipynb`
 
 Build and execute it reproducibly from the repository root:
 
@@ -15,13 +14,13 @@ python -m src.project_cli build-final-exam-notebook
 python -m src.project_cli verify-final-exam-notebook
 ```
 
-Open the committed executed notebook with:
+Open the committed executed notebook locally with:
 
 ```powershell
 python -m jupyter notebook notebooks/02_final_exam_project.ipynb
 ```
 
-The final notebook integrates the complete validation-only research narrative through Step 010.5:
+The final notebook integrates the complete validation-only research narrative:
 
 - problem statement, motivation, research question and hypothesis;
 - related work and formal references;
@@ -46,18 +45,24 @@ notebooks/01_development_experiment.ipynb
 
 It documents the generated development experiment and remains useful as historical evidence. The final exam notebook supersedes it as the main submission document.
 
-## Step 010.7 quality gate
+## Notebook quality gate
 
-Run the notebook execution, visual-output, numeric-consistency and citation
-audit from the repository root:
+Run the execution, visual-output, numeric-consistency and citation audit from the repository root:
 
 ```powershell
 python -m src.project_cli run-notebook-quality-audit
 python -m src.project_cli verify-notebook-quality-audit
 ```
 
-The audit re-executes the notebook without training, compares a scientific
-output fingerprint, validates all six saved figures, checks the retained
-model's 28 validation errors against its committed predictions and confusion
-matrix, and confirms six numbered primary or official references. The locked
-test split remains unused and unauthorized.
+Step 010.7 confirms 15 sequentially executed code cells, 19 saved outputs, six readable figures, no error outputs, consistent metrics and six numbered primary or official references.
+
+## Exam submission readiness
+
+Run the Step 010.8 release gate with:
+
+```powershell
+python -m src.project_cli build-exam-submission-readiness
+python -m src.project_cli verify-exam-submission-readiness
+```
+
+The release checklist and clean-clone protocol are committed under `reports/exam_submission_readiness/`. The test split remains locked, unused and unauthorized.

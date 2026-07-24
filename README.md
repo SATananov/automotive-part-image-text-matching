@@ -1,5 +1,7 @@
 # Automotive Part Image-Text Matching
 
+> **Exam submission:** [Open the executed final notebook on GitHub](https://github.com/SATananov/automotive-part-image-text-matching/blob/main/notebooks/02_final_exam_project.ipynb) · [Read the submission checklist](reports/exam_submission_readiness/submission_checklist.md) · [View the release readiness summary](reports/exam_submission_readiness/exam_submission_readiness_summary.md)
+
 This project studies whether a model can determine if a photograph of an automotive part matches a short text description.
 
 The task is a three-class classification problem:
@@ -10,20 +12,20 @@ The task is a three-class classification problem:
 
 The implemented comparison includes classical baselines, text-only and image-only neural networks, and a multimodal neural network.
 
-## Current development results
+## Integrated validation results
 
-The current category-balanced development split contains 150 samples from 50 physical part groups. The test split remains untouched.
+The final model selection uses the integrated grouped validation split: 60 samples from 20 independent physical-part groups, balanced across the three relationship labels. The locked test split remains unused and unauthorized.
 
-| Model | Validation accuracy | Validation macro F1 |
+| Model | Integrated validation accuracy | Integrated validation macro F1 |
 |---|---:|---:|
 | Majority baseline | 0.3333 | 0.1667 |
-| TF-IDF + Logistic Regression | 0.5000 | 0.3889 |
+| TF-IDF + Logistic Regression | 0.4167 | 0.3300 |
 | Image pixels + Logistic Regression | 0.3333 | 0.1667 |
-| Keras text model | 0.5000 | 0.3889 |
+| Keras text model | 0.4167 | 0.3300 |
 | Keras image model | 0.3333 | 0.1667 |
-| Keras multimodal model | **0.7667** | **0.7696** |
+| Keras multimodal model | **0.5333** | **0.5208** |
 
-These values describe the generated development dataset. They are not final real-dataset results.
+The multimodal model is the retained final recipe. The earlier generated-development result was higher (`0.7667` accuracy and `0.7696` macro F1), but it is reported only as development evidence rather than the final validation result.
 
 ## Project structure
 
@@ -39,11 +41,10 @@ These values describe the generated development dataset. They are not final real
 
 ## Jupyter notebooks
 
-The main exam presentation is the executed notebook:
+The main exam presentation is the committed executed notebook:
 
-```text
-notebooks/02_final_exam_project.ipynb
-```
+- [Open `notebooks/02_final_exam_project.ipynb` directly on GitHub](https://github.com/SATananov/automotive-part-image-text-matching/blob/main/notebooks/02_final_exam_project.ipynb)
+- Local path: `notebooks/02_final_exam_project.ipynb`
 
 Build, verify, and open it from the repository root:
 
@@ -756,7 +757,7 @@ Verify the complete freeze and closed authorization gate with:
 
     python -m src.project_cli verify-final-model-freeze
 
-The locked test CSV files were not opened, parsed, trained on, predicted on, or evaluated by this workflow. Test authorization remains `false`. Protocol freeze alone does not unlock either test file; a separate controlled Step 010.6 is required before the one-shot final evaluation.
+The locked test CSV files were not opened, parsed, trained on, predicted on, or evaluated by this workflow. Test authorization remains `false`. Protocol freeze alone does not unlock either test file; any future one-shot final evaluation requires a separate explicit authorization step after submission review.
 <!-- FINAL_MODEL_FREEZE_END -->
 
 <!-- FINAL_EXAM_NOTEBOOK_START -->
@@ -813,3 +814,32 @@ Current Step 010.7 policy:
 - test split used: `false`;
 - final test evaluation authorized: `false`.
 <!-- NOTEBOOK_QUALITY_AUDIT_END -->
+
+<!-- EXAM_SUBMISSION_READINESS_START -->
+## Exam submission readiness and clean release checkpoint
+
+Step 010.8 audits the repository as a final SoftUni submission package and creates a deterministic readiness record without training a model or opening the locked test split.
+
+```powershell
+python -m src.project_cli build-exam-submission-readiness
+python -m src.project_cli verify-exam-submission-readiness
+python -m pytest -q
+python -m src.project_cli verify-project
+```
+
+The committed release evidence is under:
+
+```text
+reports/exam_submission_readiness/
+```
+
+It contains the submission checklist, clean-clone protocol, readiness summary, machine-readable status and normalized SHA-256 release manifest. The packaged PowerShell clean-clone verifier should be run after the Step 010.8 commit is pushed to `main`.
+
+Current Step 010.8 policy:
+
+- model retraining: `false`;
+- model selection change: `false`;
+- locked test CSV access: `false`;
+- test split used: `false`;
+- final test evaluation authorized: `false`.
+<!-- EXAM_SUBMISSION_READINESS_END -->

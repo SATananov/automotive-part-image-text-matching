@@ -29,6 +29,7 @@ VERIFICATION_MODULES = (
         "src.verification."
         "notebook_execution_visual_and_citation_audit"
     ),
+    "src.verification.exam_submission_readiness",
 )
 
 

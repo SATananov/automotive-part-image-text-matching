@@ -209,6 +209,29 @@ This formulation is useful because a near miss, such as a brake disc paired with
 **Hypothesis:** A multimodal model will outperform unimodal alternatives because the label is defined by the interaction between two inputs. Image-only models cannot know which description was supplied, while text-only models cannot verify the visible part.
 
 **Primary selection metric:** macro F1 on the integrated validation split. Macro F1 gives equal importance to all three labels and is more informative than accuracy when a model neglects one class.
+
+### Mathematical formulation
+
+For each sample, the model receives an image vector $x_i^{(v)}$, a text sequence $x_i^{(t)}$, and a class label $y_i \in \{0,1,2\}$. The multimodal classifier estimates
+
+$$
+\hat{p}_i = f_\theta\!\left(x_i^{(v)}, x_i^{(t)}\right),
+$$
+
+where $\hat{p}_{i,c}$ is the predicted probability of class $c$. Training minimizes categorical cross-entropy on the training split:
+
+$$
+\mathcal{L}(\theta) = -\frac{1}{N}\sum_{i=1}^{N}\sum_{c=1}^{3}
+\mathbf{1}(y_i=c)\log \hat{p}_{i,c}.
+$$
+
+For class $c$, $F1_c = 2P_cR_c/(P_c+R_c)$, and the selection metric is
+
+$$
+\operatorname{MacroF1}=\frac{1}{3}\sum_{c=1}^{3}F1_c.
+$$
+
+All metrics are computed only on the integrated validation split during model selection.
 """))
 
     cells.append(markdown(r"""

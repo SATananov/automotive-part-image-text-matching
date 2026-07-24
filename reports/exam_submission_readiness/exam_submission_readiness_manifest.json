@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "step": "010.8",
+  "base_commit": "74fab18",
+  "hash_normalization": "utf-8-lf",
+  "source_artifact_sha256": {
+    "README.md": "d5045db731ee5ef00fc745a0c055477e29b8d3c40862f0204cc8a9dba66ea73e",
+    "requirements.txt": "44fbf0c226749c55f43543834085f72676fbe7ad273b740e369fcf9a5e11f58d",
+    "requirements-lock.txt": "1c40aa22e2107d38701af93dd0901936a49f79062f17bfc3f25d8a2f15b361f6",
+    "notebooks/02_final_exam_project.ipynb": "5eb6c63a2d5f4ab15578c70d73bd74abac304b07b90ad1fb50519ddc35fd2e7e",
+    "reports/final_exam_notebook/final_exam_notebook_status.json": "482d4c04b0056dcd8680c4751c5c91af580fe2e3a904792dc3c19704160322d8",
+    "reports/notebook_quality_audit/notebook_quality_audit_status.json": "ad98de1365efffd4dc0f277d0a607e676e8a89870508ba46217914f5ecb62f9b",
+    "reports/final_model_freeze/final_model_freeze_status.json": "5f67e43ad51a059f269657bb7b65d9b662fbe6f9b878c86590395165f1d0e533",
+    "data/processed/integrated_test_lock.json": "2c28c06a16848344197d3ff6f683799a43edc0821360a2d98c8534c28bde6643"
+  },
+  "generated_artifact_sha256": {
+    "reports/exam_submission_readiness/exam_submission_readiness_status.json": "74e61ec08e30161beb7c0b3b190d9b369c421d768f6162480edd63f62a6cee9d",
+    "reports/exam_submission_readiness/submission_checklist.md": "4b481076ea5e37698573486a9ce6f3005cfeae862f767f3c91e9694388145a67",
+    "reports/exam_submission_readiness/clean_clone_reproducibility.md": "2c26390e4161402ee7ab3626a4cc72e32376914dd0e0aeaee8a503c69622cad1",
+    "reports/exam_submission_readiness/exam_submission_readiness_summary.md": "eeed92527ba8664a7344ab3a8685de16ac493c51e361a3c7108dd1250077053f"
+  },
+  "generated_artifact_count": 4,
+  "model_retraining_performed": false,
+  "model_selection_changed": false,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false
+}

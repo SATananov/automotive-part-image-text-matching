@@ -378,6 +378,20 @@ COMMANDS: dict[str, CommandSpec] = {
             "artifact-hash, and locked-test quality gate."
         ),
     ),
+    "build-exam-submission-readiness": CommandSpec(
+        module="src.build_exam_submission_readiness",
+        description=(
+            "Build the exam-submission checklist, clean-clone protocol, "
+            "release manifest, and locked-test readiness status."
+        ),
+    ),
+    "verify-exam-submission-readiness": CommandSpec(
+        module="src.verification.exam_submission_readiness",
+        description=(
+            "Verify GitHub presentation, final notebook, reports, dependency "
+            "hygiene, release artifacts, and the closed test gate."
+        ),
+    ),
     "verify-project": CommandSpec(
         module="src.verification.project_verification",
         description=(
