@@ -7,10 +7,14 @@ import nbformat
 from src.build_final_exam_notebook import validate_prerequisites
 from src.final_exam_notebook_config import (
     BASE_CHECKPOINT_COMMIT,
+    FINAL_EXAM_NOTEBOOK_EXPECTED_CELL_COUNT,
+    FINAL_EXAM_NOTEBOOK_EXPECTED_CODE_CELL_COUNT,
+    FINAL_EXAM_NOTEBOOK_EXPECTED_OUTPUT_COUNT,
     FINAL_EXAM_NOTEBOOK_MANIFEST_PATH,
     FINAL_EXAM_NOTEBOOK_PATH,
     FINAL_EXAM_NOTEBOOK_STATUS_PATH,
     FORBIDDEN_NOTEBOOK_CODE_TOKENS,
+    NOTEBOOK_INTEGRATION_COMMIT,
     NOTEBOOK_READINESS,
     REFERENCE_TITLES,
     REQUIRED_NOTEBOOK_HEADINGS,
@@ -48,9 +52,25 @@ def test_final_exam_notebook_is_complete_and_executed() -> None:
 
     assert all(heading in markdown_text for heading in REQUIRED_NOTEBOOK_HEADINGS)
     assert all(title in markdown_text for title in REFERENCE_TITLES)
-    assert code_cells
-    assert all(cell.get("execution_count") is not None for cell in code_cells)
-    assert sum(len(cell.get("outputs", [])) for cell in code_cells) >= 10
+    assert len(notebook.cells) == FINAL_EXAM_NOTEBOOK_EXPECTED_CELL_COUNT
+    assert len(code_cells) == FINAL_EXAM_NOTEBOOK_EXPECTED_CODE_CELL_COUNT
+    assert all(
+        cell.get("execution_count") == index
+        for index, cell in enumerate(code_cells, start=1)
+    )
+    assert (
+        sum(len(cell.get("outputs", [])) for cell in code_cells)
+        == FINAL_EXAM_NOTEBOOK_EXPECTED_OUTPUT_COUNT
+    )
+    assert all(
+        "execution" not in cell.get("metadata", {})
+        for cell in code_cells
+    )
+    assert (
+        notebook.metadata["project"]["notebook_integration_commit"]
+        == NOTEBOOK_INTEGRATION_COMMIT
+    )
+    assert notebook.metadata["project"]["quality_audit_step"] == "010.7"
 
 
 def test_final_exam_notebook_code_excludes_locked_inputs_and_training() -> None:
@@ -72,6 +92,7 @@ def test_final_exam_notebook_status_and_manifest_are_closed() -> None:
     assert status["status"] == "PASS"
     assert status["readiness"] == NOTEBOOK_READINESS
     assert status["base_checkpoint_commit"] == BASE_CHECKPOINT_COMMIT
+    assert status["notebook_integration_commit"] == NOTEBOOK_INTEGRATION_COMMIT
     assert status["locked_test_csv_files_opened"] is False
     assert status["test_split_used"] is False
     assert status["model_retraining_performed"] is False
@@ -79,6 +100,7 @@ def test_final_exam_notebook_status_and_manifest_are_closed() -> None:
     assert status["final_test_evaluation_authorized"] is False
 
     assert manifest["status"] == "PASS"
+    assert manifest["notebook_integration_commit"] == NOTEBOOK_INTEGRATION_COMMIT
     assert manifest["locked_test_csv_files_opened"] is False
     assert manifest["test_split_used"] is False
     assert manifest["final_test_evaluation_authorized"] is False

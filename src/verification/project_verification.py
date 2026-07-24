@@ -25,6 +25,10 @@ VERIFICATION_MODULES = (
     "src.verification.validation_model_improvement",
     "src.verification.final_model_and_evaluation_protocol",
     "src.verification.final_exam_notebook",
+    (
+        "src.verification."
+        "notebook_execution_visual_and_citation_audit"
+    ),
 )
 
 

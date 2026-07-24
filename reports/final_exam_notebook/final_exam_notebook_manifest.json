@@ -1,8 +1,9 @@
 {
   "status": "PASS",
   "base_checkpoint_commit": "d517668",
+  "notebook_integration_commit": "2f41d84",
   "hash_normalization": "utf-8-lf",
-  "notebook_sha256": "6ab134edb49d345a5b900bf3fb1f3552c31e56c706aea2ee23a94bb7d70d0c41",
+  "notebook_sha256": "77372669b0d4cf8d62fa9e26d1a6946e823ba983f6b0331137b704ac29561947",
   "source_artifact_sha256": {
     "data/processed/integrated_train.csv": "e6718db44a8a36b613146420b4d92464c5e0733eafff6426798e0a6b78477067",
     "data/processed/integrated_validation.csv": "f67fdde466364dc994cfabef04986de923ccdd8364d1f6dac3616ed47dfca2a5",
@@ -21,9 +22,9 @@
     "reports/final_model_freeze/locked_test_contract.json": "4e08c9a7373e02d77e22e3cd893963bfee02def03712eb8f57540acfbfc64f37"
   },
   "generated_artifact_sha256": {
-    "notebooks/02_final_exam_project.ipynb": "6ab134edb49d345a5b900bf3fb1f3552c31e56c706aea2ee23a94bb7d70d0c41",
-    "reports/final_exam_notebook/final_exam_notebook_status.json": "21c14ee21dee8d01fc7b36cd1e2d6e0c7a0f1eefd5db2c207ac6ef593b0df9a2",
-    "reports/final_exam_notebook/final_exam_notebook_summary.md": "f16fab1f13f803753b3a28a129bd0eb2826cb23f5dc0a8e77bad0bf3ad47f7be"
+    "notebooks/02_final_exam_project.ipynb": "77372669b0d4cf8d62fa9e26d1a6946e823ba983f6b0331137b704ac29561947",
+    "reports/final_exam_notebook/final_exam_notebook_status.json": "482d4c04b0056dcd8680c4751c5c91af580fe2e3a904792dc3c19704160322d8",
+    "reports/final_exam_notebook/final_exam_notebook_summary.md": "3adf2ae56136f6717d55580f32316ca1e5de2850a290cf3d9d66dafbe12f345e"
   },
   "locked_test_csv_files_opened": false,
   "test_split_used": false,

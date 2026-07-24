@@ -9,11 +9,15 @@ import nbformat
 
 from src.final_exam_notebook_config import (
     BASE_CHECKPOINT_COMMIT,
+    FINAL_EXAM_NOTEBOOK_EXPECTED_CELL_COUNT,
+    FINAL_EXAM_NOTEBOOK_EXPECTED_CODE_CELL_COUNT,
+    FINAL_EXAM_NOTEBOOK_EXPECTED_OUTPUT_COUNT,
     FINAL_EXAM_NOTEBOOK_MANIFEST_PATH,
     FINAL_EXAM_NOTEBOOK_PATH,
     FINAL_EXAM_NOTEBOOK_STATUS_PATH,
     FINAL_EXAM_NOTEBOOK_SUMMARY_PATH,
     FORBIDDEN_NOTEBOOK_CODE_TOKENS,
+    NOTEBOOK_INTEGRATION_COMMIT,
     NOTEBOOK_READINESS,
     REFERENCE_TITLES,
     REQUIRED_NOTEBOOK_HEADINGS,
@@ -81,9 +85,22 @@ def build_verification_report() -> dict[str, Any]:
         if not checks["previous_research"]:
             errors.append("Final notebook references are incomplete.")
 
-        checks["executed_outputs"] = bool(code_cells) and all(
-            cell.get("execution_count") is not None for cell in code_cells
-        ) and sum(len(cell.get("outputs", [])) for cell in code_cells) >= 10
+        checks["executed_outputs"] = (
+            len(notebook.cells) == FINAL_EXAM_NOTEBOOK_EXPECTED_CELL_COUNT
+            and len(code_cells) == FINAL_EXAM_NOTEBOOK_EXPECTED_CODE_CELL_COUNT
+            and all(
+                cell.get("execution_count") == index
+                for index, cell in enumerate(code_cells, start=1)
+            )
+            and sum(
+                len(cell.get("outputs", [])) for cell in code_cells
+            )
+            == FINAL_EXAM_NOTEBOOK_EXPECTED_OUTPUT_COUNT
+            and all(
+                "execution" not in cell.get("metadata", {})
+                for cell in code_cells
+            )
+        )
         if not checks["executed_outputs"]:
             errors.append("Final notebook is not fully executed with saved outputs.")
 
@@ -103,6 +120,11 @@ def build_verification_report() -> dict[str, Any]:
         checks["notebook_metadata"] = (
             metadata.get("step") == "010.6"
             and metadata.get("base_checkpoint") == BASE_CHECKPOINT_COMMIT
+            and metadata.get("notebook_integration_commit")
+            == NOTEBOOK_INTEGRATION_COMMIT
+            and metadata.get("quality_audit_step") == "010.7"
+            and metadata.get("visual_qa_required") is True
+            and metadata.get("citation_audit_required") is True
             and metadata.get("test_split_used") is False
             and metadata.get("final_test_evaluation_authorized") is False
         )
@@ -124,6 +146,8 @@ def build_verification_report() -> dict[str, Any]:
             status.get("status") == "PASS"
             and status.get("readiness") == NOTEBOOK_READINESS
             and status.get("base_checkpoint_commit") == BASE_CHECKPOINT_COMMIT
+            and status.get("notebook_integration_commit")
+            == NOTEBOOK_INTEGRATION_COMMIT
             and status.get("locked_test_csv_files_opened") is False
             and status.get("test_split_used") is False
             and status.get("model_retraining_performed") is False
@@ -141,6 +165,8 @@ def build_verification_report() -> dict[str, Any]:
         checks["manifest"] = (
             manifest.get("status") == "PASS"
             and manifest.get("base_checkpoint_commit") == BASE_CHECKPOINT_COMMIT
+            and manifest.get("notebook_integration_commit")
+            == NOTEBOOK_INTEGRATION_COMMIT
             and manifest.get("hash_normalization") == "utf-8-lf"
             and isinstance(manifest.get("source_artifact_sha256"), dict)
             and isinstance(generated, dict)

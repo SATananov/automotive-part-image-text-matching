@@ -2,6 +2,7 @@
   "status": "PASS",
   "readiness": "FINAL_EXAM_NOTEBOOK_INTEGRATED_TEST_LOCKED",
   "base_checkpoint_commit": "d517668",
+  "notebook_integration_commit": "2f41d84",
   "notebook": "notebooks/02_final_exam_project.ipynb",
   "cell_count": 31,
   "markdown_cell_count": 16,

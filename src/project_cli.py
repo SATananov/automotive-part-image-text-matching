@@ -360,6 +360,24 @@ COMMANDS: dict[str, CommandSpec] = {
             "references, saved outputs, and locked-test safeguards."
         ),
     ),
+    "run-notebook-quality-audit": CommandSpec(
+        module="src.run_notebook_execution_visual_and_citation_audit",
+        description=(
+            "Re-execute and audit the final exam notebook for deterministic "
+            "outputs, visual quality, numeric consistency, citations, and "
+            "locked-test safeguards."
+        ),
+    ),
+    "verify-notebook-quality-audit": CommandSpec(
+        module=(
+            "src.verification."
+            "notebook_execution_visual_and_citation_audit"
+        ),
+        description=(
+            "Verify the Step 010.7 execution, visual, numeric, citation, "
+            "artifact-hash, and locked-test quality gate."
+        ),
+    ),
     "verify-project": CommandSpec(
         module="src.verification.project_verification",
         description=(

@@ -779,3 +779,37 @@ Current Step 010.6 policy:
 - test split used: `false`;
 - final test evaluation authorized: `false`.
 <!-- FINAL_EXAM_NOTEBOOK_END -->
+
+<!-- NOTEBOOK_QUALITY_AUDIT_START -->
+## Notebook Execution, Visual QA and Citation Audit
+
+Step 010.7 re-executes the committed final exam notebook from the project
+environment and applies a separate quality gate to the saved outputs.
+
+```powershell
+python -m src.project_cli run-notebook-quality-audit
+python -m src.project_cli verify-notebook-quality-audit
+```
+
+The audit verifies:
+
+- deterministic scientific outputs after a fresh notebook execution;
+- sequential execution counts with no error outputs or transient timestamps;
+- six readable, non-blank and uniquely fingerprinted figures;
+- numeric consistency between the narrative, predictions, metrics and
+  confusion matrix;
+- correct separation between the retained Step 010.3 model's 28 validation
+  errors and the 35 errors from the separate Step 010.4 controlled reference
+  rerun;
+- six inline-numbered citations linked to primary papers or official
+  documentation;
+- unchanged locked-test artifacts and a closed final-test authorization gate.
+
+Current Step 010.7 policy:
+
+- model retraining: `false`;
+- model selection change: `false`;
+- locked test CSV access: `false`;
+- test split used: `false`;
+- final test evaluation authorized: `false`.
+<!-- NOTEBOOK_QUALITY_AUDIT_END -->

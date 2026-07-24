@@ -45,3 +45,19 @@ notebooks/01_development_experiment.ipynb
 ```
 
 It documents the generated development experiment and remains useful as historical evidence. The final exam notebook supersedes it as the main submission document.
+
+## Step 010.7 quality gate
+
+Run the notebook execution, visual-output, numeric-consistency and citation
+audit from the repository root:
+
+```powershell
+python -m src.project_cli run-notebook-quality-audit
+python -m src.project_cli verify-notebook-quality-audit
+```
+
+The audit re-executes the notebook without training, compares a scientific
+output fingerprint, validates all six saved figures, checks the retained
+model's 28 validation errors against its committed predictions and confusion
+matrix, and confirms six numbered primary or official references. The locked
+test split remains unused and unauthorized.

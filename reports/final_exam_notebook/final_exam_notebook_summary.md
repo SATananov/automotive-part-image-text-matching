@@ -14,7 +14,8 @@ The executed notebook `notebooks/02_final_exam_project.ipynb` integrates the com
 - executed code cells: 15;
 - saved outputs: 19;
 - related-work sources: 6;
-- base checkpoint tests: 275 passed with 154 known warnings.
+- Step 010.5 base checkpoint tests: 275 passed with 154 known warnings;
+- notebook integration commit: `2f41d84`.
 
 ## Scientific scope
 

@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "step": "010.7",
+  "base_commit": "2f41d84",
+  "hash_normalization": "utf-8-lf",
+  "artifact_sha256": {
+    "reports/notebook_quality_audit/notebook_execution_audit.json": "e1229d56f8edef76479cca3f207e44da8f824563b6557ef0ce08216f884385c4",
+    "reports/notebook_quality_audit/visual_output_audit.json": "0aa449e320d712d60c0746a5bb38ebfa1f85b9a4e040551088f59484b7a00e78",
+    "reports/notebook_quality_audit/numeric_consistency_audit.json": "90278a920a0bc1e8fa199fdc6a90880d7c92b182de64967abb8013f290c491cc",
+    "reports/notebook_quality_audit/citation_audit.json": "ec04eadbb93e008ba95f12337e5a19e2f17c5a7ec4ce768059aa8015cabe298d",
+    "reports/notebook_quality_audit/notebook_quality_audit_status.json": "ad98de1365efffd4dc0f277d0a607e676e8a89870508ba46217914f5ecb62f9b",
+    "reports/notebook_quality_audit/notebook_quality_audit_summary.md": "03f38416d53c5eb97f476eff3138b8c198d896e89f473ee5dc1d952f08a37e32"
+  },
+  "notebook_sha256": "77372669b0d4cf8d62fa9e26d1a6946e823ba983f6b0331137b704ac29561947",
+  "model_retraining_performed": false,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false
+}

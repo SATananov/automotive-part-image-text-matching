@@ -5,6 +5,7 @@ from pathlib import Path
 from src.real_dataset_config import PROJECT_ROOT
 
 BASE_CHECKPOINT_COMMIT = "d517668"
+NOTEBOOK_INTEGRATION_COMMIT = "2f41d84"
 NOTEBOOK_READINESS = "FINAL_EXAM_NOTEBOOK_INTEGRATED_TEST_LOCKED"
 NOTEBOOK_ROOT = PROJECT_ROOT / "notebooks"
 FINAL_EXAM_NOTEBOOK_PATH = NOTEBOOK_ROOT / "02_final_exam_project.ipynb"
@@ -144,3 +145,19 @@ REFERENCE_TITLES = (
 
 BASE_VERIFIED_TEST_COUNT = 275
 BASE_VERIFIED_WARNING_COUNT = 154
+
+
+FINAL_EXAM_NOTEBOOK_EXPECTED_CELL_COUNT = 31
+FINAL_EXAM_NOTEBOOK_EXPECTED_CODE_CELL_COUNT = 15
+FINAL_EXAM_NOTEBOOK_EXPECTED_OUTPUT_COUNT = 19
+FINAL_EXAM_NOTEBOOK_EXPECTED_IMAGE_OUTPUT_COUNT = 6
+FINAL_EXAM_NOTEBOOK_EXPECTED_VALIDATION_ERROR_COUNT = 28
+
+PRIMARY_REFERENCE_URLS = (
+    "https://bmvc2018.org/contents/papers/0344.pdf",
+    "https://arxiv.org/abs/1908.03557",
+    "https://proceedings.mlr.press/v139/radford21a.html",
+    "https://www.tensorflow.org/guide/keras/functional_api",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html",
+    "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html",
+)

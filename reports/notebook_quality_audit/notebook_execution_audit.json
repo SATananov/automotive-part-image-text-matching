@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "checks": {
+    "cell_count_exact": true,
+    "code_cell_count_exact": true,
+    "output_count_exact": true,
+    "all_code_cells_executed": true,
+    "sequential_execution_counts": true,
+    "no_error_outputs": true,
+    "transient_execution_metadata_absent": true,
+    "fresh_execution_statistics_match": true,
+    "deterministic_scientific_output_fingerprint": true,
+    "html_render": true
+  },
+  "statistics": {
+    "cell_count": 31,
+    "markdown_cell_count": 16,
+    "code_cell_count": 15,
+    "executed_code_cell_count": 15,
+    "output_count": 19,
+    "display_output_count": 18
+  },
+  "fresh_execution_statistics": {
+    "cell_count": 31,
+    "markdown_cell_count": 16,
+    "code_cell_count": 15,
+    "executed_code_cell_count": 15,
+    "output_count": 19,
+    "display_output_count": 18
+  },
+  "execution_counts": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "committed_output_fingerprint": "b242e3271f0437802cc68fd7b011161ad87daa4cf6d0e3bd33ab47085a7a84f0",
+  "fresh_output_fingerprint": "b242e3271f0437802cc68fd7b011161ad87daa4cf6d0e3bd33ab47085a7a84f0",
+  "html_bytes": 942140,
+  "html_embedded_image_count": 7,
+  "model_retraining_performed": false,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false
+}

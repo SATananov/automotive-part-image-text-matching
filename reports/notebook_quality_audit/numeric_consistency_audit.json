@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "checks": {
+    "prediction_row_count": true,
+    "incorrect_prediction_count": true,
+    "confusion_off_diagonal_count": true,
+    "confusion_matches_predictions": true,
+    "accuracy_matches_metrics": true,
+    "correct_error_count_in_narrative": true,
+    "historical_rerun_error_count_contextualized": true,
+    "misleading_35_error_claim_absent": true,
+    "error_chart_derived_from_retained_predictions": true
+  },
+  "validation_samples": 60,
+  "correct_predictions": 32,
+  "incorrect_predictions": 28,
+  "derived_accuracy": 0.5333333333333333,
+  "reported_accuracy": 0.5333333333333333,
+  "reported_macro_f1": 0.520827129859388,
+  "error_pairs": [
+    {
+      "true_label": "MATCH",
+      "predicted_label": "MISMATCH",
+      "count": 10
+    },
+    {
+      "true_label": "PARTIAL_MATCH",
+      "predicted_label": "MISMATCH",
+      "count": 6
+    },
+    {
+      "true_label": "MATCH",
+      "predicted_label": "PARTIAL_MATCH",
+      "count": 4
+    },
+    {
+      "true_label": "MISMATCH",
+      "predicted_label": "MATCH",
+      "count": 3
+    },
+    {
+      "true_label": "MISMATCH",
+      "predicted_label": "PARTIAL_MATCH",
+      "count": 3
+    },
+    {
+      "true_label": "PARTIAL_MATCH",
+      "predicted_label": "MATCH",
+      "count": 2
+    }
+  ]
+}

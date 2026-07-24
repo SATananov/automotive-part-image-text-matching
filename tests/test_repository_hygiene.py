@@ -27,6 +27,7 @@ SEMANTIC_VERIFIERS = (
     "src/verification/validation_model_improvement.py",
     "src/verification/final_model_and_evaluation_protocol.py",
     "src/verification/final_exam_notebook.py",
+    "src/verification/notebook_execution_visual_and_citation_audit.py",
 )
 
 OLD_COMMANDS = (
@@ -65,6 +66,7 @@ NEW_COMMANDS = (
     "verify-validation-model-improvement",
     "verify-final-model-freeze",
     "verify-final-exam-notebook",
+    "verify-notebook-quality-audit",
 )
 
 TEXT_EXTENSIONS = {

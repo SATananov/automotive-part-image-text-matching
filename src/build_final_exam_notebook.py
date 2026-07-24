@@ -12,6 +12,7 @@ from nbclient.exceptions import CellExecutionError
 
 from src.final_exam_notebook_config import (
     BASE_CHECKPOINT_COMMIT,
+    NOTEBOOK_INTEGRATION_COMMIT,
     BASE_VERIFIED_TEST_COUNT,
     BASE_VERIFIED_WARNING_COUNT,
     CONTROLLED_EXPERIMENT_PATH,
@@ -213,16 +214,16 @@ This formulation is useful because a near miss, such as a brake disc paired with
     cells.append(markdown(r"""
 ## 4. Related work
 
-Image-text research commonly learns representations that connect visual and linguistic information. VSE++ demonstrated the value of hard negatives for visual-semantic embedding and cross-modal retrieval. VisualBERT introduced a single Transformer stack that aligns text tokens and image-region representations. CLIP scaled image-text alignment through contrastive pretraining on a very large corpus. These systems are much larger than the compact supervised models used here, but they motivate the central idea that visual and textual evidence should be modeled jointly.
+Image-text research commonly learns representations that connect visual and linguistic information. VSE++ demonstrated the value of hard negatives for visual-semantic embedding and cross-modal retrieval [1]. VisualBERT introduced a single Transformer stack that implicitly aligns text tokens and image-region representations [2]. CLIP scaled image-text alignment through contrastive pretraining on a very large image-text corpus [3]. These systems are much larger than the compact supervised models used here, but they motivate the central idea that visual and textual evidence should be modeled jointly.
 
-The current project is deliberately narrower: it uses a small, auditable dataset, a three-class relation label, simple late fusion, and explicit train/validation group isolation. Keras Functional API is appropriate for this architecture because it supports multiple input branches in one directed model graph.
+The current project is deliberately narrower: it uses a small, auditable dataset, a three-class relation label, simple late fusion, and explicit train/validation group isolation. The Keras Functional API is appropriate for this architecture because it supports multiple input branches in one directed model graph [4].
 
 | Source | Relevance to this project |
 |---|---|
-| Faghri et al., **VSE++** (BMVC 2018) | Image-text alignment and informative negative pairs |
-| Li et al., **VisualBERT** (2019/ACL 2020) | Joint modeling of visual and textual representations |
-| Radford et al., **CLIP** (ICML 2021) | Large-scale contrastive image-text pairing |
-| TensorFlow, **Keras Functional API** | Multi-input neural-network construction |
+| Faghri et al., **VSE++** (BMVC 2018) [1] | Image-text alignment and informative negative pairs |
+| Li et al., **VisualBERT** (2019) [2] | Joint modeling of visual and textual representations |
+| Radford et al., **CLIP** (ICML 2021) [3] | Large-scale contrastive image-text pairing |
+| TensorFlow, **Keras Functional API** [4] | Multi-input neural-network construction |
 """))
 
     cells.append(code(r"""
@@ -248,7 +249,6 @@ MULTIMODAL_METRICS_JSON = ROOT / "reports" / "integrated_training" / "keras_mult
 CONFUSION_MATRIX_CSV = ROOT / "reports" / "integrated_training" / "keras_multimodal" / "validation_confusion_matrix.csv"
 PREDICTIONS_CSV = ROOT / "reports" / "integrated_training" / "keras_multimodal" / "validation_predictions.csv"
 CONTROLLED_COMPARISON_CSV = ROOT / "reports" / "validation_model_improvement" / "controlled_experiment_comparison.csv"
-ERROR_ANALYSIS_CSV = ROOT / "reports" / "validation_model_improvement" / "validation_error_analysis.csv"
 SELECTION_JSON = ROOT / "reports" / "validation_model_improvement" / "model_selection_decision.json"
 MODEL_SPEC_JSON = ROOT / "reports" / "final_model_freeze" / "final_model_specification.json"
 PROTOCOL_JSON = ROOT / "reports" / "final_model_freeze" / "final_evaluation_protocol.json"
@@ -304,6 +304,11 @@ display(split_profile)
 """))
 
     cells.append(code(r"""
+source_display_names = {
+    "generated_development": "Generated development",
+    "wikimedia_commons_open_license": "Reviewed open-license",
+}
+
 composition = (
     pd.concat([
         train_df.assign(split="train"),
@@ -312,6 +317,7 @@ composition = (
     .groupby(["split", "source"])
     .size()
     .unstack(fill_value=0)
+    .rename(columns=source_display_names)
 )
 
 ax = composition.plot(kind="bar", figsize=(9, 4))
@@ -335,7 +341,9 @@ for row in examples.itertuples(index=False):
     plt.figure(figsize=(6, 4))
     plt.imshow(image)
     plt.axis("off")
-    plt.title(f"{row.source}: {row.part_category}\n{row.description} → {row.label}")
+    source_name = source_display_names.get(row.source, row.source)
+    category_name = row.part_category.replace("_", " ").title()
+    plt.title(f"{source_name}: {category_name}\n{row.description} → {row.label}")
     plt.tight_layout()
     plt.show()
 """))
@@ -372,8 +380,8 @@ assert not (train_groups & validation_groups)
 Six model families were compared under the same integrated train/validation boundary:
 
 - majority baseline;
-- TF-IDF with Logistic Regression;
-- resized image pixels with Logistic Regression;
+- TF-IDF [5] with Logistic Regression [6];
+- resized image pixels with Logistic Regression [6];
 - Keras text neural network;
 - Keras image neural network;
 - Keras multimodal neural network.
@@ -431,7 +439,7 @@ plt.show()
 """))
 
     cells.append(code(r"""
-best = comparison_df.iloc[0]
+best = comparison_df.sort_values("validation_rank").iloc[0]
 performance_summary = pd.DataFrame([
     {
         "selected model": best["model"],
@@ -447,18 +455,39 @@ display(performance_summary.round(4))
 
     cells.append(code(r"""
 confusion = pd.read_csv(CONFUSION_MATRIX_CSV, index_col=0)
+confusion_values = confusion.to_numpy()
 
 fig = plt.figure(figsize=(6, 5))
-plt.imshow(confusion.to_numpy(), aspect="auto")
-plt.xticks(range(len(confusion.columns)), [c.replace("predicted_", "") for c in confusion.columns], rotation=25)
-plt.yticks(range(len(confusion.index)), [i.replace("actual_", "") for i in confusion.index])
-plt.title("Keras multimodal validation confusion matrix")
+image = plt.imshow(confusion_values, aspect="auto")
+plt.xticks(
+    range(len(confusion.columns)),
+    [c.replace("predicted_", "").replace("_", " ") for c in confusion.columns],
+    rotation=25,
+)
+plt.yticks(
+    range(len(confusion.index)),
+    [i.replace("actual_", "").replace("_", " ") for i in confusion.index],
+)
+plt.title("Retained multimodal model — validation confusion matrix")
 plt.xlabel("Predicted label")
 plt.ylabel("True label")
+
+contrast_threshold = (confusion_values.max() + confusion_values.min()) / 2
 for row_index in range(confusion.shape[0]):
     for column_index in range(confusion.shape[1]):
-        plt.text(column_index, row_index, int(confusion.iloc[row_index, column_index]), ha="center", va="center")
-plt.colorbar(label="Samples")
+        value = int(confusion.iloc[row_index, column_index])
+        text_color = "black" if value > contrast_threshold else "white"
+        plt.text(
+            column_index,
+            row_index,
+            value,
+            ha="center",
+            va="center",
+            color=text_color,
+            fontweight="bold",
+        )
+
+plt.colorbar(image, label="Samples")
 plt.tight_layout()
 plt.show()
 """))
@@ -472,14 +501,25 @@ display(per_class[["precision", "recall", "f1", "support"]].round(4))
     cells.append(markdown(r"""
 ## 9. Validation error analysis
 
-The integrated multimodal model made 35 errors among 60 validation samples. The most difficult distinction is the middle relationship class: `PARTIAL_MATCH` requires the model to identify both a category difference and a shared automotive family. Errors can therefore arise even when one modality is interpreted correctly.
+The retained Step 010.3 multimodal model made **28 errors among 60 validation samples**. The middle relationship class remains difficult because `PARTIAL_MATCH` requires the model to identify both a category difference and a shared automotive family. The largest single error type is `MATCH → MISMATCH`, showing that some exact relationships are missed when realistic photographs differ from the cleaner generated examples.
 
-The analysis below reports predefined validation errors only. It does not introduce a new split or inspect the locked test data.
+The table and chart below are derived directly from the retained model's committed validation predictions. The separate Step 010.4 controlled rerun produced 35 errors for its newly retrained reference candidate; those rerun errors are not presented as errors of the retained incumbent. No new split is introduced, and the locked test data remains untouched.
 """))
 
     cells.append(code(r"""
-errors = pd.read_csv(ERROR_ANALYSIS_CSV)
-error_pairs = errors["error_pair"].value_counts().rename_axis("error pair").reset_index(name="count")
+predictions = pd.read_csv(PREDICTIONS_CSV)
+retained_errors = predictions.loc[~predictions["is_correct"]].copy()
+retained_errors["error pair"] = (
+    retained_errors["true_label"].str.replace("_", " ")
+    + " → "
+    + retained_errors["predicted_label"].str.replace("_", " ")
+)
+error_pairs = (
+    retained_errors["error pair"]
+    .value_counts()
+    .rename_axis("error pair")
+    .reset_index(name="count")
+)
 display(error_pairs)
 
 ax = error_pairs.sort_values("count").plot(
@@ -489,7 +529,7 @@ ax = error_pairs.sort_values("count").plot(
     legend=False,
     figsize=(9, 5),
 )
-ax.set_title("Integrated validation error types")
+ax.set_title("Retained multimodal model — validation error types")
 ax.set_xlabel("Errors")
 ax.set_ylabel("")
 plt.tight_layout()
@@ -497,19 +537,23 @@ plt.show()
 """))
 
     cells.append(code(r"""
-predictions = pd.read_csv(PREDICTIONS_CSV)
 source_accuracy = (
     predictions.groupby("source")["is_correct"]
     .mean()
     .rename("validation accuracy")
     .reset_index()
 )
+source_accuracy["source"] = source_accuracy["source"].map(source_display_names)
+
 category_accuracy = (
     predictions.groupby("part_category")["is_correct"]
     .mean()
     .sort_values()
     .rename("validation accuracy")
     .reset_index()
+)
+category_accuracy["part_category"] = (
+    category_accuracy["part_category"].str.replace("_", " ").str.title()
 )
 
 display(source_accuracy.round(4))
@@ -581,13 +625,14 @@ display(freeze_table)
 
 The repository separates dataset creation, validation, model workflows, reporting, and verification into reusable modules exposed through a central CLI. Tests cover grouped splitting, model outputs, licensing and attribution, real-data intake, transactional operations, repository hygiene, validation-only model selection, final model freeze, and locked-test safeguards.
 
-At the Step 010.5 checkpoint, the full project environment reported **275 passing tests** with **154 known dependency warnings**. The dependency environment is pinned in `requirements-lock.txt`. Random seeds and deterministic TensorFlow operations are enabled where supported, while the report acknowledges that small numerical differences may occur across hardware and TensorFlow builds.
+At the Step 010.5 checkpoint, the full project environment reported **275 passing tests** with **154 known dependency warnings**. Step 010.6 integrated this notebook at commit `2f41d84`. The dependency environment is pinned in `requirements-lock.txt`. Random seeds and deterministic TensorFlow operations are enabled where supported, while the report acknowledges that small numerical differences may occur across hardware and TensorFlow builds.
 """))
 
     cells.append(code(r"""
 reproducibility = pd.DataFrame([
-    {"control": "Base checkpoint", "value": "d517668"},
-    {"control": "Verified tests at checkpoint", "value": 275},
+    {"control": "Step 010.5 base checkpoint", "value": "d517668"},
+    {"control": "Notebook integration commit", "value": "2f41d84"},
+    {"control": "Verified tests at Step 010.5", "value": 275},
     {"control": "Known dependency warnings", "value": 154},
     {"control": "Dependency lock", "value": "requirements-lock.txt"},
     {"control": "Group overlap", "value": len(train_groups & validation_groups)},
@@ -625,12 +670,12 @@ Future work should expand the number of independently photographed part groups, 
     cells.append(markdown(r"""
 ## 15. References
 
-1. Faghri, F., Fleet, D. J., Kiros, J. R., & Fidler, S. (2018). **VSE++: Improving Visual-Semantic Embeddings with Hard Negatives.** British Machine Vision Conference. https://arxiv.org/abs/1707.05612
-2. Li, L. H., Yatskar, M., Yin, D., Hsieh, C.-J., & Chang, K.-W. (2019). **VisualBERT: A Simple and Performant Baseline for Vision and Language.** https://arxiv.org/abs/1908.03557
-3. Radford, A., et al. (2021). **Learning Transferable Visual Models From Natural Language Supervision.** Proceedings of ICML. https://arxiv.org/abs/2103.00020
-4. TensorFlow. **The Functional API.** https://www.tensorflow.org/guide/keras/functional_api
-5. scikit-learn. **TfidfVectorizer documentation.** https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html
-6. scikit-learn. **LogisticRegression documentation.** https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+1. Faghri, F., Fleet, D. J., Kiros, J. R., & Fidler, S. (2018). **VSE++: Improving Visual-Semantic Embeddings with Hard Negatives.** British Machine Vision Conference. [Official BMVC paper](https://bmvc2018.org/contents/papers/0344.pdf)
+2. Li, L. H., Yatskar, M., Yin, D., Hsieh, C.-J., & Chang, K.-W. (2019). **VisualBERT: A Simple and Performant Baseline for Vision and Language.** [arXiv:1908.03557](https://arxiv.org/abs/1908.03557)
+3. Radford, A., et al. (2021). **Learning Transferable Visual Models From Natural Language Supervision.** Proceedings of the 38th International Conference on Machine Learning. [PMLR 139](https://proceedings.mlr.press/v139/radford21a.html)
+4. TensorFlow. **The Functional API.** [Official TensorFlow guide](https://www.tensorflow.org/guide/keras/functional_api)
+5. scikit-learn. **TfidfVectorizer documentation.** [Official API reference](https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html)
+6. scikit-learn. **LogisticRegression documentation.** [Official API reference](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)
 
 ### Reproduction commands
 
@@ -662,6 +707,10 @@ python -m src.project_cli verify-project
             "project": {
                 "step": "010.6",
                 "base_checkpoint": BASE_CHECKPOINT_COMMIT,
+                "notebook_integration_commit": NOTEBOOK_INTEGRATION_COMMIT,
+                "quality_audit_step": "010.7",
+                "visual_qa_required": True,
+                "citation_audit_required": True,
                 "test_split_used": False,
                 "final_test_evaluation_authorized": False,
             },
@@ -684,6 +733,19 @@ def execute_notebook(notebook: nbformat.NotebookNode) -> nbformat.NotebookNode:
         raise FinalExamNotebookError(
             f"Final exam notebook execution failed: {error}."
         ) from error
+
+
+def sanitize_execution_metadata(
+    notebook: nbformat.NotebookNode,
+) -> nbformat.NotebookNode:
+    """Remove transient execution timestamps while retaining counts and outputs."""
+    for cell in notebook.cells:
+        if cell.cell_type == "code":
+            cell.metadata.pop("execution", None)
+        for output in cell.get("outputs", []):
+            if isinstance(output.get("metadata"), dict):
+                output["metadata"].pop("execution", None)
+    return notebook
 
 
 def notebook_statistics(notebook: nbformat.NotebookNode) -> dict[str, int]:
@@ -771,6 +833,7 @@ def build_reports(
         "status": "PASS",
         "readiness": NOTEBOOK_READINESS,
         "base_checkpoint_commit": BASE_CHECKPOINT_COMMIT,
+        "notebook_integration_commit": NOTEBOOK_INTEGRATION_COMMIT,
         "notebook": project_relative_path(FINAL_EXAM_NOTEBOOK_PATH),
         **statistics,
         "related_work_source_count": 6,
@@ -792,6 +855,7 @@ def build_reports(
     manifest = {
         "status": "PASS",
         "base_checkpoint_commit": BASE_CHECKPOINT_COMMIT,
+        "notebook_integration_commit": NOTEBOOK_INTEGRATION_COMMIT,
         "hash_normalization": "utf-8-lf",
         "notebook_sha256": notebook_hash,
         "source_artifact_sha256": source_fingerprints,
@@ -824,7 +888,8 @@ The executed notebook `{project_relative_path(FINAL_EXAM_NOTEBOOK_PATH)}` integr
 - executed code cells: {statistics['executed_code_cell_count']};
 - saved outputs: {statistics['output_count']};
 - related-work sources: 6;
-- base checkpoint tests: {BASE_VERIFIED_TEST_COUNT} passed with {BASE_VERIFIED_WARNING_COUNT} known warnings.
+- Step 010.5 base checkpoint tests: {BASE_VERIFIED_TEST_COUNT} passed with {BASE_VERIFIED_WARNING_COUNT} known warnings;
+- notebook integration commit: `{NOTEBOOK_INTEGRATION_COMMIT}`.
 
 ## Scientific scope
 
@@ -855,7 +920,7 @@ The notebook covers the problem statement, hypothesis, previous research, open-l
 def main() -> None:
     prerequisites = validate_prerequisites()
     notebook = build_notebook()
-    executed = execute_notebook(notebook)
+    executed = sanitize_execution_metadata(execute_notebook(notebook))
     statistics = validate_executed_notebook(executed)
 
     FINAL_EXAM_NOTEBOOK_PATH.parent.mkdir(parents=True, exist_ok=True)

@@ -1,0 +1,122 @@
+{
+  "status": "PASS",
+  "checks": {
+    "source_count": true,
+    "all_sources_pass": true,
+    "all_urls_accounted_for": true,
+    "primary_or_official_sources_only": true,
+    "inline_citation_range_complete": true
+  },
+  "verification_date": "2026-07-23",
+  "verification_scope": "Primary publication metadata and official documentation URLs were manually reviewed; repository automation verifies exact titles, domains, URLs, numbering, and inline citation markers.",
+  "sources": [
+    {
+      "reference_id": 1,
+      "short_name": "VSE++",
+      "title": "VSE++: Improving Visual-Semantic Embeddings with Hard Negatives",
+      "url": "https://bmvc2018.org/contents/papers/0344.pdf",
+      "expected_domain": "bmvc2018.org",
+      "source_type": "conference_paper",
+      "claim": "hard negatives for visual-semantic embedding and cross-modal retrieval",
+      "checks": {
+        "title_present": true,
+        "url_present": true,
+        "https": true,
+        "expected_domain": true,
+        "numbered_reference_present": true,
+        "inline_citation_present": true
+      },
+      "status": "PASS"
+    },
+    {
+      "reference_id": 2,
+      "short_name": "VisualBERT",
+      "title": "VisualBERT: A Simple and Performant Baseline for Vision and Language",
+      "url": "https://arxiv.org/abs/1908.03557",
+      "expected_domain": "arxiv.org",
+      "source_type": "research_paper",
+      "claim": "joint Transformer modeling of text tokens and image-region representations",
+      "checks": {
+        "title_present": true,
+        "url_present": true,
+        "https": true,
+        "expected_domain": true,
+        "numbered_reference_present": true,
+        "inline_citation_present": true
+      },
+      "status": "PASS"
+    },
+    {
+      "reference_id": 3,
+      "short_name": "CLIP",
+      "title": "Learning Transferable Visual Models From Natural Language Supervision",
+      "url": "https://proceedings.mlr.press/v139/radford21a.html",
+      "expected_domain": "proceedings.mlr.press",
+      "source_type": "conference_paper",
+      "claim": "large-scale contrastive image-text pretraining",
+      "checks": {
+        "title_present": true,
+        "url_present": true,
+        "https": true,
+        "expected_domain": true,
+        "numbered_reference_present": true,
+        "inline_citation_present": true
+      },
+      "status": "PASS"
+    },
+    {
+      "reference_id": 4,
+      "short_name": "Keras Functional API",
+      "title": "The Functional API",
+      "url": "https://www.tensorflow.org/guide/keras/functional_api",
+      "expected_domain": "www.tensorflow.org",
+      "source_type": "official_documentation",
+      "claim": "multi-input neural-network construction",
+      "checks": {
+        "title_present": true,
+        "url_present": true,
+        "https": true,
+        "expected_domain": true,
+        "numbered_reference_present": true,
+        "inline_citation_present": true
+      },
+      "status": "PASS"
+    },
+    {
+      "reference_id": 5,
+      "short_name": "TfidfVectorizer",
+      "title": "TfidfVectorizer documentation",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html",
+      "expected_domain": "scikit-learn.org",
+      "source_type": "official_documentation",
+      "claim": "TF-IDF feature extraction",
+      "checks": {
+        "title_present": true,
+        "url_present": true,
+        "https": true,
+        "expected_domain": true,
+        "numbered_reference_present": true,
+        "inline_citation_present": true
+      },
+      "status": "PASS"
+    },
+    {
+      "reference_id": 6,
+      "short_name": "LogisticRegression",
+      "title": "LogisticRegression documentation",
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html",
+      "expected_domain": "scikit-learn.org",
+      "source_type": "official_documentation",
+      "claim": "regularized logistic-regression classifier",
+      "checks": {
+        "title_present": true,
+        "url_present": true,
+        "https": true,
+        "expected_domain": true,
+        "numbered_reference_present": true,
+        "inline_citation_present": true
+      },
+      "status": "PASS"
+    }
+  ]
+}
