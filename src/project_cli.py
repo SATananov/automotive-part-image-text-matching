@@ -392,6 +392,20 @@ COMMANDS: dict[str, CommandSpec] = {
             "hygiene, release artifacts, and the closed test gate."
         ),
     ),
+    "build-course-coverage-architecture": CommandSpec(
+        module="src.build_full_course_coverage_architecture",
+        description=(
+            "Build the Step 011.0 exercise-coverage matrix, experiment "
+            "registry, resource gates, and locked evaluation plan."
+        ),
+    ),
+    "verify-course-coverage-architecture": CommandSpec(
+        module="src.verification.full_course_coverage_architecture",
+        description=(
+            "Verify complete exercise mapping, registry consistency, "
+            "evidence planning, and the closed test boundary."
+        ),
+    ),
     "verify-project": CommandSpec(
         module="src.verification.project_verification",
         description=(

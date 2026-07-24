@@ -62,6 +62,25 @@ The earlier development notebook remains available as historical evidence:
 notebooks/01_development_experiment.ipynb
 ```
 
+## Full course exercise coverage roadmap
+
+Step 011.0 maps all 29 tasks from the supplied Deep Learning Fundamentals, Transformers and Sequence Modelling, and Vision Models exercises to controlled experiments for this automotive image-text matching problem. This checkpoint defines architecture, metrics, evidence paths, resource gates, and execution policy; it does not claim that the new experiments have already run.
+
+- [Full course coverage matrix](docs/course_coverage/full_course_coverage_matrix.md)
+- [Locked evaluation plan](docs/course_coverage/locked_evaluation_plan.md)
+- [Experiment execution policy](docs/course_coverage/experiment_execution_policy.md)
+- [Machine-readable experiment registry](data/experiment_registry/course_coverage_registry.json)
+- [Planned course-coverage notebooks](notebooks/course_coverage/README.md)
+
+Every Step 011 experiment is limited to the committed train and validation splits. The test split remains locked, unused, and unauthorized. Human agreement metrics are planned only after genuine independent annotations exist; simulated annotators are not accepted as evidence.
+
+Build and verify the planning checkpoint with:
+
+```powershell
+python -m src.project_cli build-course-coverage-architecture
+python -m src.project_cli verify-course-coverage-architecture
+```
+
 ## Environment setup
 
 Run the commands from the repository root.
@@ -98,6 +117,8 @@ python -m src.project_cli train-text
 python -m src.project_cli train-image
 python -m src.project_cli train-multimodal
 python -m src.project_cli verify-development-pipeline
+python -m src.project_cli build-course-coverage-architecture
+python -m src.project_cli verify-course-coverage-architecture
 python -m src.project_cli validate-real-data
 python -m src.project_cli verify-real-dataset-foundation
 python -m src.project_cli review-real-intake

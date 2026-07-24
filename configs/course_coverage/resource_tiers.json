@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "step": "011.0",
+  "tiers": {
+    "TIER_0": {
+      "purpose": "Structural, data-contract, and no-training checks.",
+      "training_allowed": false,
+      "operator_approval_required": false
+    },
+    "TIER_1": {
+      "purpose": "Short diagnostic or classical baseline on train and validation only.",
+      "training_allowed": true,
+      "operator_approval_required": false
+    },
+    "TIER_2": {
+      "purpose": "Controlled comparison with fixed splits and bounded configurations.",
+      "training_allowed": true,
+      "operator_approval_required": false
+    },
+    "TIER_3": {
+      "purpose": "Retained-model candidate or broader ablation after diagnostic gates pass.",
+      "training_allowed": true,
+      "operator_approval_required": true
+    },
+    "TIER_4": {
+      "purpose": "Optional pretrained download, transfer learning, or expensive fine-tuning proof of concept.",
+      "training_allowed": true,
+      "operator_approval_required": true,
+      "license_and_revision_record_required": true
+    }
+  },
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false
+}

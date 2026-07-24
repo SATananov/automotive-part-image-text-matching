@@ -30,6 +30,7 @@ VERIFICATION_MODULES = (
         "notebook_execution_visual_and_citation_audit"
     ),
     "src.verification.exam_submission_readiness",
+    "src.verification.full_course_coverage_architecture",
 )
 
 

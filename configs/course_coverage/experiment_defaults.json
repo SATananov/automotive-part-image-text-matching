@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "step": "011.0",
+  "primary_selection_metric": "validation_macro_f1",
+  "selection_direction": "maximize",
+  "selection_tie_breakers": [
+    "lower seed standard deviation",
+    "lower parameter count",
+    "lower inference time",
+    "simpler architecture"
+  ],
+  "allowed_training_inputs": [
+    "data/processed/integrated_train.csv"
+  ],
+  "allowed_selection_inputs": [
+    "data/processed/integrated_validation.csv"
+  ],
+  "prohibited_inputs": [
+    "data/processed/integrated_test.csv",
+    "data/external/integrated/external_test.csv"
+  ],
+  "primary_seed": 42,
+  "retained_comparison_seeds": [
+    42,
+    43,
+    44
+  ],
+  "model_selection_uses_test": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "required_artifacts": [
+    "resolved configuration",
+    "metrics JSON",
+    "learning curves when training occurs",
+    "model and efficiency summary",
+    "failure or error analysis",
+    "test-lock assertion"
+  ],
+  "status_lifecycle": [
+    "PLANNED",
+    "READY",
+    "RUNNING",
+    "COMPLETED",
+    "FAILED_DIAGNOSTIC",
+    "REJECTED",
+    "RETAINED"
+  ]
+}

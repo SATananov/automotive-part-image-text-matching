@@ -1,0 +1,1509 @@
+{
+  "schema_version": "1.0",
+  "step": "011.0",
+  "base_commit": "9237824",
+  "title": "Full Course Coverage Architecture, Experiment Registry & Locked Evaluation Plan",
+  "readiness": "FULL_COURSE_COVERAGE_ARCHITECTURE_READY_TEST_LOCKED",
+  "exercise_sources": [
+    {
+      "course_section": "deep_learning_fundamentals",
+      "archive_name": "02-Deep-Learning-Fundamentals-Exercise(2).zip",
+      "archive_sha256": "26f79c65216d31a0f62e3e499f462d4360065e0ecfebd035a882afb146e51800",
+      "notebook_name": "Deep-Learning-Fundamentals-Exercise.ipynb",
+      "notebook_sha256": "95ff9dc9bc1c03c86f92c83ac980913fa757206735c2efebb8195fe99ab78cf2",
+      "problem_count": 10
+    },
+    {
+      "course_section": "transformers_and_sequence_modelling",
+      "archive_name": "04-Transformers-and-Sequence-Modelling-Exercise.zip",
+      "archive_sha256": "a198a5144943c0e2d4600440e80cc20f0510c396b3325e4214c1bb36e7de73be",
+      "notebook_name": "Transformers-and-Sequence-Modelling-Exercise.ipynb",
+      "notebook_sha256": "ff0b644d2042d08ab8527a04fe1919c26a64e7be7686f357d410686fd986d9e1",
+      "problem_count": 10
+    },
+    {
+      "course_section": "vision_models",
+      "archive_name": "06-Vision-Models-Exercise.zip",
+      "archive_sha256": "19163405cc0dd3bcd86a7183ce2ad0bb1764ea67b50edcfb6ecce2ccc72ad5ad",
+      "notebook_name": "Vision Models.ipynb",
+      "notebook_sha256": "430b01a5e9417a2cb8ed0f1dd071b5c8d82893563fc3eb0301603ca58257e923",
+      "problem_count": 9
+    }
+  ],
+  "experiment_count": 29,
+  "course_section_counts": {
+    "deep_learning_fundamentals": 10,
+    "transformers_and_sequence_modelling": 10,
+    "vision_models": 9
+  },
+  "execution_status_counts": {
+    "PLANNED": 29
+  },
+  "selection_eligible_count": 15,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "experiments": [
+    {
+      "experiment_id": "FND-001",
+      "course_section": "deep_learning_fundamentals",
+      "exercise_problem_number": 1,
+      "exercise_problem_title": "Load and inspect the dataset",
+      "exercise_requirement": "Inspect dimensions, grouped split composition, label balance, image values, text lengths, and representative examples.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "EXISTING_EVIDENCE_EXTEND",
+      "research_question": "What data properties and possible leakage risks must be understood before training?",
+      "hypothesis": "The committed integrated dataset is class-balanced by construction and group-isolated, while image and text distributions reveal category-specific variation.",
+      "model_family": "exploratory_data_analysis",
+      "input_modalities": [
+        "image",
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/FND-001.json",
+      "primary_metric": "data_integrity_pass",
+      "secondary_metrics": [
+        "class_balance",
+        "group_overlap",
+        "image_value_distribution",
+        "text_length_distribution"
+      ],
+      "resource_tier": "TIER_0",
+      "expected_outputs": [
+        "dataset profile JSON",
+        "EDA tables",
+        "representative example panel"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": false,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-001/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "FND-002",
+      "course_section": "deep_learning_fundamentals",
+      "exercise_problem_number": 2,
+      "exercise_problem_title": "Data loaders and batch inspection",
+      "exercise_requirement": "Build Keras datasets or NumPy inputs, inspect one batch, explain shapes, dtypes, labels, and shuffle policy.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "EXISTING_EVIDENCE_EXTEND",
+      "research_question": "Does the multimodal loader preserve image-text-label alignment and grouped split boundaries?",
+      "hypothesis": "A deterministic loader with train-only shuffling will preserve aligned inputs and stable validation order.",
+      "model_family": "data_pipeline",
+      "input_modalities": [
+        "image",
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/FND-002.json",
+      "primary_metric": "batch_contract_pass",
+      "secondary_metrics": [
+        "batch_shape",
+        "dtype_checks",
+        "alignment_checks",
+        "determinism_checks"
+      ],
+      "resource_tier": "TIER_0",
+      "expected_outputs": [
+        "batch contract JSON",
+        "sample batch table",
+        "loader integrity report"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": false,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-002/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "FND-003",
+      "course_section": "deep_learning_fundamentals",
+      "exercise_problem_number": 3,
+      "exercise_problem_title": "Baseline neural model",
+      "exercise_requirement": "Create a one-hidden-layer neural baseline, inspect weights, and confirm that repeated updates reduce loss on a small batch.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "PARTIAL_EXTENSION",
+      "research_question": "Can a minimal multimodal or single-modality neural model learn a valid gradient signal?",
+      "hypothesis": "A compact baseline will reduce small-batch loss and produce finite class probabilities before full training.",
+      "model_family": "dense_neural_baseline",
+      "input_modalities": [
+        "image",
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/FND-003.json",
+      "primary_metric": "small_batch_loss_reduction",
+      "secondary_metrics": [
+        "finite_loss",
+        "probability_sum_error",
+        "parameter_count"
+      ],
+      "resource_tier": "TIER_1",
+      "expected_outputs": [
+        "model summary",
+        "weight statistics",
+        "small-batch diagnostic curve"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": false,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-003/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "FND-004",
+      "course_section": "deep_learning_fundamentals",
+      "exercise_problem_number": 4,
+      "exercise_problem_title": "Overfit one batch",
+      "exercise_requirement": "Overfit a deliberately small batch and plot loss and accuracy learning curves.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT",
+      "research_question": "Can the selected architecture memorize a small aligned batch, ruling out major implementation defects?",
+      "hypothesis": "A sufficiently expressive model will approach near-perfect batch accuracy and very low loss.",
+      "model_family": "overfit_diagnostic",
+      "input_modalities": [
+        "image",
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/FND-004.json",
+      "primary_metric": "final_batch_accuracy",
+      "secondary_metrics": [
+        "final_batch_loss",
+        "epochs_to_threshold",
+        "gradient_finiteness"
+      ],
+      "resource_tier": "TIER_1",
+      "expected_outputs": [
+        "overfit learning curves",
+        "threshold result JSON",
+        "diagnostic notes"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": false,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-004/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "FND-005",
+      "course_section": "deep_learning_fundamentals",
+      "exercise_problem_number": 5,
+      "exercise_problem_title": "Training and validation loop",
+      "exercise_requirement": "Run controlled training and validation epochs, save learning curves, and document selected loop-failure demonstrations.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "EXISTING_EVIDENCE_EXTEND",
+      "research_question": "Does the training loop update only from train data while validation remains evaluation-only?",
+      "hypothesis": "A correct loop will lower train loss while producing deterministic validation metrics and no validation updates.",
+      "model_family": "training_loop",
+      "input_modalities": [
+        "image",
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/FND-005.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "train_loss",
+        "validation_loss",
+        "validation_accuracy",
+        "generalization_gap"
+      ],
+      "resource_tier": "TIER_2",
+      "expected_outputs": [
+        "learning curves",
+        "loop state audit",
+        "controlled failure observations"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-005/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "FND-006",
+      "course_section": "deep_learning_fundamentals",
+      "exercise_problem_number": 6,
+      "exercise_problem_title": "Compare optimizers and learning rates",
+      "exercise_requirement": "Compare SGD, RMSprop, Adam, and AdamW across predefined learning rates; include schedule and early-stopping variants.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT",
+      "research_question": "Which optimizer and learning-rate policy gives the best validation performance and stability under a fixed architecture?",
+      "hypothesis": "Adaptive optimizers will converge faster on the compact dataset, while a controlled schedule may improve stability.",
+      "model_family": "optimizer_comparison",
+      "input_modalities": [
+        "image",
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/FND-006.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "validation_accuracy",
+        "epochs_to_best",
+        "training_time_seconds",
+        "seed_std_macro_f1"
+      ],
+      "resource_tier": "TIER_2",
+      "expected_outputs": [
+        "optimizer comparison table",
+        "learning curves",
+        "timing report"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-006/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "FND-007",
+      "course_section": "deep_learning_fundamentals",
+      "exercise_problem_number": 7,
+      "exercise_problem_title": "Model capacity",
+      "exercise_requirement": "Compare small, medium, and large models, track probabilities and examples, and diagnose underfitting or overfitting.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "PARTIAL_EXTENSION",
+      "research_question": "How much capacity is justified by validation performance, stability, and efficiency?",
+      "hypothesis": "The medium model will provide a better accuracy-efficiency balance than the largest model on the available data.",
+      "model_family": "capacity_comparison",
+      "input_modalities": [
+        "image",
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/FND-007.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "parameter_count",
+        "validation_accuracy",
+        "generalization_gap",
+        "training_time_seconds"
+      ],
+      "resource_tier": "TIER_2",
+      "expected_outputs": [
+        "capacity table",
+        "probability tracking examples",
+        "learning curves"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-007/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "FND-008",
+      "course_section": "deep_learning_fundamentals",
+      "exercise_problem_number": 8,
+      "exercise_problem_title": "Different architectures",
+      "exercise_requirement": "Compare regularization, batch normalization, learning-rate scheduling, skip connections, adapted pretrained features, and a convolutional alternative.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "PARTIAL_EXTENSION",
+      "research_question": "Which architecture-level techniques improve generalization without unnecessary complexity?",
+      "hypothesis": "Moderate regularization and normalization will help stability, while excessive complexity will not consistently improve Macro F1.",
+      "model_family": "architecture_ablation",
+      "input_modalities": [
+        "image",
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/FND-008.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "parameter_count",
+        "validation_accuracy",
+        "generalization_gap",
+        "training_time_seconds"
+      ],
+      "resource_tier": "TIER_3",
+      "expected_outputs": [
+        "architecture ablation table",
+        "learning curves",
+        "selection rationale"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-008/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "FND-009",
+      "course_section": "deep_learning_fundamentals",
+      "exercise_problem_number": 9,
+      "exercise_problem_title": "Different preprocessing steps",
+      "exercise_requirement": "Compare justified image scaling, resolution, feature extraction, and text length or vocabulary preprocessing variants.",
+      "requirement_status": "optional_but_committed",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "PARTIAL_EXTENSION",
+      "research_question": "Which preprocessing choices improve signal quality without introducing leakage or unnecessary dimensionality?",
+      "hypothesis": "Task-aligned normalization and moderate resolution will outperform unscaled or unnecessarily large inputs.",
+      "model_family": "preprocessing_ablation",
+      "input_modalities": [
+        "image",
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/FND-009.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "validation_accuracy",
+        "input_dimension",
+        "training_time_seconds",
+        "memory_estimate_mb"
+      ],
+      "resource_tier": "TIER_2",
+      "expected_outputs": [
+        "preprocessing table",
+        "distribution plots",
+        "trade-off discussion"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-009/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "FND-010",
+      "course_section": "deep_learning_fundamentals",
+      "exercise_problem_number": 10,
+      "exercise_problem_title": "Break stuff intentionally",
+      "exercise_requirement": "Demonstrate failures from missing scaling, bad learning rates, excessive regularization, activation choice, misaligned labels, and vanishing gradients where feasible.",
+      "requirement_status": "optional_but_committed",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT",
+      "research_question": "Can common training failures be reproduced safely and detected through objective diagnostics?",
+      "hypothesis": "Each controlled fault will leave a distinct signature in loss, gradients, weights, timing, or alignment checks.",
+      "model_family": "failure_diagnostics",
+      "input_modalities": [
+        "image",
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/FND-010.json",
+      "primary_metric": "failure_signature_detected",
+      "secondary_metrics": [
+        "loss_finiteness",
+        "gradient_norm",
+        "weight_norm",
+        "training_time_seconds",
+        "alignment_check"
+      ],
+      "resource_tier": "TIER_1",
+      "expected_outputs": [
+        "failure signature table",
+        "diagnostic curves",
+        "prevention checklist"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": false,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-010/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Run only in isolated diagnostic configurations.",
+        "Never train on validation data and never access the locked test split.",
+        "Misaligned labels are generated in memory from train-only copies and are not committed."
+      ]
+    },
+    {
+      "experiment_id": "SEQ-001",
+      "course_section": "transformers_and_sequence_modelling",
+      "exercise_problem_number": 1,
+      "exercise_problem_title": "Load and inspect text data",
+      "exercise_requirement": "Inspect text features, lengths, vocabulary, label balance, and representative descriptions.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "EXISTING_EVIDENCE_EXTEND",
+      "research_question": "What linguistic patterns and sequence lengths characterize the automotive descriptions?",
+      "hypothesis": "Descriptions will be short and domain-specific, with category terms and compatibility cues carrying substantial signal.",
+      "model_family": "text_eda",
+      "input_modalities": [
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/SEQ-001.json",
+      "primary_metric": "text_profile_complete",
+      "secondary_metrics": [
+        "token_count_distribution",
+        "vocabulary_size",
+        "label_balance",
+        "oov_risk"
+      ],
+      "resource_tier": "TIER_0",
+      "expected_outputs": [
+        "text profile JSON",
+        "length plots",
+        "example table"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": false,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+        "reports/course_coverage/sequence/SEQ-001/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "SEQ-002",
+      "course_section": "transformers_and_sequence_modelling",
+      "exercise_problem_number": 2,
+      "exercise_problem_title": "Text dataset and data loader",
+      "exercise_requirement": "Prepare a deterministic text dataset and loader with train-only fitting and stable validation transformation.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "EXISTING_EVIDENCE_EXTEND",
+      "research_question": "Does the text pipeline avoid validation vocabulary leakage and preserve grouped labels?",
+      "hypothesis": "Train-only vocabulary fitting and deterministic validation batching will pass leakage and alignment checks.",
+      "model_family": "text_data_pipeline",
+      "input_modalities": [
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/SEQ-002.json",
+      "primary_metric": "text_loader_contract_pass",
+      "secondary_metrics": [
+        "alignment_checks",
+        "determinism_checks",
+        "vocabulary_leakage_checks"
+      ],
+      "resource_tier": "TIER_0",
+      "expected_outputs": [
+        "loader contract JSON",
+        "batch example",
+        "leakage audit"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": false,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+        "reports/course_coverage/sequence/SEQ-002/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "SEQ-003",
+      "course_section": "transformers_and_sequence_modelling",
+      "exercise_problem_number": 3,
+      "exercise_problem_title": "Tokenization",
+      "exercise_requirement": "Lowercase and tokenize descriptions, reserve pad and unknown tokens, and display raw text, tokens, IDs, and padded sequences.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "EXISTING_EVIDENCE_EXTEND",
+      "research_question": "Does an explicit tokenizer produce reproducible sequences suitable for fair architecture comparisons?",
+      "hypothesis": "A train-fitted word tokenizer with explicit special tokens will provide stable bounded-length inputs.",
+      "model_family": "tokenization",
+      "input_modalities": [
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/SEQ-003.json",
+      "primary_metric": "tokenization_contract_pass",
+      "secondary_metrics": [
+        "vocabulary_size",
+        "oov_rate",
+        "truncation_rate",
+        "padding_rate"
+      ],
+      "resource_tier": "TIER_0",
+      "expected_outputs": [
+        "tokenization example table",
+        "vocabulary summary",
+        "sequence length report"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": false,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+        "reports/course_coverage/sequence/SEQ-003/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "SEQ-004",
+      "course_section": "transformers_and_sequence_modelling",
+      "exercise_problem_number": 4,
+      "exercise_problem_title": "Dense embedding baseline",
+      "exercise_requirement": "Train an embedding, average-pooling, dense classifier with multiclass cross-entropy.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "EXISTING_EVIDENCE_EXTEND",
+      "research_question": "How strong is the existing order-insensitive neural text baseline under the integrated split?",
+      "hypothesis": "The dense embedding baseline will exceed majority performance but miss order-dependent cues.",
+      "model_family": "embedding_average_classifier",
+      "input_modalities": [
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/SEQ-004.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "validation_accuracy",
+        "parameter_count",
+        "training_time_seconds",
+        "inference_time_ms"
+      ],
+      "resource_tier": "TIER_2",
+      "expected_outputs": [
+        "learning curves",
+        "metrics JSON",
+        "confusion matrix"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+        "reports/course_coverage/sequence/SEQ-004/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "SEQ-005",
+      "course_section": "transformers_and_sequence_modelling",
+      "exercise_problem_number": 5,
+      "exercise_problem_title": "Classical machine-learning baseline",
+      "exercise_requirement": "Tune and compare a TF-IDF classical classifier against the dense neural baseline under the same grouped split.",
+      "requirement_status": "optional_but_committed",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "EXISTING_EVIDENCE_EXTEND",
+      "research_question": "Does sparse lexical modelling remain competitive with neural sequence representations on short domain text?",
+      "hypothesis": "TF-IDF will remain a strong efficiency baseline but may generalize less well to paraphrased cues.",
+      "model_family": "tfidf_logistic_regression",
+      "input_modalities": [
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/SEQ-005.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "validation_accuracy",
+        "training_time_seconds",
+        "inference_time_ms",
+        "feature_count"
+      ],
+      "resource_tier": "TIER_1",
+      "expected_outputs": [
+        "hyperparameter table",
+        "metrics JSON",
+        "error comparison"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+        "reports/course_coverage/sequence/SEQ-005/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "SEQ-006",
+      "course_section": "transformers_and_sequence_modelling",
+      "exercise_problem_number": 6,
+      "exercise_problem_title": "Text CNN and recurrent model",
+      "exercise_requirement": "Train a Text CNN and a GRU; include an LSTM variant if the diagnostic budget permits, and compare speed and parameters.",
+      "requirement_status": "optional_but_committed",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT",
+      "research_question": "Do local n-gram features or recurrent sequence state improve classification over average pooling?",
+      "hypothesis": "Text CNN will be efficient on short descriptions, while GRU may better capture ordered compatibility phrases.",
+      "model_family": "text_cnn_and_gru",
+      "input_modalities": [
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/SEQ-006.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "validation_accuracy",
+        "parameter_count",
+        "epochs_to_best",
+        "training_time_seconds",
+        "inference_time_ms"
+      ],
+      "resource_tier": "TIER_2",
+      "expected_outputs": [
+        "model comparison table",
+        "learning curves",
+        "confusion matrices"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+        "reports/course_coverage/sequence/SEQ-006/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "SEQ-007",
+      "course_section": "transformers_and_sequence_modelling",
+      "exercise_problem_number": 7,
+      "exercise_problem_title": "Transformer encoder",
+      "exercise_requirement": "Build a small parameter-aware Transformer encoder and compare it fairly with dense, CNN, and recurrent models.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT",
+      "research_question": "Can self-attention improve validation performance or error structure on short automotive descriptions?",
+      "hypothesis": "A compact Transformer may improve phrase interactions but will not necessarily outperform simpler models on limited data.",
+      "model_family": "small_transformer_encoder",
+      "input_modalities": [
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/SEQ-007.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "validation_accuracy",
+        "parameter_count",
+        "training_time_seconds",
+        "inference_time_ms",
+        "seed_std_macro_f1"
+      ],
+      "resource_tier": "TIER_3",
+      "expected_outputs": [
+        "Transformer metrics",
+        "fairness table",
+        "learning curves"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+        "reports/course_coverage/sequence/SEQ-007/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "SEQ-008",
+      "course_section": "transformers_and_sequence_modelling",
+      "exercise_problem_number": 8,
+      "exercise_problem_title": "Evaluate and compare all sequence models",
+      "exercise_requirement": "Summarize train and validation curves, accuracy, Macro F1, confusion matrices, one-vs-rest ROC curves, examples, and cross-validation suitability.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "PARTIAL_EXTENSION",
+      "research_question": "Which sequence model offers the best evidence-based baseline after performance, complexity, and failure analysis?",
+      "hypothesis": "The preferred model will be selected by validation Macro F1 with efficiency and stability tie-breakers, not by accuracy alone.",
+      "model_family": "comparative_evaluation",
+      "input_modalities": [
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/SEQ-008.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "validation_accuracy",
+        "per_class_f1",
+        "ovr_roc_auc",
+        "parameter_count",
+        "training_time_seconds"
+      ],
+      "resource_tier": "TIER_2",
+      "expected_outputs": [
+        "comparison dashboard",
+        "confusion matrices",
+        "ROC curves",
+        "reviewed examples"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": false,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+        "notebooks/course_coverage/05_course_coverage_synthesis.ipynb",
+        "reports/course_coverage/sequence/SEQ-008/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "SEQ-009",
+      "course_section": "transformers_and_sequence_modelling",
+      "exercise_problem_number": 9,
+      "exercise_problem_title": "Inspect attention heads",
+      "exercise_requirement": "Return per-head attention weights and visualize at least two heads for correct and incorrect examples.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT",
+      "research_question": "Do different attention heads focus on distinct tokens and plausible compatibility evidence?",
+      "hypothesis": "Some heads will specialize in category or mismatch cues, while others may show diffuse or positional behaviour.",
+      "model_family": "attention_visualization",
+      "input_modalities": [
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/SEQ-009.json",
+      "primary_metric": "attention_evidence_review_pass",
+      "secondary_metrics": [
+        "head_diversity_score",
+        "token_attention_summary",
+        "example_prediction_correctness"
+      ],
+      "resource_tier": "TIER_2",
+      "expected_outputs": [
+        "attention heatmaps",
+        "token-level interpretation",
+        "limitations note"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": false,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+        "reports/course_coverage/sequence/SEQ-009/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "SEQ-010",
+      "course_section": "transformers_and_sequence_modelling",
+      "exercise_problem_number": 10,
+      "exercise_problem_title": "Pretrained transformer",
+      "exercise_requirement": "Adapt a compact pretrained transformer for classification and compare performance, attention, cost, and limitations.",
+      "requirement_status": "optional_but_committed",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT",
+      "research_question": "Does transfer learning improve representation quality enough to justify additional dependencies and compute?",
+      "hypothesis": "A compact pretrained encoder may improve robustness, but gains may be limited by the small domain-specific dataset.",
+      "model_family": "pretrained_transformer",
+      "input_modalities": [
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/SEQ-010.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "validation_accuracy",
+        "parameter_count",
+        "trainable_parameter_count",
+        "training_time_seconds",
+        "inference_time_ms"
+      ],
+      "resource_tier": "TIER_4",
+      "expected_outputs": [
+        "pretrained comparison table",
+        "learning curves",
+        "attention examples",
+        "cost discussion"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+        "reports/course_coverage/sequence/SEQ-010/"
+      ],
+      "prerequisites": [
+        "Explicit approval before downloading pretrained weights.",
+        "Record model license and exact revision."
+      ],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "VIS-001",
+      "course_section": "vision_models",
+      "exercise_problem_number": 1,
+      "exercise_problem_title": "Load and inspect image data",
+      "exercise_requirement": "Inspect image dimensions, categories, labels, diversity, difficult examples, annotation inconsistencies, and build a Keras dataset.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "EXISTING_EVIDENCE_EXTEND",
+      "research_question": "What visual diversity, category balance, and annotation ambiguity must the vision experiments account for?",
+      "hypothesis": "The open-license dataset is balanced by label construction but contains category-specific backgrounds, scales, and fine-detail challenges.",
+      "model_family": "image_eda",
+      "input_modalities": [
+        "image"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/VIS-001.json",
+      "primary_metric": "image_profile_complete",
+      "secondary_metrics": [
+        "dimension_distribution",
+        "category_balance",
+        "brightness_distribution",
+        "duplicate_check"
+      ],
+      "resource_tier": "TIER_0",
+      "expected_outputs": [
+        "image profile JSON",
+        "example gallery",
+        "annotation review table"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": false,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+        "reports/course_coverage/vision/VIS-001/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "VIS-002",
+      "course_section": "vision_models",
+      "exercise_problem_number": 2,
+      "exercise_problem_title": "Frozen architecture backbones",
+      "exercise_requirement": "Compare two or three frozen backbones, including convolutional and transformer families, with constant splits, resizing, metrics, and dense heads.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT",
+      "research_question": "Which frozen pretrained representation best transfers to automotive-part classification and multimodal matching?",
+      "hypothesis": "A modern convolutional backbone will provide strong efficiency, while a compact vision transformer may capture broader shape context.",
+      "model_family": "frozen_backbone_comparison",
+      "input_modalities": [
+        "image"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/VIS-002.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "validation_accuracy",
+        "per_category_f1",
+        "embedding_length",
+        "inference_time_ms",
+        "parameter_count"
+      ],
+      "resource_tier": "TIER_4",
+      "expected_outputs": [
+        "backbone comparison table",
+        "embedding cache manifest",
+        "timing report"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+        "reports/course_coverage/vision/VIS-002/"
+      ],
+      "prerequisites": [
+        "Explicit approval before downloading pretrained weights.",
+        "Record model license and exact weight revision."
+      ],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "VIS-003",
+      "course_section": "vision_models",
+      "exercise_problem_number": 3,
+      "exercise_problem_title": "Compatibility scoring",
+      "exercise_requirement": "Learn image-text compatibility scores, compare at least two equal-pair strategies, and test reversed-pair antisymmetry.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT",
+      "research_question": "Can the three-class relation task be represented as an ordered compatibility score with stable pairwise differences?",
+      "hypothesis": "MATCH descriptions will receive higher scores than PARTIAL_MATCH and MISMATCH, with flip consistency near antisymmetry.",
+      "model_family": "compatibility_scoring",
+      "input_modalities": [
+        "image",
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/VIS-003.json",
+      "primary_metric": "pairwise_ranking_accuracy",
+      "secondary_metrics": [
+        "three_way_ordering_accuracy",
+        "flip_consistency_error",
+        "equal_pair_accuracy",
+        "margin_distribution"
+      ],
+      "resource_tier": "TIER_3",
+      "expected_outputs": [
+        "score distributions",
+        "equal-pair strategy comparison",
+        "flip consistency report"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/04_scoring_ranking_explainability.ipynb",
+        "reports/course_coverage/vision/VIS-003/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "VIS-004",
+      "course_section": "vision_models",
+      "exercise_problem_number": 4,
+      "exercise_problem_title": "Representation and resolution inspection",
+      "exercise_requirement": "Compare final and intermediate convolutional features, transformer token pooling choices, and two or three image resolutions.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT",
+      "research_question": "Which representation layer and resolution preserve useful part detail without excessive compute?",
+      "hypothesis": "Intermediate or multi-scale features may help fine details, while higher resolution will benefit only selected categories.",
+      "model_family": "representation_resolution_ablation",
+      "input_modalities": [
+        "image"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/VIS-004.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "per_category_f1",
+        "embedding_length",
+        "inference_time_ms",
+        "memory_estimate_mb"
+      ],
+      "resource_tier": "TIER_3",
+      "expected_outputs": [
+        "representation table",
+        "resolution curves",
+        "category-specific analysis"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+        "reports/course_coverage/vision/VIS-004/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "VIS-005",
+      "course_section": "vision_models",
+      "exercise_problem_number": 5,
+      "exercise_problem_title": "Local evidence and explainability",
+      "exercise_requirement": "Use at least one model-independent method such as occlusion, masking, crop-and-retest, or perturbation to identify influential regions.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT",
+      "research_question": "Do image models rely on plausible part regions rather than backgrounds or collection shortcuts?",
+      "hypothesis": "Correct predictions will depend on housings, connectors, openings, filters, lenses, or mounting details rather than background alone.",
+      "model_family": "model_independent_explainability",
+      "input_modalities": [
+        "image"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/VIS-005.json",
+      "primary_metric": "plausible_region_review_rate",
+      "secondary_metrics": [
+        "prediction_delta_by_region",
+        "background_sensitivity",
+        "failure_case_count"
+      ],
+      "resource_tier": "TIER_2",
+      "expected_outputs": [
+        "occlusion maps",
+        "region perturbation table",
+        "failure examples"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": false,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+        "notebooks/course_coverage/04_scoring_ranking_explainability.ipynb",
+        "reports/course_coverage/vision/VIS-005/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "VIS-006",
+      "course_section": "vision_models",
+      "exercise_problem_number": 6,
+      "exercise_problem_title": "Controlled fine-tuning",
+      "exercise_requirement": "Gradually compare frozen features, trainable head, final block, final third, and limited full fine-tuning with controlled optimization.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT",
+      "research_question": "How much validation improvement justifies unfreezing additional pretrained parameters?",
+      "hypothesis": "Partial fine-tuning may improve category-sensitive features, but full fine-tuning will overfit unless tightly controlled.",
+      "model_family": "pretrained_fine_tuning",
+      "input_modalities": [
+        "image"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/VIS-006.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "per_category_f1",
+        "ovr_roc_auc",
+        "trainable_parameter_count",
+        "training_time_seconds",
+        "memory_estimate_mb",
+        "calibration_error"
+      ],
+      "resource_tier": "TIER_4",
+      "expected_outputs": [
+        "fine-tuning ladder table",
+        "learning curves",
+        "calibration report",
+        "failure taxonomy"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+        "reports/course_coverage/vision/VIS-006/"
+      ],
+      "prerequisites": [
+        "VIS-002 champion frozen backbone selected on validation only.",
+        "Explicit operator approval for Tier 4 execution."
+      ],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "VIS-007",
+      "course_section": "vision_models",
+      "exercise_problem_number": 7,
+      "exercise_problem_title": "Annotator confidence and agreement",
+      "exercise_requirement": "Collect a genuine independently annotated subset and compare filtering, agreement weighting, confidence weighting, and soft targets.",
+      "requirement_status": "optional_but_committed",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT_REQUIRES_HUMAN_DATA",
+      "research_question": "How do label confidence and inter-annotator agreement affect calibration and performance on clear versus ambiguous examples?",
+      "hypothesis": "Agreement-aware training may improve calibration on ambiguous PARTIAL_MATCH cases without inflating clear-case accuracy.",
+      "model_family": "annotation_agreement_analysis",
+      "input_modalities": [
+        "image",
+        "text",
+        "human_annotation"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/VIS-007.json",
+      "primary_metric": "validation_macro_f1_by_agreement_group",
+      "secondary_metrics": [
+        "calibration_error",
+        "high_agreement_f1",
+        "low_agreement_f1",
+        "equal_pair_accuracy",
+        "agreement_coefficient"
+      ],
+      "resource_tier": "TIER_2",
+      "expected_outputs": [
+        "annotation protocol",
+        "independent labels",
+        "agreement report",
+        "calibration plots"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": false,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/04_scoring_ranking_explainability.ipynb",
+        "reports/course_coverage/vision/VIS-007/"
+      ],
+      "prerequisites": [
+        "At least two real independent human annotators.",
+        "Record confidence before adjudication.",
+        "Do not infer or fabricate agreement from existing single-author labels."
+      ],
+      "safety_notes": [
+        "Human agreement metrics must be based on genuine independent annotations.",
+        "Do not simulate annotators or report synthetic agreement as human evidence.",
+        "Train and validation evidence only; test remains locked."
+      ]
+    },
+    {
+      "experiment_id": "VIS-008",
+      "course_section": "vision_models",
+      "exercise_problem_number": 8,
+      "exercise_problem_title": "Failure-driven data augmentation",
+      "exercise_requirement": "Identify real failures, test augmentations individually, document label validity, then evaluate a justified combined pipeline.",
+      "requirement_status": "required",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT",
+      "research_question": "Which label-preserving transformations improve robustness to observed capture variation without damaging fine detail?",
+      "hypothesis": "Moderate crop, exposure, compression, and background variation will help targeted failures, while aggressive transforms may harm detail-sensitive categories.",
+      "model_family": "augmentation_ablation",
+      "input_modalities": [
+        "image"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/VIS-008.json",
+      "primary_metric": "validation_macro_f1",
+      "secondary_metrics": [
+        "per_category_f1",
+        "robustness_delta",
+        "calibration_error",
+        "training_time_seconds"
+      ],
+      "resource_tier": "TIER_3",
+      "expected_outputs": [
+        "failure-to-augmentation matrix",
+        "individual ablations",
+        "combined pipeline result"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": true,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+        "reports/course_coverage/vision/VIS-008/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    },
+    {
+      "experiment_id": "VIS-009",
+      "course_section": "vision_models",
+      "exercise_problem_number": 9,
+      "exercise_problem_title": "Ranking metrics",
+      "exercise_requirement": "Measure pairwise consistency, flip consistency, transitivity, equal-pair accuracy, agreement-stratified performance, parameters, and inference time.",
+      "requirement_status": "optional_but_committed",
+      "coverage_commitment": "PLANNED",
+      "baseline_coverage": "NEW_EXPERIMENT",
+      "research_question": "Do compatibility scores form a coherent ordering beyond ordinary three-class accuracy?",
+      "hypothesis": "A useful scorer will preserve pair reversal and most ordering triples, while ambiguous partial matches will dominate cycles and low margins.",
+      "model_family": "ranking_evaluation",
+      "input_modalities": [
+        "image",
+        "text"
+      ],
+      "dataset_version": "integrated_dataset_step_010_2",
+      "train_split": "data/processed/integrated_train.csv",
+      "validation_split": "data/processed/integrated_validation.csv",
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false,
+      "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+      "configuration_path": "configs/course_coverage/experiments/VIS-009.json",
+      "primary_metric": "pairwise_ranking_accuracy",
+      "secondary_metrics": [
+        "flip_consistency_error",
+        "cycle_consistency",
+        "equal_pair_accuracy",
+        "parameter_count",
+        "inference_time_ms"
+      ],
+      "resource_tier": "TIER_2",
+      "expected_outputs": [
+        "ranking metrics table",
+        "cycle analysis",
+        "margin plots"
+      ],
+      "execution_status": "PLANNED",
+      "selection_eligible": false,
+      "result_summary": null,
+      "evidence_paths": [
+        "notebooks/course_coverage/04_scoring_ranking_explainability.ipynb",
+        "notebooks/course_coverage/05_course_coverage_synthesis.ipynb",
+        "reports/course_coverage/vision/VIS-009/"
+      ],
+      "prerequisites": [],
+      "safety_notes": [
+        "Train and validation evidence only.",
+        "Do not load, inspect, score, or tune against the locked test split."
+      ]
+    }
+  ]
+}

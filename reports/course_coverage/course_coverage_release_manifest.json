@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "step": "011.0",
+  "base_commit": "9237824",
+  "hash_normalization": "utf-8-lf",
+  "source_artifact_sha256": {
+    "configs/course_coverage/course_exercise_mapping.json": "25522cb33148b0dda93b9cc088bcde9ea4af6dba8688e3455d6568223bbe8777",
+    "configs/course_coverage/experiment_defaults.json": "1c67ceb64c8a5b04ecf8b99e9cedba2c639b1a7e5e3978c43091f70d2982f6ee",
+    "configs/course_coverage/resource_tiers.json": "6223ad1a9dee6abbcb52ba19b9b317eee61a90d916742b8e3e47a893881be9f6"
+  },
+  "generated_artifact_sha256": {
+    "data/experiment_registry/course_coverage_registry.json": "e2b16255611b6f15020d7388e48e414db09171ea4c031f28e9c9657e3887ce62",
+    "data/experiment_registry/course_coverage_registry.csv": "fc70ec88fbe985ec71a88aab431e721195277107479a34dbc0baf1fc08c3cbf1",
+    "docs/course_coverage/full_course_coverage_matrix.md": "782ea47cdce594beb12a90c9ea8f83791a933e27832ebfaea97d840f79368bdf",
+    "docs/course_coverage/locked_evaluation_plan.md": "c4d24626b9dcd81bdd6c823e13fdfab91fb7f4907bd6428e3c975a83526abf4a",
+    "docs/course_coverage/experiment_execution_policy.md": "abf738342c2301a2ce266f750d479ecb722dcafb1e68942bd56c6a7c1e572c4a",
+    "notebooks/course_coverage/README.md": "8e59c7958ed9767519b2ff8ea0a783b5fdc7bbdd920e9ae9ce17b9f6a6d3744f",
+    "reports/course_coverage/course_coverage_architecture_readiness.json": "50e11222c3a37c4a1080c7baec8460c369f54f8728e0c25880da16eac6b3228d",
+    "reports/course_coverage/course_coverage_architecture_summary.md": "aba7dccf735831aca0bbe7cecc79969a7d551bf913e77ff34af5b540fa464d0a"
+  },
+  "source_artifact_count": 3,
+  "generated_artifact_count": 8,
+  "model_training_performed": false,
+  "model_selection_changed": false,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false
+}

@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "readiness": "FULL_COURSE_COVERAGE_ARCHITECTURE_READY_TEST_LOCKED",
+  "step": "011.0",
+  "base_commit": "9237824",
+  "experiment_count": 29,
+  "course_section_counts": {
+    "deep_learning_fundamentals": 10,
+    "transformers_and_sequence_modelling": 10,
+    "vision_models": 9
+  },
+  "selection_eligible_count": 15,
+  "checks": {
+    "source_mapping": true,
+    "all_exercise_tasks_mapped": true,
+    "unique_experiment_ids": true,
+    "planned_status_only": true,
+    "metrics_and_evidence_defined": true,
+    "resource_tiers_complete": true,
+    "test_split_locked": true,
+    "selection_uses_validation_only": true,
+    "no_results_fabricated": true,
+    "human_annotation_safeguard": true
+  },
+  "errors": [],
+  "model_training_performed": false,
+  "model_selection_changed": false,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false
+}
