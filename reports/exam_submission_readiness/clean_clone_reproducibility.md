@@ -34,6 +34,6 @@ Expected result:
 - Direct requirements: 9
 - Fully pinned lock entries: 136
 - TensorFlow lock: `tensorflow==2.21.0`
-- Test functions present after Step 010.8: 334
+- Test functions present after Step 010.8: 346
 - Final notebook code does not reference either locked test CSV.
 - Step 010.8 reads the lock contract only; it does not load test rows.

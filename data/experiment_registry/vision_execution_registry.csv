@@ -1,0 +1,10 @@
+experiment_id,exercise_problem_number,exercise_problem_title,execution_status,training_runs,result_summary,test_split_used,final_test_evaluation_authorized,production_final_model_changed
+VIS-001,1,Load and inspect image data,COMPLETED,0,"Image dimensions, brightness, contrast, category/source coverage, exact hashes, and review flags recorded.",False,False,False
+VIS-002,2,Frozen architecture backbones,DEFERRED_CONTROLLED_GATE,0,Deferred behind explicit pretrained-weight download and license/revision gate.,False,False,False
+VIS-003,3,Compatibility scoring,COMPLETED,6,Two compatibility strategies compared; selected class_probability_expected_score.,False,False,False
+VIS-004,4,Representation and resolution inspection,COMPLETED,27,27 local fixed-convolutional representation runs completed; selected global_pool at 64 px.,False,False,False
+VIS-005,5,Local evidence and explainability,COMPLETED,0,3x3 occlusion evidence generated for 8 validation images; no human score claimed.,False,False,False
+VIS-006,6,Controlled fine-tuning,DEFERRED_CONTROLLED_GATE,0,Deferred until VIS-002 champion and Tier 4 approval exist.,False,False,False
+VIS-007,7,Annotator confidence and agreement,DEFERRED_CONTROLLED_GATE,0,Deferred until genuine independent human annotations exist.,False,False,False
+VIS-008,8,Failure-driven data augmentation,COMPLETED,15,15 controlled augmentation runs completed; selected combined.,False,False,False
+VIS-009,9,Ranking metrics,COMPLETED,0,Pairwise ranking accuracy 0.8833; scalar-score transitivity audited.,False,False,False

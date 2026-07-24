@@ -1,0 +1,16 @@
+{
+  "step": "011.3A",
+  "experiment_id": "VIS-002",
+  "status": "DEFERRED_EXPLICIT_APPROVAL_REQUIRED",
+  "approval_received": false,
+  "network_download_attempted": false,
+  "pretrained_weights_downloaded": false,
+  "model_identifiers": [],
+  "license_revisions_recorded": false,
+  "reason": "Frozen convolutional and vision-transformer backbones require explicit approval before downloads.",
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false,
+  "synthetic_human_agreement_reported": false
+}

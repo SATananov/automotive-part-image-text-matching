@@ -1,0 +1,11 @@
+part_category,validation_accuracy,mean_confidence,observed_failure,justified_augmentation,label_validity,rationale
+air_filter,1.0,0.7686872482299805,no_validation_error_observed,jpeg_compression,preserved under moderate transform,Stress-test robustness to realistic image compression without changing labels.
+alternator,1.0,0.8322842121124268,no_validation_error_observed,jpeg_compression,preserved under moderate transform,Stress-test robustness to realistic image compression without changing labels.
+brake_disc,0.5,0.6655242443084717,category_confusion,center_crop,preserved under moderate transform,Test whether tighter object framing reduces background-driven category confusion.
+brake_pad,1.0,0.7824749946594238,no_validation_error_observed,jpeg_compression,preserved under moderate transform,Stress-test robustness to realistic image compression without changing labels.
+coil_spring,0.5,0.5934241414070129,category_confusion,center_crop,preserved under moderate transform,Test whether tighter object framing reduces background-driven category confusion.
+headlight,0.5,0.7695850133895874,category_confusion,center_crop,preserved under moderate transform,Test whether tighter object framing reduces background-driven category confusion.
+oil_filter,0.5,0.6461760401725769,category_confusion,center_crop,preserved under moderate transform,Test whether tighter object framing reduces background-driven category confusion.
+shock_absorber,1.0,0.6268776059150696,low_confidence,brightness,preserved under moderate transform,Test moderate exposure variation for low-confidence category predictions.
+starter,1.0,0.803485631942749,no_validation_error_observed,jpeg_compression,preserved under moderate transform,Stress-test robustness to realistic image compression without changing labels.
+taillight,0.5,0.8397623896598816,category_confusion,center_crop,preserved under moderate transform,Test whether tighter object framing reduces background-driven category confusion.

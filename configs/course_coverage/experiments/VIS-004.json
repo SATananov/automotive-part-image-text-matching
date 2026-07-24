@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "step": "011.3A",
+  "experiment_id": "VIS-004",
+  "exercise_problem_number": 4,
+  "exercise_problem_title": "Representation and resolution inspection",
+  "exercise_requirement": "Compare final and intermediate convolutional features, transformer token pooling choices, and two or three image resolutions.",
+  "requirement_status": "required",
+  "research_question": "Which representation layer and resolution preserve useful part detail without excessive compute?",
+  "hypothesis": "Intermediate or multi-scale features may help fine details, while higher resolution will benefit only selected categories.",
+  "model_family": "representation_resolution_ablation",
+  "input_modalities": [
+    "image"
+  ],
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+  "configuration_path": "configs/course_coverage/experiments/VIS-004.json",
+  "primary_metric": "validation_macro_f1",
+  "secondary_metrics": [
+    "per_category_f1",
+    "embedding_length",
+    "inference_time_ms",
+    "memory_estimate_mb"
+  ],
+  "resource_tier": "TIER_3",
+  "expected_outputs": [
+    "representation table",
+    "resolution curves",
+    "category-specific analysis"
+  ],
+  "selection_eligible": true,
+  "evidence_paths": [
+    "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+    "reports/course_coverage/vision/VIS-004/"
+  ],
+  "prerequisites": [],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ],
+  "execution_policy": "controlled_train_validation_only"
+}

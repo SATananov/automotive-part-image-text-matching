@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "step": "011.3A",
+  "experiment_id": "VIS-008",
+  "exercise_problem_number": 8,
+  "exercise_problem_title": "Failure-driven data augmentation",
+  "exercise_requirement": "Identify real failures, test augmentations individually, document label validity, then evaluate a justified combined pipeline.",
+  "requirement_status": "required",
+  "research_question": "Which label-preserving transformations improve robustness to observed capture variation without damaging fine detail?",
+  "hypothesis": "Moderate crop, exposure, compression, and background variation will help targeted failures, while aggressive transforms may harm detail-sensitive categories.",
+  "model_family": "augmentation_ablation",
+  "input_modalities": [
+    "image"
+  ],
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+  "configuration_path": "configs/course_coverage/experiments/VIS-008.json",
+  "primary_metric": "validation_macro_f1",
+  "secondary_metrics": [
+    "per_category_f1",
+    "robustness_delta",
+    "calibration_error",
+    "training_time_seconds"
+  ],
+  "resource_tier": "TIER_3",
+  "expected_outputs": [
+    "failure-to-augmentation matrix",
+    "individual ablations",
+    "combined pipeline result"
+  ],
+  "selection_eligible": true,
+  "evidence_paths": [
+    "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+    "reports/course_coverage/vision/VIS-008/"
+  ],
+  "prerequisites": [],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ],
+  "execution_policy": "controlled_train_validation_only"
+}

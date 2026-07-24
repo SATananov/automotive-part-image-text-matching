@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "step": "011.3A",
+  "experiment_id": "VIS-007",
+  "exercise_problem_number": 7,
+  "exercise_problem_title": "Annotator confidence and agreement",
+  "exercise_requirement": "Collect a genuine independently annotated subset and compare filtering, agreement weighting, confidence weighting, and soft targets.",
+  "requirement_status": "optional_but_committed",
+  "research_question": "How do label confidence and inter-annotator agreement affect calibration and performance on clear versus ambiguous examples?",
+  "hypothesis": "Agreement-aware training may improve calibration on ambiguous PARTIAL_MATCH cases without inflating clear-case accuracy.",
+  "model_family": "annotation_agreement_analysis",
+  "input_modalities": [
+    "image",
+    "text",
+    "human_annotation"
+  ],
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+  "configuration_path": "configs/course_coverage/experiments/VIS-007.json",
+  "primary_metric": "validation_macro_f1_by_agreement_group",
+  "secondary_metrics": [
+    "calibration_error",
+    "high_agreement_f1",
+    "low_agreement_f1",
+    "equal_pair_accuracy",
+    "agreement_coefficient"
+  ],
+  "resource_tier": "TIER_2",
+  "expected_outputs": [
+    "annotation protocol",
+    "independent labels",
+    "agreement report",
+    "calibration plots"
+  ],
+  "selection_eligible": false,
+  "evidence_paths": [
+    "notebooks/course_coverage/04_scoring_ranking_explainability.ipynb",
+    "reports/course_coverage/vision/VIS-007/"
+  ],
+  "prerequisites": [
+    "At least two real independent human annotators.",
+    "Record confidence before adjudication.",
+    "Do not infer or fabricate agreement from existing single-author labels."
+  ],
+  "safety_notes": [
+    "Human agreement metrics must be based on genuine independent annotations.",
+    "Do not simulate annotators or report synthetic agreement as human evidence.",
+    "Train and validation evidence only; test remains locked."
+  ],
+  "execution_policy": "genuine_independent_human_annotations_required",
+  "genuine_independent_annotators_available": false,
+  "synthetic_human_agreement_reported": false
+}

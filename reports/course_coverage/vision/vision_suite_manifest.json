@@ -1,0 +1,385 @@
+{
+  "schema_version": "1.0",
+  "step": "011.3A",
+  "status": "PASS",
+  "readiness": "VISION_EXPERIMENTAL_SUITE_CORE_COMPLETE_PRETRAINED_AND_HUMAN_GATES_TEST_LOCKED",
+  "base_checkpoint": "040a637",
+  "source_commit": "040a63797b44e1c49e9d46cba768f7c741dfa74b",
+  "hash_normalization": "utf-8-lf for text artifacts; raw bytes for binary artifacts",
+  "artifact_count": 72,
+  "artifacts": [
+    {
+      "path": "configs/course_coverage/experiments/VIS-001.json",
+      "sha256": "7842d8acfbc9796970957a2336fb38493699627e3ef2b1bed7bf59d50e0df5f3",
+      "size_bytes": 1838
+    },
+    {
+      "path": "configs/course_coverage/experiments/VIS-002.json",
+      "sha256": "e26951fec93a7f1bc8f7ca98392809536107d84224dfb78b2ffef6144bfd620c",
+      "size_bytes": 2100
+    },
+    {
+      "path": "configs/course_coverage/experiments/VIS-003.json",
+      "sha256": "1b939b9c3819e2953772bf3af91eee4ac7ba9a61f1a07c650fe75fd7d7697180",
+      "size_bytes": 1871
+    },
+    {
+      "path": "configs/course_coverage/experiments/VIS-004.json",
+      "sha256": "ac78d3068b2587bb097fc3d7c8477338449b69b5afd76f158b579759cc24e816",
+      "size_bytes": 1837
+    },
+    {
+      "path": "configs/course_coverage/experiments/VIS-005.json",
+      "sha256": "7f31dfdb401ca0df69226d9f4f68f102c9e4a445472eac899807722f3a2e79e9",
+      "size_bytes": 1915
+    },
+    {
+      "path": "configs/course_coverage/experiments/VIS-006.json",
+      "sha256": "14eac4106889eff8f8409887f13e8498b46110c6e26c288a0fa28c3831ce6bf4",
+      "size_bytes": 2108
+    },
+    {
+      "path": "configs/course_coverage/experiments/VIS-007.json",
+      "sha256": "548958ff7f2752edbf5cf808aced0808c314ec3e99cffff070f0ae3561b03f03",
+      "size_bytes": 2389
+    },
+    {
+      "path": "configs/course_coverage/experiments/VIS-008.json",
+      "sha256": "792960859a7dffd19f3bbac488d6812f1ca562847538c11509ac16ea9c73a621",
+      "size_bytes": 1887
+    },
+    {
+      "path": "configs/course_coverage/experiments/VIS-009.json",
+      "sha256": "8b9f00c3a2c7b251e05bdc7bc6e781fe80520d4eebdba2254210dcc0a4533fbc",
+      "size_bytes": 1951
+    },
+    {
+      "path": "configs/course_coverage/vision_suite.json",
+      "sha256": "68b8c5c43449a5ad782b2a6515eb1ee5e090b3772a78b3aa4fd5920028dbf40a",
+      "size_bytes": 2062
+    },
+    {
+      "path": "data/experiment_registry/vision_execution_registry.csv",
+      "sha256": "db0219fddd8c1f09a707a65166905dd08206929c50587c179c311541c4752c19",
+      "size_bytes": 1559
+    },
+    {
+      "path": "data/experiment_registry/vision_execution_registry.json",
+      "sha256": "7066daead9f835f641157b00ef8821e31c91918cddba6a9ad23b9a8aecb367a5",
+      "size_bytes": 6347
+    },
+    {
+      "path": "docs/course_coverage/vision_experimental_suite.md",
+      "sha256": "99e23788d52a19c802a5a84ce148294ddd1787961e493b7b40cda83e7750cc19",
+      "size_bytes": 2187
+    },
+    {
+      "path": "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+      "sha256": "4278c1a8a1008ef4d9f6e164e4abbdff4133a66e2c635af22d37b75754e5c7d9",
+      "size_bytes": 596406
+    },
+    {
+      "path": "notebooks/course_coverage/04_scoring_ranking_explainability.ipynb",
+      "sha256": "392dcc471de6ee52714373c96c29ef19d7f30b18d19e56fad6dc51ee7b144146",
+      "size_bytes": 221009
+    },
+    {
+      "path": "notebooks/course_coverage/CURRENT_STATUS.md",
+      "sha256": "6909a79f30abeb41a4c4b4dd00e3d38d04017dce01ec495ac30ee46e1e485824",
+      "size_bytes": 1431
+    },
+    {
+      "path": "reports/course_coverage/vision/VIS-001/README.md",
+      "sha256": "2994889e010dc660a3d4e885ccbfc197582313a67099bbbcb72d9e1b93b555e2",
+      "size_bytes": 1026
+    },
+    {
+      "path": "reports/course_coverage/vision/VIS-002/README.md",
+      "sha256": "c9b4724cc73838df5d8c8498b54b8e804f8a7d325958074d5993b6bfa156f654",
+      "size_bytes": 698
+    },
+    {
+      "path": "reports/course_coverage/vision/VIS-003/README.md",
+      "sha256": "dd73f041ebbd6cc1c29f79a4c097892bc7e522ffc1096cbc5c43ac1220a1d536",
+      "size_bytes": 974
+    },
+    {
+      "path": "reports/course_coverage/vision/VIS-004/README.md",
+      "sha256": "d21e15cbdd84c5c1cc37ab5413abad6d7dea7b0201a4df763f3dc89d18d6ff9f",
+      "size_bytes": 1001
+    },
+    {
+      "path": "reports/course_coverage/vision/VIS-005/README.md",
+      "sha256": "50d69850a90024d2d153313edd290cd2cbe91d9b131317f18da0d61d3affae88",
+      "size_bytes": 2128
+    },
+    {
+      "path": "reports/course_coverage/vision/VIS-006/README.md",
+      "sha256": "4be49fc4525afcd131b82a04529ba0186722682d631034c9ad789afa2c81ffdb",
+      "size_bytes": 664
+    },
+    {
+      "path": "reports/course_coverage/vision/VIS-007/README.md",
+      "sha256": "299ea8af232e38f1bcdaaf82b14283fda876b452825518ee2737697a41de8261",
+      "size_bytes": 683
+    },
+    {
+      "path": "reports/course_coverage/vision/VIS-008/README.md",
+      "sha256": "81cdaf6ec3891e4b9bed9f26924cd662a14675239ca477735c7bf7d0e5501212",
+      "size_bytes": 940
+    },
+    {
+      "path": "reports/course_coverage/vision/VIS-009/README.md",
+      "sha256": "d301f0d095d92f930b8f069d25a07fa4fe7cc0266f448acee41b50275099fba2",
+      "size_bytes": 911
+    },
+    {
+      "path": "reports/course_coverage/vision/annotation_review.csv",
+      "sha256": "9131ee6d5936cee5cfd93f23c0d7971055be04d52f82685bf61ec30c1ac43868",
+      "size_bytes": 29070
+    },
+    {
+      "path": "reports/course_coverage/vision/augmentation_comparison.csv",
+      "sha256": "d1d554fc8cf852c098d3e507c0cc10533a2263e2a1ab2971609941496580c745",
+      "size_bytes": 972
+    },
+    {
+      "path": "reports/course_coverage/vision/augmentation_runs.csv",
+      "sha256": "5d5a872ccf19ecc486ddd7fdbb7b1b77e73ceca7e3a45bb6335aa2d1386df2ee",
+      "size_bytes": 6763
+    },
+    {
+      "path": "reports/course_coverage/vision/compatibility_strategy_comparison.csv",
+      "sha256": "9bcf902d8ba2088a8497805a70a19f57c3a082ed1f0ee95ea7263ec7f938d4ef",
+      "size_bytes": 524
+    },
+    {
+      "path": "reports/course_coverage/vision/compatibility_training_runs.csv",
+      "sha256": "b7450ebff8dcfb1a0cc86284ad1f08f01cba66d7b5dc0f6e276361249fdb856b",
+      "size_bytes": 1364
+    },
+    {
+      "path": "reports/course_coverage/vision/compatibility_validation_predictions.csv",
+      "sha256": "6a5e1b7ac53d448b558039fdddbc6facdb4058188bb050d2855d67be68e6d81e",
+      "size_bytes": 15341
+    },
+    {
+      "path": "reports/course_coverage/vision/equal_pair_evaluation.csv",
+      "sha256": "1b5fa93d3b5d2a6e11d82702595e51999858db3ff4d1ef5224f87bb19413a8c7",
+      "size_bytes": 5860
+    },
+    {
+      "path": "reports/course_coverage/vision/explainability_summary.json",
+      "sha256": "0ee2b47915d8b667bc9bbd9e53cc3779dc2e946a1f86339d85d4f917b96db8be",
+      "size_bytes": 945
+    },
+    {
+      "path": "reports/course_coverage/vision/failure_to_augmentation_matrix.csv",
+      "sha256": "369dfe5c2e65c6dde474cc4ea2d54515b680b30af84325ac2a709ec350be5cea",
+      "size_bytes": 1979
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/augmentation_macro_f1.png",
+      "sha256": "ad6df7dd48cfb358aa1e2d005980c9fb73e3cdcab776bd75678a8b64db58440a",
+      "size_bytes": 35890
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/brightness_contrast_distribution.png",
+      "sha256": "2d54d935c5dbd21762621f08163d0b338f1c489b94dce531002aa7a851d3e93b",
+      "size_bytes": 51084
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/category_source_distribution.png",
+      "sha256": "0b005db9d13fe15ae7d0d214bc86aa06bdf77adbe3cd3599defcd79cca5ddc21",
+      "size_bytes": 61137
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/compatibility_score_distribution.png",
+      "sha256": "7dbfc249252a9a8ca8499d008c2f6fe480e016169494d34d06296e24c4a97cad",
+      "size_bytes": 35309
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/image_dimension_scatter.png",
+      "sha256": "aeebf5bfd7647987526bfec38420ac27a9a275e54c9eea72d6ab86a6dd0420f0",
+      "size_bytes": 41088
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/occlusion_example_01.png",
+      "sha256": "ae8f90113f00c0cb0b94f3dcc6d08782e4335da1e3e5debfd8dce6b355d31d8d",
+      "size_bytes": 44830
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/occlusion_example_02.png",
+      "sha256": "0dc42226eae0019daf7d54c9f6cae61190c50484dbe6a54b241e985fdb06eec1",
+      "size_bytes": 46196
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/occlusion_example_03.png",
+      "sha256": "da1c0a0b76a5396bd54a6e1d7e8bed6786b096b406a08d692a1ea31a16c62e9a",
+      "size_bytes": 46237
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/occlusion_example_04.png",
+      "sha256": "0f5111adeff510dc9cd6ac76a6dd1f6074f9bd9ac4ba308e8f93b0105f13ab46",
+      "size_bytes": 47832
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/occlusion_example_05.png",
+      "sha256": "2aaa9e0610bd915e7e72a70961efc9dc76305f8bf6a97595a825b18f4aaf40d8",
+      "size_bytes": 47416
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/occlusion_example_06.png",
+      "sha256": "84195e90bbd76b4fef7d8fb57949cecb96a2796e7326e3f60f67936d53d7b851",
+      "size_bytes": 22670
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/occlusion_example_07.png",
+      "sha256": "5cafc777adc928e6085d952b293d1d47947c5ba1638b39135c804036d52f892f",
+      "size_bytes": 46924
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/occlusion_example_08.png",
+      "sha256": "a7b74397f78f93cdf508e80403b21df920cf1b537500154bc84a421d8e6ddd40",
+      "size_bytes": 41204
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/ranking_margin_distribution.png",
+      "sha256": "e7e17197ff8b5735bc22da0d2fa04e0cc7ef955cddb0cd03fc592d8584fd4844",
+      "size_bytes": 25965
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/representation_macro_f1.png",
+      "sha256": "26b24656f7427ebb923839b461dfd9585cab4f3a4301b99529a1db52c501e692",
+      "size_bytes": 75798
+    },
+    {
+      "path": "reports/course_coverage/vision/figures/representative_image_gallery.png",
+      "sha256": "bd2e16f72ab05ac22b9ad1599c278e2b26cd6a43d3b75c1fb4e3b51f0ba4103b",
+      "size_bytes": 95290
+    },
+    {
+      "path": "reports/course_coverage/vision/fine_tuning_gate.json",
+      "sha256": "53a00e388e2c360fe04a2cdf5b7a0934ec1f5e57e1cba6ef78a2e50606cbd390",
+      "size_bytes": 629
+    },
+    {
+      "path": "reports/course_coverage/vision/human_annotation_gate.json",
+      "sha256": "89e0b378ab17005b8ebfb31f33905381e2449c62bf6e217cf7ec84221009d242",
+      "size_bytes": 611
+    },
+    {
+      "path": "reports/course_coverage/vision/image_inventory.csv",
+      "sha256": "4169f37646eb6da98166ff65bd23adddfcfee79da7d97cf36f845d7ffa8a0d54",
+      "size_bytes": 25851
+    },
+    {
+      "path": "reports/course_coverage/vision/image_profile.json",
+      "sha256": "c1ef8b9bed5df76b1d21026ec55cf9697d0ae690f83f33b17103e0e8dd615cec",
+      "size_bytes": 1257
+    },
+    {
+      "path": "reports/course_coverage/vision/notebook_execution_audit.json",
+      "sha256": "bcf85d4bb464137ac739e3b8385c55564debd5c4bc2ec1403f580cece66b92ba",
+      "size_bytes": 721
+    },
+    {
+      "path": "reports/course_coverage/vision/occlusion_results.csv",
+      "sha256": "788a9c1f290f1165bce0e2d2bd33638adea78fc584527318c791ea22dc4cabd8",
+      "size_bytes": 11923
+    },
+    {
+      "path": "reports/course_coverage/vision/pretrained_backbone_gate.json",
+      "sha256": "60ea82b5ec51b41dbf78d2c7ec1b678aeca6ea23881dcd4aeb762dc599c72c04",
+      "size_bytes": 614
+    },
+    {
+      "path": "reports/course_coverage/vision/ranking_metrics.json",
+      "sha256": "b87a24669ee6f9f53213ff2a5af0f7272eb6f324d58514897181de3e21a5512c",
+      "size_bytes": 1204
+    },
+    {
+      "path": "reports/course_coverage/vision/ranking_triplets.csv",
+      "sha256": "a27fa97d94a0dc8e7b376defd9912bda8f976fd076413d7f11114b97c7163b2b",
+      "size_bytes": 4181
+    },
+    {
+      "path": "reports/course_coverage/vision/region_perturbation_summary.csv",
+      "sha256": "25999a5cfb730a073bfe442338c67ef118f09a7f66fc90985f9967e8451b130a",
+      "size_bytes": 1573
+    },
+    {
+      "path": "reports/course_coverage/vision/representation_resolution_comparison.csv",
+      "sha256": "f8b2513f57c334f81a78c16b3014ccc15a1c3211d4ba16b7d6ef4ce293e5c2b5",
+      "size_bytes": 1255
+    },
+    {
+      "path": "reports/course_coverage/vision/representation_resolution_runs.csv",
+      "sha256": "3ec30ce73a271948fca67adb0c2937666830386f48a94250676e2cd1e0d7ee03",
+      "size_bytes": 11981
+    },
+    {
+      "path": "reports/course_coverage/vision/representative_images.csv",
+      "sha256": "fa9ee1de7be7dd706b1d17bb47a35dd97348828e4daed9cdc4cf7ea20c7a8741",
+      "size_bytes": 2934
+    },
+    {
+      "path": "reports/course_coverage/vision/score_distributions.csv",
+      "sha256": "394c7543de0ecaad3534b252ce9cc6694973b390657beae7be36bb1fa3bc5abb",
+      "size_bytes": 377
+    },
+    {
+      "path": "reports/course_coverage/vision/vision_suite_status.json",
+      "sha256": "aa3075661748cc4576ad4b8dd1d2140419f120839e8f9852a74485cc3fb32830",
+      "size_bytes": 1969
+    },
+    {
+      "path": "reports/course_coverage/vision/vision_suite_summary.md",
+      "sha256": "c1cbdceab61614096cbfdd7d700b74e195e5da7cb03850c95c292dade07196de",
+      "size_bytes": 2068
+    },
+    {
+      "path": "src/build_vision_experiment_notebooks.py",
+      "sha256": "7e2f916d88d419b18ef14768a1f3a173f22d99016d8d5f3ad34678e35baa6c3e",
+      "size_bytes": 8479
+    },
+    {
+      "path": "src/run_vision_experimental_suite.py",
+      "sha256": "9e71f45144d1f46ab1e7c273d90b9df16f64961ae5e18c4dbe3a99de4abc1754",
+      "size_bytes": 77228
+    },
+    {
+      "path": "src/verification/project_verification.py",
+      "sha256": "2c9d4f2b3f6c23b5b7f167231c14aa7f8ef5afd9a26812da016db3a9efbbd569",
+      "size_bytes": 1971
+    },
+    {
+      "path": "src/verification/vision_experimental_suite.py",
+      "sha256": "aac37d06b04ef89677636cafa8b7b65cbf3d5223163e2c843e05d7f75f048371",
+      "size_bytes": 13738
+    },
+    {
+      "path": "src/vision_suite_config.py",
+      "sha256": "c9ca3cb3a0171548d8030301d8a6218ad661003f522f03bb7b0156e212e6c081",
+      "size_bytes": 6571
+    },
+    {
+      "path": "tests/test_vision_experimental_suite.py",
+      "sha256": "0d3f0d30ca478536e3efb252b76940221fcb9949c391348de4cdb593ddc2a3fb",
+      "size_bytes": 5872
+    }
+  ],
+  "training_runs_recorded": 48,
+  "completed_problem_count": 6,
+  "deferred_problem_count": 3,
+  "environment": {
+    "pretrained_downloads_allowed": false,
+    "genuine_human_annotations_available": false
+  },
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false,
+  "pretrained_weights_downloaded": false,
+  "synthetic_human_agreement_reported": false
+}

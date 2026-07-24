@@ -1,0 +1,26 @@
+{
+  "step": "011.3A",
+  "status": "PASS",
+  "notebooks": [
+    {
+      "path": "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+      "cell_count": 12,
+      "code_cell_count": 6,
+      "executed_code_cell_count": 6,
+      "output_count": 11,
+      "error_output_count": 0
+    },
+    {
+      "path": "notebooks/course_coverage/04_scoring_ranking_explainability.ipynb",
+      "cell_count": 10,
+      "code_cell_count": 5,
+      "executed_code_cell_count": 5,
+      "output_count": 9,
+      "error_output_count": 0
+    }
+  ],
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false
+}

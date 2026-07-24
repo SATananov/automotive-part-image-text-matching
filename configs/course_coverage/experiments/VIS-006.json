@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "step": "011.3A",
+  "experiment_id": "VIS-006",
+  "exercise_problem_number": 6,
+  "exercise_problem_title": "Controlled fine-tuning",
+  "exercise_requirement": "Gradually compare frozen features, trainable head, final block, final third, and limited full fine-tuning with controlled optimization.",
+  "requirement_status": "required",
+  "research_question": "How much validation improvement justifies unfreezing additional pretrained parameters?",
+  "hypothesis": "Partial fine-tuning may improve category-sensitive features, but full fine-tuning will overfit unless tightly controlled.",
+  "model_family": "pretrained_fine_tuning",
+  "input_modalities": [
+    "image"
+  ],
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+  "configuration_path": "configs/course_coverage/experiments/VIS-006.json",
+  "primary_metric": "validation_macro_f1",
+  "secondary_metrics": [
+    "per_category_f1",
+    "ovr_roc_auc",
+    "trainable_parameter_count",
+    "training_time_seconds",
+    "memory_estimate_mb",
+    "calibration_error"
+  ],
+  "resource_tier": "TIER_4",
+  "expected_outputs": [
+    "fine-tuning ladder table",
+    "learning curves",
+    "calibration report",
+    "failure taxonomy"
+  ],
+  "selection_eligible": true,
+  "evidence_paths": [
+    "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+    "reports/course_coverage/vision/VIS-006/"
+  ],
+  "prerequisites": [
+    "VIS-002 champion frozen backbone selected on validation only.",
+    "Explicit operator approval for Tier 4 execution."
+  ],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ],
+  "execution_policy": "pretrained_champion_and_tier4_approval_required",
+  "pretrained_download_authorized": false,
+  "pretrained_weights_downloaded": false
+}

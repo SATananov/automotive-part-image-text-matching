@@ -1,0 +1,53 @@
+{
+  "step": "011.3A",
+  "status": "PASS",
+  "unique_image_count": 80,
+  "train_unique_image_count": 60,
+  "validation_unique_image_count": 20,
+  "category_count": 10,
+  "family_count": 5,
+  "source_counts": {
+    "generated_development": 40,
+    "wikimedia_commons_open_license": 40
+  },
+  "category_counts": {
+    "air_filter": 8,
+    "alternator": 8,
+    "brake_disc": 8,
+    "brake_pad": 8,
+    "coil_spring": 8,
+    "headlight": 8,
+    "oil_filter": 8,
+    "shock_absorber": 8,
+    "starter": 8,
+    "taillight": 8
+  },
+  "width": {
+    "min": 224,
+    "median": 269.5,
+    "max": 1280
+  },
+  "height": {
+    "min": 224,
+    "median": 264.0,
+    "max": 1707
+  },
+  "brightness": {
+    "min": 0.2394285351037979,
+    "mean": 0.6587970403954386,
+    "max": 0.9227691292762756
+  },
+  "contrast": {
+    "min": 0.1041012778878212,
+    "mean": 0.233231761213392,
+    "max": 0.3324827551841736
+  },
+  "exact_duplicate_groups": 0,
+  "review_required_count": 9,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false,
+  "pretrained_weights_downloaded": false,
+  "synthetic_human_agreement_reported": false
+}

@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0",
+  "step": "011.3A",
+  "status": "PASS",
+  "readiness": "VISION_EXPERIMENTAL_SUITE_CORE_COMPLETE_PRETRAINED_AND_HUMAN_GATES_TEST_LOCKED",
+  "base_checkpoint": "040a637",
+  "course_section": "vision_models",
+  "completed_problem_count": 6,
+  "deferred_problem_count": 3,
+  "total_training_runs": 48,
+  "entries": [
+    {
+      "experiment_id": "VIS-001",
+      "exercise_problem_number": 1,
+      "exercise_problem_title": "Load and inspect image data",
+      "execution_status": "COMPLETED",
+      "training_runs": 0,
+      "result_summary": "Image dimensions, brightness, contrast, category/source coverage, exact hashes, and review flags recorded.",
+      "test_split_used": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "evidence_paths": [
+        "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+        "reports/course_coverage/vision/VIS-001/"
+      ]
+    },
+    {
+      "experiment_id": "VIS-002",
+      "exercise_problem_number": 2,
+      "exercise_problem_title": "Frozen architecture backbones",
+      "execution_status": "DEFERRED_CONTROLLED_GATE",
+      "training_runs": 0,
+      "result_summary": "Deferred behind explicit pretrained-weight download and license/revision gate.",
+      "test_split_used": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "evidence_paths": [
+        "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+        "reports/course_coverage/vision/VIS-002/"
+      ]
+    },
+    {
+      "experiment_id": "VIS-003",
+      "exercise_problem_number": 3,
+      "exercise_problem_title": "Compatibility scoring",
+      "execution_status": "COMPLETED",
+      "training_runs": 6,
+      "result_summary": "Two compatibility strategies compared; selected class_probability_expected_score.",
+      "test_split_used": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "evidence_paths": [
+        "notebooks/course_coverage/04_scoring_ranking_explainability.ipynb",
+        "reports/course_coverage/vision/VIS-003/"
+      ]
+    },
+    {
+      "experiment_id": "VIS-004",
+      "exercise_problem_number": 4,
+      "exercise_problem_title": "Representation and resolution inspection",
+      "execution_status": "COMPLETED",
+      "training_runs": 27,
+      "result_summary": "27 local fixed-convolutional representation runs completed; selected global_pool at 64 px.",
+      "test_split_used": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "evidence_paths": [
+        "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+        "reports/course_coverage/vision/VIS-004/"
+      ]
+    },
+    {
+      "experiment_id": "VIS-005",
+      "exercise_problem_number": 5,
+      "exercise_problem_title": "Local evidence and explainability",
+      "execution_status": "COMPLETED",
+      "training_runs": 0,
+      "result_summary": "3x3 occlusion evidence generated for 8 validation images; no human score claimed.",
+      "test_split_used": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "evidence_paths": [
+        "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+        "notebooks/course_coverage/04_scoring_ranking_explainability.ipynb",
+        "reports/course_coverage/vision/VIS-005/"
+      ]
+    },
+    {
+      "experiment_id": "VIS-006",
+      "exercise_problem_number": 6,
+      "exercise_problem_title": "Controlled fine-tuning",
+      "execution_status": "DEFERRED_CONTROLLED_GATE",
+      "training_runs": 0,
+      "result_summary": "Deferred until VIS-002 champion and Tier 4 approval exist.",
+      "test_split_used": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "evidence_paths": [
+        "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+        "reports/course_coverage/vision/VIS-006/"
+      ]
+    },
+    {
+      "experiment_id": "VIS-007",
+      "exercise_problem_number": 7,
+      "exercise_problem_title": "Annotator confidence and agreement",
+      "execution_status": "DEFERRED_CONTROLLED_GATE",
+      "training_runs": 0,
+      "result_summary": "Deferred until genuine independent human annotations exist.",
+      "test_split_used": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "evidence_paths": [
+        "notebooks/course_coverage/04_scoring_ranking_explainability.ipynb",
+        "reports/course_coverage/vision/VIS-007/"
+      ]
+    },
+    {
+      "experiment_id": "VIS-008",
+      "exercise_problem_number": 8,
+      "exercise_problem_title": "Failure-driven data augmentation",
+      "execution_status": "COMPLETED",
+      "training_runs": 15,
+      "result_summary": "15 controlled augmentation runs completed; selected combined.",
+      "test_split_used": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "evidence_paths": [
+        "notebooks/course_coverage/03_vision_model_comparison.ipynb",
+        "reports/course_coverage/vision/VIS-008/"
+      ]
+    },
+    {
+      "experiment_id": "VIS-009",
+      "exercise_problem_number": 9,
+      "exercise_problem_title": "Ranking metrics",
+      "execution_status": "COMPLETED",
+      "training_runs": 0,
+      "result_summary": "Pairwise ranking accuracy 0.8833; scalar-score transitivity audited.",
+      "test_split_used": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "evidence_paths": [
+        "notebooks/course_coverage/04_scoring_ranking_explainability.ipynb",
+        "notebooks/course_coverage/05_course_coverage_synthesis.ipynb",
+        "reports/course_coverage/vision/VIS-009/"
+      ]
+    }
+  ],
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false,
+  "pretrained_weights_downloaded": false,
+  "synthetic_human_agreement_reported": false
+}

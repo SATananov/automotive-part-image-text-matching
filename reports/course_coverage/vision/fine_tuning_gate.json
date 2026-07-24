@@ -1,0 +1,15 @@
+{
+  "step": "011.3A",
+  "experiment_id": "VIS-006",
+  "status": "DEFERRED_PRETRAINED_CHAMPION_AND_TIER4_APPROVAL_REQUIRED",
+  "vis002_champion_available": false,
+  "tier4_operator_approval_received": false,
+  "fine_tuning_performed": false,
+  "pretrained_weights_downloaded": false,
+  "reason": "Fine-tuning cannot begin before VIS-002 selects a frozen pretrained champion and Tier 4 execution is approved.",
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false,
+  "synthetic_human_agreement_reported": false
+}

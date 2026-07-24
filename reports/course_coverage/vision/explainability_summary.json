@@ -1,0 +1,22 @@
+{
+  "step": "011.3A",
+  "status": "PASS",
+  "method": "model_independent_3x3_occlusion_and_crop_retest",
+  "selected_example_count": 8,
+  "occlusion_evaluation_count": 72,
+  "manual_plausible_region_review_rate": null,
+  "manual_review_claimed": false,
+  "automated_foreground_proxy_definition": "highest local gradient-energy patch",
+  "automated_foreground_proxy_alignment_rate": 0.75,
+  "corner_maximum_count": 1,
+  "mean_center_prediction_delta": 0.20158544863079442,
+  "mean_border_prediction_delta": 0.12930929410948266,
+  "failure_case_count": 7,
+  "human_interpretation_boundary": "No human plausible-region score is claimed. The automated proxy is diagnostic only.",
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false,
+  "pretrained_weights_downloaded": false,
+  "synthetic_human_agreement_reported": false
+}

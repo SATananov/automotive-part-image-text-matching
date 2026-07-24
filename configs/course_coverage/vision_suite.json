@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "step": "011.3A",
+  "title": "Vision Core Experimental Suite, Explainability & Controlled Gates",
+  "base_checkpoint": "040a637",
+  "course_section": "vision_models",
+  "exercise_problem_count": 9,
+  "required_problem_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "completed_problem_numbers": [
+    1,
+    3,
+    4,
+    5,
+    8,
+    9
+  ],
+  "deferred_problem_numbers": [
+    2,
+    6,
+    7
+  ],
+  "deferred_reasons": {
+    "VIS-002": "Explicit approval is required before downloading pretrained convolutional or transformer weights and recording license/revision.",
+    "VIS-006": "Fine-tuning requires a selected pretrained VIS-002 champion plus explicit Tier 4 operator approval.",
+    "VIS-007": "Agreement analysis requires at least two genuine independent human annotators and pre-adjudication confidence labels."
+  },
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "pretrained_download_authorized": false,
+  "pretrained_weights_downloaded": false,
+  "genuine_independent_annotators_available": false,
+  "synthetic_human_agreement_reported": false,
+  "random_seeds": [
+    42,
+    43,
+    44
+  ],
+  "resolutions": [
+    32,
+    48,
+    64
+  ],
+  "fixed_convolutional_representations": [
+    "global_pool",
+    "intermediate_fixed_conv",
+    "multi_stage_fixed_conv"
+  ],
+  "augmentation_policies": [
+    "none",
+    "brightness",
+    "center_crop",
+    "jpeg_compression",
+    "combined"
+  ],
+  "compatibility_strategies": [
+    "ordinal_ridge",
+    "class_probability_expected_score"
+  ],
+  "selection_metric": "validation_macro_f1",
+  "selection_tiebreakers": [
+    "validation_accuracy",
+    "seed_stability",
+    "feature_dimension",
+    "inference_time_ms"
+  ],
+  "production_final_model_changed": false,
+  "readiness": "VISION_EXPERIMENTAL_SUITE_CORE_COMPLETE_PRETRAINED_AND_HUMAN_GATES_TEST_LOCKED"
+}

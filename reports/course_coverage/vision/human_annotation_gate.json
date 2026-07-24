@@ -1,0 +1,15 @@
+{
+  "step": "011.3A",
+  "experiment_id": "VIS-007",
+  "status": "DEFERRED_GENUINE_INDEPENDENT_ANNOTATIONS_REQUIRED",
+  "independent_annotator_count": 0,
+  "pre_adjudication_confidence_available": false,
+  "human_agreement_computed": false,
+  "synthetic_human_agreement_reported": false,
+  "reason": "At least two genuine independent annotators are required; simulated annotators are forbidden.",
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false,
+  "pretrained_weights_downloaded": false
+}

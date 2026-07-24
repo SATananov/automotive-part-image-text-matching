@@ -33,6 +33,7 @@ VERIFICATION_MODULES = (
     "src.verification.full_course_coverage_architecture",
     "src.verification.fundamentals_experimental_suite",
     "src.verification.sequence_experimental_suite",
+    "src.verification.vision_experimental_suite",
 )
 
 

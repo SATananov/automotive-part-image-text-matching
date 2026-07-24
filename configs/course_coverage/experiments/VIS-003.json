@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "step": "011.3A",
+  "experiment_id": "VIS-003",
+  "exercise_problem_number": 3,
+  "exercise_problem_title": "Compatibility scoring",
+  "exercise_requirement": "Learn image-text compatibility scores, compare at least two equal-pair strategies, and test reversed-pair antisymmetry.",
+  "requirement_status": "required",
+  "research_question": "Can the three-class relation task be represented as an ordered compatibility score with stable pairwise differences?",
+  "hypothesis": "MATCH descriptions will receive higher scores than PARTIAL_MATCH and MISMATCH, with flip consistency near antisymmetry.",
+  "model_family": "compatibility_scoring",
+  "input_modalities": [
+    "image",
+    "text"
+  ],
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+  "configuration_path": "configs/course_coverage/experiments/VIS-003.json",
+  "primary_metric": "pairwise_ranking_accuracy",
+  "secondary_metrics": [
+    "three_way_ordering_accuracy",
+    "flip_consistency_error",
+    "equal_pair_accuracy",
+    "margin_distribution"
+  ],
+  "resource_tier": "TIER_3",
+  "expected_outputs": [
+    "score distributions",
+    "equal-pair strategy comparison",
+    "flip consistency report"
+  ],
+  "selection_eligible": true,
+  "evidence_paths": [
+    "notebooks/course_coverage/04_scoring_ranking_explainability.ipynb",
+    "reports/course_coverage/vision/VIS-003/"
+  ],
+  "prerequisites": [],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ],
+  "execution_policy": "controlled_train_validation_only"
+}

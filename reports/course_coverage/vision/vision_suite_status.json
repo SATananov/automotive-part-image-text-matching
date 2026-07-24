@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "step": "011.3A",
+  "status": "PASS",
+  "readiness": "VISION_EXPERIMENTAL_SUITE_CORE_COMPLETE_PRETRAINED_AND_HUMAN_GATES_TEST_LOCKED",
+  "base_checkpoint": "040a637",
+  "completed_problem_numbers": [
+    1,
+    3,
+    4,
+    5,
+    8,
+    9
+  ],
+  "deferred_problem_numbers": [
+    2,
+    6,
+    7
+  ],
+  "completed_problem_count": 6,
+  "deferred_problem_count": 3,
+  "training_runs_recorded": 48,
+  "model_training_performed": true,
+  "image_profile_complete": true,
+  "unique_images_profiled": 80,
+  "selected_representation_run": {
+    "run_id": "VIS004_global_pool_64_seed42",
+    "representation": "global_pool",
+    "resolution": 64,
+    "seed": 42,
+    "validation_macro_f1": 0.66,
+    "validation_accuracy": 0.65
+  },
+  "selected_augmentation_run": {
+    "run_id": "VIS008_combined_seed44",
+    "augmentation_policy": "combined",
+    "representation": "global_pool",
+    "resolution": 64,
+    "seed": 44,
+    "validation_macro_f1": 0.7433333333333334,
+    "validation_accuracy": 0.75
+  },
+  "selected_compatibility_run": {
+    "run_id": "VIS003_class_probability_expected_score_seed42",
+    "strategy": "class_probability_expected_score",
+    "seed": 42,
+    "validation_macro_f1": 0.8175515941473388,
+    "validation_accuracy": 0.8166666666666667,
+    "pairwise_ranking_accuracy": 0.8833333333333333
+  },
+  "occlusion_examples": 8,
+  "manual_plausible_region_review_claimed": false,
+  "pretrained_backbone_status": "DEFERRED_EXPLICIT_APPROVAL_REQUIRED",
+  "fine_tuning_status": "DEFERRED_PRETRAINED_CHAMPION_AND_TIER4_APPROVAL_REQUIRED",
+  "human_annotation_status": "DEFERRED_GENUINE_INDEPENDENT_ANNOTATIONS_REQUIRED",
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false,
+  "pretrained_weights_downloaded": false,
+  "synthetic_human_agreement_reported": false
+}
