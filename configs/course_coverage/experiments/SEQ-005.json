@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "step": "011.2",
+  "experiment_id": "SEQ-005",
+  "exercise_problem_number": 5,
+  "exercise_problem_title": "Classical machine-learning baseline",
+  "exercise_requirement": "Tune and compare a TF-IDF classical classifier against the dense neural baseline under the same grouped split.",
+  "requirement_status": "optional_but_committed",
+  "research_question": "Does sparse lexical modelling remain competitive with neural sequence representations on short domain text?",
+  "hypothesis": "TF-IDF will remain a strong efficiency baseline but may generalize less well to paraphrased cues.",
+  "model_family": "tfidf_logistic_regression",
+  "input_modalities": [
+    "text"
+  ],
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+  "configuration_path": "configs/course_coverage/experiments/SEQ-005.json",
+  "primary_metric": "validation_macro_f1",
+  "secondary_metrics": [
+    "validation_accuracy",
+    "training_time_seconds",
+    "inference_time_ms",
+    "feature_count"
+  ],
+  "resource_tier": "TIER_1",
+  "expected_outputs": [
+    "hyperparameter table",
+    "metrics JSON",
+    "error comparison"
+  ],
+  "selection_eligible": true,
+  "evidence_paths": [
+    "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+    "reports/course_coverage/sequence/SEQ-005/"
+  ],
+  "prerequisites": [],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ],
+  "execution_policy": "controlled_train_validation_only"
+}

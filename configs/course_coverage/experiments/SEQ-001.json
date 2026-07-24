@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "step": "011.2",
+  "experiment_id": "SEQ-001",
+  "exercise_problem_number": 1,
+  "exercise_problem_title": "Load and inspect text data",
+  "exercise_requirement": "Inspect text features, lengths, vocabulary, label balance, and representative descriptions.",
+  "requirement_status": "required",
+  "research_question": "What linguistic patterns and sequence lengths characterize the automotive descriptions?",
+  "hypothesis": "Descriptions will be short and domain-specific, with category terms and compatibility cues carrying substantial signal.",
+  "model_family": "text_eda",
+  "input_modalities": [
+    "text"
+  ],
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+  "configuration_path": "configs/course_coverage/experiments/SEQ-001.json",
+  "primary_metric": "text_profile_complete",
+  "secondary_metrics": [
+    "token_count_distribution",
+    "vocabulary_size",
+    "label_balance",
+    "oov_risk"
+  ],
+  "resource_tier": "TIER_0",
+  "expected_outputs": [
+    "text profile JSON",
+    "length plots",
+    "example table"
+  ],
+  "selection_eligible": false,
+  "evidence_paths": [
+    "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+    "reports/course_coverage/sequence/SEQ-001/"
+  ],
+  "prerequisites": [],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ],
+  "execution_policy": "controlled_train_validation_only"
+}

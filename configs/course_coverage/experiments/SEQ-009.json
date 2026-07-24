@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "step": "011.2",
+  "experiment_id": "SEQ-009",
+  "exercise_problem_number": 9,
+  "exercise_problem_title": "Inspect attention heads",
+  "exercise_requirement": "Return per-head attention weights and visualize at least two heads for correct and incorrect examples.",
+  "requirement_status": "required",
+  "research_question": "Do different attention heads focus on distinct tokens and plausible compatibility evidence?",
+  "hypothesis": "Some heads will specialize in category or mismatch cues, while others may show diffuse or positional behaviour.",
+  "model_family": "attention_visualization",
+  "input_modalities": [
+    "text"
+  ],
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+  "configuration_path": "configs/course_coverage/experiments/SEQ-009.json",
+  "primary_metric": "attention_evidence_review_pass",
+  "secondary_metrics": [
+    "head_diversity_score",
+    "token_attention_summary",
+    "example_prediction_correctness"
+  ],
+  "resource_tier": "TIER_2",
+  "expected_outputs": [
+    "attention heatmaps",
+    "token-level interpretation",
+    "limitations note"
+  ],
+  "selection_eligible": false,
+  "evidence_paths": [
+    "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+    "reports/course_coverage/sequence/SEQ-009/"
+  ],
+  "prerequisites": [],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ],
+  "execution_policy": "controlled_train_validation_only"
+}

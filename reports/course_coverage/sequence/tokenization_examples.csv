@@ -1,0 +1,13 @@
+sample_id,description,tokens,encoded_sequence,decoded_non_padding,label
+air_filter_001_01_match,Automotive air filter.,"[""automotive"", ""air"", ""filter""]","[2, 14, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0]","[""automotive"", ""air"", ""filter""]",MATCH
+air_filter_001_01_mismatch,Automotive starter motor.,"[""automotive"", ""starter"", ""motor""]","[2, 12, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0]","[""automotive"", ""starter"", ""motor""]",MISMATCH
+air_filter_001_01_partial_match,Automotive oil filter.,"[""automotive"", ""oil"", ""filter""]","[2, 10, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0]","[""automotive"", ""oil"", ""filter""]",PARTIAL_MATCH
+air_filter_002_01_match,Automotive air filter.,"[""automotive"", ""air"", ""filter""]","[2, 14, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0]","[""automotive"", ""air"", ""filter""]",MATCH
+air_filter_002_01_mismatch,Automotive starter motor.,"[""automotive"", ""starter"", ""motor""]","[2, 12, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0]","[""automotive"", ""starter"", ""motor""]",MISMATCH
+air_filter_002_01_partial_match,Automotive oil filter.,"[""automotive"", ""oil"", ""filter""]","[2, 10, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0]","[""automotive"", ""oil"", ""filter""]",PARTIAL_MATCH
+air_filter_004_01_match,Automotive air filter.,"[""automotive"", ""air"", ""filter""]","[2, 14, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0]","[""automotive"", ""air"", ""filter""]",MATCH
+air_filter_004_01_mismatch,Automotive starter motor.,"[""automotive"", ""starter"", ""motor""]","[2, 12, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0]","[""automotive"", ""starter"", ""motor""]",MISMATCH
+air_filter_004_01_partial_match,Automotive oil filter.,"[""automotive"", ""oil"", ""filter""]","[2, 10, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0]","[""automotive"", ""oil"", ""filter""]",PARTIAL_MATCH
+alternator_004_01_match,Automotive alternator.,"[""automotive"", ""alternator""]","[2, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]","[""automotive"", ""alternator""]",MATCH
+alternator_004_01_mismatch,Automotive brake disc.,"[""automotive"", ""brake"", ""disc""]","[2, 4, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0]","[""automotive"", ""brake"", ""disc""]",MISMATCH
+alternator_004_01_partial_match,Automotive starter motor.,"[""automotive"", ""starter"", ""motor""]","[2, 12, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0]","[""automotive"", ""starter"", ""motor""]",PARTIAL_MATCH

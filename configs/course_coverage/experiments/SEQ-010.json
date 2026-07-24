@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "step": "011.2",
+  "experiment_id": "SEQ-010",
+  "exercise_problem_number": 10,
+  "exercise_problem_title": "Pretrained transformer",
+  "exercise_requirement": "Adapt a compact pretrained transformer for classification and compare performance, attention, cost, and limitations.",
+  "requirement_status": "optional_but_committed",
+  "research_question": "Does transfer learning improve representation quality enough to justify additional dependencies and compute?",
+  "hypothesis": "A compact pretrained encoder may improve robustness, but gains may be limited by the small domain-specific dataset.",
+  "model_family": "pretrained_transformer",
+  "input_modalities": [
+    "text"
+  ],
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+  "configuration_path": "configs/course_coverage/experiments/SEQ-010.json",
+  "primary_metric": "validation_macro_f1",
+  "secondary_metrics": [
+    "validation_accuracy",
+    "parameter_count",
+    "trainable_parameter_count",
+    "training_time_seconds",
+    "inference_time_ms"
+  ],
+  "resource_tier": "TIER_4",
+  "expected_outputs": [
+    "pretrained comparison table",
+    "learning curves",
+    "attention examples",
+    "cost discussion"
+  ],
+  "selection_eligible": true,
+  "evidence_paths": [
+    "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+    "reports/course_coverage/sequence/SEQ-010/"
+  ],
+  "prerequisites": [
+    "Explicit approval before downloading pretrained weights.",
+    "Record model license and exact revision."
+  ],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ],
+  "execution_policy": "explicit_pretrained_approval_required",
+  "pretrained_download_authorized": false,
+  "pretrained_weights_downloaded": false
+}

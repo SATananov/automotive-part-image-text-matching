@@ -1,0 +1,14 @@
+{
+  "experiment_id": "SEQ-010",
+  "status": "DEFERRED_EXPLICIT_APPROVAL_REQUIRED",
+  "reason": "Downloading pretrained transformer weights requires explicit user authorization and license/revision recording.",
+  "approval_received": false,
+  "network_download_attempted": false,
+  "pretrained_weights_downloaded": false,
+  "pretrained_model_loaded": false,
+  "model_identifier": null,
+  "model_revision": null,
+  "model_license": null,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false
+}

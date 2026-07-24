@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "transformer_run_id": "transformer-seed-43",
+  "head_count": 2,
+  "selection": {
+    "correct": {
+      "sample_id": "alternator_004_01_match",
+      "description": "Automotive alternator.",
+      "tokens": [
+        "automotive",
+        "alternator"
+      ],
+      "true_label": "MATCH",
+      "predicted_label": "MATCH",
+      "correct": true,
+      "heads": [
+        {
+          "head": 1,
+          "matrix": [
+            [
+              0.08339851349592209,
+              0.08329005539417267
+            ],
+            [
+              0.08319933712482452,
+              0.08326342701911926
+            ]
+          ],
+          "top_attended_tokens": [
+            "automotive",
+            "alternator"
+          ]
+        },
+        {
+          "head": 2,
+          "matrix": [
+            [
+              0.08368934690952301,
+              0.08360383659601212
+            ],
+            [
+              0.08365023136138916,
+              0.08359109610319138
+            ]
+          ],
+          "top_attended_tokens": [
+            "automotive",
+            "alternator"
+          ]
+        }
+      ]
+    },
+    "incorrect": {
+      "sample_id": "air_filter_004_01_match",
+      "description": "Automotive air filter.",
+      "tokens": [
+        "automotive",
+        "air",
+        "filter"
+      ],
+      "true_label": "MATCH",
+      "predicted_label": "PARTIAL_MATCH",
+      "correct": false,
+      "heads": [
+        {
+          "head": 1,
+          "matrix": [
+            [
+              0.08338826894760132,
+              0.0833258107304573,
+              0.0833977460861206
+            ],
+            [
+              0.0832684338092804,
+              0.08328285813331604,
+              0.08328381180763245
+            ],
+            [
+              0.08316528797149658,
+              0.08319151401519775,
+              0.08302362263202667
+            ]
+          ],
+          "top_attended_tokens": [
+            "automotive",
+            "air",
+            "filter"
+          ]
+        },
+        {
+          "head": 2,
+          "matrix": [
+            [
+              0.08367032557725906,
+              0.08352020382881165,
+              0.08354374766349792
+            ],
+            [
+              0.08359776437282562,
+              0.08338351547718048,
+              0.08344628661870956
+            ],
+            [
+              0.08346239477396011,
+              0.08335035294294357,
+              0.08339331299066544
+            ]
+          ],
+          "top_attended_tokens": [
+            "automotive",
+            "filter",
+            "air"
+          ]
+        }
+      ]
+    }
+  },
+  "test_split_used": false
+}

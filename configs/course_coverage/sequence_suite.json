@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "step": "011.2",
+  "title": "Transformers & Sequence Modelling Experimental Suite",
+  "base_checkpoint": "cfb6bba",
+  "course_section": "transformers_and_sequence_modelling",
+  "exercise_problem_count": 10,
+  "required_problem_numbers": [
+    1,
+    2,
+    3,
+    4,
+    7,
+    8,
+    9
+  ],
+  "optional_but_committed_problem_numbers": [
+    5,
+    6,
+    10
+  ],
+  "completed_problem_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "deferred_problem_numbers": [
+    10
+  ],
+  "deferred_reason": "Explicit approval is required before downloading pretrained weights and recording model license/revision.",
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "pretrained_download_authorized": false,
+  "pretrained_weights_downloaded": false,
+  "random_seeds": [
+    42,
+    43,
+    44
+  ],
+  "sequence_length": 12,
+  "max_vocabulary_size": 1000,
+  "batch_size": 180,
+  "max_epochs": 3,
+  "early_stopping_patience": 1,
+  "model_families": [
+    "embedding_average",
+    "tfidf_logistic_regression",
+    "text_cnn",
+    "gru",
+    "lstm",
+    "small_transformer_encoder"
+  ],
+  "selection_metric": "validation_macro_f1",
+  "selection_tiebreakers": [
+    "validation_accuracy",
+    "seed_stability",
+    "parameter_count",
+    "training_time_seconds"
+  ],
+  "production_final_model_changed": false,
+  "readiness": "SEQUENCE_EXPERIMENTAL_SUITE_CORE_COMPLETE_PRETRAINED_GATE_TEST_LOCKED"
+}

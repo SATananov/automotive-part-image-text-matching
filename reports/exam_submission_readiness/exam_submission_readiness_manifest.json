@@ -4,7 +4,7 @@
   "base_commit": "74fab18",
   "hash_normalization": "utf-8-lf",
   "source_artifact_sha256": {
-    "README.md": "c45abfe616392133d18789c84971eb0181372f4040697737c40007a1f4ddf8b0",
+    "README.md": "0cd58b4de9e1ba7499c3220226097777bad283653ea195b078b1de09848fae76",
     "requirements.txt": "44fbf0c226749c55f43543834085f72676fbe7ad273b740e369fcf9a5e11f58d",
     "requirements-lock.txt": "1c40aa22e2107d38701af93dd0901936a49f79062f17bfc3f25d8a2f15b361f6",
     "notebooks/02_final_exam_project.ipynb": "5eb6c63a2d5f4ab15578c70d73bd74abac304b07b90ad1fb50519ddc35fd2e7e",
@@ -14,10 +14,10 @@
     "data/processed/integrated_test_lock.json": "2c28c06a16848344197d3ff6f683799a43edc0821360a2d98c8534c28bde6643"
   },
   "generated_artifact_sha256": {
-    "reports/exam_submission_readiness/exam_submission_readiness_status.json": "4b2f0503cdb1f12efb4d4f514403295541f1bce2185ed88ff88b83cba58122d5",
+    "reports/exam_submission_readiness/exam_submission_readiness_status.json": "39c8907a173d549dc67c2c7895cf2925be2dc573262faa3ffdb30f0b75ec95c4",
     "reports/exam_submission_readiness/submission_checklist.md": "4b481076ea5e37698573486a9ce6f3005cfeae862f767f3c91e9694388145a67",
-    "reports/exam_submission_readiness/clean_clone_reproducibility.md": "74b8dc4a18ac7c21446bf6ddb0804f4be086ee6d76512043f77147d51f5030f6",
-    "reports/exam_submission_readiness/exam_submission_readiness_summary.md": "44dd157e32a5a00a1e6a12162574e68f07f3fb3655b9f6801dff7f87b5f8178f"
+    "reports/exam_submission_readiness/clean_clone_reproducibility.md": "75c4b6f347b204aa8d615bd65f661e4d9c0f47ca8a8a9bde1249ccbfca7e9635",
+    "reports/exam_submission_readiness/exam_submission_readiness_summary.md": "d3cd5cd0bfb2ecb6a2d5b210531d93be556d3e434bb96101cf26ebeff3cd8789"
   },
   "generated_artifact_count": 4,
   "model_retraining_performed": false,

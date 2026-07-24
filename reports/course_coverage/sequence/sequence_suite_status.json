@@ -1,0 +1,43 @@
+{
+  "step": "011.2",
+  "status": "PASS",
+  "readiness": "SEQUENCE_EXPERIMENTAL_SUITE_CORE_COMPLETE_PRETRAINED_GATE_TEST_LOCKED",
+  "base_checkpoint": "cfb6bba",
+  "sequence_exercise_problems": "9/9 core completed; 1/1 pretrained extension gated",
+  "completed_problem_ids": [
+    "SEQ-001",
+    "SEQ-002",
+    "SEQ-003",
+    "SEQ-004",
+    "SEQ-005",
+    "SEQ-006",
+    "SEQ-007",
+    "SEQ-008",
+    "SEQ-009"
+  ],
+  "deferred_problem_ids": [
+    "SEQ-010"
+  ],
+  "required_core_problem_count": 9,
+  "completed_core_problem_count": 9,
+  "training_runs_recorded": 21,
+  "model_families_compared": [
+    "embedding_average",
+    "gru",
+    "lstm",
+    "textcnn",
+    "tfidf_logistic",
+    "transformer"
+  ],
+  "selected_educational_validation_run": "tfidf-ngram-1-1-c-1",
+  "selected_educational_validation_family": "tfidf_logistic",
+  "selected_validation_accuracy": 0.4166666666666667,
+  "selected_validation_macro_f1": 0.32996632996632996,
+  "selection_scope": "educational_validation_only",
+  "production_final_model_changed": false,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "pretrained_weights_downloaded": false,
+  "pretrained_extension_status": "DEFERRED_EXPLICIT_APPROVAL_REQUIRED"
+}

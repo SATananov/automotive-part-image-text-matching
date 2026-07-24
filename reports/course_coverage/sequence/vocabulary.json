@@ -1,0 +1,27 @@
+{
+  "size": 22,
+  "token_to_index": {
+    "<PAD>": 0,
+    "<UNK>": 1,
+    "automotive": 2,
+    "assembly": 3,
+    "brake": 4,
+    "filter": 5,
+    "absorber": 6,
+    "disc": 7,
+    "headlight": 8,
+    "motor": 9,
+    "oil": 10,
+    "shock": 11,
+    "starter": 12,
+    "engine": 13,
+    "air": 14,
+    "alternator": 15,
+    "coil": 16,
+    "pad": 17,
+    "spring": 18,
+    "taillight": 19,
+    "suspension": 20,
+    "set": 21
+  }
+}

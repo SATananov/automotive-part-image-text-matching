@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "token_pattern": "[a-z0-9]+",
+  "lowercase": true,
+  "vocabulary_fit_split": "train_only",
+  "vocabulary_size": 22,
+  "maximum_vocabulary_size": 1000,
+  "sequence_length": 12,
+  "padding": "post",
+  "truncation": "post",
+  "padding_index": 0,
+  "unknown_index": 1,
+  "train_shape": [
+    180,
+    12
+  ],
+  "validation_shape": [
+    60,
+    12
+  ],
+  "test_split_used": false
+}

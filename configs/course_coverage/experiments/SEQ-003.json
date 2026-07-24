@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "step": "011.2",
+  "experiment_id": "SEQ-003",
+  "exercise_problem_number": 3,
+  "exercise_problem_title": "Tokenization",
+  "exercise_requirement": "Lowercase and tokenize descriptions, reserve pad and unknown tokens, and display raw text, tokens, IDs, and padded sequences.",
+  "requirement_status": "required",
+  "research_question": "Does an explicit tokenizer produce reproducible sequences suitable for fair architecture comparisons?",
+  "hypothesis": "A train-fitted word tokenizer with explicit special tokens will provide stable bounded-length inputs.",
+  "model_family": "tokenization",
+  "input_modalities": [
+    "text"
+  ],
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+  "configuration_path": "configs/course_coverage/experiments/SEQ-003.json",
+  "primary_metric": "tokenization_contract_pass",
+  "secondary_metrics": [
+    "vocabulary_size",
+    "oov_rate",
+    "truncation_rate",
+    "padding_rate"
+  ],
+  "resource_tier": "TIER_0",
+  "expected_outputs": [
+    "tokenization example table",
+    "vocabulary summary",
+    "sequence length report"
+  ],
+  "selection_eligible": false,
+  "evidence_paths": [
+    "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+    "reports/course_coverage/sequence/SEQ-003/"
+  ],
+  "prerequisites": [],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ],
+  "execution_policy": "controlled_train_validation_only"
+}

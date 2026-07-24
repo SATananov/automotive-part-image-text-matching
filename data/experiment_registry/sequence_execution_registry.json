@@ -1,0 +1,148 @@
+{
+  "step": "011.2",
+  "status": "PASS",
+  "readiness": "SEQUENCE_EXPERIMENTAL_SUITE_CORE_COMPLETE_PRETRAINED_GATE_TEST_LOCKED",
+  "experiments": [
+    {
+      "experiment_id": "SEQ-001",
+      "step": "011.2",
+      "status": "COMPLETED",
+      "training_runs": 0,
+      "evidence": [
+        "reports/course_coverage/sequence/text_profile.json",
+        "reports/course_coverage/sequence/text_loader_contract.json"
+      ],
+      "test_split_allowed": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "pretrained_weights_downloaded": false
+    },
+    {
+      "experiment_id": "SEQ-002",
+      "step": "011.2",
+      "status": "COMPLETED",
+      "training_runs": 0,
+      "evidence": [
+        "reports/course_coverage/sequence/text_profile.json",
+        "reports/course_coverage/sequence/text_loader_contract.json"
+      ],
+      "test_split_allowed": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "pretrained_weights_downloaded": false
+    },
+    {
+      "experiment_id": "SEQ-003",
+      "step": "011.2",
+      "status": "COMPLETED",
+      "training_runs": 0,
+      "evidence": [
+        "reports/course_coverage/sequence/tokenization_summary.json",
+        "reports/course_coverage/sequence/vocabulary.json"
+      ],
+      "test_split_allowed": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "pretrained_weights_downloaded": false
+    },
+    {
+      "experiment_id": "SEQ-004",
+      "step": "011.2",
+      "status": "COMPLETED",
+      "training_runs": 3,
+      "evidence": [
+        "reports/course_coverage/sequence/model_comparison.csv"
+      ],
+      "test_split_allowed": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "pretrained_weights_downloaded": false
+    },
+    {
+      "experiment_id": "SEQ-005",
+      "step": "011.2",
+      "status": "COMPLETED",
+      "training_runs": 6,
+      "evidence": [
+        "reports/course_coverage/sequence/model_comparison.csv"
+      ],
+      "test_split_allowed": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "pretrained_weights_downloaded": false
+    },
+    {
+      "experiment_id": "SEQ-006",
+      "step": "011.2",
+      "status": "COMPLETED",
+      "training_runs": 9,
+      "evidence": [
+        "reports/course_coverage/sequence/model_comparison.csv"
+      ],
+      "test_split_allowed": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "pretrained_weights_downloaded": false
+    },
+    {
+      "experiment_id": "SEQ-007",
+      "step": "011.2",
+      "status": "COMPLETED",
+      "training_runs": 3,
+      "evidence": [
+        "reports/course_coverage/sequence/model_comparison.csv"
+      ],
+      "test_split_allowed": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "pretrained_weights_downloaded": false
+    },
+    {
+      "experiment_id": "SEQ-008",
+      "step": "011.2",
+      "status": "COMPLETED",
+      "training_runs": 0,
+      "evidence": [
+        "reports/course_coverage/sequence/roc_curves.json",
+        "reports/course_coverage/sequence/validation_error_analysis.csv"
+      ],
+      "test_split_allowed": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "pretrained_weights_downloaded": false
+    },
+    {
+      "experiment_id": "SEQ-009",
+      "step": "011.2",
+      "status": "COMPLETED",
+      "training_runs": 0,
+      "evidence": [
+        "reports/course_coverage/sequence/attention_evidence.json",
+        "reports/course_coverage/sequence/attention_token_summary.csv"
+      ],
+      "test_split_allowed": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "pretrained_weights_downloaded": false
+    },
+    {
+      "experiment_id": "SEQ-010",
+      "step": "011.2",
+      "status": "DEFERRED_EXPLICIT_APPROVAL_REQUIRED",
+      "training_runs": 0,
+      "evidence": [
+        "reports/course_coverage/sequence/pretrained_transformer_gate.json"
+      ],
+      "test_split_allowed": false,
+      "final_test_evaluation_authorized": false,
+      "production_final_model_changed": false,
+      "pretrained_weights_downloaded": false
+    }
+  ],
+  "total_training_runs": 21,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false,
+  "pretrained_weights_downloaded": false
+}

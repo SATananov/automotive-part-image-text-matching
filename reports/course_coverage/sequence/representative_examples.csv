@@ -1,0 +1,13 @@
+split,sample_id,part_category,description,label
+train,air_filter_001_01_match,air_filter,Automotive air filter.,MATCH
+train,air_filter_002_01_match,air_filter,Automotive air filter.,MATCH
+train,air_filter_001_01_partial_match,air_filter,Automotive oil filter.,PARTIAL_MATCH
+train,air_filter_002_01_partial_match,air_filter,Automotive oil filter.,PARTIAL_MATCH
+train,air_filter_001_01_mismatch,air_filter,Automotive starter motor.,MISMATCH
+train,air_filter_002_01_mismatch,air_filter,Automotive starter motor.,MISMATCH
+validation,air_filter_004_01_match,air_filter,Automotive air filter.,MATCH
+validation,alternator_004_01_match,alternator,Automotive alternator.,MATCH
+validation,air_filter_004_01_partial_match,air_filter,Automotive oil filter.,PARTIAL_MATCH
+validation,alternator_004_01_partial_match,alternator,Automotive starter motor.,PARTIAL_MATCH
+validation,air_filter_004_01_mismatch,air_filter,Automotive starter motor.,MISMATCH
+validation,alternator_004_01_mismatch,alternator,Automotive brake disc.,MISMATCH

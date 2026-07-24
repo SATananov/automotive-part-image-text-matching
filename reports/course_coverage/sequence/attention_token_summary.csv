@@ -1,0 +1,11 @@
+selection,sample_id,head,token_position,token,mean_attention_received
+correct,alternator_004_01_match,1,0,automotive,0.08329892158508301
+correct,alternator_004_01_match,1,1,alternator,0.08327674120664597
+correct,alternator_004_01_match,2,0,automotive,0.08366978913545609
+correct,alternator_004_01_match,2,1,alternator,0.08359746634960175
+incorrect,air_filter_004_01_match,1,0,automotive,0.0832739993929863
+incorrect,air_filter_004_01_match,1,1,air,0.0832667276263237
+incorrect,air_filter_004_01_match,1,2,filter,0.08323506265878677
+incorrect,air_filter_004_01_match,2,0,automotive,0.08357682824134827
+incorrect,air_filter_004_01_match,2,1,air,0.08341801911592484
+incorrect,air_filter_004_01_match,2,2,filter,0.08346111327409744

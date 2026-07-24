@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "authorized_inputs": [
+    "data/processed/integrated_train.csv",
+    "data/processed/integrated_validation.csv"
+  ],
+  "forbidden_input_patterns": [
+    "*test*.csv",
+    "data/processed/integrated_test.csv"
+  ],
+  "shuffle_train": true,
+  "shuffle_validation": false,
+  "shuffle_seed": 42,
+  "batch_size": 180,
+  "train_rows": 180,
+  "validation_rows": 60,
+  "group_overlap": 0,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false
+}

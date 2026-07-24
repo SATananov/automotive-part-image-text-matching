@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "notebook": "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+  "cell_count": 18,
+  "code_cell_count": 8,
+  "executed_code_cell_count": 8,
+  "output_count": 22,
+  "error_output_count": 0,
+  "execution_counts": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "kernel_python": "project_virtual_environment",
+  "execution_working_directory": "repository_root",
+  "machine_specific_paths_removed": true,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "pretrained_weights_downloaded": false
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "step": "011.2",
+  "experiment_id": "SEQ-008",
+  "exercise_problem_number": 8,
+  "exercise_problem_title": "Evaluate and compare all sequence models",
+  "exercise_requirement": "Summarize train and validation curves, accuracy, Macro F1, confusion matrices, one-vs-rest ROC curves, examples, and cross-validation suitability.",
+  "requirement_status": "required",
+  "research_question": "Which sequence model offers the best evidence-based baseline after performance, complexity, and failure analysis?",
+  "hypothesis": "The preferred model will be selected by validation Macro F1 with efficiency and stability tie-breakers, not by accuracy alone.",
+  "model_family": "comparative_evaluation",
+  "input_modalities": [
+    "text"
+  ],
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+  "configuration_path": "configs/course_coverage/experiments/SEQ-008.json",
+  "primary_metric": "validation_macro_f1",
+  "secondary_metrics": [
+    "validation_accuracy",
+    "per_class_f1",
+    "ovr_roc_auc",
+    "parameter_count",
+    "training_time_seconds"
+  ],
+  "resource_tier": "TIER_2",
+  "expected_outputs": [
+    "comparison dashboard",
+    "confusion matrices",
+    "ROC curves",
+    "reviewed examples"
+  ],
+  "selection_eligible": false,
+  "evidence_paths": [
+    "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+    "notebooks/course_coverage/05_course_coverage_synthesis.ipynb",
+    "reports/course_coverage/sequence/SEQ-008/"
+  ],
+  "prerequisites": [],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ],
+  "execution_policy": "controlled_train_validation_only"
+}

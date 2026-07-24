@@ -881,3 +881,20 @@ python -m src.project_cli verify-fundamentals-suite
 ```
 
 These educational comparisons do not replace the frozen exam model. The test split remains locked and unused.
+
+## Transformers & Sequence Modelling — Step 011.2
+
+The sequence-modelling exercise is implemented as a controlled train/validation-only suite. It covers deterministic text loading and tokenization, a dense embedding baseline, TF-IDF + logistic regression, TextCNN, GRU, LSTM, a small Transformer encoder, validation comparison, error analysis, and two-head attention inspection.
+
+- Evidence notebook: [`notebooks/course_coverage/02_sequence_model_comparison.ipynb`](notebooks/course_coverage/02_sequence_model_comparison.ipynb)
+- Methodology: [`docs/course_coverage/sequence_experimental_suite.md`](docs/course_coverage/sequence_experimental_suite.md)
+- Results: [`reports/course_coverage/sequence/sequence_suite_summary.md`](reports/course_coverage/sequence/sequence_suite_summary.md)
+- Machine-readable registry: [`data/experiment_registry/sequence_execution_registry.json`](data/experiment_registry/sequence_execution_registry.json)
+
+```powershell
+python -m src.project_cli run-sequence-suite
+python -m src.project_cli build-sequence-notebook
+python -m src.project_cli verify-sequence-suite
+```
+
+SEQ-001 through SEQ-009 are complete. SEQ-010 remains `DEFERRED_EXPLICIT_APPROVAL_REQUIRED`: no pretrained weights are downloaded until explicit approval is recorded together with the exact model revision and license. The production/final model remains unchanged, and the locked test split remains unused.

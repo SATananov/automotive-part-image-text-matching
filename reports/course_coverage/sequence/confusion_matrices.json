@@ -1,0 +1,527 @@
+{
+  "tfidf-ngram-1-1-c-0.1": {
+    "family": "tfidf_logistic",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        10,
+        10
+      ],
+      [
+        0,
+        10,
+        10
+      ],
+      [
+        0,
+        5,
+        15
+      ]
+    ]
+  },
+  "tfidf-ngram-1-1-c-1": {
+    "family": "tfidf_logistic",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        10,
+        10
+      ],
+      [
+        0,
+        10,
+        10
+      ],
+      [
+        0,
+        5,
+        15
+      ]
+    ]
+  },
+  "tfidf-ngram-1-1-c-10": {
+    "family": "tfidf_logistic",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        10,
+        0,
+        10
+      ],
+      [
+        10,
+        0,
+        10
+      ],
+      [
+        5,
+        0,
+        15
+      ]
+    ]
+  },
+  "tfidf-ngram-1-2-c-0.1": {
+    "family": "tfidf_logistic",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        10,
+        0,
+        10
+      ],
+      [
+        10,
+        0,
+        10
+      ],
+      [
+        5,
+        0,
+        15
+      ]
+    ]
+  },
+  "tfidf-ngram-1-2-c-1": {
+    "family": "tfidf_logistic",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        10,
+        10
+      ],
+      [
+        0,
+        10,
+        10
+      ],
+      [
+        0,
+        5,
+        15
+      ]
+    ]
+  },
+  "tfidf-ngram-1-2-c-10": {
+    "family": "tfidf_logistic",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        10,
+        10
+      ],
+      [
+        0,
+        10,
+        10
+      ],
+      [
+        0,
+        5,
+        15
+      ]
+    ]
+  },
+  "embedding_average-seed-42": {
+    "family": "embedding_average",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        13,
+        7
+      ],
+      [
+        0,
+        13,
+        7
+      ],
+      [
+        0,
+        11,
+        9
+      ]
+    ]
+  },
+  "embedding_average-seed-43": {
+    "family": "embedding_average",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        15,
+        5,
+        0
+      ],
+      [
+        15,
+        5,
+        0
+      ],
+      [
+        14,
+        6,
+        0
+      ]
+    ]
+  },
+  "embedding_average-seed-44": {
+    "family": "embedding_average",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        20,
+        0,
+        0
+      ],
+      [
+        20,
+        0,
+        0
+      ],
+      [
+        20,
+        0,
+        0
+      ]
+    ]
+  },
+  "textcnn-seed-42": {
+    "family": "textcnn",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        14,
+        5,
+        1
+      ],
+      [
+        14,
+        5,
+        1
+      ],
+      [
+        11,
+        7,
+        2
+      ]
+    ]
+  },
+  "textcnn-seed-43": {
+    "family": "textcnn",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        2,
+        2,
+        16
+      ],
+      [
+        2,
+        2,
+        16
+      ],
+      [
+        0,
+        1,
+        19
+      ]
+    ]
+  },
+  "textcnn-seed-44": {
+    "family": "textcnn",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        2,
+        4,
+        14
+      ],
+      [
+        2,
+        4,
+        14
+      ],
+      [
+        1,
+        1,
+        18
+      ]
+    ]
+  },
+  "gru-seed-42": {
+    "family": "gru",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        19,
+        1,
+        0
+      ],
+      [
+        19,
+        1,
+        0
+      ],
+      [
+        19,
+        1,
+        0
+      ]
+    ]
+  },
+  "gru-seed-43": {
+    "family": "gru",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        20,
+        0
+      ],
+      [
+        0,
+        20,
+        0
+      ],
+      [
+        0,
+        20,
+        0
+      ]
+    ]
+  },
+  "gru-seed-44": {
+    "family": "gru",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        20,
+        0
+      ],
+      [
+        0,
+        20,
+        0
+      ],
+      [
+        0,
+        20,
+        0
+      ]
+    ]
+  },
+  "lstm-seed-42": {
+    "family": "lstm",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ]
+    ]
+  },
+  "lstm-seed-43": {
+    "family": "lstm",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        20,
+        0
+      ],
+      [
+        0,
+        20,
+        0
+      ],
+      [
+        0,
+        20,
+        0
+      ]
+    ]
+  },
+  "lstm-seed-44": {
+    "family": "lstm",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        20,
+        0
+      ],
+      [
+        0,
+        20,
+        0
+      ],
+      [
+        0,
+        20,
+        0
+      ]
+    ]
+  },
+  "transformer-seed-42": {
+    "family": "transformer",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ]
+    ]
+  },
+  "transformer-seed-43": {
+    "family": "transformer",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        12,
+        8,
+        0
+      ],
+      [
+        12,
+        8,
+        0
+      ],
+      [
+        14,
+        6,
+        0
+      ]
+    ]
+  },
+  "transformer-seed-44": {
+    "family": "transformer",
+    "label_order": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        3,
+        0,
+        17
+      ],
+      [
+        3,
+        0,
+        17
+      ],
+      [
+        1,
+        0,
+        19
+      ]
+    ]
+  }
+}

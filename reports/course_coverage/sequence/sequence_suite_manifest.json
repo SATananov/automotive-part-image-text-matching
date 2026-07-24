@@ -1,0 +1,248 @@
+{
+  "step": "011.2",
+  "status": "PASS",
+  "readiness": "SEQUENCE_EXPERIMENTAL_SUITE_CORE_COMPLETE_PRETRAINED_GATE_TEST_LOCKED",
+  "base_checkpoint": "cfb6bba",
+  "source_commit": "cfb6bba",
+  "artifact_count": 45,
+  "artifacts": [
+    {
+      "path": "configs/course_coverage/experiments/SEQ-001.json",
+      "sha256": "7c4fb477788e79514b2e9250de99db35f3ed88208dd9a5a4dabf236b8d052c28",
+      "size_bytes": 1729
+    },
+    {
+      "path": "configs/course_coverage/experiments/SEQ-002.json",
+      "sha256": "35b84de69e5f11295d7e07d06adcc82cbd342ab5a24d66b1561d06fbf2cbcfb9",
+      "size_bytes": 1746
+    },
+    {
+      "path": "configs/course_coverage/experiments/SEQ-003.json",
+      "sha256": "7d09c2c01ef9dd95170e88a204975e5921b1a2e5d737227da2560c22252ead79",
+      "size_bytes": 1768
+    },
+    {
+      "path": "configs/course_coverage/experiments/SEQ-004.json",
+      "sha256": "a8fb33d73c5042c571a5136ae29a87d432e1a9f947e821a6a2a7a761e26bd322",
+      "size_bytes": 1729
+    },
+    {
+      "path": "configs/course_coverage/experiments/SEQ-005.json",
+      "sha256": "3c43193847dd5a07ea90e31dee4d1a8261d8abe7302886a75aefdbf42ef65483",
+      "size_bytes": 1799
+    },
+    {
+      "path": "configs/course_coverage/experiments/SEQ-006.json",
+      "sha256": "2c329cc4a23d3c07adf1024e38b29726e40d9adac2303b26c2b8dcbd74d4f261",
+      "size_bytes": 1825
+    },
+    {
+      "path": "configs/course_coverage/experiments/SEQ-007.json",
+      "sha256": "2d7a2db3841ba8dc871f5cc3fb14384c2d12190bf20895f3539f1eef4b3e8a56",
+      "size_bytes": 1815
+    },
+    {
+      "path": "configs/course_coverage/experiments/SEQ-008.json",
+      "sha256": "5b86a2d065bb18baa6062b10c9a1c41b35d613826ee8dc4fec41448424cedb60",
+      "size_bytes": 1968
+    },
+    {
+      "path": "configs/course_coverage/experiments/SEQ-009.json",
+      "sha256": "b39c73b5c8efee2ff1a7c7cb89e3c92b0c645f7d057b223bc6bdac08a2cb3cb3",
+      "size_bytes": 1780
+    },
+    {
+      "path": "configs/course_coverage/experiments/SEQ-010.json",
+      "sha256": "7a30e8236df585e75c0df09b90d6a977b8387b01099dd02207ec013222b54b01",
+      "size_bytes": 2083
+    },
+    {
+      "path": "configs/course_coverage/sequence_suite.json",
+      "sha256": "73596afb61d7e6ce8e425b5a4c5ee15ad0a58015d908a4427ddf7fa9c3ed4edf",
+      "size_bytes": 1622
+    },
+    {
+      "path": "data/experiment_registry/sequence_execution_registry.csv",
+      "sha256": "68a8ad36d5734e8f3781140040dae97f282c22c203bbe97bd484f43adb7de3bb",
+      "size_bytes": 1539
+    },
+    {
+      "path": "data/experiment_registry/sequence_execution_registry.json",
+      "sha256": "b5677db417b003d8d6d44d47fc10c53854ae35f184493aa075194064c07a35fa",
+      "size_bytes": 4702
+    },
+    {
+      "path": "docs/course_coverage/sequence_experimental_suite.md",
+      "sha256": "22d0e4046647665baa981b3206d693a0f2ab62a30fe0c9d1d24d755c50023515",
+      "size_bytes": 1442
+    },
+    {
+      "path": "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+      "sha256": "e97874e53459f2e026415db9253216058819c41a9fa83ea927c79db4ca71c4a4",
+      "size_bytes": 650316
+    },
+    {
+      "path": "reports/course_coverage/sequence/attention_evidence.json",
+      "sha256": "cfbb898bd067a2602bbfaf8c8b1e6f4a6a301edcd7d47fa6f28ac7b098c2ad75",
+      "size_bytes": 2667
+    },
+    {
+      "path": "reports/course_coverage/sequence/attention_token_summary.csv",
+      "sha256": "bab17bf98c670e0963eb060716d489f2d44b557fa852f7d1fef34f8771f4184d",
+      "size_bytes": 739
+    },
+    {
+      "path": "reports/course_coverage/sequence/confusion_matrices.json",
+      "sha256": "064a726239e8b8121d135b09641ba47e3ee0dfe1dd383176952d32a24993c00f",
+      "size_bytes": 6576
+    },
+    {
+      "path": "reports/course_coverage/sequence/figures/attention_correct_head_1.png",
+      "sha256": "875de5e8e8a95e6cd228d733006592d19d497d0cecb525b195737b80482565a1",
+      "size_bytes": 41298
+    },
+    {
+      "path": "reports/course_coverage/sequence/figures/attention_correct_head_2.png",
+      "sha256": "2d28987867d792195a5d0a3b0fcdd2c1a22640b497f41c448f26c836af31560f",
+      "size_bytes": 36598
+    },
+    {
+      "path": "reports/course_coverage/sequence/figures/attention_incorrect_head_1.png",
+      "sha256": "51b988ca2d91caa78ebbf417121a2cfb938ae97d4c7cdefb6b887ed375d81e75",
+      "size_bytes": 37583
+    },
+    {
+      "path": "reports/course_coverage/sequence/figures/attention_incorrect_head_2.png",
+      "sha256": "0323f9a50e5f1beb5d6819d0365b7ae485bd9d6713e01e2e8485a5bba380698d",
+      "size_bytes": 36564
+    },
+    {
+      "path": "reports/course_coverage/sequence/figures/complexity_tradeoff.png",
+      "sha256": "f8c4f963e9126e67cef4197d2787f2fc6ea3e2b3714e805fa7cab7c6f5b970bc",
+      "size_bytes": 42937
+    },
+    {
+      "path": "reports/course_coverage/sequence/figures/label_distribution.png",
+      "sha256": "8413cd5d292f0ad25e4eabe245614bdc4b0607740c5b3aae76f000d8e5bd2bd6",
+      "size_bytes": 25945
+    },
+    {
+      "path": "reports/course_coverage/sequence/figures/model_macro_f1.png",
+      "sha256": "49762949c011b23f0bfc7727728b90ebef3e794d617db4f8e5fe9c9bf09161ec",
+      "size_bytes": 31047
+    },
+    {
+      "path": "reports/course_coverage/sequence/figures/roc_curves.png",
+      "sha256": "26fd5010e62196e88c084fec448c33d086037fa0fe16e8a28c2d60f473e6df74",
+      "size_bytes": 152862
+    },
+    {
+      "path": "reports/course_coverage/sequence/figures/text_length_distribution.png",
+      "sha256": "9896e8b3d46db3adb1f1afdc2c845648a59e6c8a3cd44835f20bf7decb380d61",
+      "size_bytes": 29406
+    },
+    {
+      "path": "reports/course_coverage/sequence/model_comparison.csv",
+      "sha256": "907bec9e89cc5a542e3596369d25ed13335c03b6d40093bb301060aeba8dfb95",
+      "size_bytes": 2831
+    },
+    {
+      "path": "reports/course_coverage/sequence/model_comparison.json",
+      "sha256": "9ef2b201b7a3ca1d3fcbb4183fb841de3f993f212808ae5671728cbf45bb36c7",
+      "size_bytes": 6095
+    },
+    {
+      "path": "reports/course_coverage/sequence/notebook_execution_audit.json",
+      "sha256": "5d7a409154d01aed2edf512f85cf4c85784852316f9ed11c50c91d2b5ad455ba",
+      "size_bytes": 570
+    },
+    {
+      "path": "reports/course_coverage/sequence/pretrained_transformer_gate.json",
+      "sha256": "a9aaf0daafcba7347e51d8f98d45f88a15ca54e40f2aca3db3c84062325c7283",
+      "size_bytes": 510
+    },
+    {
+      "path": "reports/course_coverage/sequence/representative_examples.csv",
+      "sha256": "91018d9545a0d90f61810c7a38a77a066d2099a3ae13240a0065182eccea65c4",
+      "size_bytes": 1031
+    },
+    {
+      "path": "reports/course_coverage/sequence/roc_curves.json",
+      "sha256": "63383f2cfefed367f257de1597bf60f7b94412734a66264dc0f8942663abbe3a",
+      "size_bytes": 19249
+    },
+    {
+      "path": "reports/course_coverage/sequence/sample_text_batch.csv",
+      "sha256": "6c2bcd21166f3770207652c42e0e53a2aeca129305ab56e9cc0e29c496875a80",
+      "size_bytes": 20884
+    },
+    {
+      "path": "reports/course_coverage/sequence/sequence_suite_status.json",
+      "sha256": "da043865b63e74abf64105d73567aaaf849e5daf6adc32d6f4c4a3a10b646a16",
+      "size_bytes": 1265
+    },
+    {
+      "path": "reports/course_coverage/sequence/sequence_suite_summary.md",
+      "sha256": "8bbc0eb18ec859d40ccfc02241403045c686932bb65aa9771ed09420cdfbdd7e",
+      "size_bytes": 1444
+    },
+    {
+      "path": "reports/course_coverage/sequence/text_loader_contract.json",
+      "sha256": "f7b3cf2a76bf34b77abfc587555cdae18fe69ba8f754585a0e51ccbc15d3a08e",
+      "size_bytes": 479
+    },
+    {
+      "path": "reports/course_coverage/sequence/text_profile.json",
+      "sha256": "7e21fff46771a2877aad6a31f3dc83d91b3c7f94145ce439fe385147d828325d",
+      "size_bytes": 1006
+    },
+    {
+      "path": "reports/course_coverage/sequence/tokenization_examples.csv",
+      "sha256": "bee2dd7988e3d0aeebc015886178bcfebeccf41b2f81b976401b005bf6e498e3",
+      "size_bytes": 2274
+    },
+    {
+      "path": "reports/course_coverage/sequence/tokenization_summary.json",
+      "sha256": "66dd06755ae9784ad536c2e757e81d717572a607ff9811eda84ac745b32e1888",
+      "size_bytes": 402
+    },
+    {
+      "path": "reports/course_coverage/sequence/training_histories.csv",
+      "sha256": "be13d8994fdb967ee764ec7635e1fc7c8dbf9ea6a6cc63c4abef5023cd0b0475",
+      "size_bytes": 4973
+    },
+    {
+      "path": "reports/course_coverage/sequence/training_runs.csv",
+      "sha256": "2693da0d568027169b0bd0a74dcff0691f285aace5b16d47ef7df5383ab7dc61",
+      "size_bytes": 4685
+    },
+    {
+      "path": "reports/course_coverage/sequence/validation_error_analysis.csv",
+      "sha256": "bee6c384f04b650806c0a9df0669d7b1d60913dec3c6c223e0226b7e061f7d3f",
+      "size_bytes": 7552
+    },
+    {
+      "path": "reports/course_coverage/sequence/validation_predictions.csv",
+      "sha256": "3d02a4f605a032a81992e4f21aaf9644fcdf45344224a83931730295b3f372d9",
+      "size_bytes": 222779
+    },
+    {
+      "path": "reports/course_coverage/sequence/vocabulary.json",
+      "sha256": "3a66727e6626405e35b8aaad56214863225ae96bece1cdfd74b4451ad205527f",
+      "size_bytes": 431
+    }
+  ],
+  "training_runs_recorded": 21,
+  "completed_core_problems": 9,
+  "deferred_pretrained_problems": 1,
+  "environment": {
+    "python": "3.13.13",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "keras_backend": "tensorflow"
+  },
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false,
+  "pretrained_weights_downloaded": false
+}

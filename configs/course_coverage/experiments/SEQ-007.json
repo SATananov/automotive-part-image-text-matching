@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "step": "011.2",
+  "experiment_id": "SEQ-007",
+  "exercise_problem_number": 7,
+  "exercise_problem_title": "Transformer encoder",
+  "exercise_requirement": "Build a small parameter-aware Transformer encoder and compare it fairly with dense, CNN, and recurrent models.",
+  "requirement_status": "required",
+  "research_question": "Can self-attention improve validation performance or error structure on short automotive descriptions?",
+  "hypothesis": "A compact Transformer may improve phrase interactions but will not necessarily outperform simpler models on limited data.",
+  "model_family": "small_transformer_encoder",
+  "input_modalities": [
+    "text"
+  ],
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "random_seed_policy": "primary seed 42; retained comparisons repeat seeds 42, 43, and 44",
+  "configuration_path": "configs/course_coverage/experiments/SEQ-007.json",
+  "primary_metric": "validation_macro_f1",
+  "secondary_metrics": [
+    "validation_accuracy",
+    "parameter_count",
+    "training_time_seconds",
+    "inference_time_ms",
+    "seed_std_macro_f1"
+  ],
+  "resource_tier": "TIER_3",
+  "expected_outputs": [
+    "Transformer metrics",
+    "fairness table",
+    "learning curves"
+  ],
+  "selection_eligible": true,
+  "evidence_paths": [
+    "notebooks/course_coverage/02_sequence_model_comparison.ipynb",
+    "reports/course_coverage/sequence/SEQ-007/"
+  ],
+  "prerequisites": [],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ],
+  "execution_policy": "controlled_train_validation_only"
+}

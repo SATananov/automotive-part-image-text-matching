@@ -428,6 +428,28 @@ COMMANDS: dict[str, CommandSpec] = {
             "manifest integrity, and the closed test gate."
         ),
     ),
+    "run-sequence-suite": CommandSpec(
+        module="src.run_sequence_experimental_suite",
+        description=(
+            "Run the Step 011.2 Transformers & Sequence Modelling core "
+            "experiments and build the executed evidence notebook."
+        ),
+        requires_tensorflow=True,
+    ),
+    "build-sequence-notebook": CommandSpec(
+        module="src.build_sequence_experiment_notebook",
+        description=(
+            "Rebuild and execute the Step 011.2 sequence evidence notebook "
+            "from committed experiment reports."
+        ),
+    ),
+    "verify-sequence-suite": CommandSpec(
+        module="src.verification.sequence_experimental_suite",
+        description=(
+            "Verify the sequence models, attention evidence, pretrained gate, "
+            "manifest integrity, and the closed test boundary."
+        ),
+    ),
     "verify-project": CommandSpec(
         module="src.verification.project_verification",
         description=(

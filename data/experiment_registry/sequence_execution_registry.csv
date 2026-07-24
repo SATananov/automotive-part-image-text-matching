@@ -1,0 +1,11 @@
+experiment_id,step,status,training_runs,evidence,test_split_allowed,final_test_evaluation_authorized,production_final_model_changed,pretrained_weights_downloaded
+SEQ-001,011.2,COMPLETED,0,reports/course_coverage/sequence/text_profile.json;reports/course_coverage/sequence/text_loader_contract.json,False,False,False,False
+SEQ-002,011.2,COMPLETED,0,reports/course_coverage/sequence/text_profile.json;reports/course_coverage/sequence/text_loader_contract.json,False,False,False,False
+SEQ-003,011.2,COMPLETED,0,reports/course_coverage/sequence/tokenization_summary.json;reports/course_coverage/sequence/vocabulary.json,False,False,False,False
+SEQ-004,011.2,COMPLETED,3,reports/course_coverage/sequence/model_comparison.csv,False,False,False,False
+SEQ-005,011.2,COMPLETED,6,reports/course_coverage/sequence/model_comparison.csv,False,False,False,False
+SEQ-006,011.2,COMPLETED,9,reports/course_coverage/sequence/model_comparison.csv,False,False,False,False
+SEQ-007,011.2,COMPLETED,3,reports/course_coverage/sequence/model_comparison.csv,False,False,False,False
+SEQ-008,011.2,COMPLETED,0,reports/course_coverage/sequence/roc_curves.json;reports/course_coverage/sequence/validation_error_analysis.csv,False,False,False,False
+SEQ-009,011.2,COMPLETED,0,reports/course_coverage/sequence/attention_evidence.json;reports/course_coverage/sequence/attention_token_summary.csv,False,False,False,False
+SEQ-010,011.2,DEFERRED_EXPLICIT_APPROVAL_REQUIRED,0,reports/course_coverage/sequence/pretrained_transformer_gate.json,False,False,False,False
