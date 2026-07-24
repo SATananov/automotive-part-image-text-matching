@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "step": "011.1",
+  "experiment_id": "FND-010",
+  "exercise_problem_number": 10,
+  "exercise_problem_title": "Break stuff intentionally",
+  "exercise_requirement": "Demonstrate failures from missing scaling, bad learning rates, excessive regularization, activation choice, misaligned labels, and vanishing gradients where feasible.",
+  "research_question": "Can common training failures be reproduced safely and detected through objective diagnostics?",
+  "hypothesis": "Each controlled fault will leave a distinct signature in loss, gradients, weights, timing, or alignment checks.",
+  "primary_metric": "failure_signature_detected",
+  "secondary_metrics": [
+    "loss_finiteness",
+    "gradient_norm",
+    "weight_norm",
+    "training_time_seconds",
+    "alignment_check"
+  ],
+  "resource_tier": "TIER_1",
+  "selection_eligible": false,
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "execution_policy": "controlled_train_validation_only",
+  "evidence_paths": [
+    "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+    "reports/course_coverage/fundamentals/FND-010/"
+  ],
+  "safety_notes": [
+    "Run only in isolated diagnostic configurations.",
+    "Never train on validation data and never access the locked test split.",
+    "Misaligned labels are generated in memory from train-only copies and are not committed."
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "step": "011.1",
+  "experiment_id": "FND-002",
+  "exercise_problem_number": 2,
+  "exercise_problem_title": "Data loaders and batch inspection",
+  "exercise_requirement": "Build Keras datasets or NumPy inputs, inspect one batch, explain shapes, dtypes, labels, and shuffle policy.",
+  "research_question": "Does the multimodal loader preserve image-text-label alignment and grouped split boundaries?",
+  "hypothesis": "A deterministic loader with train-only shuffling will preserve aligned inputs and stable validation order.",
+  "primary_metric": "batch_contract_pass",
+  "secondary_metrics": [
+    "batch_shape",
+    "dtype_checks",
+    "alignment_checks",
+    "determinism_checks"
+  ],
+  "resource_tier": "TIER_0",
+  "selection_eligible": false,
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "execution_policy": "controlled_train_validation_only",
+  "evidence_paths": [
+    "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+    "reports/course_coverage/fundamentals/FND-002/"
+  ],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ]
+}

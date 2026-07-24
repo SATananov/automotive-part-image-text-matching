@@ -1,0 +1,226 @@
+{
+  "schema_version": "1.0",
+  "step": "011.1",
+  "base_checkpoint": "STEP_011_0_FULL_COURSE_COVERAGE_ARCHITECTURE",
+  "experiment_count": 10,
+  "completed_experiment_count": 10,
+  "execution_status_counts": {
+    "COMPLETED": 10
+  },
+  "experiments": [
+    {
+      "experiment_id": "FND-001",
+      "exercise_problem_number": 1,
+      "exercise_problem_title": "Load and inspect the dataset",
+      "execution_status": "COMPLETED",
+      "run_count": 0,
+      "completed_run_count": 0,
+      "selection_eligible": false,
+      "primary_metric": "data_integrity_pass",
+      "best_run_id": null,
+      "best_validation_macro_f1": null,
+      "best_validation_accuracy": null,
+      "result_summary": "Integrated train/validation EDA and leakage checks completed.",
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-001/"
+      ],
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false
+    },
+    {
+      "experiment_id": "FND-002",
+      "exercise_problem_number": 2,
+      "exercise_problem_title": "Data loaders and batch inspection",
+      "execution_status": "COMPLETED",
+      "run_count": 0,
+      "completed_run_count": 0,
+      "selection_eligible": false,
+      "primary_metric": "batch_contract_pass",
+      "best_run_id": null,
+      "best_validation_macro_f1": null,
+      "best_validation_accuracy": null,
+      "result_summary": "Batch shapes, dtypes, alignment, and shuffle policy verified.",
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-002/"
+      ],
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false
+    },
+    {
+      "experiment_id": "FND-003",
+      "exercise_problem_number": 3,
+      "exercise_problem_title": "Baseline neural model",
+      "execution_status": "COMPLETED",
+      "run_count": 1,
+      "completed_run_count": 1,
+      "selection_eligible": false,
+      "primary_metric": "small_batch_loss_reduction",
+      "best_run_id": null,
+      "best_validation_macro_f1": null,
+      "best_validation_accuracy": null,
+      "result_summary": "Small-batch loss changed from 1.1436 to 1.0972; gradients were finite.",
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-003/"
+      ],
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false
+    },
+    {
+      "experiment_id": "FND-004",
+      "exercise_problem_number": 4,
+      "exercise_problem_title": "Overfit one batch",
+      "execution_status": "COMPLETED",
+      "run_count": 1,
+      "completed_run_count": 1,
+      "selection_eligible": false,
+      "primary_metric": "final_batch_accuracy",
+      "best_run_id": null,
+      "best_validation_macro_f1": null,
+      "best_validation_accuracy": null,
+      "result_summary": "One-batch accuracy reached 1.0000 with loss 0.0606.",
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-004/"
+      ],
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false
+    },
+    {
+      "experiment_id": "FND-005",
+      "exercise_problem_number": 5,
+      "exercise_problem_title": "Training and validation loop",
+      "execution_status": "COMPLETED",
+      "run_count": 1,
+      "completed_run_count": 1,
+      "selection_eligible": true,
+      "primary_metric": "validation_macro_f1",
+      "best_run_id": "fnd005_correct_training_loop",
+      "best_validation_macro_f1": 0.2886446886446887,
+      "best_validation_accuracy": 0.38333333333333336,
+      "result_summary": "Correct validation-only loop achieved Macro F1 0.2886.",
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-005/"
+      ],
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false
+    },
+    {
+      "experiment_id": "FND-006",
+      "exercise_problem_number": 6,
+      "exercise_problem_title": "Compare optimizers and learning rates",
+      "execution_status": "COMPLETED",
+      "run_count": 11,
+      "completed_run_count": 11,
+      "selection_eligible": true,
+      "primary_metric": "validation_macro_f1",
+      "best_run_id": "fnd006_06_adam_0p0003_seed44",
+      "best_validation_macro_f1": 0.31611998878609476,
+      "best_validation_accuracy": 0.3333333333333333,
+      "result_summary": "Optimizer champion Adam at LR 0.0003.",
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-006/"
+      ],
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false
+    },
+    {
+      "experiment_id": "FND-007",
+      "exercise_problem_number": 7,
+      "exercise_problem_title": "Model capacity",
+      "execution_status": "COMPLETED",
+      "run_count": 3,
+      "completed_run_count": 3,
+      "selection_eligible": true,
+      "primary_metric": "validation_macro_f1",
+      "best_run_id": "fnd007_medium",
+      "best_validation_macro_f1": 0.30582750582750584,
+      "best_validation_accuracy": 0.3333333333333333,
+      "result_summary": "Compared 3 capacity variants.",
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-007/"
+      ],
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false
+    },
+    {
+      "experiment_id": "FND-008",
+      "exercise_problem_number": 8,
+      "exercise_problem_title": "Different architectures",
+      "execution_status": "COMPLETED",
+      "run_count": 8,
+      "completed_run_count": 8,
+      "selection_eligible": true,
+      "primary_metric": "validation_macro_f1",
+      "best_run_id": "fnd008_08_pretrained_mobilenet_v2",
+      "best_validation_macro_f1": 0.33027135466159857,
+      "best_validation_accuracy": 0.3333333333333333,
+      "result_summary": "Compared 8 architecture variants.",
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-008/"
+      ],
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false
+    },
+    {
+      "experiment_id": "FND-009",
+      "exercise_problem_number": 9,
+      "exercise_problem_title": "Different preprocessing steps",
+      "execution_status": "COMPLETED",
+      "run_count": 4,
+      "completed_run_count": 4,
+      "selection_eligible": true,
+      "primary_metric": "validation_macro_f1",
+      "best_run_id": "fnd009_04_grayscale_24_seq12",
+      "best_validation_macro_f1": 0.31259345501033,
+      "best_validation_accuracy": 0.3333333333333333,
+      "result_summary": "Compared 4 preprocessing variants.",
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-009/"
+      ],
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false
+    },
+    {
+      "experiment_id": "FND-010",
+      "exercise_problem_number": 10,
+      "exercise_problem_title": "Break stuff intentionally",
+      "execution_status": "COMPLETED",
+      "run_count": 6,
+      "completed_run_count": 6,
+      "selection_eligible": false,
+      "primary_metric": "failure_signature_detected",
+      "best_run_id": "fnd010_05_misaligned_train_labels",
+      "best_validation_macro_f1": 0.26677337601707346,
+      "best_validation_accuracy": 0.3333333333333333,
+      "result_summary": "Recorded 9 controlled failure diagnostics.",
+      "evidence_paths": [
+        "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+        "reports/course_coverage/fundamentals/FND-010/"
+      ],
+      "test_split_allowed": false,
+      "test_split_path": null,
+      "final_test_evaluation_authorized": false
+    }
+  ],
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false
+}

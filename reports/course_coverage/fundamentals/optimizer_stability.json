@@ -1,0 +1,19 @@
+{
+  "experiment_id": "FND-006",
+  "status": "COMPLETED",
+  "champion_run_id": "fnd006_06_adam_0p0003",
+  "champion_optimizer": "Adam",
+  "champion_learning_rate": 0.0003,
+  "champion_schedule": "",
+  "stability_seeds": [
+    42,
+    43,
+    44
+  ],
+  "macro_f1_mean": 0.2962809922137004,
+  "macro_f1_standard_deviation": 0.014661503999151186,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false
+}

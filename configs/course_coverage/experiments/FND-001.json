@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "step": "011.1",
+  "experiment_id": "FND-001",
+  "exercise_problem_number": 1,
+  "exercise_problem_title": "Load and inspect the dataset",
+  "exercise_requirement": "Inspect dimensions, grouped split composition, label balance, image values, text lengths, and representative examples.",
+  "research_question": "What data properties and possible leakage risks must be understood before training?",
+  "hypothesis": "The committed integrated dataset is class-balanced by construction and group-isolated, while image and text distributions reveal category-specific variation.",
+  "primary_metric": "data_integrity_pass",
+  "secondary_metrics": [
+    "class_balance",
+    "group_overlap",
+    "image_value_distribution",
+    "text_length_distribution"
+  ],
+  "resource_tier": "TIER_0",
+  "selection_eligible": false,
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "execution_policy": "controlled_train_validation_only",
+  "evidence_paths": [
+    "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+    "reports/course_coverage/fundamentals/FND-001/"
+  ],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ]
+}

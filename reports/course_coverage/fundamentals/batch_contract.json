@@ -1,0 +1,32 @@
+{
+  "experiment_id": "FND-002",
+  "status": "COMPLETED",
+  "batch_size": 16,
+  "train_image_shape": [
+    16,
+    24,
+    24,
+    3
+  ],
+  "train_text_shape": [
+    16,
+    12
+  ],
+  "train_label_shape": [
+    16
+  ],
+  "image_dtype": "float32",
+  "text_dtype": "int32",
+  "label_dtype": "int32",
+  "image_floating_point_reason": "Floating-point inputs support scaling, gradients, and neural-network arithmetic.",
+  "integer_target_reason": "Sparse categorical cross-entropy expects integer class indices.",
+  "train_shuffle": true,
+  "validation_shuffle": false,
+  "train_shuffle_reproducible": true,
+  "validation_order_stable": true,
+  "image_text_label_alignment_pass": true,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false
+}

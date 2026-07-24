@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "notebook": "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+  "cell_count": 20,
+  "code_cell_count": 9,
+  "executed_code_cell_count": 9,
+  "output_count": 20,
+  "error_output_count": 0,
+  "execution_counts": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "kernel_python": "project_virtual_environment",
+  "execution_working_directory": "repository_root",
+  "machine_specific_paths_removed": true,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false
+}

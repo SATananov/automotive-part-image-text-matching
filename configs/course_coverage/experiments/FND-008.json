@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "step": "011.1",
+  "experiment_id": "FND-008",
+  "exercise_problem_number": 8,
+  "exercise_problem_title": "Different architectures",
+  "exercise_requirement": "Compare regularization, batch normalization, learning-rate scheduling, skip connections, adapted pretrained features, and a convolutional alternative.",
+  "research_question": "Which architecture-level techniques improve generalization without unnecessary complexity?",
+  "hypothesis": "Moderate regularization and normalization will help stability, while excessive complexity will not consistently improve Macro F1.",
+  "primary_metric": "validation_macro_f1",
+  "secondary_metrics": [
+    "parameter_count",
+    "validation_accuracy",
+    "generalization_gap",
+    "training_time_seconds"
+  ],
+  "resource_tier": "TIER_3",
+  "selection_eligible": true,
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "execution_policy": "controlled_train_validation_only",
+  "evidence_paths": [
+    "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+    "reports/course_coverage/fundamentals/FND-008/"
+  ],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ]
+}

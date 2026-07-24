@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0",
+  "step": "011.1",
+  "title": "Deep Learning Fundamentals Experimental Suite",
+  "dataset_version": "integrated_dataset_step_010_2",
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "primary_seed": 42,
+  "stability_seeds": [
+    42,
+    43,
+    44
+  ],
+  "batch_size": 16,
+  "default_image_size": 24,
+  "default_sequence_length": 12,
+  "default_embedding_dimension": 16,
+  "default_max_epochs": 28,
+  "default_patience": 5,
+  "overfit_max_epochs": 600,
+  "overfit_accuracy_threshold": 0.95,
+  "overfit_loss_threshold": 0.12,
+  "attempt_pretrained_backbone": true,
+  "pretrained_backbone": "MobileNetV2",
+  "pretrained_image_size": 96,
+  "optimizer_grid": [
+    {
+      "name": "SGD",
+      "learning_rate": 0.01
+    },
+    {
+      "name": "SGD",
+      "learning_rate": 0.001
+    },
+    {
+      "name": "RMSprop",
+      "learning_rate": 0.001
+    },
+    {
+      "name": "RMSprop",
+      "learning_rate": 0.0003
+    },
+    {
+      "name": "Adam",
+      "learning_rate": 0.001
+    },
+    {
+      "name": "Adam",
+      "learning_rate": 0.0003
+    },
+    {
+      "name": "AdamW",
+      "learning_rate": 0.001
+    },
+    {
+      "name": "AdamW",
+      "learning_rate": 0.0003
+    },
+    {
+      "name": "Adam",
+      "learning_rate": 0.003,
+      "schedule": "exponential_decay"
+    }
+  ],
+  "capacity_variants": {
+    "small": {
+      "text_units": 12,
+      "image_units": 24,
+      "fusion_units": [
+        24
+      ],
+      "dropout": 0.1
+    },
+    "medium": {
+      "text_units": 24,
+      "image_units": 48,
+      "fusion_units": [
+        64
+      ],
+      "dropout": 0.15
+    },
+    "large": {
+      "text_units": 48,
+      "image_units": 96,
+      "fusion_units": [
+        128,
+        64
+      ],
+      "dropout": 0.25
+    }
+  },
+  "architecture_variants": [
+    "baseline",
+    "l2_regularization",
+    "dropout_regularization",
+    "batch_normalization",
+    "residual_fusion",
+    "learning_rate_schedule",
+    "cnn_image_branch",
+    "pretrained_mobilenet_v2"
+  ],
+  "preprocessing_variants": [
+    {
+      "name": "compact_16_seq8",
+      "image_size": 16,
+      "sequence_length": 8,
+      "grayscale": false
+    },
+    {
+      "name": "baseline_24_seq12",
+      "image_size": 24,
+      "sequence_length": 12,
+      "grayscale": false
+    },
+    {
+      "name": "larger_32_seq20",
+      "image_size": 32,
+      "sequence_length": 20,
+      "grayscale": false
+    },
+    {
+      "name": "grayscale_24_seq12",
+      "image_size": 24,
+      "sequence_length": 12,
+      "grayscale": true
+    }
+  ],
+  "failure_cases": [
+    "unscaled_images",
+    "excessive_learning_rate",
+    "tiny_learning_rate",
+    "excessive_dropout",
+    "misaligned_train_labels",
+    "sigmoid_activation",
+    "deep_sigmoid_gradient_probe",
+    "missing_optimizer_step_probe",
+    "validation_training_blocked"
+  ],
+  "overfit_batch_group_count": 2,
+  "overfit_check_interval": 5,
+  "overfit_learning_rates": [
+    0.003,
+    0.001,
+    0.0003
+  ]
+}

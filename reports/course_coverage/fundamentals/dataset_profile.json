@@ -1,0 +1,63 @@
+{
+  "experiment_id": "FND-001",
+  "status": "COMPLETED",
+  "train": {
+    "samples": 180,
+    "images": 60,
+    "groups": 60,
+    "categories": 10,
+    "label_distribution": {
+      "MATCH": 60,
+      "PARTIAL_MATCH": 60,
+      "MISMATCH": 60
+    },
+    "source_distribution": {
+      "generated_development": 90,
+      "wikimedia_commons_open_license": 90
+    },
+    "text_length_tokens": {
+      "minimum": 2,
+      "maximum": 4,
+      "mean": 3.1,
+      "median": 3.0
+    },
+    "image_pixels_24x24_rgb": {
+      "minimum": 1.0,
+      "maximum": 255.0,
+      "mean": 167.1710205078125,
+      "standard_deviation": 76.33000183105469
+    }
+  },
+  "validation": {
+    "samples": 60,
+    "images": 20,
+    "groups": 20,
+    "categories": 10,
+    "label_distribution": {
+      "MATCH": 20,
+      "PARTIAL_MATCH": 20,
+      "MISMATCH": 20
+    },
+    "source_distribution": {
+      "generated_development": 30,
+      "wikimedia_commons_open_license": 30
+    },
+    "text_length_tokens": {
+      "minimum": 2,
+      "maximum": 4,
+      "mean": 3.1,
+      "median": 3.0
+    },
+    "image_pixels_24x24_rgb": {
+      "minimum": 0.0,
+      "maximum": 255.0,
+      "mean": 169.2273406982422,
+      "standard_deviation": 73.66443634033203
+    }
+  },
+  "train_validation_group_overlap": 0,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false
+}

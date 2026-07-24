@@ -1,0 +1,794 @@
+{
+  "fnd005_correct_training_loop": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        6,
+        0,
+        14
+      ],
+      [
+        6,
+        0,
+        14
+      ],
+      [
+        3,
+        0,
+        17
+      ]
+    ]
+  },
+  "fnd006_01_sgd_0p01": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        4,
+        1,
+        15
+      ],
+      [
+        5,
+        1,
+        14
+      ],
+      [
+        5,
+        1,
+        14
+      ]
+    ]
+  },
+  "fnd006_02_sgd_0p001": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        2,
+        1,
+        17
+      ],
+      [
+        2,
+        1,
+        17
+      ],
+      [
+        2,
+        1,
+        17
+      ]
+    ]
+  },
+  "fnd006_03_rmsprop_0p001": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ]
+    ]
+  },
+  "fnd006_04_rmsprop_0p0003": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ]
+    ]
+  },
+  "fnd006_05_adam_0p001": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        20,
+        0,
+        0
+      ],
+      [
+        20,
+        0,
+        0
+      ],
+      [
+        20,
+        0,
+        0
+      ]
+    ]
+  },
+  "fnd006_06_adam_0p0003": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        13,
+        7
+      ],
+      [
+        0,
+        13,
+        7
+      ],
+      [
+        0,
+        11,
+        9
+      ]
+    ]
+  },
+  "fnd006_07_adamw_0p001": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        20,
+        0,
+        0
+      ],
+      [
+        20,
+        0,
+        0
+      ],
+      [
+        20,
+        0,
+        0
+      ]
+    ]
+  },
+  "fnd006_08_adamw_0p0003": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        13,
+        7
+      ],
+      [
+        0,
+        13,
+        7
+      ],
+      [
+        0,
+        11,
+        9
+      ]
+    ]
+  },
+  "fnd006_09_adam_exponential_decay_0p003": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ]
+    ]
+  },
+  "fnd006_06_adam_0p0003_seed43": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        13,
+        1,
+        6
+      ],
+      [
+        13,
+        1,
+        6
+      ],
+      [
+        13,
+        1,
+        6
+      ]
+    ]
+  },
+  "fnd006_06_adam_0p0003_seed44": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        10,
+        7,
+        3
+      ],
+      [
+        10,
+        7,
+        3
+      ],
+      [
+        10,
+        7,
+        3
+      ]
+    ]
+  },
+  "fnd007_small": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        1,
+        10,
+        9
+      ],
+      [
+        1,
+        10,
+        9
+      ],
+      [
+        1,
+        10,
+        9
+      ]
+    ]
+  },
+  "fnd007_medium": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        2,
+        8,
+        10
+      ],
+      [
+        2,
+        8,
+        10
+      ],
+      [
+        2,
+        8,
+        10
+      ]
+    ]
+  },
+  "fnd007_large": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        3,
+        1,
+        16
+      ],
+      [
+        3,
+        1,
+        16
+      ],
+      [
+        3,
+        1,
+        16
+      ]
+    ]
+  },
+  "fnd008_01_baseline": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        20,
+        0,
+        0
+      ],
+      [
+        20,
+        0,
+        0
+      ],
+      [
+        20,
+        0,
+        0
+      ]
+    ]
+  },
+  "fnd008_02_l2_regularization": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ]
+    ]
+  },
+  "fnd008_03_dropout_regularization": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ]
+    ]
+  },
+  "fnd008_04_batch_normalization": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        1,
+        19
+      ],
+      [
+        0,
+        1,
+        19
+      ],
+      [
+        0,
+        1,
+        19
+      ]
+    ]
+  },
+  "fnd008_05_residual_fusion": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ]
+    ]
+  },
+  "fnd008_06_learning_rate_schedule": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ]
+    ]
+  },
+  "fnd008_07_cnn_image_branch": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        17,
+        0,
+        3
+      ],
+      [
+        17,
+        0,
+        3
+      ],
+      [
+        18,
+        0,
+        2
+      ]
+    ]
+  },
+  "fnd008_08_pretrained_mobilenet_v2": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        7,
+        5,
+        8
+      ],
+      [
+        7,
+        5,
+        8
+      ],
+      [
+        7,
+        5,
+        8
+      ]
+    ]
+  },
+  "fnd009_01_compact_16_seq8": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        2,
+        3,
+        15
+      ],
+      [
+        2,
+        3,
+        15
+      ],
+      [
+        2,
+        3,
+        15
+      ]
+    ]
+  },
+  "fnd009_02_baseline_24_seq12": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        13,
+        7
+      ],
+      [
+        0,
+        13,
+        7
+      ],
+      [
+        0,
+        11,
+        9
+      ]
+    ]
+  },
+  "fnd009_03_larger_32_seq20": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        11,
+        2,
+        7
+      ],
+      [
+        11,
+        2,
+        7
+      ],
+      [
+        11,
+        2,
+        7
+      ]
+    ]
+  },
+  "fnd009_04_grayscale_24_seq12": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        11,
+        3,
+        6
+      ],
+      [
+        11,
+        3,
+        6
+      ],
+      [
+        11,
+        3,
+        6
+      ]
+    ]
+  },
+  "fnd010_01_unscaled_images": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        20,
+        0,
+        0
+      ],
+      [
+        20,
+        0,
+        0
+      ],
+      [
+        20,
+        0,
+        0
+      ]
+    ]
+  },
+  "fnd010_02_excessive_learning_rate": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ]
+    ]
+  },
+  "fnd010_03_tiny_learning_rate": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        6,
+        14
+      ],
+      [
+        0,
+        6,
+        14
+      ],
+      [
+        0,
+        6,
+        14
+      ]
+    ]
+  },
+  "fnd010_04_excessive_dropout": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        20
+      ]
+    ]
+  },
+  "fnd010_05_misaligned_train_labels": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        10,
+        10,
+        0
+      ],
+      [
+        10,
+        10,
+        0
+      ],
+      [
+        9,
+        11,
+        0
+      ]
+    ]
+  },
+  "fnd010_06_sigmoid_activation": {
+    "labels": [
+      "MATCH",
+      "PARTIAL_MATCH",
+      "MISMATCH"
+    ],
+    "matrix": [
+      [
+        16,
+        0,
+        4
+      ],
+      [
+        16,
+        0,
+        4
+      ],
+      [
+        16,
+        0,
+        4
+      ]
+    ]
+  }
+}

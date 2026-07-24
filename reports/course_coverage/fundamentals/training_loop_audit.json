@@ -1,0 +1,16 @@
+{
+  "experiment_id": "FND-005",
+  "status": "COMPLETED",
+  "training_updates_from": "data/processed/integrated_train.csv",
+  "validation_evaluation_from": "data/processed/integrated_validation.csv",
+  "validation_weights_unchanged_during_evaluate": true,
+  "train_shuffle": true,
+  "validation_shuffle": false,
+  "early_stopping_enabled": true,
+  "validation_macro_f1": 0.2886446886446887,
+  "validation_accuracy": 0.38333333333333336,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false
+}

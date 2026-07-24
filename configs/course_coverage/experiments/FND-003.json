@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "step": "011.1",
+  "experiment_id": "FND-003",
+  "exercise_problem_number": 3,
+  "exercise_problem_title": "Baseline neural model",
+  "exercise_requirement": "Create a one-hidden-layer neural baseline, inspect weights, and confirm that repeated updates reduce loss on a small batch.",
+  "research_question": "Can a minimal multimodal or single-modality neural model learn a valid gradient signal?",
+  "hypothesis": "A compact baseline will reduce small-batch loss and produce finite class probabilities before full training.",
+  "primary_metric": "small_batch_loss_reduction",
+  "secondary_metrics": [
+    "finite_loss",
+    "probability_sum_error",
+    "parameter_count"
+  ],
+  "resource_tier": "TIER_1",
+  "selection_eligible": false,
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "execution_policy": "controlled_train_validation_only",
+  "evidence_paths": [
+    "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+    "reports/course_coverage/fundamentals/FND-003/"
+  ],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ]
+}

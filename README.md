@@ -864,3 +864,20 @@ Current Step 010.8 policy:
 - test split used: `false`;
 - final test evaluation authorized: `false`.
 <!-- EXAM_SUBMISSION_READINESS_END -->
+
+## Full-course experiments — Step 011.1
+
+The Deep Learning Fundamentals exercise is implemented as a controlled train/validation-only suite covering Problems 1–10: EDA and batching, gradient diagnostics, one-batch overfit, training-loop integrity, SGD/RMSprop/Adam/AdamW and learning-rate comparisons, model capacity, regularization and architecture ablations, preprocessing alternatives, and deliberate failure diagnostics.
+
+- Evidence notebook: [`notebooks/course_coverage/01_fundamentals_experiments.ipynb`](notebooks/course_coverage/01_fundamentals_experiments.ipynb)
+- Methodology: [`docs/course_coverage/fundamentals_experimental_suite.md`](docs/course_coverage/fundamentals_experimental_suite.md)
+- Results: [`reports/course_coverage/fundamentals/fundamentals_suite_summary.md`](reports/course_coverage/fundamentals/fundamentals_suite_summary.md)
+- Machine-readable registry: [`data/experiment_registry/fundamentals_execution_registry.json`](data/experiment_registry/fundamentals_execution_registry.json)
+
+```powershell
+python -m src.project_cli run-fundamentals-suite
+python -m src.project_cli build-fundamentals-notebook
+python -m src.project_cli verify-fundamentals-suite
+```
+
+These educational comparisons do not replace the frozen exam model. The test split remains locked and unused.

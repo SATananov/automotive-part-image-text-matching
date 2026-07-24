@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "step": "011.1",
+  "experiment_id": "FND-005",
+  "exercise_problem_number": 5,
+  "exercise_problem_title": "Training and validation loop",
+  "exercise_requirement": "Run controlled training and validation epochs, save learning curves, and document selected loop-failure demonstrations.",
+  "research_question": "Does the training loop update only from train data while validation remains evaluation-only?",
+  "hypothesis": "A correct loop will lower train loss while producing deterministic validation metrics and no validation updates.",
+  "primary_metric": "validation_macro_f1",
+  "secondary_metrics": [
+    "train_loss",
+    "validation_loss",
+    "validation_accuracy",
+    "generalization_gap"
+  ],
+  "resource_tier": "TIER_2",
+  "selection_eligible": true,
+  "train_split": "data/processed/integrated_train.csv",
+  "validation_split": "data/processed/integrated_validation.csv",
+  "test_split_allowed": false,
+  "test_split_path": null,
+  "final_test_evaluation_authorized": false,
+  "execution_policy": "controlled_train_validation_only",
+  "evidence_paths": [
+    "notebooks/course_coverage/01_fundamentals_experiments.ipynb",
+    "reports/course_coverage/fundamentals/FND-005/"
+  ],
+  "safety_notes": [
+    "Train and validation evidence only.",
+    "Do not load, inspect, score, or tune against the locked test split."
+  ]
+}

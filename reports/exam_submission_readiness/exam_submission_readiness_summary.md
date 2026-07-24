@@ -23,7 +23,7 @@ The repository presentation now leads directly to the executed final notebook an
 
 - direct dependencies: 9;
 - pinned lock entries: 136;
-- repository test functions: 314;
+- repository test functions: 324;
 - runtime and delivery debris inside the repository: none;
 - GitHub origin, `main` branch and 10-commit minimum: verified;
 - clean-clone verification protocol: documented and packaged.

@@ -1,0 +1,45 @@
+{
+  "experiment_id": "FND-004",
+  "status": "COMPLETED",
+  "protocol": "balanced_relation_groups_train_on_batch_post_update_metrics",
+  "batch_size": 6,
+  "part_group_count": 2,
+  "selected_part_group_ids": [
+    "air_filter_001",
+    "air_filter_002"
+  ],
+  "selected_sample_ids": [
+    "air_filter_001_01_match",
+    "air_filter_001_01_partial_match",
+    "air_filter_001_01_mismatch",
+    "air_filter_002_01_match",
+    "air_filter_002_01_partial_match",
+    "air_filter_002_01_mismatch"
+  ],
+  "selected_label_counts": {
+    "MATCH": 2,
+    "PARTIAL_MATCH": 2,
+    "MISMATCH": 2
+  },
+  "parameter_count": 329347,
+  "epochs_completed": 30,
+  "optimizer_steps": 30,
+  "initial_batch_loss": 1.113858440102965,
+  "initial_batch_accuracy": 0.3333333333333333,
+  "final_batch_loss": 0.06059395734189462,
+  "final_batch_accuracy": 1.0,
+  "relative_loss_reduction": 0.9455999477489319,
+  "accuracy_threshold": 0.95,
+  "loss_threshold": 0.12,
+  "learning_rates": [
+    0.003,
+    0.001,
+    0.0003
+  ],
+  "check_interval": 5,
+  "threshold_reached": true,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "final_test_evaluation_authorized": false,
+  "production_final_model_changed": false
+}

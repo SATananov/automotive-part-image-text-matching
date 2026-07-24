@@ -406,6 +406,28 @@ COMMANDS: dict[str, CommandSpec] = {
             "evidence planning, and the closed test boundary."
         ),
     ),
+    "run-fundamentals-suite": CommandSpec(
+        module="src.run_fundamentals_experimental_suite",
+        description=(
+            "Run the Step 011.1 Deep Learning Fundamentals train/validation "
+            "experiments and build the executed evidence notebook."
+        ),
+        requires_tensorflow=True,
+    ),
+    "build-fundamentals-notebook": CommandSpec(
+        module="src.build_fundamentals_experiment_notebook",
+        description=(
+            "Rebuild and execute the Step 011.1 fundamentals evidence notebook "
+            "from committed experiment reports."
+        ),
+    ),
+    "verify-fundamentals-suite": CommandSpec(
+        module="src.verification.fundamentals_experimental_suite",
+        description=(
+            "Verify all ten fundamentals exercises, reports, notebook outputs, "
+            "manifest integrity, and the closed test gate."
+        ),
+    ),
     "verify-project": CommandSpec(
         module="src.verification.project_verification",
         description=(
