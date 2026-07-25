@@ -450,6 +450,42 @@ COMMANDS: dict[str, CommandSpec] = {
             "manifest integrity, and the closed test boundary."
         ),
     ),
+    "run-vision-suite": CommandSpec(
+        module="src.run_vision_experimental_suite",
+        description=(
+            "Run the Step 011.3A vision core experiments, controlled gates, "
+            "ranking diagnostics, and executed evidence notebooks."
+        ),
+        requires_tensorflow=True,
+    ),
+    "build-vision-notebooks": CommandSpec(
+        module="src.build_vision_experiment_notebooks",
+        description=(
+            "Rebuild and execute the Step 011.3A vision evidence notebooks "
+            "from committed validation reports."
+        ),
+    ),
+    "verify-vision-suite": CommandSpec(
+        module="src.verification.vision_experimental_suite",
+        description=(
+            "Verify vision experiments, controlled gates, ranking, "
+            "explainability boundaries, notebooks, and manifest integrity."
+        ),
+    ),
+    "build-final-submission-notebook": CommandSpec(
+        module="src.build_final_submission_notebook",
+        description=(
+            "Build the Step 011.4 teacher-facing final notebook, rubric "
+            "self-assessment, and Deep Learning error-analysis evidence."
+        ),
+    ),
+    "verify-final-submission": CommandSpec(
+        module="src.verification.final_submission_rubric_alignment",
+        description=(
+            "Verify the final exam rubric alignment, executed notebook, "
+            "error analysis, communication artifacts, and locked-test policy."
+        ),
+    ),
     "verify-project": CommandSpec(
         module="src.verification.project_verification",
         description=(

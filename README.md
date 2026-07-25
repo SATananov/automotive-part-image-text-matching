@@ -1,6 +1,10 @@
 # Automotive Part Image-Text Matching
 
-> **Exam submission:** [Open the executed final notebook on GitHub](https://github.com/SATananov/automotive-part-image-text-matching/blob/main/notebooks/02_final_exam_project.ipynb) · [Read the submission checklist](reports/exam_submission_readiness/submission_checklist.md) · [View the release readiness summary](reports/exam_submission_readiness/exam_submission_readiness_summary.md)
+**Notebook Execution, Visual QA and Citation Audit:** the historical Step 010.7 quality gate remains committed and independently verifiable.
+
+**Exam submission evidence:** the current Step 011.4 notebook and the historical audited notebook are both directly reviewable on GitHub.
+
+> **Final exam submission — deadline 11 August 2026, 16:00:** [Open the teacher-facing executed notebook](https://github.com/SATananov/automotive-part-image-text-matching/blob/main/notebooks/03_final_exam_submission.ipynb) · [Read the final checklist](reports/final_submission/submission_checklist.md) · [Review the 98/100 self-assessment](reports/final_submission/self_assessment.md) · [Use the defense guide](reports/final_submission/defense_guide.md)
 
 This project studies whether a model can determine if a photograph of an automotive part matches a short text description.
 
@@ -27,6 +31,26 @@ The final model selection uses the integrated grouped validation split: 60 sampl
 
 The multimodal model is the retained final recipe. The earlier generated-development result was higher (`0.7667` accuracy and `0.7696` macro F1), but it is reported only as development evidence rather than the final validation result.
 
+## Deep Learning Error Analysis
+
+The teacher-facing submission does not hide model failures. The controlled reference analysis contains **35 errors among 60 validation samples**. The intermediate `PARTIAL_MATCH` class accounts for 20 errors and is split evenly toward `MATCH` and `MISMATCH`. Real open-license images have a higher error rate (`66.7%`) than generated validation images (`50.0%`), which is consistent with domain shift caused by background, lighting, scale and perspective.
+
+Step 011.1 also contains nine controlled failure diagnostics: unscaled images, unsuitable learning rates, excessive dropout, label misalignment, deep sigmoid gradients, a missing optimizer update, and validation-training safeguards. Step 011.3A adds ranking, augmentation and occlusion diagnostics while explicitly avoiding unsupported human-explainability claims.
+
+- [Deep Learning error-analysis report](reports/final_submission/deep_learning_error_analysis.md)
+- [Final exam rubric evidence matrix](reports/final_submission/rubric_evidence_matrix.csv)
+- [Teacher-facing submission summary](reports/final_submission/final_submission_summary.md)
+
+## Current course-exercise evidence
+
+| Suite | Completed scope | Recorded training runs | Controlled gates |
+|---|---:|---:|---:|
+| Deep Learning Fundamentals | 10/10 | 35 | 0 |
+| Transformers & Sequence Modelling core | 9 core tasks | 21 | pretrained transformer |
+| Vision Models core | 6/9 | 48 | pretrained backbone, fine-tuning, genuine human annotation |
+
+All course experiments use committed train and validation evidence only. The locked test split remains unused and unauthorized, and none of the Step 011 suites changes the retained production model automatically.
+
 ## Project structure
 
 - `data/development/` - deterministic generated images and metadata;
@@ -41,25 +65,30 @@ The multimodal model is the retained final recipe. The earlier generated-develop
 
 ## Jupyter notebooks
 
-The main exam presentation is the committed executed notebook:
+The main exam presentation is now the Step 011.4 teacher-facing notebook:
 
-- [Open `notebooks/02_final_exam_project.ipynb` directly on GitHub](https://github.com/SATananov/automotive-part-image-text-matching/blob/main/notebooks/02_final_exam_project.ipynb)
-- Local path: `notebooks/02_final_exam_project.ipynb`
+- [Open `notebooks/03_final_exam_submission.ipynb` directly on GitHub](https://github.com/SATananov/automotive-part-image-text-matching/blob/main/notebooks/03_final_exam_submission.ipynb)
+- Local path: `notebooks/03_final_exam_submission.ipynb`
 
 Build, verify, and open it from the repository root:
 
 ```powershell
-python -m src.project_cli build-final-exam-notebook
-python -m src.project_cli verify-final-exam-notebook
-python -m jupyter notebook notebooks/02_final_exam_project.ipynb
+python -m src.project_cli build-final-submission-notebook
+python -m src.project_cli verify-final-submission
+python -m jupyter notebook notebooks/03_final_exam_submission.ipynb
 ```
 
-The notebook integrates the complete validation-only research narrative: problem definition, previous research, data acquisition and licensing, grouped splitting, six model families, development and integrated validation results, error analysis, controlled model selection, final model freeze, testing, limitations, conclusion, and references. It contains saved tables and visualizations and does not retrain models or access the locked test split.
+It aligns the project directly to the eight exam criteria and integrates the current validation results, previous research, data provenance, testing evidence, Step 011 course experiments, Deep Learning errors, controlled failure diagnostics, limitations, self-assessment and defense summary. It reads committed reports only and does not train models or access the locked test split.
 
-The earlier development notebook remains available as historical evidence:
+The earlier notebooks remain as immutable research evidence. The historical Step 010.6 notebook is also [directly reviewable on GitHub](https://github.com/SATananov/automotive-part-image-text-matching/blob/main/notebooks/02_final_exam_project.ipynb). The current teacher-facing notebook contains explicit limitations and conclusion sections.
 
 ```text
+notebooks/02_final_exam_project.ipynb
 notebooks/01_development_experiment.ipynb
+notebooks/course_coverage/01_fundamentals_experiments.ipynb
+notebooks/course_coverage/02_sequence_model_comparison.ipynb
+notebooks/course_coverage/03_vision_model_comparison.ipynb
+notebooks/course_coverage/04_scoring_ranking_explainability.ipynb
 ```
 
 ## Full course exercise coverage roadmap
@@ -119,6 +148,15 @@ python -m src.project_cli train-multimodal
 python -m src.project_cli verify-development-pipeline
 python -m src.project_cli build-course-coverage-architecture
 python -m src.project_cli verify-course-coverage-architecture
+python -m src.project_cli run-fundamentals-suite
+python -m src.project_cli verify-fundamentals-suite
+python -m src.project_cli run-sequence-suite
+python -m src.project_cli verify-sequence-suite
+python -m src.project_cli run-vision-suite
+python -m src.project_cli build-vision-notebooks
+python -m src.project_cli verify-vision-suite
+python -m src.project_cli build-final-submission-notebook
+python -m src.project_cli verify-final-submission
 python -m src.project_cli validate-real-data
 python -m src.project_cli verify-real-dataset-foundation
 python -m src.project_cli review-real-intake

@@ -1,68 +1,69 @@
 # Jupyter notebooks
 
-## Final exam project
+## Final exam submission
 
-The main exam presentation is the committed executed notebook:
+The main teacher-facing presentation is the committed executed notebook:
 
-- [Open `02_final_exam_project.ipynb` directly on GitHub](https://github.com/SATananov/automotive-part-image-text-matching/blob/main/notebooks/02_final_exam_project.ipynb)
-- Repository path: `notebooks/02_final_exam_project.ipynb`
+- [Open `03_final_exam_submission.ipynb` directly on GitHub](https://github.com/SATananov/automotive-part-image-text-matching/blob/main/notebooks/03_final_exam_submission.ipynb)
+- Repository path: `notebooks/03_final_exam_submission.ipynb`
+- Submission deadline: **11 August 2026, 16:00**
 
-Build and execute it reproducibly from the repository root:
-
-```powershell
-python -m src.project_cli build-final-exam-notebook
-python -m src.project_cli verify-final-exam-notebook
-```
-
-Open the committed executed notebook locally with:
+Build and verify it from the repository root:
 
 ```powershell
-python -m jupyter notebook notebooks/02_final_exam_project.ipynb
+python -m src.project_cli build-final-submission-notebook
+python -m src.project_cli verify-final-submission
 ```
 
-The final notebook integrates the complete validation-only research narrative:
+Open it locally with:
 
-- problem statement, motivation, research question and hypothesis;
-- related work and formal references;
-- generated and reviewed open-license data;
-- cleaning, licensing, grouped splitting and leakage safeguards;
-- six classical and neural model families;
-- development versus integrated validation results;
-- confusion matrix, per-class metrics and validation error analysis;
-- controlled model improvement and `REFERENCE_RETAINED` decision;
-- final model recipe and one-shot protocol freeze;
-- testing, reproducibility, limitations and conclusion.
-
-The notebook reads committed training, validation and report artifacts only. It does not retrain models, change model selection, open locked test CSV files, or authorize final test evaluation.
-
-## Development experiment
-
-The earlier development presentation remains available at:
-
-```text
-notebooks/01_development_experiment.ipynb
+```powershell
+python -m jupyter notebook notebooks/03_final_exam_submission.ipynb
 ```
 
-It documents the generated development experiment and remains useful as historical evidence. The final exam notebook supersedes it as the main submission document.
+The notebook is aligned directly to the eight exam categories:
 
-## Notebook quality gate
+- problem statement and real-world significance;
+- readable article layout;
+- modular and tested Python code;
+- previous research and six formal references;
+- data acquisition, licensing, cleaning, formatting and group isolation;
+- automated testing, controlled failure tests and locked-test safeguards;
+- saved tables, confusion matrices, error plots and course-suite figures;
+- conclusions, limitations, self-assessment and defense summary.
 
-Run the execution, visual-output, numeric-consistency and citation audit from the repository root:
+It includes a dedicated **Deep Learning Error Analysis and Failure Diagnostics** section with PARTIAL_MATCH confusion, domain shift, category errors, representative mistakes, controlled training failures and explicit explainability boundaries.
+
+The notebook reads committed validation and report artifacts only. It does not retrain models, open a locked test CSV, authorize final test evaluation or change the production model.
+
+## Historical quality gate
+
+Step 010.7 remains the immutable notebook execution, visual QA, numeric consistency and citation audit for `02_final_exam_project.ipynb`.
 
 ```powershell
 python -m src.project_cli run-notebook-quality-audit
 python -m src.project_cli verify-notebook-quality-audit
 ```
 
-Step 010.7 confirms 15 sequentially executed code cells, 19 saved outputs, six readable figures, no error outputs, consistent metrics and six numbered primary or official references.
+## Historical and specialist notebooks
 
-## Exam submission readiness
+The following notebooks remain committed as research evidence:
 
-Run the Step 010.8 release gate with:
+- `01_development_experiment.ipynb` — generated development baseline;
+- [`02_final_exam_project.ipynb`](https://github.com/SATananov/automotive-part-image-text-matching/blob/main/notebooks/02_final_exam_project.ipynb) — Step 010.6/010.7 historical final narrative;
+- `course_coverage/01_fundamentals_experiments.ipynb` — 10/10 fundamentals tasks;
+- `course_coverage/02_sequence_model_comparison.ipynb` — sequence core experiments;
+- `course_coverage/03_vision_model_comparison.ipynb` — vision representation and augmentation;
+- `course_coverage/04_scoring_ranking_explainability.ipynb` — compatibility, ranking and occlusion.
+
+## Verification
+
+Run the current teacher-facing gate and the complete project verification:
 
 ```powershell
-python -m src.project_cli build-exam-submission-readiness
-python -m src.project_cli verify-exam-submission-readiness
+python -m src.project_cli verify-final-submission
+python -m src.project_cli verify-project
+python -m pytest -q
 ```
 
-The release checklist and clean-clone protocol are committed under `reports/exam_submission_readiness/`. The test split remains locked, unused and unauthorized.
+The final submission checklist, self-assessment, Deep Learning error report and defense guide are under `reports/final_submission/`.
