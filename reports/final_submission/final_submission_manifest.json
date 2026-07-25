@@ -6,7 +6,7 @@
   "base_checkpoint": "18d27b0b",
   "hash_normalization": "utf-8-lf for text; raw bytes for binary",
   "source_artifact_sha256": {
-    "README.md": "24e38a07fde5e4f278078b1ba292b68ba6638076aa3d2a16fb0067a93ec320fd",
+    "README.md": "c1f6e0c405186ec5e9c72d67c37ce381b78175007ea610c8770158c3a2914823",
     "requirements.txt": "44fbf0c226749c55f43543834085f72676fbe7ad273b740e369fcf9a5e11f58d",
     "requirements-lock.txt": "1c40aa22e2107d38701af93dd0901936a49f79062f17bfc3f25d8a2f15b361f6",
     "data/processed/integrated_validation.csv": "f67fdde466364dc994cfabef04986de923ccdd8364d1f6dac3616ed47dfca2a5",

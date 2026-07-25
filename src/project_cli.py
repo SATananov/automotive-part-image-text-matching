@@ -486,6 +486,20 @@ COMMANDS: dict[str, CommandSpec] = {
             "error analysis, communication artifacts, and locked-test policy."
         ),
     ),
+    "build-exam-first-submission": CommandSpec(
+        module="src.build_exam_first_submission",
+        description=(
+            "Build the Step 011.5 focused exam notebook, concise teacher "
+            "entry point, supporting-evidence index, and archive-safe manifest."
+        ),
+    ),
+    "verify-exam-first-submission": CommandSpec(
+        module="src.verification.exam_first_submission",
+        description=(
+            "Verify the focused research narrative, grouped-split evidence, "
+            "concrete error analysis, manifests, and closed test boundary."
+        ),
+    ),
     "verify-project": CommandSpec(
         module="src.verification.project_verification",
         description=(

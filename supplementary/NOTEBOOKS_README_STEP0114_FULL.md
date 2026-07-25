@@ -1,31 +1,3 @@
-# Notebook catalogue
-
-## Recommended exam entry point
-
-The primary teacher-facing notebook is now:
-
-- [`exam/01_focused_deep_learning_project.ipynb`](../exam/01_focused_deep_learning_project.ipynb)
-
-It presents one research question, grouped-split protection, the primary model
-comparison, concrete successes, concrete errors, limitations, and reproduction.
-
-## Supporting notebooks
-
-- `notebooks/01_development_experiment.ipynb` — early development evidence;
-- `notebooks/02_final_exam_project.ipynb` — historical full project notebook;
-- `notebooks/03_final_exam_submission.ipynb` — Step 011.4 rubric-alignment evidence;
-- `notebooks/course_coverage/` — Fundamentals, sequence, vision, ranking, and controlled experiments.
-
-The Step 011.4 notebook remains directly reviewable on GitHub:
-
-https://github.com/SATananov/automotive-part-image-text-matching/blob/main/notebooks/03_final_exam_submission.ipynb
-
-The course-coverage notebooks are supporting evidence and are not intended to
-replace the focused exam narrative.
-
-<details>
-<summary>Historical notebook catalogue and verification commands</summary>
-
 # Jupyter notebooks
 
 ## Final exam submission
@@ -95,5 +67,3 @@ python -m pytest -q
 ```
 
 The final submission checklist, self-assessment, Deep Learning error report and defense guide are under `reports/final_submission/`.
-
-</details>
