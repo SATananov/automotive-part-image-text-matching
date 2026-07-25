@@ -17,6 +17,11 @@ starting point for assessment.
 - `notebooks/02_final_exam_project.ipynb`
 - `notebooks/03_final_exam_submission.ipynb`
 
+The historical Step 010.4 / Step 011.4 error analysis reports 35 errors from a
+separate controlled retraining. It is preserved as stability and audit
+evidence. It must not be combined with the primary frozen `keras_multimodal`
+run, which has 32 correct predictions and 28 errors.
+
 ## Engineering and audit evidence
 
 - `tests/`

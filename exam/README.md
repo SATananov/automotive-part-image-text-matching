@@ -13,16 +13,20 @@ concrete errors, limitations, and the exact reproduction boundary.
 
 ## Main result
 
-The retained multimodal model reaches **0.5333 accuracy**
+The frozen multimodal model reaches **0.5333 accuracy**
 and **0.5208 macro F1** on 60 validation samples
 from 20 independent physical-part groups. It ranks above the text-only and
 image-only neural baselines.
 
-This is not presented as a solved problem. The retained model makes
-**35 errors**, including
-**20 errors involving the difficult
-`PARTIAL_MATCH` class**. Real open-license images are harder than generated
-images.
+All primary metrics and errors are derived from one exact prediction artifact:
+`reports/integrated_training/keras_multimodal/validation_predictions.csv`.
+
+The model makes **28 errors** and correctly recovers
+**12/20 `PARTIAL_MATCH` cases**. Its
+weakest class recall is `MATCH` at
+**0.30**. Real open-license
+images have a **53.3%** error rate, compared with
+**40.0%** for generated images.
 
 ## Scientific boundary
 
@@ -32,6 +36,7 @@ images.
 - The locked test split has not been used.
 - No model training is performed by this exam-facing layer.
 - The retained production model and selection decision are unchanged.
+- The historical 35-error Step 010.4 retraining is supporting evidence only.
 
 ## Supporting pages
 
@@ -42,5 +47,5 @@ images.
 
 The previous full rubric notebook remains available at
 [`notebooks/03_final_exam_submission.ipynb`](../notebooks/03_final_exam_submission.ipynb),
-but it is now supporting evidence rather than the first document a reviewer
-must read.
+but it is historical supporting evidence rather than the source of the focused
+primary metrics.

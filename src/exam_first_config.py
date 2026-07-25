@@ -4,17 +4,17 @@ from pathlib import Path
 
 from src.real_dataset_config import PROJECT_ROOT
 
-STEP = "011.5"
-BASE_CHECKPOINT_COMMIT = "285327cc7e1304f6c7e64e8513f0857b13790303"
-BASE_CHECKPOINT_COMMIT_COUNT = 42
+STEP = "011.5.1"
+BASE_CHECKPOINT_COMMIT = "3e3e600d944d1905fc32695a4f67509a65ec0fce"
+BASE_CHECKPOINT_COMMIT_COUNT = 43
 SOURCE_ARCHIVE = (
     "automotive-part-image-text-matching_"
-    "CLEAN_STEP011_4_285327cc_20260725_060717.zip"
+    "CLEAN_STEP011_5_3e3e600d_20260725_083714.zip"
 )
 SOURCE_ARCHIVE_SHA256 = (
-    "5fba05dd7027412ce0ac131e152c47b165c6ccfe4952d9454b3b61868717a00c"
+    "68baa6a98b74712864bab84c4584b20912c3928d51cb6290578f638010d917c2"
 )
-READINESS = "EXAM_FIRST_SUBMISSION_FOCUSED_TEST_LOCKED"
+READINESS = "SINGLE_MODEL_EVIDENCE_CONSISTENT_TEST_LOCKED"
 
 ROOT_README_PATH = PROJECT_ROOT / "README.md"
 NOTEBOOK_CATALOGUE_PATH = PROJECT_ROOT / "notebooks" / "README.md"
@@ -37,6 +37,32 @@ STATUS_PATH = REPORT_DIR / "exam_first_submission_status.json"
 SUMMARY_PATH = REPORT_DIR / "exam_first_submission_summary.md"
 MANIFEST_PATH = REPORT_DIR / "exam_first_submission_manifest.json"
 FIGURES_DIR = REPORT_DIR / "figures"
+
+RETAINED_PREDICTIONS_PATH = (
+    PROJECT_ROOT
+    / "reports"
+    / "integrated_training"
+    / "keras_multimodal"
+    / "validation_predictions.csv"
+)
+RETAINED_METRICS_PATH = (
+    PROJECT_ROOT
+    / "reports"
+    / "integrated_training"
+    / "keras_multimodal"
+    / "validation_metrics.json"
+)
+RETAINED_CONFUSION_PATH = (
+    PROJECT_ROOT
+    / "reports"
+    / "integrated_training"
+    / "keras_multimodal"
+    / "validation_confusion_matrix.csv"
+)
+FOCUSED_ERROR_ROWS_PATH = REPORT_DIR / "retained_model_validation_errors.csv"
+FOCUSED_ERROR_SUMMARY_PATH = REPORT_DIR / "retained_model_error_summary.json"
+FOCUSED_CONFUSION_PATH = REPORT_DIR / "retained_model_confusion_matrix.csv"
+CONSISTENCY_REPORT_PATH = REPORT_DIR / "single_model_consistency_report.json"
 
 PRIMARY_QUESTION = (
     "Does a multimodal neural network that combines an automotive-part "
@@ -66,6 +92,8 @@ FORBIDDEN_NOTEBOOK_CODE_TOKENS = (
     "keras.fit(",
     "tensorflow.keras.models.load_model",
     "load_model(",
+    "validation_model_improvement/validation_error_analysis",
+    "reference_multimodal/validation_confusion_matrix",
 )
 
 SOURCE_ARTIFACTS = (
@@ -93,25 +121,9 @@ SOURCE_ARTIFACTS = (
     / "integrated_training"
     / "keras_image"
     / "validation_predictions.csv",
-    PROJECT_ROOT
-    / "reports"
-    / "integrated_training"
-    / "keras_multimodal"
-    / "validation_predictions.csv",
-    PROJECT_ROOT
-    / "reports"
-    / "validation_model_improvement"
-    / "validation_error_analysis.csv",
-    PROJECT_ROOT
-    / "reports"
-    / "validation_model_improvement"
-    / "validation_error_analysis.json",
-    PROJECT_ROOT
-    / "reports"
-    / "validation_model_improvement"
-    / "candidates"
-    / "reference_multimodal"
-    / "validation_confusion_matrix.csv",
+    RETAINED_PREDICTIONS_PATH,
+    RETAINED_METRICS_PATH,
+    RETAINED_CONFUSION_PATH,
     PROJECT_ROOT
     / "reports"
     / "final_model_freeze"
@@ -147,6 +159,10 @@ GENERATED_ARTIFACTS = (
     STATUS_PATH,
     SUMMARY_PATH,
     MANIFEST_PATH,
+    FOCUSED_ERROR_ROWS_PATH,
+    FOCUSED_ERROR_SUMMARY_PATH,
+    FOCUSED_CONFUSION_PATH,
+    CONSISTENCY_REPORT_PATH,
     FIGURES_DIR / "model_comparison.png",
     FIGURES_DIR / "confusion_matrix.png",
     FIGURES_DIR / "error_rates.png",

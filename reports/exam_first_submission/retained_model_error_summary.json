@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "step": "011.5.1",
+  "status": "PASS",
+  "retained_model_slug": "keras_multimodal",
+  "prediction_artifact": "reports/integrated_training/keras_multimodal/validation_predictions.csv",
+  "prediction_artifact_sha256": "330a0054afca30cafb7afe23d73c92182b1fb1808e81274c8dee1781b0351f1f",
+  "metrics_artifact": "reports/integrated_training/keras_multimodal/validation_metrics.json",
+  "confusion_artifact": "reports/integrated_training/keras_multimodal/validation_confusion_matrix.csv",
+  "validation_sample_count": 60,
+  "correct_count": 32,
+  "error_count": 28,
+  "accuracy": 0.5333333333333333,
+  "macro_f1": 0.520827129859388,
+  "predicted_partial_match_count": 19,
+  "true_partial_match_recovered": 12,
+  "partial_match_error_count": 8,
+  "errors_by_source": {
+    "generated_development": {
+      "samples": 30,
+      "errors": 12,
+      "error_rate": 0.4
+    },
+    "wikimedia_commons_open_license": {
+      "samples": 30,
+      "errors": 16,
+      "error_rate": 0.5333333333333333
+    }
+  },
+  "class_performance": {
+    "MATCH": {
+      "support": 20,
+      "correct": 6,
+      "errors": 14,
+      "precision": 0.5454545454545454,
+      "recall": 0.3,
+      "f1": 0.3870967741935483
+    },
+    "PARTIAL_MATCH": {
+      "support": 20,
+      "correct": 12,
+      "errors": 8,
+      "precision": 0.631578947368421,
+      "recall": 0.6,
+      "f1": 0.6153846153846154
+    },
+    "MISMATCH": {
+      "support": 20,
+      "correct": 14,
+      "errors": 6,
+      "precision": 0.4666666666666667,
+      "recall": 0.7,
+      "f1": 0.56
+    }
+  },
+  "single_prediction_set_used": true,
+  "historical_controlled_retraining_is_primary": false,
+  "model_training_performed": false,
+  "locked_test_csv_files_opened": false,
+  "test_split_used": false,
+  "production_final_model_changed": false
+}

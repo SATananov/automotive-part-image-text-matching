@@ -33,7 +33,7 @@ The multimodal model is the retained final recipe. The earlier generated-develop
 
 ## Deep Learning Error Analysis
 
-The teacher-facing submission does not hide model failures. The controlled reference analysis contains **35 errors among 60 validation samples**. The intermediate `PARTIAL_MATCH` class accounts for 20 errors and is split evenly toward `MATCH` and `MISMATCH`. Real open-license images have a higher error rate (`66.7%`) than generated validation images (`50.0%`), which is consistent with domain shift caused by background, lighting, scale and perspective.
+The historical Step 010.4 controlled retraining analysis contains **35 errors among 60 validation samples**. It is preserved as a separate stability experiment and is not the prediction set used for the focused primary result. Within that historical run, the intermediate `PARTIAL_MATCH` class accounts for 20 errors and real open-license images have a higher error rate (`66.7%`) than generated validation images (`50.0%`).
 
 Step 011.1 also contains nine controlled failure diagnostics: unscaled images, unsuitable learning rates, excessive dropout, label misalignment, deep sigmoid gradients, a missing optimizer update, and validation-training safeguards. Step 011.3A adds ranking, augmentation and occlusion diagnostics while explicitly avoiding unsupported human-explainability claims.
 

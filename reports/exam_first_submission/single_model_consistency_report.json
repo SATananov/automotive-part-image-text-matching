@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "step": "011.5.1",
+  "status": "PASS",
+  "primary_prediction_artifact": "reports/integrated_training/keras_multimodal/validation_predictions.csv",
+  "primary_prediction_artifact_sha256": "330a0054afca30cafb7afe23d73c92182b1fb1808e81274c8dee1781b0351f1f",
+  "all_primary_metrics_derived_from_same_prediction_artifact": true,
+  "prediction_rows": 60,
+  "correct_rows": 32,
+  "error_rows": 28,
+  "confusion_matrix_matches_predictions": true,
+  "accuracy_matches_metrics_artifact": true,
+  "macro_f1_matches_metrics_artifact": true,
+  "historical_step_010_4_reference_analysis": "supporting evidence from a separate controlled retraining; not used for the focused primary result",
+  "model_training_performed": false,
+  "test_split_used": false,
+  "production_final_model_changed": false
+}

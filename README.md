@@ -2,9 +2,7 @@
 
 ## Start here
 
-**Research question:** Does a multimodal neural network that combines an
-automotive-part image and a short description classify their relationship
-better than image-only and text-only neural baselines?
+**Research question:** Does a multimodal neural network that combines an automotive-part image and a short description classify their relationship better than image-only and text-only neural baselines?
 
 Open the focused, executed exam notebook:
 
@@ -18,7 +16,7 @@ portfolio of unrelated techniques.
 
 ## Main result
 
-The retained Keras multimodal model ranks first on the grouped integrated
+The frozen Keras multimodal run ranks first on the grouped integrated
 validation split.
 
 | Model | Input | Validation accuracy | Macro F1 |
@@ -30,9 +28,12 @@ validation split.
 | Keras image model | image | 0.3333 | 0.1667 |
 | **Keras multimodal model** | **image + text** | **0.5333** | **0.5208** |
 
-The result is useful but not overstated. The retained model makes 35 errors
-among 60 validation samples. Twenty errors involve `PARTIAL_MATCH`, and real
-open-license images are harder than generated images.
+Every teacher-facing metric and error claim now comes from the same frozen
+`keras_multimodal` prediction artifact. It contains **32 correct predictions
+and 28 errors** among 60 validation samples. The model recovers **12 of 20
+`PARTIAL_MATCH`** cases; its weakest class recall is `MATCH` at 0.30. Real
+open-license images remain harder than generated images (53.3% versus 40.0%
+error rate).
 
 ## Leakage protection
 
@@ -50,7 +51,7 @@ The focused notebook shows:
 3. grouped splitting and leakage checks;
 4. baselines and neural models on the same validation split;
 5. concrete cases where multimodal input helps;
-6. concrete errors and domain-shift evidence;
+6. concrete errors derived from that same frozen prediction set;
 7. limitations and an exact reproduction boundary.
 
 ## Reproduce the exam-facing evidence
@@ -68,13 +69,15 @@ retained production model.
 
 The wider course exercises, historical notebooks, engineering tests, manifests,
 and audits are indexed in [supplementary/README.md](supplementary/README.md).
-They support the main analysis without competing with it.
+The historical Step 010.4 analysis with 35 errors is explicitly treated as a
+separate controlled retraining experiment and is not mixed with the primary
+frozen-model result.
 
 For compatibility with the Step 011.4 rubric checkpoint, the earlier full
-teacher-facing notebook remains available:
+teacher-facing notebook remains available as historical supporting evidence:
 
 - [Open the Step 011.4 notebook on GitHub](https://github.com/SATananov/automotive-part-image-text-matching/blob/main/notebooks/03_final_exam_submission.ipynb)
-- [Deep Learning Error Analysis](reports/final_submission/deep_learning_error_analysis.md)
+- [Historical Deep Learning Error Analysis](reports/final_submission/deep_learning_error_analysis.md)
 - [98/100 self-assessment](reports/final_submission/self_assessment.md)
 - [Submission checklist](reports/final_submission/submission_checklist.md)
 
@@ -131,7 +134,7 @@ The multimodal model is the retained final recipe. The earlier generated-develop
 
 ## Deep Learning Error Analysis
 
-The teacher-facing submission does not hide model failures. The controlled reference analysis contains **35 errors among 60 validation samples**. The intermediate `PARTIAL_MATCH` class accounts for 20 errors and is split evenly toward `MATCH` and `MISMATCH`. Real open-license images have a higher error rate (`66.7%`) than generated validation images (`50.0%`), which is consistent with domain shift caused by background, lighting, scale and perspective.
+The historical Step 010.4 controlled retraining analysis contains **35 errors among 60 validation samples**. It is preserved as a separate stability experiment and is not the prediction set used for the focused primary result. Within that historical run, the intermediate `PARTIAL_MATCH` class accounts for 20 errors and real open-license images have a higher error rate (`66.7%`) than generated validation images (`50.0%`).
 
 Step 011.1 also contains nine controlled failure diagnostics: unscaled images, unsuitable learning rates, excessive dropout, label misalignment, deep sigmoid gradients, a missing optimizer update, and validation-training safeguards. Step 011.3A adds ranking, augmentation and occlusion diagnostics while explicitly avoiding unsupported human-explainability claims.
 

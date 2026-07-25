@@ -14,21 +14,30 @@ training and validation under a different image-text pairing.
 
 The multimodal model is compared with majority, classical text, classical
 image, neural text-only, and neural image-only baselines on the same grouped
-validation split. Its advantage is evidence that both modalities help, not
-proof that every individual prediction uses both modalities correctly.
+validation split. Its advantage is evidence consistent with a benefit from
+combining modalities, not proof that every individual prediction causally uses
+both inputs.
 
 ## Show concrete examples
 
 The notebook contains examples where the multimodal model is correct while one
-or both unimodal models fail. It also shows difficult errors, especially
-`PARTIAL_MATCH`, where the description is related to the image but is not the
-same part category.
+or both unimodal models fail. The error examples, confusion matrix, source
+rates, and aggregate score all come from the same frozen
+`keras_multimodal/validation_predictions.csv` artifact.
 
 ## Be direct about weaknesses
 
-The validation set is small, real images produce more errors than generated
-images, the model predicts no `PARTIAL_MATCH` cases in the retained confusion
-matrix, and the results do not establish deployment readiness or calibration.
+The frozen model makes 28 errors on 60 validation samples. It recovers 12 of 20
+`PARTIAL_MATCH` cases, so that class is not a total failure. The weakest recall
+is `MATCH` at 0.30: ten true matches are predicted as `MISMATCH`. Real images
+produce a 53.3% error rate versus 40.0% for generated images. The results do
+not establish deployment readiness or calibrated probabilities.
+
+## Keep the historical experiment separate
+
+The historical Step 010.4 controlled retraining produced 35 errors and a very
+different confusion matrix. It remains useful as stability evidence, but it is
+not the prediction set used for the primary 0.5333 / 0.5208 result.
 
 ## Evaluation boundary
 
