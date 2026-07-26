@@ -1,9 +1,8 @@
-tensorflow
-numpy
-pandas
-scikit-learn
-matplotlib
-pillow
-jupyter
-ipykernel
-pytest
+tensorflow==2.21.0
+numpy==2.5.1
+pandas==3.0.3
+scikit-learn==1.9.0
+matplotlib==3.11.0
+pillow==12.3.0
+jupyter==1.1.1
+pytest==9.1.1

@@ -1,49 +1,6 @@
-# Python virtual environment
 .venv/
-
-# Python cache
 __pycache__/
-*.py[cod]
-
-# Testing and notebook cache
 .pytest_cache/
 .ipynb_checkpoints/
-
-# IDE settings
-.vscode/
-
-# Operating system files
+*.pyc
 .DS_Store
-Thumbs.db
-
-# Generated model files
-*.keras
-*.h5
-
-# Generated reports
-reports/*.png
-reports/*.csv
-reports/*.json
-
-# Real-data originals and temporary staging are never committed.
-data/real/originals/*
-!data/real/originals/.gitkeep
-
-data/real/staging/*
-!data/real/staging/.gitkeep
-
-# Step 009.1 transactional temporary files are never committed.
-data/real/processed/.automotive_step009_1_*/
-data/real/annotations/.*.tmp
-data/real/processed/.*.tmp
-
-# Local capture inbox is never committed.
-data/real/capture_inbox/*
-!data/real/capture_inbox/.gitkeep
-
-# Live capture execution outputs are local runtime state.
-data/real/runtime/
-
-# Step 010.1 open-license collection runtime and temporary downloads.
-data/external/open_license/runtime/
-data/external/open_license/.collect_tmp_*/

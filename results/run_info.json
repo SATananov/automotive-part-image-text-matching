@@ -1,0 +1,8 @@
+{
+  "result_source": "Frozen validation predictions from commit 18ab0dbbdc1e20089f1f28b36250c45f7aec7bd5",
+  "random_state": 42,
+  "training_split": "data/train.csv",
+  "model_selection_split": "data/validation.csv",
+  "test_split_used": false,
+  "test_evaluation_permitted": false
+}
