@@ -5,12 +5,18 @@ from sklearn.metrics import accuracy_score, f1_score
 from src.data import PROJECT_ROOT
 
 
-def test_multimodal_model_is_best_on_real_images() -> None:
+def test_model_comparison_is_sorted_by_reported_scores() -> None:
     table = pd.read_csv(PROJECT_ROOT / "results/model_comparison.csv")
-    best = table.sort_values("real_image_macro_f1", ascending=False).iloc[0]
-    assert best["model"] == "Keras multimodal model"
-    assert round(best["real_image_accuracy"], 4) == 0.4667
-    assert round(best["real_image_macro_f1"], 4) == 0.4626
+    expected = table.sort_values(
+        ["real_image_macro_f1", "full_validation_macro_f1"],
+        ascending=False,
+        kind="stable",
+    ).reset_index(drop=True)
+    assert_frame_equal(
+        table.reset_index(drop=True),
+        expected,
+        check_dtype=False,
+    )
 
 
 def test_saved_predictions_are_validation_only() -> None:

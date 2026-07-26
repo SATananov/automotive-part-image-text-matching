@@ -114,7 +114,11 @@ def run_audit() -> dict[str, object]:
     validation_hashes = {file_sha256(PROJECT_ROOT / p) for p in validation_images["image_path"]}
 
     near_pairs = similarity_pairs(train, validation)
-    near_pairs.to_csv(RESULTS_DIR / "similar_image_pairs.csv", index=False)
+    near_pairs.to_csv(
+        RESULTS_DIR / "similar_image_pairs.csv",
+        index=False,
+        lineterminator="\n",
+    )
 
     train = train.copy()
     validation = validation.copy()
@@ -127,7 +131,11 @@ def run_audit() -> dict[str, object]:
         shortcut_score(train, validation, ["source", "part_category"]),
         shortcut_score(train, validation, ["description_category"]),
     ]
-    pd.DataFrame(shortcut_rows).to_csv(RESULTS_DIR / "shortcut_baselines.csv", index=False)
+    pd.DataFrame(shortcut_rows).to_csv(
+        RESULTS_DIR / "shortcut_baselines.csv",
+        index=False,
+        lineterminator="\n",
+    )
 
     word_lengths = train.assign(words=train["description"].str.split().str.len()).groupby("label")["words"].mean()
     generated_pairs = near_pairs[near_pairs["source"].eq("generated")]
@@ -174,9 +182,12 @@ def run_audit() -> dict[str, object]:
         ],
         "test_split_used": False,
     }
-    (RESULTS_DIR / "data_audit.json").write_text(
-        json.dumps(summary, indent=2) + "\n", encoding="utf-8"
-    )
+    with (RESULTS_DIR / "data_audit.json").open(
+        "w",
+        encoding="utf-8",
+        newline="\n",
+    ) as handle:
+        handle.write(json.dumps(summary, indent=2) + "\n")
     return summary
 
 

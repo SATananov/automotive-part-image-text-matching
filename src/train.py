@@ -116,14 +116,19 @@ def fit_keras_model(keras, model, x_train, y_train, x_val, y_val):
 def save_model_summary(model, path: Path) -> None:
     buffer = io.StringIO()
     model.summary(print_fn=lambda line: buffer.write(line + "\n"))
-    path.write_text(buffer.getvalue(), encoding="utf-8")
+    with path.open("w", encoding="utf-8", newline="\\n") as handle:
+        handle.write(buffer.getvalue().rstrip() + "\\n")
 
 
 def save_multimodal_tables(all_predictions: pd.DataFrame) -> None:
     multimodal = all_predictions[all_predictions["model_slug"].eq("keras_multimodal")].copy()
     if len(multimodal) == 0:
         raise ValueError("The Keras multimodal predictions are missing.")
-    multimodal.to_csv(RESULTS_DIR / "multimodal_validation_predictions.csv", index=False)
+    multimodal.to_csv(
+        RESULTS_DIR / "multimodal_validation_predictions.csv",
+        index=False,
+        lineterminator="\n",
+    )
 
     rows = []
     for category, group in multimodal.groupby("part_category", sort=True):
@@ -135,7 +140,11 @@ def save_multimodal_tables(all_predictions: pd.DataFrame) -> None:
                 group["true_label"], group["predicted_label"], average="macro", zero_division=0
             ),
         })
-    pd.DataFrame(rows).to_csv(RESULTS_DIR / "multimodal_per_category.csv", index=False)
+    pd.DataFrame(rows).to_csv(
+        RESULTS_DIR / "multimodal_per_category.csv",
+        index=False,
+        lineterminator="\n",
+    )
 
 
 def main() -> None:
@@ -260,7 +269,11 @@ def main() -> None:
             x_validation,
             y_validation,
         )
-        history.to_csv(RESULTS_DIR / f"{slug}_training_history.csv", index=False)
+        history.to_csv(
+            RESULTS_DIR / f"{slug}_training_history.csv",
+            index=False,
+            lineterminator="\n",
+        )
         record(name, slug, modality, index_to_label[pred_index])
         keras.backend.clear_session()
 
@@ -270,8 +283,16 @@ def main() -> None:
         kind="stable",
     )
     all_predictions = pd.concat(predictions, ignore_index=True)
-    result_table.to_csv(RESULTS_DIR / "model_comparison.csv", index=False)
-    all_predictions.to_csv(RESULTS_DIR / "validation_predictions.csv", index=False)
+    result_table.to_csv(
+        RESULTS_DIR / "model_comparison.csv",
+        index=False,
+        lineterminator="\n",
+    )
+    all_predictions.to_csv(
+        RESULTS_DIR / "validation_predictions.csv",
+        index=False,
+        lineterminator="\n",
+    )
     save_multimodal_tables(all_predictions)
 
     run_info = {
@@ -283,9 +304,12 @@ def main() -> None:
         "test_evaluation_permitted": False,
         "saved_model_count": len(result_table),
     }
-    (RESULTS_DIR / "run_info.json").write_text(
-        json.dumps(run_info, indent=2) + "\n", encoding="utf-8"
-    )
+    with (RESULTS_DIR / "run_info.json").open(
+        "w",
+        encoding="utf-8",
+        newline="\n",
+    ) as handle:
+        handle.write(json.dumps(run_info, indent=2) + "\n")
     print(result_table.to_string(index=False))
 
 
