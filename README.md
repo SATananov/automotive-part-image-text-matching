@@ -4,7 +4,7 @@ This is my Deep Learning exam project.
 
 ## Question
 
-Can a small neural network that uses both an automotive-part image and a short text description classify their relationship better than image-only and text-only models?
+Can a small neural network that uses both an automotive-part image and a short text description classify their relationship better than image-only, text-only, and a simple non-neural image-and-text baseline?
 
 The three labels are:
 
@@ -18,18 +18,26 @@ Open the executed notebook:
 
 **[project.ipynb](project.ipynb)**
 
-It contains the problem, the data checks, the models, the results, examples of errors, limitations, and references.
+It contains the question, the data checks, the models, the results, examples of errors, limitations, and references.
 
 ## Main result
 
-The multimodal model was the best model on the validation data.
+The small Keras multimodal model was the best model on the validation data.
 
-| Validation data | Accuracy | Macro F1 |
+| Model | Real-image accuracy | Real-image macro F1 |
 |---|---:|---:|
-| All validation images | 0.5333 | 0.5208 |
-| Real Wikimedia images only | 0.4667 | 0.4626 |
+| Keras multimodal model | 0.4667 | 0.4626 |
+| Image + text Logistic Regression | 0.3667 | 0.2927 |
+| Text-only models | 0.3333 | 0.2667 |
+| Image-only models | 0.3333 | 0.1667 |
 
-I report the real-image subset separately because the generated drawings contain visually similar train and validation examples. This makes the real-image result more useful, although it is still based on only 30 image-text pairs.
+On all 60 validation pairs, the Keras multimodal model reached `0.5333` accuracy and `0.5208` macro F1.
+
+I report the real-image subset separately because the simple generated drawings contain visually similar train and validation examples. The real-image result is more cautious, although it is still based on only 30 image-text pairs.
+
+The image-only result needs a special explanation. Every image is paired once with each of the three relation labels. Without the text, an image-only model cannot know which relation is being asked about, so one correct row out of three is the expected ceiling for a deterministic image-only classifier.
+
+The text descriptions also repeat across splits: all 14 validation descriptions are present in training. For this reason, the text-only results should be understood as performance on this fixed vocabulary, not as general language understanding.
 
 The test split was not used.
 
@@ -38,10 +46,10 @@ The test split was not used.
 - `project.ipynb` - main exam notebook;
 - `src/data.py` - data loading and split checks;
 - `src/models.py` - the three Keras models;
-- `src/train.py` - training and validation script;
-- `src/audit.py` - leakage and shortcut checks;
+- `src/train.py` - all baselines, neural training, and result generation;
+- `src/audit.py` - leakage, similarity, shortcut, and test-lock checks;
 - `data/` - CSV files, images, and image licenses;
-- `results/` - saved validation results;
+- `results/` - saved validation predictions, metrics, and training histories;
 - `tests/` - small automated test suite.
 
 ## Run the project
@@ -61,7 +69,7 @@ python -m src.audit
 python -m pytest -q
 ```
 
-Train the models again:
+Train all models and regenerate every result file used by the notebook:
 
 ```powershell
 python -m src.train
@@ -73,11 +81,13 @@ Open the notebook:
 python -m jupyter notebook project.ipynb
 ```
 
-Training uses only `data/train.csv`. Model comparison uses `data/validation.csv`. The normal data loader refuses to open `data/test.csv`.
+Training uses only `data/train.csv`. Model comparison uses only `data/validation.csv`. The normal data loader refuses to open `data/test.csv`.
+
+The saved neural predictions in this checkpoint were retained from the locked model run made before the presentation was simplified. The data and model definitions used for those predictions were not changed by the simplification. Running `python -m src.train` replaces them with a complete new run from the current project files and regenerates all notebook tables.
 
 ## Limitations
 
-The dataset is small. The generated drawings are simple and some are visually similar across the train and validation splits. The real-image validation subset has only one image per category. The result is useful as a course experiment, but it is not enough for a production system.
+The dataset is small. The generated drawings are simple and some are visually similar across the train and validation splits. The real-image validation subset has only one image per category. The text vocabulary is repeated across the splits. The validation split was used to compare models, and the test split remains locked. The result is useful as a course experiment, but it is not enough for a production system.
 
 ## Sources
 

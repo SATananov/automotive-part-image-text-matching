@@ -1,8 +1,11 @@
 {
-  "result_source": "Frozen validation predictions from commit 18ab0dbbdc1e20089f1f28b36250c45f7aec7bd5",
+  "result_source": "Six saved model predictions are retained from the locked run at commit 18ab0dbbdc1e20089f1f28b36250c45f7aec7bd5. The simple image+text baseline and all derived tables were regenerated from the current train and validation files.",
+  "source_checkpoint": "940f84faa8e857c793406895c0c93d959d59565a",
   "random_state": 42,
   "training_split": "data/train.csv",
   "model_selection_split": "data/validation.csv",
   "test_split_used": false,
-  "test_evaluation_permitted": false
+  "test_evaluation_permitted": false,
+  "saved_model_count": 7,
+  "full_regeneration_command": "python -m src.train"
 }

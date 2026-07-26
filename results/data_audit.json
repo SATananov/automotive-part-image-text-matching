@@ -21,6 +21,11 @@
   },
   "generated_similar_pairs_at_0_99": 15,
   "wikimedia_similar_pairs_at_0_99": 0,
+  "unique_descriptions_train": 14,
+  "unique_descriptions_validation": 14,
+  "validation_unique_descriptions_seen_in_train": 14,
+  "validation_rows_with_seen_description": 60,
+  "image_only_relation_ceiling_accuracy": 0.3333333333333333,
   "mean_text_words_by_label": {
     "MATCH": 3.1,
     "MISMATCH": 3.1,
@@ -48,6 +53,17 @@
       "macro_f1": 0.33226495726495725
     }
   ],
-  "warning": "The generated drawings contain visually similar train/validation pairs. The real-image validation subset is reported separately for this reason.",
+  "test_lock": {
+    "test_locked": true,
+    "test_evaluation_permitted": false,
+    "expected_sha256": "4c027f7666ec5f84be61caaacdfcb02a8da6524838eae194ad5f38b5122bc064",
+    "actual_sha256": "4c027f7666ec5f84be61caaacdfcb02a8da6524838eae194ad5f38b5122bc064",
+    "sha256_matches": true
+  },
+  "warnings": [
+    "The generated drawings contain visually similar train/validation pairs. The real-image validation subset is reported separately for this reason.",
+    "All validation descriptions are also present in training. Text-only results therefore measure this fixed vocabulary, not general language understanding.",
+    "Each image is paired once with every relation label. An image-only model cannot identify the relation without the text and is limited to one correct row per image."
+  ],
   "test_split_used": false
 }

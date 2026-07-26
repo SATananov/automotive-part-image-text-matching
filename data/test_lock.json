@@ -3,5 +3,5 @@
   "test_evaluation_permitted": false,
   "test_file": "data/test.csv",
   "test_sha256": "4c027f7666ec5f84be61caaacdfcb02a8da6524838eae194ad5f38b5122bc064",
-  "note": "The test split was not used for training, model choice, or this report."
+  "note": "The test split was not used for training, model choice, or this report. The hash is checked without reading the test rows."
 }
