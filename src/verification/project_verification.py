@@ -34,6 +34,7 @@ VERIFICATION_MODULES = (
     "src.verification.fundamentals_experimental_suite",
     "src.verification.sequence_experimental_suite",
     "src.verification.vision_experimental_suite",
+    "src.verification.final_delivery",
 )
 
 

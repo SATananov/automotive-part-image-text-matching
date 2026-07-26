@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "step": "011.6",
+  "status": "PASS",
+  "canonical_submission_notebook": "exam/01_focused_deep_learning_project.ipynb",
+  "canonical_submission_notebook_github_url": "https://github.com/SATananov/automotive-part-image-text-matching/blob/main/exam/01_focused_deep_learning_project.ipynb",
+  "canonical_entry_point_count": 1,
+  "active_documents": {
+    "README.md": {
+      "role": "primary repository landing page",
+      "canonical_notebook_present": true
+    },
+    "exam/README.md": {
+      "role": "exam guide",
+      "canonical_notebook_present": true
+    },
+    "notebooks/README.md": {
+      "role": "notebook catalogue recommended section",
+      "canonical_notebook_present": true
+    }
+  },
+  "historical_documents": {
+    "reports/final_submission/submission_checklist.md": {
+      "checkpoint": "011.4",
+      "classification": "historical rubric-alignment checklist",
+      "superseded_for_current_submission": true
+    },
+    "reports/exam_submission_readiness/submission_checklist.md": {
+      "checkpoint": "010.8",
+      "classification": "historical technical-readiness checklist",
+      "superseded_for_current_submission": true
+    },
+    "notebooks/03_final_exam_submission.ipynb": {
+      "checkpoint": "011.4",
+      "classification": "historical expanded rubric notebook",
+      "superseded_for_current_submission": true
+    },
+    "notebooks/02_final_exam_project.ipynb": {
+      "checkpoint": "010.6/010.7",
+      "classification": "historical audited project notebook",
+      "superseded_for_current_submission": true
+    }
+  }
+}

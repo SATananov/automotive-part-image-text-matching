@@ -500,6 +500,20 @@ COMMANDS: dict[str, CommandSpec] = {
             "concrete error analysis, manifests, and closed test boundary."
         ),
     ),
+    "build-final-delivery": CommandSpec(
+        module="src.build_final_delivery",
+        description=(
+            "Build the Step 011.6 single-entry-point submission package, "
+            "delivery checklist, static-render review, and release manifest."
+        ),
+    ),
+    "verify-final-delivery": CommandSpec(
+        module="src.verification.final_delivery",
+        description=(
+            "Verify the final submission lock, canonical entry point, static "
+            "notebook rendering, manifest, and closed evaluation boundary."
+        ),
+    ),
     "verify-project": CommandSpec(
         module="src.verification.project_verification",
         description=(

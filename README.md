@@ -65,6 +65,25 @@ python -m jupyter notebook exam/01_focused_deep_learning_project.ipynb
 These commands do not train a model, open locked test CSV files, or change the
 retained production model.
 
+## Final delivery lock
+
+Step 011.6 keeps one canonical submission entry point and adds the final
+delivery checklist, static-render review, submission boundary, and integrity
+manifest.
+
+```powershell
+python -m src.project_cli build-final-delivery
+python -m src.project_cli verify-final-delivery
+```
+
+- [Teacher entry point](reports/final_delivery/teacher_entry_point.md)
+- [Current final submission checklist](reports/final_delivery/final_submission_checklist.md)
+- [GitHub render review](reports/final_delivery/github_render_review.md)
+- [Submission boundary](reports/final_delivery/submission_boundary.md)
+
+The final GitHub visual check and the submission portal action remain manual
+after the Step 011.6 commit is pushed.
+
 ## Supporting evidence
 
 The wider course exercises, historical notebooks, engineering tests, manifests,
