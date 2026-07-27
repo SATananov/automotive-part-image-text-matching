@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "dataset": {
+    "total_images": 120,
+    "real_images": 70,
+    "synthetic_images": 50,
+    "train_rows": 300,
+    "validation_rows": 30,
+    "test_rows_locked": 30
+  },
+  "data_audit": {
+    "identity_overlap_counts": {
+      "part_group_overlap": 0,
+      "object_group_overlap": 0,
+      "image_id_overlap": 0,
+      "image_path_overlap": 0
+    },
+    "exact_cross_split_image_hash_overlap": 0,
+    "exact_description_overlap": 0,
+    "suspicious_real_image_pairs": 0,
+    "license_rows": 70,
+    "all_license_hashes_match": true,
+    "test_lock_sha256_matches": true,
+    "test_split_used": false
+  },
+  "training": {
+    "framework": "PyTorch",
+    "saved_models": 8,
+    "main_model_slug": "torch_multimodal_real_only",
+    "main_validation_accuracy": 0.4666666666666667,
+    "main_validation_macro_f1": 0.4407459207459208,
+    "main_correct_predictions": 14
+  },
+  "automated_tests": {
+    "passed": 26,
+    "failed": 0
+  },
+  "notebook": {
+    "code_cells": 15,
+    "executed_code_cells": 15,
+    "errors": 0,
+    "outputs": 17
+  }
+}

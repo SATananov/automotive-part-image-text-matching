@@ -1,60 +1,74 @@
 # Automotive Part Image-Text Matching
 
-This is my Deep Learning exam project.
+This repository is my final Deep Learning exam project.
 
-## Question
+## Research question
 
-Can a small neural network that uses both an automotive-part image and a short text description classify their relationship better than image-only, text-only, and a simple non-neural image-and-text baseline?
+Can a neural model that combines an automotive-part image and a short text description classify their relationship better than image-only, text-only, and non-neural baselines?
 
-The three labels are:
+The relation labels are:
 
-- `MATCH` - the image and text describe the same part;
-- `PARTIAL_MATCH` - they describe different parts from the same system;
-- `MISMATCH` - they describe parts from different systems.
+- `MATCH` — image and text refer to the same part category;
+- `PARTIAL_MATCH` — the categories differ but belong to the same automotive system;
+- `MISMATCH` — the categories belong to different systems.
 
-## Start here
+The executed report is **[project.ipynb](project.ipynb)**.
 
-Open the executed notebook:
+## Why the experimental design changed
 
-**[project.ipynb](project.ipynb)**
+An earlier version placed very similar synthetic drawings in both training and validation. That could reward template recognition instead of generalization. The current design removes that risk:
 
-It contains the question, the data checks, the models, the results, examples of errors, limitations, and references.
+- all 50 synthetic drawings are training-only;
+- validation contains 10 newly sourced real Wikimedia photographs, one per category;
+- test contains 10 different newly sourced real photographs and remains locked;
+- 20 additional open-license real photographs were added, bringing the real-image inventory to 70;
+- alternate views from known photographic series are grouped by `object_group_id`;
+- train and validation use different sentences, with zero exact caption overlap;
+- source, image category, and text category shortcut diagnostics remain at chance accuracy (`1/3`).
 
-## Main result
+## Data summary
 
-The saved results below come from a complete TensorFlow training run using the current project files.
+Each image is paired with three descriptions, one for each relation label.
 
-| Model | Real-image accuracy | Real-image macro F1 |
-|---|---:|---:|
-| Keras multimodal model | 0.3667 | 0.3556 |
-| Image + text Logistic Regression | 0.3333 | 0.3015 |
-| TF-IDF + Logistic Regression | 0.3333 | 0.2667 |
-| Image pixels + Logistic Regression | 0.3333 | 0.1667 |
+| Split | Real images | Synthetic images | Paired rows | Purpose |
+|---|---:|---:|---:|---|
+| Train | 50 | 50 | 300 | model fitting and synthetic-data ablation |
+| Validation | 10 | 0 | 30 | real-image model comparison |
+| Test | 10 | 0 | 30 | locked; not evaluated |
 
-On all 60 validation pairs, the Keras multimodal model reached `0.5000` accuracy and `0.4898` macro F1.
+Because the three rows from one image are dependent, the project reports bootstrap confidence intervals by resampling complete image groups rather than individual rows.
 
-I report the real-image subset separately because the simple generated drawings contain visually similar train and validation examples. The real-image result is more cautious, although it is still based on only 30 image-text pairs.
+## Deep learning approach
 
-The image-only result needs a special explanation. Every image is paired once with each of the three relation labels. Without the text, an image-only model cannot know which relation is being asked about, so one correct row out of three is the expected ceiling for a deterministic image-only classifier.
+The project uses PyTorch and contains:
 
-The text descriptions also repeat across splits: all 14 validation descriptions are present in training. For this reason, the text-only results should be understood as performance on this fixed vocabulary, not as general language understanding.
+- a neural text-only MLP;
+- an image-only CNN;
+- a multimodal CNN + text MLP trained on real images only;
+- the same multimodal architecture trained on real + synthetic images;
+- four non-neural baselines.
+
+The multimodal model also receives auxiliary supervision for the image category and text category during training. These auxiliary heads help the encoders learn the two inputs; only the relation prediction is used for the final score.
+
+## Saved validation result
+
+The strongest observed result came from the multimodal model trained on real images only:
+
+| Model | Accuracy | Macro F1 | Correct |
+|---|---:|---:|---:|
+| PyTorch multimodal CNN — real-only training | 0.4667 | 0.4407 | 14/30 |
+| Image + text Logistic Regression | 0.3333 | 0.1667 | 10/30 |
+| PyTorch multimodal CNN — real + synthetic training | 0.3000 | 0.2124 | 9/30 |
+
+The observed real-only improvement over the non-neural multimodal baseline is not statistically conclusive on this small validation set (`exact paired p = 0.424`). Its 95% image-group bootstrap interval is also wide. The correct conclusion is therefore cautious: the real-only neural model performed better in this run, but the dataset is too small to establish general superiority.
+
+The synthetic ablation is informative: adding the current template-like drawings reduced real-image validation accuracy from `0.4667` to `0.3000`. These images are retained as a documented negative experiment, not presented as validation evidence.
 
 The test split was not used.
 
-## Project files
+## Reproduce the project
 
-- `project.ipynb` - main exam notebook;
-- `src/data.py` - data loading and split checks;
-- `src/models.py` - the three Keras models;
-- `src/train.py` - all baselines, neural training, and result generation;
-- `src/audit.py` - leakage, similarity, shortcut, and test-lock checks;
-- `data/` - CSV files, images, and image licenses;
-- `results/` - saved validation predictions, metrics, and training histories;
-- `tests/` - small automated test suite.
-
-## Run the project
-
-Create and activate a virtual environment, then install the packages:
+Create an environment and install the packages:
 
 ```powershell
 python -m venv .venv
@@ -62,33 +76,55 @@ python -m venv .venv
 python -m pip install -r requirements.txt
 ```
 
-Run the data audit and the tests:
+Rebuild the CSV splits and the image manifest:
+
+```powershell
+python -m src.build_dataset
+```
+
+Run the leakage and license audit:
 
 ```powershell
 python -m src.audit
-python -m pytest -q
 ```
 
-Train all models and regenerate every result file used by the notebook:
+Train all baselines and neural models, then regenerate every saved result:
 
 ```powershell
 python -m src.train
 ```
 
-Open the notebook:
+Run the tests:
+
+```powershell
+python -m pytest -q
+```
+
+Open the executed notebook:
 
 ```powershell
 python -m jupyter notebook project.ipynb
 ```
 
-Training uses only `data/train.csv`. Model comparison uses only `data/validation.csv`. The normal data loader refuses to open `data/test.csv`.
+Normal training and notebook execution can load only `train` and `validation`. The test CSV is protected by a stored SHA-256 lock and is never parsed by `src.train` or `src.audit`.
 
-The saved predictions and metrics in this checkpoint were generated by running `python -m src.train` from the current project files. The command uses the training split for fitting, the validation split for model comparison, and does not open the locked test split.
+## Repository map
+
+- `project.ipynb` — executed exam report;
+- `src/build_dataset.py` — deterministic split and manifest construction;
+- `src/data.py` — locked data loading and image preparation;
+- `src/models.py` — PyTorch neural architectures;
+- `src/train.py` — baselines, neural training, grouped bootstrap, and saved results;
+- `src/audit.py` — identity, hash, similarity, shortcut, license, and test-lock checks;
+- `data/image_manifest.csv` — one row per image with split and SHA-256;
+- `data/licenses.csv` — Wikimedia authorship, source page, license, and hash records;
+- `results/` — predictions, metrics, histories, architectures, and audit reports;
+- `tests/` — automated integrity and consistency tests.
 
 ## Limitations
 
-The dataset is small. The generated drawings are simple and some are visually similar across the train and validation splits. The real-image validation subset has only one image per category. The text vocabulary is repeated across the splits. The validation split was used to compare models, and the test split remains locked. The result is useful as a course experiment, but it is not enough for a production system.
+The validation set contains only 10 independent images. The three paired rows per image are not independent. The vocabulary is deliberately small, and the part name appears in the description. Validation is used for model selection, while the locked test set is intentionally unevaluated. The project is a controlled course experiment, not a production automotive-search system.
 
-## Sources
+## Research references
 
-The notebook cites VSE++, VisualBERT, CLIP, and ResNet. The open-license image authors and license links are in `data/licenses.csv`.
+The notebook discusses and cites VSE++, VisualBERT, CLIP, and ResNet. Full Wikimedia attribution is stored in `data/licenses.csv`.

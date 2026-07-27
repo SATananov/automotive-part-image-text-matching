@@ -1,59 +1,96 @@
 from __future__ import annotations
 
-from typing import Any
+import torch
+from torch import nn
 
-IMAGE_SHAPE = (24, 24, 3)
-SEQUENCE_LENGTH = 12
-EMBEDDING_SIZE = 16
-NUMBER_OF_CLASSES = 3
-
-
-def build_text_model(keras: Any, vocabulary_size: int) -> Any:
-    text = keras.Input(shape=(SEQUENCE_LENGTH,), dtype="int32", name="text")
-    x = keras.layers.Embedding(vocabulary_size, EMBEDDING_SIZE)(text)
-    x = keras.layers.GlobalAveragePooling1D()(x)
-    x = keras.layers.Dense(32, activation="relu")(x)
-    x = keras.layers.Dropout(0.10)(x)
-    output = keras.layers.Dense(NUMBER_OF_CLASSES, activation="softmax")(x)
-    return compile_model(keras.Model(text, output, name="text_model"), keras)
+IMAGE_SHAPE = (48, 48, 3)
+NUMBER_OF_RELATION_CLASSES = 3
+NUMBER_OF_PART_CATEGORIES = 10
 
 
-def image_branch(keras: Any, image: Any) -> Any:
-    x = keras.layers.Rescaling(1.0 / 255.0)(image)
-    x = keras.layers.Flatten()(x)
-    x = keras.layers.Dense(64, activation="relu")(x)
-    return keras.layers.Dense(32, activation="relu")(x)
+class TextRelationMLP(nn.Module):
+    def __init__(self, text_dimension: int) -> None:
+        super().__init__()
+        self.network = nn.Sequential(
+            nn.Linear(text_dimension, 64),
+            nn.ReLU(),
+            nn.Dropout(0.15),
+            nn.Linear(64, 32),
+            nn.ReLU(),
+            nn.Linear(32, NUMBER_OF_RELATION_CLASSES),
+        )
+
+    def forward(self, text: torch.Tensor) -> torch.Tensor:
+        return self.network(text)
 
 
-def build_image_model(keras: Any) -> Any:
-    image = keras.Input(shape=IMAGE_SHAPE, name="image")
-    x = image_branch(keras, image)
-    x = keras.layers.Dropout(0.10)(x)
-    output = keras.layers.Dense(NUMBER_OF_CLASSES, activation="softmax")(x)
-    return compile_model(keras.Model(image, output, name="image_model"), keras)
+class ImageEncoder(nn.Module):
+    def __init__(self) -> None:
+        super().__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(3, 16, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+            nn.Conv2d(16, 32, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+            nn.Conv2d(32, 48, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.AdaptiveAvgPool2d((1, 1)),
+        )
+        self.projection = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(48, 48),
+            nn.ReLU(),
+            nn.Dropout(0.15),
+        )
+
+    def forward(self, image: torch.Tensor) -> torch.Tensor:
+        return self.projection(self.features(image))
 
 
-def build_multimodal_model(keras: Any, vocabulary_size: int) -> Any:
-    text = keras.Input(shape=(SEQUENCE_LENGTH,), dtype="int32", name="text")
-    text_features = keras.layers.Embedding(vocabulary_size, EMBEDDING_SIZE)(text)
-    text_features = keras.layers.GlobalAveragePooling1D()(text_features)
-    text_features = keras.layers.Dense(32, activation="relu")(text_features)
+class ImageRelationCNN(nn.Module):
+    def __init__(self) -> None:
+        super().__init__()
+        self.encoder = ImageEncoder()
+        self.classifier = nn.Linear(48, NUMBER_OF_RELATION_CLASSES)
 
-    image = keras.Input(shape=IMAGE_SHAPE, name="image")
-    image_features = image_branch(keras, image)
-
-    x = keras.layers.Concatenate()([image_features, text_features])
-    x = keras.layers.Dense(64, activation="relu")(x)
-    x = keras.layers.Dropout(0.15)(x)
-    output = keras.layers.Dense(NUMBER_OF_CLASSES, activation="softmax")(x)
-    model = keras.Model({"image": image, "text": text}, output, name="multimodal_model")
-    return compile_model(model, keras)
+    def forward(self, image: torch.Tensor) -> torch.Tensor:
+        return self.classifier(self.encoder(image))
 
 
-def compile_model(model: Any, keras: Any) -> Any:
-    model.compile(
-        optimizer=keras.optimizers.Adam(learning_rate=0.001),
-        loss="sparse_categorical_crossentropy",
-        metrics=["accuracy"],
-    )
-    return model
+class MultimodalRelationCNN(nn.Module):
+    """CNN + text MLP with auxiliary category supervision during training."""
+
+    def __init__(self, text_dimension: int) -> None:
+        super().__init__()
+        self.image_encoder = ImageEncoder()
+        self.text_encoder = nn.Sequential(
+            nn.Linear(text_dimension, 64),
+            nn.ReLU(),
+            nn.Dropout(0.10),
+            nn.Linear(64, 32),
+            nn.ReLU(),
+        )
+        self.relation_head = nn.Sequential(
+            nn.Linear(48 + 32, 96),
+            nn.ReLU(),
+            nn.Dropout(0.20),
+            nn.Linear(96, 48),
+            nn.ReLU(),
+            nn.Linear(48, NUMBER_OF_RELATION_CLASSES),
+        )
+        self.image_category_head = nn.Linear(48, NUMBER_OF_PART_CATEGORIES)
+        self.text_category_head = nn.Linear(32, NUMBER_OF_PART_CATEGORIES)
+
+    def forward(
+        self,
+        image: torch.Tensor,
+        text: torch.Tensor,
+    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+        image_features = self.image_encoder(image)
+        text_features = self.text_encoder(text)
+        relation_logits = self.relation_head(torch.cat([image_features, text_features], dim=1))
+        image_category_logits = self.image_category_head(image_features)
+        text_category_logits = self.text_category_head(text_features)
+        return relation_logits, image_category_logits, text_category_logits

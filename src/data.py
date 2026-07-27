@@ -8,14 +8,18 @@ from PIL import Image
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = PROJECT_ROOT / "data"
+RESULTS_DIR = PROJECT_ROOT / "results"
 LABELS = ("MATCH", "MISMATCH", "PARTIAL_MATCH")
+IMAGE_SIZE = (48, 48)
 COLUMNS = (
     "sample_id",
     "image_id",
     "part_group_id",
+    "object_group_id",
     "image_path",
     "part_family",
     "part_category",
+    "text_category",
     "description",
     "label",
     "source",
@@ -23,29 +27,35 @@ COLUMNS = (
 
 
 def load_split(name: str) -> pd.DataFrame:
-    """Load train or validation data. The test split stays locked."""
+    """Load the development splits. The sealed test split is intentionally unavailable."""
     if name not in {"train", "validation"}:
         raise ValueError("Only train and validation are available in normal runs.")
     path = DATA_DIR / f"{name}.csv"
     data = pd.read_csv(path)
     if tuple(data.columns) != COLUMNS:
-        raise ValueError(f"Unexpected columns in {path.name}.")
+        raise ValueError(f"Unexpected columns in {path.name}: {tuple(data.columns)}")
     if set(data["label"]) != set(LABELS):
         raise ValueError(f"Unexpected labels in {path.name}.")
     return data
 
 
 def check_split(train: pd.DataFrame, validation: pd.DataFrame) -> dict[str, int]:
-    """Return overlap counts. All of them should be zero."""
+    """Return cross-split identity overlap counts. Every count should be zero."""
     return {
-        "group_overlap": len(set(train["part_group_id"]) & set(validation["part_group_id"])),
+        "part_group_overlap": len(set(train["part_group_id"]) & set(validation["part_group_id"])),
+        "object_group_overlap": len(set(train["object_group_id"]) & set(validation["object_group_id"])),
         "image_id_overlap": len(set(train["image_id"]) & set(validation["image_id"])),
         "image_path_overlap": len(set(train["image_path"]) & set(validation["image_path"])),
     }
 
 
-def load_images(data: pd.DataFrame, size: tuple[int, int] = (24, 24)) -> np.ndarray:
-    """Load RGB images as a NumPy array."""
+def unique_images(data: pd.DataFrame) -> pd.DataFrame:
+    """Return one record per image while preserving deterministic row order."""
+    return data.drop_duplicates("image_id", keep="first").reset_index(drop=True)
+
+
+def load_images(data: pd.DataFrame, size: tuple[int, int] = IMAGE_SIZE) -> np.ndarray:
+    """Load RGB images as float32 arrays, caching paths repeated by paired rows."""
     cache: dict[str, np.ndarray] = {}
     rows: list[np.ndarray] = []
     for relative_path in data["image_path"].astype(str):
