@@ -52,31 +52,28 @@ The multimodal model also receives auxiliary supervision for the image category 
 
 ## Saved validation result
 
-The strongest observed result came from the multimodal model trained on real images only:
+The exact current scores, confidence interval, paired comparison, and environment are generated directly from the saved prediction artifacts:
 
-| Model | Accuracy | Macro F1 | Correct |
-|---|---:|---:|---:|
-| PyTorch multimodal CNN — real-only training | 0.4667 | 0.4407 | 14/30 |
-| Image + text Logistic Regression | 0.3333 | 0.1667 | 10/30 |
-| PyTorch multimodal CNN — real + synthetic training | 0.3000 | 0.2124 | 9/30 |
+**[Generated validation result summary](results/result_summary.md)**
 
-The observed real-only improvement over the non-neural multimodal baseline is not statistically conclusive on this small validation set (`exact paired p = 0.424`). Its 95% image-group bootstrap interval is also wide. The correct conclusion is therefore cautious: the real-only neural model performed better in this run, but the dataset is too small to establish general superiority.
+The selected development result is the real-only multimodal CNN. The conclusion remains deliberately cautious: the validation set contains only ten independent images, so an observed improvement cannot establish general superiority. The synthetic-data ablation is retained as a transparent negative experiment because the current template-like drawings did not improve transfer to real photographs.
 
-The synthetic ablation is informative: adding the current template-like drawings reduced real-image validation accuracy from `0.4667` to `0.3000`. These images are retained as a documented negative experiment, not presented as validation evidence.
+The locked test split was not used.
 
-The test split was not used.
+## Canonical environment and reproducibility lock
 
-## Reproduce the project
+The committed result artifacts were generated with **PyTorch 2.13.0**. `requirements.txt` pins that exact version, and `python -m src.train` refuses to overwrite the results under a different PyTorch version. This prevents a broad dependency range from silently producing a different set of predictions while leaving stale prose behind.
 
 Create an environment and install the packages:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-Rebuild the CSV splits and the image manifest:
+Rebuild the CSV splits and image manifest:
 
 ```powershell
 python -m src.build_dataset
@@ -88,23 +85,26 @@ Run the leakage and license audit:
 python -m src.audit
 ```
 
-Train all baselines and neural models, then regenerate every saved result:
+Train all baselines and neural models. This regenerates predictions, metrics, histories, architectures, `run_info.json`, and the generated Markdown result summary. It intentionally marks the final verification as pending until the notebook is executed again:
 
 ```powershell
 python -m src.train
 ```
 
-Run the tests:
+Execute the notebook from top to bottom:
+
+```powershell
+python -m jupyter nbconvert --to notebook --execute project.ipynb --inplace --ExecutePreprocessor.timeout=1800 --ExecutePreprocessor.kernel_name=python3
+```
+
+Run the tests and create the final artifact-consistency verification:
 
 ```powershell
 python -m pytest -q
+python -m src.verify
 ```
 
-Open the executed notebook:
-
-```powershell
-python -m jupyter notebook project.ipynb
-```
+The final `results/verification_summary.json` receives `status: PASS` only when saved predictions, metric tables, paired comparisons, generated summary, canonical environment, data audit, and executed notebook agree.
 
 Normal training and notebook execution can load only `train` and `validation`. The test CSV is protected by a stored SHA-256 lock and is never parsed by `src.train` or `src.audit`.
 
@@ -116,8 +116,11 @@ Normal training and notebook execution can load only `train` and `validation`. T
 - `src/models.py` — PyTorch neural architectures;
 - `src/train.py` — baselines, neural training, grouped bootstrap, and saved results;
 - `src/audit.py` — identity, hash, similarity, shortcut, license, and test-lock checks;
+- `src/verify.py` — environment and cross-artifact consistency verification;
 - `data/image_manifest.csv` — one row per image with split and SHA-256;
 - `data/licenses.csv` — Wikimedia authorship, source page, license, and hash records;
+- `results/result_summary.md` — generated human-readable scores from saved artifacts;
+- `results/verification_summary.json` — final machine-readable consistency status;
 - `results/` — predictions, metrics, histories, architectures, and audit reports;
 - `tests/` — automated integrity and consistency tests.
 

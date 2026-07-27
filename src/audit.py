@@ -54,7 +54,7 @@ def nearest_same_category_pairs(train: pd.DataFrame, validation: pd.DataFrame) -
         for candidate in candidates.itertuples(index=False):
             candidate_vector = normalized_gray(PROJECT_ROOT / candidate.image_path)
             candidate_hash = difference_hash(PROJECT_ROOT / candidate.image_path)
-            cosine = float(np.dot(candidate_vector, val_vector))
+            cosine = round(float(np.dot(candidate_vector, val_vector)), 8)
             hamming = int(np.sum(candidate_hash != val_hash))
             row = {
                 "part_category": val.part_category,
@@ -186,8 +186,8 @@ def run_audit() -> dict[str, object]:
         "exact_cross_split_image_hash_overlap": len(train_hashes & validation_hashes),
         "suspicious_real_image_pairs": len(suspicious),
         "similarity_limit": SIMILARITY_LIMIT,
-        "maximum_same_category_similarity": float(
-            nearest["normalized_cosine_similarity"].max()
+        "maximum_same_category_similarity": round(
+            float(nearest["normalized_cosine_similarity"].max()), 8
         ),
         "minimum_nearest_dhash_distance": int(nearest["dhash_hamming_distance"].min()),
         "label_counts_train": train["label"].value_counts().sort_index().to_dict(),

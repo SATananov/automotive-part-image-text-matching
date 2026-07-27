@@ -38,7 +38,7 @@
   "exact_cross_split_image_hash_overlap": 0,
   "suspicious_real_image_pairs": 0,
   "similarity_limit": 0.995,
-  "maximum_same_category_similarity": 0.5255542993545532,
+  "maximum_same_category_similarity": 0.5255543,
   "minimum_nearest_dhash_distance": 12,
   "label_counts_train": {
     "MATCH": 100,

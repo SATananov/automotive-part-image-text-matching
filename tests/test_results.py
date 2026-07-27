@@ -89,3 +89,43 @@ def test_run_info_records_real_validation_and_locked_test() -> None:
     assert info["validation_images"] == 10
     assert info["test_split_used"] is False
     assert info["test_evaluation_permitted"] is False
+
+
+def test_requirements_pin_the_canonical_torch_version() -> None:
+    from src.data import PROJECT_ROOT
+    from src.verify import CANONICAL_TORCH_VERSION
+
+    requirements = (PROJECT_ROOT / "requirements.txt").read_text(encoding="utf-8").splitlines()
+    assert f"torch=={CANONICAL_TORCH_VERSION}" in requirements
+    assert not any(line.startswith("torch>=") for line in requirements)
+
+
+def test_generated_result_summary_matches_saved_artifacts() -> None:
+    from src.verify import RESULT_SUMMARY_PATH, render_result_summary
+
+    assert RESULT_SUMMARY_PATH.read_text(encoding="utf-8") == render_result_summary()
+
+
+def test_saved_verification_summary_is_pass_or_explicitly_pending() -> None:
+    from src.verify import VERIFICATION_SUMMARY_PATH, build_verification_summary
+
+    saved = json.loads(VERIFICATION_SUMMARY_PATH.read_text(encoding="utf-8"))
+    if saved["status"] == "PENDING_NOTEBOOK_REEXECUTION":
+        assert "Execute project.ipynb" in saved["reason"]
+    else:
+        assert saved == build_verification_summary()
+        assert saved["status"] == "PASS"
+
+
+def test_notebook_uses_generated_metrics_and_matching_reference_line() -> None:
+    import nbformat
+
+    from src.data import PROJECT_ROOT
+
+    notebook = nbformat.read(PROJECT_ROOT / "project.ipynb", as_version=4)
+    markdown = "\n".join(cell.source for cell in notebook.cells if cell.cell_type == "markdown")
+    code = "\n".join(cell.source for cell in notebook.cells if cell.cell_type == "code")
+    for stale in ("0.4667", "0.4407", "0.424"):
+        assert stale not in markdown
+    assert "majority_macro_f1" in code
+    assert 'label=f"majority baseline macro F1' in code

@@ -40,6 +40,16 @@ AUXILIARY_LOSS_WEIGHT = 0.40
 REAL_ONLY_SLUG = "torch_multimodal_real_only"
 SYNTHETIC_SLUG = "torch_multimodal_real_plus_synthetic"
 MAIN_MODEL_SLUG = REAL_ONLY_SLUG
+CANONICAL_TORCH_VERSION = "2.13.0"
+
+
+def require_canonical_torch_version() -> None:
+    actual = torch.__version__.split("+", 1)[0]
+    if actual != CANONICAL_TORCH_VERSION:
+        raise RuntimeError(
+            f"This project pins PyTorch {CANONICAL_TORCH_VERSION}; current version is {torch.__version__}. "
+            "Install requirements.txt before regenerating result artifacts."
+        )
 
 
 def set_seed(seed: int) -> None:
@@ -455,6 +465,7 @@ def paired_exact_comparison(
 
 
 def main() -> None:
+    require_canonical_torch_version()
     RESULTS_DIR.mkdir(exist_ok=True)
     torch.set_num_threads(max(1, min(4, torch.get_num_threads())))
     set_seed(RANDOM_STATE)
@@ -686,6 +697,7 @@ def main() -> None:
         "random_state": RANDOM_STATE,
         "deep_learning_framework": "PyTorch",
         "torch_version": torch.__version__,
+        "canonical_torch_version": CANONICAL_TORCH_VERSION,
         "python_version": platform.python_version(),
         "training_split": "data/train.csv",
         "model_selection_split": "data/validation.csv (real images only)",
@@ -698,8 +710,13 @@ def main() -> None:
         "auxiliary_loss_weight": AUXILIARY_LOSS_WEIGHT,
     }
     (RESULTS_DIR / "run_info.json").write_text(
-        json.dumps(run_info, indent=2) + "\n", encoding="utf-8"
+        json.dumps(run_info, indent=2) + "\n", encoding="utf-8", newline="\n"
     )
+
+    from src.verify import write_pending_verification_summary, write_result_summary
+
+    write_result_summary()
+    write_pending_verification_summary()
     print(result_table.to_string(index=False))
 
 

@@ -1,5 +1,10 @@
 {
   "status": "PASS",
+  "canonical_environment": {
+    "required_torch_version": "2.13.0",
+    "saved_torch_version": "2.13.0+cpu",
+    "saved_python_version": "3.13.13"
+  },
   "dataset": {
     "total_images": 120,
     "real_images": 70,
@@ -9,36 +14,59 @@
     "test_rows_locked": 30
   },
   "data_audit": {
-    "identity_overlap_counts": {
-      "part_group_overlap": 0,
-      "object_group_overlap": 0,
-      "image_id_overlap": 0,
-      "image_path_overlap": 0
-    },
-    "exact_cross_split_image_hash_overlap": 0,
-    "exact_description_overlap": 0,
-    "suspicious_real_image_pairs": 0,
-    "license_rows": 70,
-    "all_license_hashes_match": true,
-    "test_lock_sha256_matches": true,
-    "test_split_used": false
+    "identity_overlap_zero": true,
+    "exact_image_hash_overlap_zero": true,
+    "exact_caption_overlap_zero": true,
+    "suspicious_real_pairs_zero": true,
+    "license_hashes_match": true,
+    "test_lock_matches": true,
+    "test_split_unused": true,
+    "license_rows": 70
   },
   "training": {
     "framework": "PyTorch",
     "saved_models": 8,
     "main_model_slug": "torch_multimodal_real_only",
-    "main_validation_accuracy": 0.4666666666666667,
-    "main_validation_macro_f1": 0.4407459207459208,
-    "main_correct_predictions": 14
+    "main_validation_accuracy": 0.5333333333333333,
+    "main_validation_macro_f1": 0.4977156177156177,
+    "main_correct_predictions": 16,
+    "main_accuracy_ci": [
+      0.4,
+      0.6666666666666666
+    ],
+    "paired_baseline_p_value": 0.109375,
+    "synthetic_validation_accuracy": 0.3,
+    "synthetic_validation_macro_f1": 0.2289690069576217
   },
-  "automated_tests": {
-    "passed": 26,
-    "failed": 0
+  "artifact_consistency": {
+    "saved_metrics_match_predictions": true,
+    "main_prediction_file_matches": true,
+    "synthetic_ablation_matches": true,
+    "paired_comparisons_match": true,
+    "generated_markdown_summary_matches": true
   },
   "notebook": {
     "code_cells": 15,
     "executed_code_cells": 15,
+    "execution_counts": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
     "errors": 0,
-    "outputs": 17
+    "outputs": 18,
+    "stale_hard_coded_result_literals": []
   }
 }

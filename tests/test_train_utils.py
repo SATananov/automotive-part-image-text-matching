@@ -25,3 +25,16 @@ def test_grouped_bootstrap_interval_is_deterministic() -> None:
     second = grouped_bootstrap_interval(true, predicted, groups, metric, repeats=100, seed=7)
     assert first == second
     assert 0 <= first[0] <= first[1] <= 1
+
+
+def test_training_requires_canonical_torch_version(monkeypatch) -> None:
+    from src.train import CANONICAL_TORCH_VERSION, require_canonical_torch_version
+
+    monkeypatch.setattr(torch, "__version__", f"{CANONICAL_TORCH_VERSION}+cpu")
+    require_canonical_torch_version()
+
+    monkeypatch.setattr(torch, "__version__", "2.10.0+cpu")
+    import pytest
+
+    with pytest.raises(RuntimeError, match="pins PyTorch"):
+        require_canonical_torch_version()
