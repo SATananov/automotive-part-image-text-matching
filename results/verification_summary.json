@@ -34,7 +34,9 @@
       0.4,
       0.6666666666666666
     ],
-    "paired_baseline_p_value": 0.109375,
+    "grouped_paired_baseline_p_value": 0.0625,
+    "paired_comparison_method": "exact_image_group_sign_flip",
+    "paired_independent_groups": 10,
     "synthetic_validation_accuracy": 0.3,
     "synthetic_validation_macro_f1": 0.2289690069576217
   },

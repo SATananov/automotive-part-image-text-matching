@@ -36,7 +36,7 @@ Each image is paired with three descriptions, one for each relation label.
 | Validation | 10 | 0 | 30 | real-image model comparison |
 | Test | 10 | 0 | 30 | locked; not evaluated |
 
-Because the three rows from one image are dependent, the project reports bootstrap confidence intervals by resampling complete image groups rather than individual rows.
+Because the three rows from one image are dependent, the project treats the image as the independent unit. Confidence intervals resample complete image groups, and model-vs-model p-values use an exact image-group sign-flip randomization test rather than a row-level test.
 
 ## Deep learning approach
 
@@ -115,6 +115,7 @@ Normal training and notebook execution can load only `train` and `validation`. T
 - `src/data.py` — locked data loading and image preparation;
 - `src/models.py` — PyTorch neural architectures;
 - `src/train.py` — baselines, neural training, grouped bootstrap, and saved results;
+- `src/evaluation.py` — exact image-group paired randomization test;
 - `src/audit.py` — identity, hash, similarity, shortcut, license, and test-lock checks;
 - `src/verify.py` — environment and cross-artifact consistency verification;
 - `data/image_manifest.csv` — one row per image with split and SHA-256;
@@ -122,11 +123,12 @@ Normal training and notebook execution can load only `train` and `validation`. T
 - `results/result_summary.md` — generated human-readable scores from saved artifacts;
 - `results/verification_summary.json` — final machine-readable consistency status;
 - `results/` — predictions, metrics, histories, architectures, and audit reports;
+- `docs/strict_evaluation_protocol.md` — independent-unit, uncertainty, model-selection, and test-lock protocol;
 - `tests/` — automated integrity and consistency tests.
 
 ## Limitations
 
-The validation set contains only 10 independent images. The three paired rows per image are not independent. The vocabulary is deliberately small, and the part name appears in the description. Validation is used for model selection, while the locked test set is intentionally unevaluated. The project is a controlled course experiment, not a production automotive-search system.
+The validation set contains only 10 independent images. The three paired rows per image are not independent. The grouped randomization test fixes the statistical unit, but it cannot create more evidence than those ten images provide. The vocabulary is deliberately small, and the part name appears in the description. The same validation split is used for early stopping and model comparison, so development results may contain selection bias. The locked test set remains intentionally unevaluated until the full protocol is frozen. The project is a controlled course experiment, not a production automotive-search system.
 
 ## Research references
 

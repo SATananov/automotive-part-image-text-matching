@@ -12,7 +12,6 @@ import numpy as np
 import pandas as pd
 import torch
 from scipy import sparse
-from scipy.stats import binomtest
 from sklearn.dummy import DummyClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -29,6 +28,7 @@ from src.data import (
     load_images,
     load_split,
 )
+from src.evaluation import exact_grouped_paired_randomization
 from src.models import ImageRelationCNN, MultimodalRelationCNN, TextRelationMLP
 
 RANDOM_STATE = 42
@@ -440,29 +440,6 @@ def save_main_model_tables(all_predictions: pd.DataFrame) -> None:
     )
 
 
-def paired_exact_comparison(
-    all_predictions: pd.DataFrame, left_slug: str, right_slug: str
-) -> dict[str, object]:
-    left = all_predictions[all_predictions["model_slug"].eq(left_slug)].set_index("sample_id")
-    right = all_predictions[all_predictions["model_slug"].eq(right_slug)].set_index("sample_id")
-    if set(left.index) != set(right.index):
-        raise ValueError("Paired models do not cover the same validation rows")
-    right = right.loc[left.index]
-    left_correct = left["is_correct"].astype(bool).to_numpy()
-    right_correct = right["is_correct"].astype(bool).to_numpy()
-    left_only = int(np.sum(left_correct & ~right_correct))
-    right_only = int(np.sum(~left_correct & right_correct))
-    discordant = left_only + right_only
-    p_value = 1.0 if discordant == 0 else float(binomtest(left_only, discordant, 0.5).pvalue)
-    return {
-        "left_model_slug": left_slug,
-        "right_model_slug": right_slug,
-        "left_correct_right_wrong": left_only,
-        "left_wrong_right_correct": right_only,
-        "discordant_predictions": discordant,
-        "exact_two_sided_p_value": p_value,
-    }
-
 
 def main() -> None:
     require_canonical_torch_version()
@@ -681,10 +658,10 @@ def main() -> None:
     ].to_csv(RESULTS_DIR / "synthetic_ablation.csv", index=False, lineterminator="\n")
 
     comparisons = [
-        paired_exact_comparison(
+        exact_grouped_paired_randomization(
             all_predictions, MAIN_MODEL_SLUG, "image_text_logistic_regression"
         ),
-        paired_exact_comparison(
+        exact_grouped_paired_randomization(
             all_predictions, MAIN_MODEL_SLUG, SYNTHETIC_SLUG
         ),
     ]

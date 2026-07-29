@@ -8,10 +8,10 @@ import numpy as np
 import pandas as pd
 import torch
 from pandas.testing import assert_frame_equal
-from scipy.stats import binomtest
 from sklearn.metrics import accuracy_score, f1_score
 
 from src.data import DATA_DIR, PROJECT_ROOT, RESULTS_DIR
+from src.evaluation import exact_grouped_paired_randomization
 
 CANONICAL_TORCH_VERSION = "2.13.0"
 MAIN_MODEL_SLUG = "torch_multimodal_real_only"
@@ -28,33 +28,6 @@ def base_torch_version(version: str) -> str:
 def _read_json(path: Path) -> dict[str, object]:
     return json.loads(path.read_text(encoding="utf-8"))
 
-
-def _paired_row(
-    predictions: pd.DataFrame,
-    left_slug: str,
-    right_slug: str,
-) -> dict[str, object]:
-    left = predictions[predictions["model_slug"].eq(left_slug)].set_index("sample_id")
-    right = predictions[predictions["model_slug"].eq(right_slug)].set_index("sample_id")
-    if set(left.index) != set(right.index):
-        raise AssertionError("Paired models do not cover the same validation samples")
-    right = right.loc[left.index]
-    left_correct = left["is_correct"].astype(bool).to_numpy()
-    right_correct = right["is_correct"].astype(bool).to_numpy()
-    left_only = int(np.sum(left_correct & ~right_correct))
-    right_only = int(np.sum(~left_correct & right_correct))
-    discordant = left_only + right_only
-    p_value = 1.0 if discordant == 0 else float(
-        binomtest(left_only, discordant, 0.5).pvalue
-    )
-    return {
-        "left_model_slug": left_slug,
-        "right_model_slug": right_slug,
-        "left_correct_right_wrong": left_only,
-        "left_wrong_right_correct": right_only,
-        "discordant_predictions": discordant,
-        "exact_two_sided_p_value": p_value,
-    }
 
 
 def _notebook_status() -> dict[str, object]:
@@ -130,8 +103,12 @@ def _load_and_validate_results() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFra
 
     expected_paired = pd.DataFrame(
         [
-            _paired_row(predictions, MAIN_MODEL_SLUG, NON_NEURAL_MULTIMODAL_SLUG),
-            _paired_row(predictions, MAIN_MODEL_SLUG, SYNTHETIC_MODEL_SLUG),
+            exact_grouped_paired_randomization(
+                predictions, MAIN_MODEL_SLUG, NON_NEURAL_MULTIMODAL_SLUG
+            ),
+            exact_grouped_paired_randomization(
+                predictions, MAIN_MODEL_SLUG, SYNTHETIC_MODEL_SLUG
+            ),
         ]
     )
     assert_frame_equal(paired, expected_paired, check_dtype=False)
@@ -177,8 +154,8 @@ def render_result_summary() -> str:
         ),
         "",
         (
-            "The exact paired two-sided p-value for the real-only neural model versus the "
-            f"non-neural multimodal baseline is `{float(paired_baseline['exact_two_sided_p_value']):.6f}`."
+            "The exact image-group paired randomization p-value for the real-only neural model versus the "
+            f"non-neural multimodal baseline is `{float(paired_baseline['grouped_exact_two_sided_p_value']):.6f}`."
         ),
         (
             "The real-only model's grouped-bootstrap 95% accuracy interval is "
@@ -279,9 +256,11 @@ def build_verification_summary() -> dict[str, object]:
                 float(main["accuracy_ci_low"]),
                 float(main["accuracy_ci_high"]),
             ],
-            "paired_baseline_p_value": float(
-                baseline_pair["exact_two_sided_p_value"]
+            "grouped_paired_baseline_p_value": float(
+                baseline_pair["grouped_exact_two_sided_p_value"]
             ),
+            "paired_comparison_method": str(baseline_pair["method"]),
+            "paired_independent_groups": int(baseline_pair["independent_groups"]),
             "synthetic_validation_accuracy": float(synthetic["validation_accuracy"]),
             "synthetic_validation_macro_f1": float(synthetic["validation_macro_f1"]),
         },

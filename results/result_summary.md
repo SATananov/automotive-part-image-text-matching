@@ -12,7 +12,7 @@ This file is generated from the saved prediction and metric artifacts. Do not ed
 | Image + text Logistic Regression | 0.3333 | 0.1667 | 10/30 |
 | Real + synthetic multimodal CNN | 0.3000 | 0.2290 | 9/30 |
 
-The exact paired two-sided p-value for the real-only neural model versus the non-neural multimodal baseline is `0.109375`.
+The exact image-group paired randomization p-value for the real-only neural model versus the non-neural multimodal baseline is `0.062500`.
 The real-only model's grouped-bootstrap 95% accuracy interval is `[0.4000, 0.6667]`.
 
 The result is an observed development-set comparison, not proof of general superiority. The current synthetic templates did not improve transfer to real validation images.

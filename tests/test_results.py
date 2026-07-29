@@ -129,3 +129,39 @@ def test_notebook_uses_generated_metrics_and_matching_reference_line() -> None:
         assert stale not in markdown
     assert "majority_macro_f1" in code
     assert 'label=f"majority baseline macro F1' in code
+
+
+def test_paired_comparisons_use_independent_image_groups() -> None:
+    from src.evaluation import exact_grouped_paired_randomization
+
+    saved = pd.read_csv(RESULTS_DIR / "paired_comparisons.csv")
+    predictions = pd.read_csv(RESULTS_DIR / "validation_predictions.csv")
+    assert set(saved["method"]) == {"exact_image_group_sign_flip"}
+    assert set(saved["group_column"]) == {"image_id"}
+    assert set(saved["independent_groups"]) == {10}
+    assert set(saved["paired_rows"]) == {30}
+    assert set(saved["randomization_assignments"]) == {1024}
+    assert "exact_two_sided_p_value" not in saved.columns
+
+    expected_rows = []
+    for row in saved.itertuples(index=False):
+        expected_rows.append(
+            exact_grouped_paired_randomization(
+                predictions, row.left_model_slug, row.right_model_slug
+            )
+        )
+    expected = pd.DataFrame(expected_rows)
+    assert_frame_equal(saved, expected, check_dtype=False)
+
+
+def test_readme_states_the_independent_evaluation_unit() -> None:
+    from src.data import PROJECT_ROOT
+
+    readme = (PROJECT_ROOT / "README.md").read_text(encoding="utf-8")
+    protocol = (PROJECT_ROOT / "docs" / "strict_evaluation_protocol.md").read_text(
+        encoding="utf-8"
+    )
+    assert "image as the independent unit" in readme
+    assert "exact image-group sign-flip randomization test" in readme
+    assert "2^G" in protocol
+    assert "test remains locked" in protocol.lower()
