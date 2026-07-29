@@ -1,64 +1,48 @@
-# Strict Evaluation Protocol
+# Strict Evaluation Protocol — Dataset V2
 
-## Purpose
+## Independent unit
 
-This protocol prevents the 30 validation rows from being misrepresented as 30 independent observations. Each of the ten validation images appears in three dependent image-text pairs, one per relation label. The independent experimental unit is therefore the **image**.
+Every validation image appears in six dependent relation pairs. The actual row and image counts are read from the generated CSV and manifest. The **image**, not the row, is therefore the unit for uncertainty and model comparison.
 
 ## Development data
 
-- Training contains 50 real and 50 synthetic images.
-- Validation contains 10 different real images and is used for early stopping and model comparison.
-- Test contains 10 further real images and remains locked.
-- Alternate views of a known physical object or photographic series share one `object_group_id` and may not cross splits.
+- train: 50 original real images + the balanced imported Dataset V2 train subset + 50 synthetic images;
+- validation: 10 original real images + the balanced imported Dataset V2 validation subset;
+- sealed test: 10 original Wikimedia images;
+- alternate known views share an `object_group_id` and may not cross splits.
 
-The current validation result is a development-set result. Reusing the same small validation split for early stopping and model comparison can introduce selection bias. This is reported as a limitation rather than hidden.
+Validation is used for early stopping and model comparison. Every validation result is explicitly described as development evidence and may contain model-selection bias.
 
-## Uncertainty interval
+## Grouped bootstrap
 
-Accuracy and macro F1 confidence intervals are produced with a grouped bootstrap. Complete image groups are sampled with replacement, so all three dependent rows from an image remain together.
+Accuracy and macro-F1 intervals resample complete `image_id` groups with replacement. All six rows belonging to an image remain together.
 
-## Paired model comparison
+## Paired randomization
 
-Two models are compared using an exact image-group sign-flip randomization test:
+For two models:
 
-1. align both models on the same validation `sample_id` values;
-2. compute the difference in correct predictions within each image group;
-3. enumerate all `2^G` swaps of the model labels for the `G` independent images;
-4. compare the absolute randomized total difference with the observed absolute difference;
-5. report the exact two-sided proportion as the p-value.
+1. align predictions by `sample_id`;
+2. calculate the difference in correct rows within each image;
+3. randomly swap the model labels for complete images;
+4. compare the absolute randomized total with the observed absolute total;
+5. report a two-sided image-group p-value.
 
-For the current ten validation images, the calculation enumerates all 1,024 assignments. Individual rows are never treated as independent permutations.
-
-The p-value describes the fixed development comparison only. It does not remove model-selection bias, compensate for the small number of images, or establish production-level generalization.
+Exact enumeration is used for at most 20 groups. When the generated Dataset V2 validation set contains more than 20 images, the project uses 100,000 deterministic Monte Carlo sign-flip assignments with seed 42 and the plus-one correction `(extreme + 1)/(repeats + 1)`.
 
 ## Multiple comparisons
 
-Eight models are shown for transparency, but the main pre-specified comparison is:
+The pre-specified main comparison is the real-only multimodal CNN against the non-neural image-plus-text Logistic Regression baseline. The real-plus-synthetic comparison is a secondary ablation. Rankings of all eight models are descriptive.
 
-- real-only multimodal CNN;
-- non-neural image-plus-text Logistic Regression baseline.
+## Locked test
 
-Other comparisons, including the synthetic-data ablation, are interpreted as secondary development analyses. No broad superiority claim is based on ranking eight models on ten images.
-
-## Locked test split
-
-The test remains locked: its CSV is protected by a stored SHA-256 lock and is not parsed by normal training, audit, notebook, or verification code. A final test evaluation is permissible only after all of the following are frozen:
-
-- dataset and split identities;
-- preprocessing;
-- architecture;
-- hyperparameters;
-- random seeds;
-- model-selection rule;
-- reported metrics and statistical procedure.
-
-After opening the test split once, no further tuning may use the test result. Until that point, all reported scores must be labelled as validation or development results.
+The test remains locked. It may be opened once only after freezing dataset identities, preprocessing, architectures, hyperparameters, seeds, model-selection rule, metrics, and statistical procedure. No subsequent tuning may use the test result.
 
 ## Interpretation rules
 
-- Report paired rows and independent images separately.
-- Do not describe 300 train rows as 300 independent images.
-- Do not treat a p-value above 0.05 as proof of equality.
-- Do not treat a p-value below 0.05 as proof of practical or general superiority.
-- State that the dataset is small and domain-specific.
-- Keep the test split locked while methodology is still changing.
+- report paired rows and independent images separately;
+- do not convert more text pairs into claims of more visual evidence;
+- do not interpret `p > 0.05` as proof of equality;
+- do not interpret `p < 0.05` as automatic practical superiority;
+- report confidence intervals, effect size, class behaviour, and limitations together;
+- call current results validation/development results;
+- preserve the sealed test while methodology changes.

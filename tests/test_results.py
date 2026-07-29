@@ -32,10 +32,10 @@ def test_model_comparison_is_sorted_by_reported_scores() -> None:
 def test_saved_predictions_are_validation_only() -> None:
     predictions = pd.read_csv(RESULTS_DIR / "validation_predictions.csv")
     validation = pd.read_csv(DATA_DIR / "validation.csv")
-    assert len(predictions) == 8 * len(validation) == 240
+    assert len(predictions) == 8 * len(validation)
     for _, group in predictions.groupby("model_slug"):
         assert set(group["sample_id"]) == set(validation["sample_id"])
-        assert set(group["source"]) == {"wikimedia"}
+        assert set(group["source"]) == {"wikimedia", "dataset_v2"}
 
 
 def test_saved_metrics_match_saved_predictions() -> None:
@@ -84,9 +84,16 @@ def test_training_histories_and_architectures_are_nonempty() -> None:
 
 def test_run_info_records_real_validation_and_locked_test() -> None:
     info = json.loads((RESULTS_DIR / "run_info.json").read_text(encoding="utf-8"))
+    train = pd.read_csv(DATA_DIR / "train.csv")
+    validation = pd.read_csv(DATA_DIR / "validation.csv")
     assert info["deep_learning_framework"] == "PyTorch"
-    assert info["validation_rows"] == 30
-    assert info["validation_images"] == 10
+    assert info["dataset_version"] == "2.0"
+    assert info["training_rows"] == len(train)
+    assert info["training_images"] == train["image_id"].nunique()
+    assert info["training_real_images"] == train.loc[train["source"].ne("generated"), "image_id"].nunique()
+    assert info["training_synthetic_images"] == train.loc[train["source"].eq("generated"), "image_id"].nunique()
+    assert info["validation_rows"] == len(validation)
+    assert info["validation_images"] == validation["image_id"].nunique()
     assert info["test_split_used"] is False
     assert info["test_evaluation_permitted"] is False
 
@@ -127,32 +134,50 @@ def test_notebook_uses_generated_metrics_and_matching_reference_line() -> None:
     code = "\n".join(cell.source for cell in notebook.cells if cell.cell_type == "code")
     for stale in ("0.4667", "0.4407", "0.424"):
         assert stale not in markdown
-    assert "majority_macro_f1" in code
-    assert 'label=f"majority baseline macro F1' in code
+    assert "Dataset V2" in markdown
+    assert "image-group sign-flip randomization test" in markdown
+    assert "main_predictions" in code
+    assert "grouped_two_sided_p_value" in code
 
 
 def test_paired_comparisons_use_independent_image_groups() -> None:
-    from src.evaluation import exact_grouped_paired_randomization
+    from src.evaluation import grouped_paired_randomization
 
     saved = pd.read_csv(RESULTS_DIR / "paired_comparisons.csv")
     predictions = pd.read_csv(RESULTS_DIR / "validation_predictions.csv")
-    assert set(saved["method"]) == {"exact_image_group_sign_flip"}
+    validation = pd.read_csv(DATA_DIR / "validation.csv")
+    groups = validation["image_id"].nunique()
+    expected_method = (
+        "exact_image_group_sign_flip"
+        if groups <= 20
+        else "monte_carlo_image_group_sign_flip"
+    )
+    assert set(saved["method"]) == {expected_method}
     assert set(saved["group_column"]) == {"image_id"}
-    assert set(saved["independent_groups"]) == {10}
-    assert set(saved["paired_rows"]) == {30}
-    assert set(saved["randomization_assignments"]) == {1024}
-    assert "exact_two_sided_p_value" not in saved.columns
+    assert set(saved["independent_groups"]) == {groups}
+    assert set(saved["paired_rows"]) == {len(validation)}
+    assert "grouped_two_sided_p_value" in saved.columns
 
     expected_rows = []
     for row in saved.itertuples(index=False):
         expected_rows.append(
-            exact_grouped_paired_randomization(
+            grouped_paired_randomization(
                 predictions, row.left_model_slug, row.right_model_slug
             )
         )
     expected = pd.DataFrame(expected_rows)
     assert_frame_equal(saved, expected, check_dtype=False)
 
+
+
+def test_environment_lock_matches_run_info() -> None:
+    from src.data import RESULTS_DIR
+
+    info = json.loads((RESULTS_DIR / "run_info.json").read_text(encoding="utf-8"))
+    lock = json.loads((RESULTS_DIR / "environment_lock.json").read_text(encoding="utf-8"))
+    assert lock["python_version"] == info["python_version"]
+    assert lock["packages"]["torch"].split("+", 1)[0] == "2.13.0"
+    assert (RESULTS_DIR / "environment_lock.txt").is_file()
 
 def test_readme_states_the_independent_evaluation_unit() -> None:
     from src.data import PROJECT_ROOT
@@ -161,7 +186,7 @@ def test_readme_states_the_independent_evaluation_unit() -> None:
     protocol = (PROJECT_ROOT / "docs" / "strict_evaluation_protocol.md").read_text(
         encoding="utf-8"
     )
-    assert "image as the independent unit" in readme
-    assert "exact image-group sign-flip randomization test" in readme
-    assert "2^G" in protocol
+    assert "image is the independent evaluation unit" in readme
+    assert "largest balanced non-duplicate quota" in readme
+    assert "100,000 deterministic Monte Carlo" in protocol
     assert "test remains locked" in protocol.lower()

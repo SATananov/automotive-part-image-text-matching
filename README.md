@@ -1,135 +1,161 @@
 # Automotive Part Image-Text Matching
 
-This repository is my final Deep Learning exam project.
+Final Deep Learning exam project: a leakage-aware multimodal classifier that determines whether an automotive-part photograph and a short description are a `MATCH`, `PARTIAL_MATCH`, or `MISMATCH`.
+
+The executed research report is **[project.ipynb](project.ipynb)**.
 
 ## Research question
 
-Can a neural model that combines an automotive-part image and a short text description classify their relationship better than image-only, text-only, and non-neural baselines?
+Can a compact neural model that combines image and text evidence classify their relationship better than image-only, text-only, and non-neural baselines?
 
-The relation labels are:
+The task is genuinely multimodal: every image is paired equally often with all three labels, so the relation cannot be solved from the image alone. Text category is also exactly balanced across labels, preventing a text-category shortcut.
 
-- `MATCH` — image and text refer to the same part category;
-- `PARTIAL_MATCH` — the categories differ but belong to the same automotive system;
-- `MISMATCH` — the categories belong to different systems.
+## Dataset V2
 
-The executed report is **[project.ipynb](project.ipynb)**.
+Dataset V2 strengthens the original proof of concept without changing the locked final-test identities. Public-source availability is treated as an explicit constraint rather than hidden by repeated rows.
 
-## Why the experimental design changed
+The importer selects the **largest balanced non-duplicate quota supported by every category** after exact-hash and perceptual-similarity filtering:
 
-An earlier version placed very similar synthetic drawings in both training and validation. That could reward template recognition instead of generalization. The current design removes that risk:
+- maximum imported quota: 20 train + 5 validation images per category;
+- minimum accepted quota: 3 train + 1 validation image per category;
+- the actual quota is written to `data/dataset_v2_import_summary.json` and verified against `data/dataset_v2_manifest.csv`;
+- all ten categories receive the same imported train and validation count, preventing category-frequency shortcuts.
 
-- all 50 synthetic drawings are training-only;
-- validation contains 10 newly sourced real Wikimedia photographs, one per category;
-- test contains 10 different newly sourced real photographs and remains locked;
-- 20 additional open-license real photographs were added, bringing the real-image inventory to 70;
-- alternate views from known photographic series are grouped by `object_group_id`;
-- train and validation use different sentences, with zero exact caption overlap;
-- source, image category, and text category shortcut diagnostics remain at chance accuracy (`1/3`).
+The final split sizes are data-derived:
 
-## Data summary
+| Split | Original Wikimedia | Imported Dataset V2 | Synthetic | Independent images | Paired rows |
+|---|---:|---:|---:|---:|---:|
+| Train | 50 | `10 × imported_train_quota` | 50 | `100 + imported_train_images` | `6 × train_images` |
+| Validation | 10 | `10 × imported_validation_quota` | 0 | `10 + imported_validation_images` | `6 × validation_images` |
+| Test | 10 | 0 | 0 | 10 | 60 |
 
-Each image is paired with three descriptions, one for each relation label.
+Each image contributes six pairs: two `MATCH`, two `PARTIAL_MATCH`, and two `MISMATCH`. The paired rows are dependent; the **image is the independent evaluation unit**.
 
-| Split | Real images | Synthetic images | Paired rows | Purpose |
-|---|---:|---:|---:|---|
-| Train | 50 | 50 | 300 | model fitting and synthetic-data ablation |
-| Validation | 10 | 0 | 30 | real-image model comparison |
-| Test | 10 | 0 | 30 | locked; not evaluated |
+### Kaggle-first real-image acquisition
 
-Because the three rows from one image are dependent, the project treats the image as the independent unit. Confidence intervals resample complete image groups, and model-vs-model p-values use an exact image-group sign-flip randomization test rather than a row-level test.
+The importer first discovers all ten project categories in the Apache-2.0 **50 Types of Car Parts** Kaggle dataset by normalized directory aliases. For `air_filter` and `shock_absorber`, Wikimedia Commons remains an open-license fallback when the downloaded Kaggle snapshot does not contain enough matching images.
 
-## Deep learning approach
+The importer:
 
-The project uses PyTorch and contains:
+- uses the largest balanced category quota that survives duplicate screening instead of failing on an arbitrary fixed count;
+- stores per-image provider, source page, author/credit, license, original hash, standardized hash, and transformation record in `data/dataset_v2_manifest.csv`;
+- applies EXIF orientation, RGB conversion, centre crop, and 224×224 standardisation;
+- rejects exact duplicates and close same-category candidates using dHash and normalized grayscale similarity;
+- compares candidates with the original train, validation, and sealed-test images;
+- stores raw downloads only under ignored `.cache/` storage.
 
-- a neural text-only MLP;
-- an image-only CNN;
-- a multimodal CNN + text MLP trained on real images only;
-- the same multimodal architecture trained on real + synthetic images;
-- four non-neural baselines.
+The original ten-image Wikimedia test holdout remains sealed and is not parsed by training, audit, notebook, or normal verification code.
 
-The multimodal model also receives auxiliary supervision for the image category and text category during training. These auxiliary heads help the encoders learn the two inputs; only the relation prediction is used for the final score.
+## Text and relation design
 
-## Saved validation result
+Dataset V2 expands the captions from one repeated sentence per category to split-specific template banks:
 
-The exact current scores, confidence interval, paired comparison, and environment are generated directly from the saved prediction artifacts:
+- 40 unique training descriptions;
+- 20 unique validation descriptions;
+- 20 unique test descriptions;
+- zero exact caption overlap across splits.
 
-**[Generated validation result summary](results/result_summary.md)**
+Mismatch targets rotate through unrelated automotive systems while remaining exactly balanced by text category and label. This broadens relation coverage without inflating the number of independent images.
 
-The selected development result is the real-only multimodal CNN. The conclusion remains deliberately cautious: the validation set contains only ten independent images, so an observed improvement cannot establish general superiority. The synthetic-data ablation is retained as a transparent negative experiment because the current template-like drawings did not improve transfer to real photographs.
+## Models
 
-The locked test split was not used.
+The comparison contains four transparent non-neural baselines and four PyTorch models:
 
-## Canonical environment and reproducibility lock
+- majority baseline;
+- TF-IDF + Logistic Regression;
+- image-pixel Logistic Regression;
+- image + text Logistic Regression;
+- neural text MLP;
+- image-only CNN;
+- real-only multimodal CNN + text MLP;
+- the same multimodal architecture trained with real + synthetic images.
 
-The committed result artifacts were generated with **PyTorch 2.13.0**. `requirements.txt` pins that exact version, and `python -m src.train` refuses to overwrite the results under a different PyTorch version. This prevents a broad dependency range from silently producing a different set of predictions while leaving stale prose behind.
+The selected multimodal model uses auxiliary image-category and text-category supervision during training. Only the relation head is scored.
 
-Create an environment and install the packages:
+## Strict evaluation
+
+- grouped bootstrap confidence intervals resample complete images;
+- paired comparisons use complete image groups;
+- exact sign-flip enumeration is used for at most 20 images;
+- paired randomization uses exact sign-flip enumeration for at most 20 validation images and a deterministic 100,000-draw Monte Carlo procedure above that threshold;
+- validation is labelled development evidence because it is used for early stopping and model comparison;
+- no general-superiority claim is made from a single development split;
+- test evaluation remains forbidden until the whole protocol is frozen.
+
+See [docs/strict_evaluation_protocol.md](docs/strict_evaluation_protocol.md).
+
+## One-command Dataset V2 pipeline
+
+The supplied patch package contains a PowerShell workflow that:
+
+1. verifies clean base commit `41bbd57267d500b3ba0cac613be477b87e1ab81b`;
+2. creates a rollback backup;
+3. applies the Dataset V2 source, tests, and documentation;
+4. acquires the hybrid public image sources;
+5. rebuilds all CSVs and manifests deterministically;
+6. audits leakage, similarity, shortcuts, provenance, licensing, and the test lock;
+7. records the exact environment;
+8. retrains all eight models under canonical PyTorch `2.13.0`;
+9. rebuilds and executes the notebook;
+10. runs the complete tests and cross-artifact verifier.
+
+Manual commands are:
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
-```
-
-Rebuild the CSV splits and image manifest:
-
-```powershell
+python -m pip install -r requirements-acquisition.txt
+python -m src.import_dataset_v2 --force
 python -m src.build_dataset
-```
-
-Run the leakage and license audit:
-
-```powershell
 python -m src.audit
-```
-
-Train all baselines and neural models. This regenerates predictions, metrics, histories, architectures, `run_info.json`, and the generated Markdown result summary. It intentionally marks the final verification as pending until the notebook is executed again:
-
-```powershell
+python -m src.record_environment
 python -m src.train
-```
-
-Execute the notebook from top to bottom:
-
-```powershell
-python -m jupyter nbconvert --to notebook --execute project.ipynb --inplace --ExecutePreprocessor.timeout=1800 --ExecutePreprocessor.kernel_name=python3
-```
-
-Run the tests and create the final artifact-consistency verification:
-
-```powershell
+python -m src.build_notebook_v2
+python -m jupyter nbconvert --to notebook --execute project.ipynb --inplace --ExecutePreprocessor.timeout=3600 --ExecutePreprocessor.kernel_name=python3
 python -m pytest -q
 python -m src.verify
 ```
 
-The final `results/verification_summary.json` receives `status: PASS` only when saved predictions, metric tables, paired comparisons, generated summary, canonical environment, data audit, and executed notebook agree.
+A previously downloaded Kaggle directory can be supplied with `--source-root`. An offline, pre-reviewed fallback containing `air_filter/` and `shock_absorber/` directories can be supplied with `--commons-source-root` when those categories are unavailable or insufficient in the local Kaggle snapshot:
 
-Normal training and notebook execution can load only `train` and `validation`. The test CSV is protected by a stored SHA-256 lock and is never parsed by `src.train` or `src.audit`.
+```powershell
+python -m src.import_dataset_v2 `
+  --source-root "D:\Datasets\50-Types-of-Car-Parts" `
+  --commons-source-root "D:\Datasets\Commons-V2" `
+  --force
+```
+
+Without `--commons-source-root`, the importer uses the Wikimedia Commons API only for a fallback category that is unavailable or insufficient in Kaggle. Thumbnail and original-file URLs are both attempted, and selected files retain per-file attribution and license metadata.
+
+## Reproducibility and artifact consistency
+
+- `requirements.txt` pins canonical PyTorch `2.13.0`;
+- `results/environment_lock.txt` and `.json` record the exact final environment;
+- `src.train` refuses to overwrite canonical artifacts with another PyTorch version;
+- `results/result_summary.md` is generated from predictions, not typed manually;
+- `src.verify` recomputes metrics and paired comparisons and verifies the executed notebook;
+- `data/test_lock.json` stores the sealed test SHA-256;
+- `src/create_clean_checkpoint.py` creates a Git-derived ZIP with the exact commit in its ZIP comment and verifies archive hygiene.
 
 ## Repository map
 
-- `project.ipynb` — executed exam report;
-- `src/build_dataset.py` — deterministic split and manifest construction;
-- `src/data.py` — locked data loading and image preparation;
-- `src/models.py` — PyTorch neural architectures;
-- `src/train.py` — baselines, neural training, grouped bootstrap, and saved results;
-- `src/evaluation.py` — exact image-group paired randomization test;
-- `src/audit.py` — identity, hash, similarity, shortcut, license, and test-lock checks;
-- `src/verify.py` — environment and cross-artifact consistency verification;
-- `data/image_manifest.csv` — one row per image with split and SHA-256;
-- `data/licenses.csv` — Wikimedia authorship, source page, license, and hash records;
-- `results/result_summary.md` — generated human-readable scores from saved artifacts;
-- `results/verification_summary.json` — final machine-readable consistency status;
-- `results/` — predictions, metrics, histories, architectures, and audit reports;
-- `docs/strict_evaluation_protocol.md` — independent-unit, uncertainty, model-selection, and test-lock protocol;
-- `tests/` — automated integrity and consistency tests.
+- `src/import_dataset_v2.py` — hybrid acquisition, deterministic selection, deduplication, standardisation, attribution;
+- `src/captions_v2.py` — split-specific caption banks;
+- `src/build_dataset.py` — balanced six-pair relation construction and manifests;
+- `src/audit.py` — identity, hash, perceptual similarity, shortcut, provenance, licensing, and lock audit;
+- `src/evaluation.py` — exact and Monte Carlo image-group paired randomization;
+- `src/train.py` — eight-model comparison and grouped uncertainty;
+- `src/build_notebook_v2.py` — reproducible English exam report;
+- `src/record_environment.py` — exact final environment lock;
+- `src/verify.py` — cross-artifact verification;
+- `src/create_clean_checkpoint.py` — clean Git checkpoint creation and validation;
+- `docs/dataset_v2_protocol.md` — acquisition and sampling protocol;
+- `docs/final_exam_rubric_mapping.md` — evidence for every grading criterion;
+- `tests/` — data, importer, audit, statistics, training utility, and artifact tests.
 
 ## Limitations
 
-The validation set contains only 10 independent images. The three paired rows per image are not independent. The grouped randomization test fixes the statistical unit, but it cannot create more evidence than those ten images provide. The vocabulary is deliberately small, and the part name appears in the description. The same validation split is used for early stopping and model comparison, so development results may contain selection bias. The locked test set remains intentionally unevaluated until the full protocol is frozen. The project is a controlled course experiment, not a production automotive-search system.
+Dataset V2 is much stronger than the original ten-image validation design, but it remains a controlled course experiment. Validation is reused for early stopping and model ranking. Captions still name the part category, so this is relation classification rather than open-vocabulary language understanding. Public datasets may contain source-specific visual conventions or imperfect labels; automated checks reduce but do not eliminate that risk. Synthetic drawings remain simple training-only templates. The final test contains only ten independent images and is intentionally unopened while development continues.
 
-## Research references
+## Research references and data attribution
 
-The notebook discusses and cites VSE++, VisualBERT, CLIP, and ResNet. Full Wikimedia attribution is stored in `data/licenses.csv`.
+The notebook discusses VSE++, VisualBERT, CLIP, ResNet, the external automotive-parts dataset, and Wikimedia Commons as an open-media source. Original Wikimedia attribution is stored in `data/licenses.csv`; all imported Dataset V2 provenance and license records are stored in `data/dataset_v2_manifest.csv`.

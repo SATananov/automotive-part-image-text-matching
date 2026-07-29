@@ -1,17 +1,15 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 
 import nbformat
-import numpy as np
 import pandas as pd
 import torch
 from pandas.testing import assert_frame_equal
 from sklearn.metrics import accuracy_score, f1_score
 
 from src.data import DATA_DIR, PROJECT_ROOT, RESULTS_DIR
-from src.evaluation import exact_grouped_paired_randomization
+from src.evaluation import grouped_paired_randomization
 
 CANONICAL_TORCH_VERSION = "2.13.0"
 MAIN_MODEL_SLUG = "torch_multimodal_real_only"
@@ -25,9 +23,8 @@ def base_torch_version(version: str) -> str:
     return version.split("+", 1)[0]
 
 
-def _read_json(path: Path) -> dict[str, object]:
+def _read_json(path):
     return json.loads(path.read_text(encoding="utf-8"))
-
 
 
 def _notebook_status() -> dict[str, object]:
@@ -44,7 +41,11 @@ def _notebook_status() -> dict[str, object]:
     markdown_text = "\n".join(
         cell.source for cell in notebook.cells if cell.cell_type == "markdown"
     )
-    stale_literals = [value for value in ("0.4667", "0.4407", "0.424") if value in markdown_text]
+    stale_literals = [
+        value
+        for value in ("30 paired rows from 10", "0.4667", "0.4407", "0.424")
+        if value in markdown_text
+    ]
     return {
         "code_cells": len(code_cells),
         "executed_code_cells": sum(value is not None for value in execution_counts),
@@ -71,6 +72,7 @@ def _load_and_validate_results() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFra
     if set(predictions["model_slug"]) != set(table_indexed.index):
         raise AssertionError("Prediction models and comparison-table models differ")
 
+    sample_sets = []
     for slug, group in predictions.groupby("model_slug", sort=False):
         row = table_indexed.loc[slug]
         accuracy = float(accuracy_score(group["true_label"], group["predicted_label"]))
@@ -88,6 +90,9 @@ def _load_and_validate_results() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFra
             raise AssertionError(f"Macro-F1 mismatch for {slug}")
         if int(group["is_correct"].sum()) != int(row["correct_predictions"]):
             raise AssertionError(f"Correct-prediction mismatch for {slug}")
+        sample_sets.append(set(group["sample_id"]))
+    if any(sample_set != sample_sets[0] for sample_set in sample_sets[1:]):
+        raise AssertionError("Models do not cover identical validation samples")
 
     main_predictions = predictions[predictions["model_slug"].eq(MAIN_MODEL_SLUG)].reset_index(
         drop=True
@@ -103,10 +108,10 @@ def _load_and_validate_results() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFra
 
     expected_paired = pd.DataFrame(
         [
-            exact_grouped_paired_randomization(
+            grouped_paired_randomization(
                 predictions, MAIN_MODEL_SLUG, NON_NEURAL_MULTIMODAL_SLUG
             ),
-            exact_grouped_paired_randomization(
+            grouped_paired_randomization(
                 predictions, MAIN_MODEL_SLUG, SYNTHETIC_MODEL_SLUG
             ),
         ]
@@ -129,10 +134,14 @@ def render_result_summary() -> str:
     rows = [
         "# Generated Validation Result Summary",
         "",
-        "This file is generated from the saved prediction and metric artifacts. Do not edit it manually.",
+        "This file is generated from the saved Dataset V2 prediction and metric artifacts. Do not edit it manually.",
         "",
         f"- Environment: Python `{run_info['python_version']}`, PyTorch `{run_info['torch_version']}`",
-        "- Evaluation: 30 paired rows from 10 independent real validation images",
+        (
+            f"- Evaluation: {int(run_info['validation_rows'])} paired rows from "
+            f"{int(run_info['validation_images'])} independent real validation images"
+        ),
+        f"- Training: {int(run_info['training_real_images'])} real and {int(run_info['training_synthetic_images'])} synthetic images",
         "- Locked test split used: no",
         "",
         "| Model | Accuracy | Macro F1 | Correct |",
@@ -154,16 +163,17 @@ def render_result_summary() -> str:
         ),
         "",
         (
-            "The exact image-group paired randomization p-value for the real-only neural model versus the "
-            f"non-neural multimodal baseline is `{float(paired_baseline['grouped_exact_two_sided_p_value']):.6f}`."
+            f"The {paired_baseline['method']} image-group paired comparison for the real-only neural "
+            f"model versus the non-neural multimodal baseline gives p = "
+            f"`{float(paired_baseline['grouped_two_sided_p_value']):.6f}` over "
+            f"{int(paired_baseline['independent_groups'])} independent images."
         ),
         (
             "The real-only model's grouped-bootstrap 95% accuracy interval is "
             f"`[{float(main['accuracy_ci_low']):.4f}, {float(main['accuracy_ci_high']):.4f}]`."
         ),
         "",
-        "The result is an observed development-set comparison, not proof of general superiority. "
-        "The current synthetic templates did not improve transfer to real validation images.",
+        "The result is a development-set comparison, not proof of general superiority. The final Wikimedia test images remain sealed.",
         "",
     ]
     return "\n".join(rows)
@@ -177,8 +187,8 @@ def write_pending_verification_summary() -> None:
     pending = {
         "status": "PENDING_NOTEBOOK_REEXECUTION",
         "reason": (
-            "Training artifacts were regenerated. Execute project.ipynb and then run "
-            "python -m src.verify before submission."
+            "Dataset V2 training artifacts were regenerated. Rebuild and execute project.ipynb, "
+            "then run python -m src.verify before submission."
         ),
     }
     VERIFICATION_SUMMARY_PATH.write_text(
@@ -190,11 +200,19 @@ def build_verification_summary() -> dict[str, object]:
     table, _, paired = _load_and_validate_results()
     audit = _read_json(RESULTS_DIR / "data_audit.json")
     run_info = _read_json(RESULTS_DIR / "run_info.json")
+    test_lock = _read_json(DATA_DIR / "test_lock.json")
     manifest = pd.read_csv(DATA_DIR / "image_manifest.csv")
     notebook = _notebook_status()
+    environment_lock = _read_json(RESULTS_DIR / "environment_lock.json")
 
+    if str(run_info.get("dataset_version")) != "2.0":
+        raise AssertionError("Saved results are not Dataset V2 artifacts")
     if base_torch_version(str(run_info["torch_version"])) != CANONICAL_TORCH_VERSION:
         raise AssertionError("Saved results were not produced with the canonical PyTorch version")
+    if environment_lock["python_version"] != run_info["python_version"]:
+        raise AssertionError("Environment lock and training Python version differ")
+    if environment_lock["packages"].get("torch", "").split("+", 1)[0] != CANONICAL_TORCH_VERSION:
+        raise AssertionError("Environment lock does not contain the canonical PyTorch version")
     if notebook["executed_code_cells"] != notebook["code_cells"]:
         raise AssertionError("Notebook has unexecuted code cells")
     if notebook["errors"] != 0:
@@ -225,25 +243,34 @@ def build_verification_summary() -> dict[str, object]:
     baseline_pair = paired[
         paired["right_model_slug"].eq(NON_NEURAL_MULTIMODAL_SLUG)
     ].iloc[0]
+    source_counts = manifest.groupby("source").size().to_dict()
 
     return {
         "status": "PASS",
+        "dataset_version": "2.0",
         "canonical_environment": {
             "required_torch_version": CANONICAL_TORCH_VERSION,
             "saved_torch_version": run_info["torch_version"],
             "saved_python_version": run_info["python_version"],
+            "environment_lock_sha256": environment_lock["text_lock_sha256"],
+            "locked_packages": environment_lock["packages"],
         },
         "dataset": {
             "total_images": int(len(manifest)),
-            "real_images": int(manifest["source"].eq("wikimedia").sum()),
+            "real_images": int(manifest["source"].ne("generated").sum()),
             "synthetic_images": int(manifest["source"].eq("generated").sum()),
+            "images_by_source": {key: int(value) for key, value in source_counts.items()},
             "train_rows": int(audit["train_samples"]),
             "validation_rows": int(audit["validation_samples"]),
-            "test_rows_locked": 30,
+            "validation_independent_images": int(audit["validation_images"]),
+            "test_rows_locked": int(test_lock["test_rows"]),
+            "test_images_locked": int(test_lock["test_images"]),
         },
         "data_audit": {
             **critical_audit_checks,
             "license_rows": int(audit["licenses"]["license_rows"]),
+            "unique_train_descriptions": int(audit["unique_descriptions_train"]),
+            "unique_validation_descriptions": int(audit["unique_descriptions_validation"]),
         },
         "training": {
             "framework": run_info["deep_learning_framework"],
@@ -257,7 +284,7 @@ def build_verification_summary() -> dict[str, object]:
                 float(main["accuracy_ci_high"]),
             ],
             "grouped_paired_baseline_p_value": float(
-                baseline_pair["grouped_exact_two_sided_p_value"]
+                baseline_pair["grouped_two_sided_p_value"]
             ),
             "paired_comparison_method": str(baseline_pair["method"]),
             "paired_independent_groups": int(baseline_pair["independent_groups"]),

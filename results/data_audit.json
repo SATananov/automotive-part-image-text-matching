@@ -1,17 +1,23 @@
 {
-  "train_samples": 300,
-  "validation_samples": 30,
-  "train_images": 100,
-  "validation_images": 10,
-  "train_real_images": 50,
+  "dataset_version": "2.0",
+  "train_samples": 900,
+  "validation_samples": 120,
+  "train_images": 150,
+  "validation_images": 20,
+  "train_real_images": 100,
   "train_synthetic_images": 50,
-  "validation_real_images": 10,
+  "validation_real_images": 20,
   "validation_synthetic_images": 0,
   "source_split_image_counts": [
     {
       "split": "test",
       "source": "wikimedia",
       "images": 10
+    },
+    {
+      "split": "train",
+      "source": "dataset_v2",
+      "images": 50
     },
     {
       "split": "train",
@@ -22,6 +28,11 @@
       "split": "train",
       "source": "wikimedia",
       "images": 50
+    },
+    {
+      "split": "validation",
+      "source": "dataset_v2",
+      "images": 10
     },
     {
       "split": "validation",
@@ -38,96 +49,97 @@
   "exact_cross_split_image_hash_overlap": 0,
   "suspicious_real_image_pairs": 0,
   "similarity_limit": 0.995,
-  "maximum_same_category_similarity": 0.5255543,
+  "dhash_limit": 2,
+  "maximum_same_category_similarity": 0.6943621,
   "minimum_nearest_dhash_distance": 12,
   "label_counts_train": {
-    "MATCH": 100,
-    "MISMATCH": 100,
-    "PARTIAL_MATCH": 100
+    "MATCH": 300,
+    "MISMATCH": 300,
+    "PARTIAL_MATCH": 300
   },
   "label_counts_validation": {
-    "MATCH": 10,
-    "MISMATCH": 10,
-    "PARTIAL_MATCH": 10
+    "MATCH": 40,
+    "MISMATCH": 40,
+    "PARTIAL_MATCH": 40
   },
-  "unique_descriptions_train": 10,
-  "unique_descriptions_validation": 10,
+  "unique_descriptions_train": 40,
+  "unique_descriptions_validation": 20,
   "exact_description_overlap": 0,
   "validation_rows_with_exact_seen_description": 0,
   "text_category_label_table_train": {
     "MATCH": {
-      "air_filter": 10,
-      "alternator": 10,
-      "brake_disc": 10,
-      "brake_pad": 10,
-      "coil_spring": 10,
-      "headlight": 10,
-      "oil_filter": 10,
-      "shock_absorber": 10,
-      "starter": 10,
-      "taillight": 10
+      "air_filter": 30,
+      "alternator": 30,
+      "brake_disc": 30,
+      "brake_pad": 30,
+      "coil_spring": 30,
+      "headlight": 30,
+      "oil_filter": 30,
+      "shock_absorber": 30,
+      "starter": 30,
+      "taillight": 30
     },
     "MISMATCH": {
-      "air_filter": 10,
-      "alternator": 10,
-      "brake_disc": 10,
-      "brake_pad": 10,
-      "coil_spring": 10,
-      "headlight": 10,
-      "oil_filter": 10,
-      "shock_absorber": 10,
-      "starter": 10,
-      "taillight": 10
+      "air_filter": 30,
+      "alternator": 30,
+      "brake_disc": 30,
+      "brake_pad": 30,
+      "coil_spring": 30,
+      "headlight": 30,
+      "oil_filter": 30,
+      "shock_absorber": 30,
+      "starter": 30,
+      "taillight": 30
     },
     "PARTIAL_MATCH": {
-      "air_filter": 10,
-      "alternator": 10,
-      "brake_disc": 10,
-      "brake_pad": 10,
-      "coil_spring": 10,
-      "headlight": 10,
-      "oil_filter": 10,
-      "shock_absorber": 10,
-      "starter": 10,
-      "taillight": 10
+      "air_filter": 30,
+      "alternator": 30,
+      "brake_disc": 30,
+      "brake_pad": 30,
+      "coil_spring": 30,
+      "headlight": 30,
+      "oil_filter": 30,
+      "shock_absorber": 30,
+      "starter": 30,
+      "taillight": 30
     }
   },
   "text_category_label_table_validation": {
     "MATCH": {
-      "air_filter": 1,
-      "alternator": 1,
-      "brake_disc": 1,
-      "brake_pad": 1,
-      "coil_spring": 1,
-      "headlight": 1,
-      "oil_filter": 1,
-      "shock_absorber": 1,
-      "starter": 1,
-      "taillight": 1
+      "air_filter": 4,
+      "alternator": 4,
+      "brake_disc": 4,
+      "brake_pad": 4,
+      "coil_spring": 4,
+      "headlight": 4,
+      "oil_filter": 4,
+      "shock_absorber": 4,
+      "starter": 4,
+      "taillight": 4
     },
     "MISMATCH": {
-      "air_filter": 1,
-      "alternator": 1,
-      "brake_disc": 1,
-      "brake_pad": 1,
-      "coil_spring": 1,
-      "headlight": 1,
-      "oil_filter": 1,
-      "shock_absorber": 1,
-      "starter": 1,
-      "taillight": 1
+      "air_filter": 4,
+      "alternator": 4,
+      "brake_disc": 4,
+      "brake_pad": 4,
+      "coil_spring": 4,
+      "headlight": 4,
+      "oil_filter": 4,
+      "shock_absorber": 4,
+      "starter": 4,
+      "taillight": 4
     },
     "PARTIAL_MATCH": {
-      "air_filter": 1,
-      "alternator": 1,
-      "brake_disc": 1,
-      "brake_pad": 1,
-      "coil_spring": 1,
-      "headlight": 1,
-      "oil_filter": 1,
-      "shock_absorber": 1,
-      "starter": 1,
-      "taillight": 1
+      "air_filter": 4,
+      "alternator": 4,
+      "brake_disc": 4,
+      "brake_pad": 4,
+      "coil_spring": 4,
+      "headlight": 4,
+      "oil_filter": 4,
+      "shock_absorber": 4,
+      "starter": 4,
+      "taillight": 4
     }
   },
   "image_only_relation_ceiling_accuracy": 0.3333333333333333,
@@ -154,27 +166,52 @@
     }
   ],
   "licenses": {
-    "license_rows": 70,
-    "wikimedia_images": 70,
-    "all_wikimedia_images_covered": true,
-    "unique_commons_titles": true,
-    "unique_description_urls": true,
-    "unique_file_hashes": true,
+    "wikimedia": {
+      "license_rows": 70,
+      "images": 70,
+      "all_images_covered": true,
+      "unique_description_urls": true,
+      "unique_file_hashes": true,
+      "all_hashes_match": true
+    },
+    "dataset_v2": {
+      "license_rows": 60,
+      "images": 60,
+      "providers": {
+        "Kaggle": 48,
+        "Wikimedia Commons": 12
+      },
+      "recorded_licenses": [
+        "Apache-2.0",
+        "CC BY 2.0",
+        "CC BY 4.0",
+        "CC BY-SA 3.0",
+        "CC BY-SA 4.0",
+        "CC0"
+      ],
+      "all_provenance_fields_present": true,
+      "all_images_covered": true,
+      "unique_file_hashes": true,
+      "all_hashes_match": true
+    },
+    "license_rows": 130,
     "all_license_hashes_match": true
   },
   "test_lock": {
     "test_locked": true,
     "test_evaluation_permitted": false,
-    "expected_sha256": "dd0b910d3f5c6a36feb3d0571d0a4429daabae04db1542b8035f1c39b8f6b04c",
-    "actual_sha256": "dd0b910d3f5c6a36feb3d0571d0a4429daabae04db1542b8035f1c39b8f6b04c",
+    "test_rows": 60,
+    "test_images": 10,
+    "expected_sha256": "e958998c53183f4c20f496a70e8b170c7e9ac8e981e6d9597b246024376aa69b",
+    "actual_sha256": "e958998c53183f4c20f496a70e8b170c7e9ac8e981e6d9597b246024376aa69b",
     "sha256_matches": true,
     "rows_parsed_by_audit": false
   },
   "warnings": [
-    "Validation contains only 10 independent real images (30 paired rows), so uncertainty is wide.",
-    "Each image contributes three dependent rows; confidence intervals must resample complete image groups.",
-    "Synthetic drawings are template-like and are used only as training augmentation, never as validation evidence.",
-    "Validation is used for model comparison; the locked test split remains unevaluated."
+    "Each image contributes six dependent rows; uncertainty and paired tests use complete image groups.",
+    "Validation contains 20 independent real images and is used for model comparison, so the locked test remains the only untouched final holdout.",
+    "The hybrid imported subset is deterministically selected after exact-hash, dHash, and normalized-cosine duplicate screening, with per-image provenance and license records.",
+    "Synthetic drawings remain training-only and are retained solely for a transparent ablation."
   ],
   "test_split_used": false
 }

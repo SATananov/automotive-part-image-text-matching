@@ -1,17 +1,40 @@
 {
   "status": "PASS",
+  "dataset_version": "2.0",
   "canonical_environment": {
     "required_torch_version": "2.13.0",
     "saved_torch_version": "2.13.0+cpu",
-    "saved_python_version": "3.13.13"
+    "saved_python_version": "3.13.13",
+    "environment_lock_sha256": "b56beb8988e607ad792fa093e3cbffe3ac4c9ad89662bd14326698217694008c",
+    "locked_packages": {
+      "torch": "2.13.0",
+      "numpy": "2.5.1",
+      "pandas": "2.3.3",
+      "scikit-learn": "1.9.0",
+      "scipy": "1.18.0",
+      "matplotlib": "3.11.0",
+      "pillow": "12.3.0",
+      "jupyter": "1.1.1",
+      "nbformat": "5.10.4",
+      "nbclient": "0.11.0",
+      "pytest": "9.1.1",
+      "kagglehub": "1.0.2"
+    }
   },
   "dataset": {
-    "total_images": 120,
-    "real_images": 70,
+    "total_images": 180,
+    "real_images": 130,
     "synthetic_images": 50,
-    "train_rows": 300,
-    "validation_rows": 30,
-    "test_rows_locked": 30
+    "images_by_source": {
+      "dataset_v2": 60,
+      "generated": 50,
+      "wikimedia": 70
+    },
+    "train_rows": 900,
+    "validation_rows": 120,
+    "validation_independent_images": 20,
+    "test_rows_locked": 60,
+    "test_images_locked": 10
   },
   "data_audit": {
     "identity_overlap_zero": true,
@@ -21,24 +44,26 @@
     "license_hashes_match": true,
     "test_lock_matches": true,
     "test_split_unused": true,
-    "license_rows": 70
+    "license_rows": 130,
+    "unique_train_descriptions": 40,
+    "unique_validation_descriptions": 20
   },
   "training": {
     "framework": "PyTorch",
     "saved_models": 8,
     "main_model_slug": "torch_multimodal_real_only",
-    "main_validation_accuracy": 0.5333333333333333,
-    "main_validation_macro_f1": 0.4977156177156177,
-    "main_correct_predictions": 16,
+    "main_validation_accuracy": 0.4583333333333333,
+    "main_validation_macro_f1": 0.4413848829724585,
+    "main_correct_predictions": 55,
     "main_accuracy_ci": [
-      0.4,
-      0.6666666666666666
+      0.3,
+      0.6166666666666667
     ],
-    "grouped_paired_baseline_p_value": 0.0625,
+    "grouped_paired_baseline_p_value": 0.1785812377929687,
     "paired_comparison_method": "exact_image_group_sign_flip",
-    "paired_independent_groups": 10,
-    "synthetic_validation_accuracy": 0.3,
-    "synthetic_validation_macro_f1": 0.2289690069576217
+    "paired_independent_groups": 20,
+    "synthetic_validation_accuracy": 0.4166666666666667,
+    "synthetic_validation_macro_f1": 0.4120962264825383
   },
   "artifact_consistency": {
     "saved_metrics_match_predictions": true,
@@ -48,8 +73,8 @@
     "generated_markdown_summary_matches": true
   },
   "notebook": {
-    "code_cells": 15,
-    "executed_code_cells": 15,
+    "code_cells": 12,
+    "executed_code_cells": 12,
     "execution_counts": [
       1,
       2,
@@ -62,10 +87,7 @@
       9,
       10,
       11,
-      12,
-      13,
-      14,
-      15
+      12
     ],
     "errors": 0,
     "outputs": 18,

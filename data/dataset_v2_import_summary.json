@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "selection_policy": "largest_balanced_quota_after_exact_and_near_duplicate_filtering",
+  "providers": {
+    "Kaggle": 48,
+    "Wikimedia Commons": 12
+  },
+  "source_datasets": [
+    "Wikimedia Commons search: air_filter",
+    "Wikimedia Commons search: shock_absorber",
+    "gpiosenka/car-parts-40-classes"
+  ],
+  "recorded_licenses": [
+    "Apache-2.0",
+    "CC BY 2.0",
+    "CC BY 4.0",
+    "CC BY-SA 3.0",
+    "CC BY-SA 4.0",
+    "CC0"
+  ],
+  "imported_images": 60,
+  "training_images": 50,
+  "validation_images": 10,
+  "categories": [
+    "air_filter",
+    "alternator",
+    "brake_disc",
+    "brake_pad",
+    "coil_spring",
+    "headlight",
+    "oil_filter",
+    "shock_absorber",
+    "starter",
+    "taillight"
+  ],
+  "per_category_train": 5,
+  "per_category_validation": 1,
+  "maximum_per_category_train": 20,
+  "maximum_per_category_validation": 5,
+  "minimum_per_category_train": 3,
+  "minimum_per_category_validation": 1,
+  "duplicate_dhash_threshold": 2,
+  "duplicate_cosine_threshold": 0.995,
+  "manifest_sha256": "744d8910f28f401588b2c925c3ced93d4a1c8adfb7896f8ebc517144a6d08496"
+}
