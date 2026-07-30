@@ -1,6 +1,6 @@
-# Generated Validation Result Summary
+# Validation Result Summary
 
-This file is generated from the saved Dataset V2 prediction and metric artifacts. Do not edit it manually.
+This summary is generated from the saved Dataset V2 predictions and metrics.
 
 - Environment: Python `3.13.5`, PyTorch `2.10.0+cpu`
 - Evaluation: 120 paired rows from 20 independent real validation images
@@ -13,7 +13,7 @@ This file is generated from the saved Dataset V2 prediction and metric artifacts
 | Image + text Logistic Regression | 0.3333 | 0.1667 | 40/120 |
 | Real + synthetic multimodal CNN | 0.4583 | 0.4251 | 55/120 |
 
-The exact_image_group_sign_flip image-group paired comparison for the real-only neural model versus the non-neural multimodal baseline gives p = `0.072876` over 20 independent images.
+The image-group paired comparison between the real-only neural model and the image + text Logistic Regression baseline gives p = `0.072876` over 20 independent images.
 The real-only model's grouped-bootstrap 95% accuracy interval is `[0.3417, 0.6667]`.
 
-The result is a development-set comparison, not proof of general superiority. The final Wikimedia test images remain sealed.
+This is a validation result from a small development set, not proof that one model is always better. The final test images remain locked.

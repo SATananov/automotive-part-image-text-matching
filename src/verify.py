@@ -132,9 +132,9 @@ def render_result_summary() -> str:
     ].iloc[0]
 
     rows = [
-        "# Generated Validation Result Summary",
+        "# Validation Result Summary",
         "",
-        "This file is generated from the saved Dataset V2 prediction and metric artifacts. Do not edit it manually.",
+        "This summary is generated from the saved Dataset V2 predictions and metrics.",
         "",
         f"- Environment: Python `{run_info['python_version']}`, PyTorch `{run_info['torch_version']}`",
         (
@@ -163,8 +163,8 @@ def render_result_summary() -> str:
         ),
         "",
         (
-            f"The {paired_baseline['method']} image-group paired comparison for the real-only neural "
-            f"model versus the non-neural multimodal baseline gives p = "
+            f"The image-group paired comparison between the real-only neural model and "
+            f"the image + text Logistic Regression baseline gives p = "
             f"`{float(paired_baseline['grouped_two_sided_p_value']):.6f}` over "
             f"{int(paired_baseline['independent_groups'])} independent images."
         ),
@@ -173,7 +173,7 @@ def render_result_summary() -> str:
             f"`[{float(main['accuracy_ci_low']):.4f}, {float(main['accuracy_ci_high']):.4f}]`."
         ),
         "",
-        "The result is a development-set comparison, not proof of general superiority. The final Wikimedia test images remain sealed.",
+        "This is a validation result from a small development set, not proof that one model is always better. The final test images remain locked.",
         "",
     ]
     return "\n".join(rows)

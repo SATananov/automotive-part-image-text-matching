@@ -1,50 +1,59 @@
-# Dataset V2 documentation
+# Dataset V2
 
-## Independent images and paired rows
+## Data used in the project
 
-Dataset V2 records the actual balanced import quota in `dataset_v2_import_summary.json`. Split sizes are derived from that manifest rather than asserted in advance.
+The project uses ten automotive-part categories. The saved Dataset V2 contains:
 
 | Split | Original real | Imported real | Synthetic | Images | Rows |
 |---|---:|---:|---:|---:|---:|
-| Train | 50 | `10 × imported_train_quota` | 50 | `100 + imported_train_images` | `6 × train_images` |
-| Validation | 10 | `10 × imported_validation_quota` | 0 | `10 + imported_validation_images` | `6 × validation_images` |
+| Train | 50 | 50 | 50 | 150 | 900 |
+| Validation | 10 | 10 | 0 | 20 | 120 |
 | Test | 10 | 0 | 0 | 10 | 60 |
 
-Every image contributes six rows: two per relation label. Rows from the same image are dependent and must remain together in resampling and paired tests.
+Each image creates six rows: two `MATCH`, two `PARTIAL_MATCH`, and two `MISMATCH`. Rows from the same image are related and stay in the same split.
 
-## Kaggle-first acquisition
+## Real-image acquisition
 
-`python -m src.import_dataset_v2 --force` creates one unified imported image collection. The importer first looks for all ten categories in the downloaded Kaggle directory using normalized aliases. Wikimedia Commons is queried only if `air_filter` or `shock_absorber` does not have enough Kaggle candidates.
+The additional real images are imported mainly from the Apache-2.0 **50 Types of Car Parts** Kaggle dataset. Wikimedia Commons is used as an open-license fallback for categories that do not have enough suitable Kaggle images.
 
-The raw Kaggle source and temporary Commons downloads are cached under `.cache/` and are not committed. After duplicate screening, the importer chooses the largest equal quota supported by all ten categories, capped at 20 train and 5 validation images per category and requiring at least 3 train and 1 validation image per category.
+Run:
 
-Use `--source-root PATH` for an already downloaded Kaggle copy. Use `--commons-source-root PATH` for an offline reviewed root with `air_filter/` and `shock_absorber/` directories when a fallback is needed.
+```powershell
+python -m src.import_dataset_v2 --force
+```
 
-## Selection and duplicate controls
+Use `--source-root PATH` for a dataset already downloaded on the computer. Use `--commons-source-root PATH` for an offline reviewed Wikimedia fallback.
 
-Selection is deterministic and based on source SHA-256 and path order after image validation. The importer screens same-category candidates against original project assets and accepted candidates with:
+The importer:
 
-- exact SHA-256;
-- 64-bit difference hash, rejecting Hamming distance ≤ 2;
-- normalized 48×48 grayscale cosine similarity, rejecting similarity ≥ 0.995.
+- checks that each file is a readable image;
+- applies EXIF orientation;
+- converts to RGB and resizes to 224×224;
+- rejects blank or very low-information files;
+- calculates SHA-256 and perceptual hashes;
+- rejects exact and near duplicates;
+- keeps complete source, author, license, and transformation information.
 
-Selected images are EXIF-corrected, converted to RGB, centre-cropped, resized to 224×224, and saved as JPEG quality 92. Both original and standardized hashes are retained.
+The largest equal number of valid images that all ten categories can support is selected. The saved version uses five imported training images and one imported validation image per category.
 
-## Relation construction
+## Relation labels
 
-- `MATCH`: image and text category are identical;
-- `PARTIAL_MATCH`: paired categories belong to the same automotive system;
-- `MISMATCH`: paired categories belong to different systems.
+- `MATCH`: image category and text category are the same;
+- `PARTIAL_MATCH`: the categories are different but belong to the same automotive system;
+- `MISMATCH`: the categories belong to different systems.
 
-Mismatch targets use balanced rotating permutations. For every split, every text category appears exactly equally often under all three labels. Train, validation, and test have separate caption templates and zero exact sentence overlap.
+Training, validation, and test use different caption templates. There is no exact caption overlap between splits.
 
-## Manifests and licenses
+## Main files
 
-- `image_manifest.csv`: one row per committed image with source, split, group IDs, path, and SHA-256;
-- `licenses.csv`: attribution and license information for the original 70 Wikimedia photographs;
-- `dataset_v2_manifest.csv`: unified per-image provider, source path/page, author/credit, license, source hash, standardized hash, split, and transformation record for the balanced imported subset;
-- `dataset_v2_import_summary.json`: deterministic import summary, provider counts, recorded licenses, and manifest hash.
+- `image_manifest.csv` — one row per committed image, including split, group IDs, path, source, and SHA-256;
+- `licenses.csv` — attribution and licenses for the original Wikimedia images;
+- `dataset_v2_manifest.csv` — source, license, hashes, split, and transformation details for imported Dataset V2 images;
+- `dataset_v2_import_summary.json` — saved import counts and settings;
+- `train.csv` and `validation.csv` — development data;
+- `test.csv` — locked test data;
+- `test_lock.json` — test hash and evaluation permission.
 
 ## Test lock
 
-The original ten Wikimedia test identities remain unchanged. `test.csv` is generated for integrity but normal loaders reject it. `test_lock.json` stores its current SHA-256 and explicitly forbids evaluation in the development checkpoint.
+The ten original test images are unchanged. The normal data loader refuses to load `test.csv`. The test file is kept only so its SHA-256 can be checked until the final one-time evaluation is approved.
