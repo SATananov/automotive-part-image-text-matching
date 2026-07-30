@@ -2,23 +2,23 @@
   "status": "PASS",
   "dataset_version": "2.0",
   "canonical_environment": {
-    "required_torch_version": "2.13.0",
-    "saved_torch_version": "2.13.0+cpu",
-    "saved_python_version": "3.13.13",
-    "environment_lock_sha256": "b56beb8988e607ad792fa093e3cbffe3ac4c9ad89662bd14326698217694008c",
+    "required_torch_version": "2.10.0",
+    "saved_torch_version": "2.10.0+cpu",
+    "saved_python_version": "3.13.5",
+    "environment_lock_sha256": "f84ac117947e817482cb23453fc3d127c2ed7297a4463bd4729f3f1ccdc3a2e4",
     "locked_packages": {
-      "torch": "2.13.0",
-      "numpy": "2.5.1",
-      "pandas": "2.3.3",
-      "scikit-learn": "1.9.0",
-      "scipy": "1.18.0",
-      "matplotlib": "3.11.0",
-      "pillow": "12.3.0",
-      "jupyter": "1.1.1",
+      "torch": "2.10.0+cpu",
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "scikit-learn": "1.8.0",
+      "scipy": "1.17.0",
+      "matplotlib": "3.10.8",
+      "pillow": "12.2.0",
+      "jupyter": "NOT_INSTALLED",
       "nbformat": "5.10.4",
-      "nbclient": "0.11.0",
-      "pytest": "9.1.1",
-      "kagglehub": "1.0.2"
+      "nbclient": "0.10.4",
+      "pytest": "9.0.2",
+      "kagglehub": "NOT_INSTALLED"
     }
   },
   "dataset": {
@@ -52,18 +52,18 @@
     "framework": "PyTorch",
     "saved_models": 8,
     "main_model_slug": "torch_multimodal_real_only",
-    "main_validation_accuracy": 0.4583333333333333,
-    "main_validation_macro_f1": 0.4413848829724585,
-    "main_correct_predictions": 55,
+    "main_validation_accuracy": 0.5083333333333333,
+    "main_validation_macro_f1": 0.5034387568120701,
+    "main_correct_predictions": 61,
     "main_accuracy_ci": [
-      0.3,
-      0.6166666666666667
+      0.3416666666666667,
+      0.6666666666666666
     ],
-    "grouped_paired_baseline_p_value": 0.1785812377929687,
+    "grouped_paired_baseline_p_value": 0.0728759765625,
     "paired_comparison_method": "exact_image_group_sign_flip",
     "paired_independent_groups": 20,
-    "synthetic_validation_accuracy": 0.4166666666666667,
-    "synthetic_validation_macro_f1": 0.4120962264825383
+    "synthetic_validation_accuracy": 0.4583333333333333,
+    "synthetic_validation_macro_f1": 0.4251342338278092
   },
   "artifact_consistency": {
     "saved_metrics_match_predictions": true,

@@ -39,7 +39,8 @@ The importer:
 
 - uses the largest balanced category quota that survives duplicate screening instead of failing on an arbitrary fixed count;
 - stores per-image provider, source page, author/credit, license, original hash, standardized hash, and transformation record in `data/dataset_v2_manifest.csv`;
-- applies EXIF orientation, RGB conversion, centre crop, and 224×224 standardisation;
+- applies EXIF orientation, white-background alpha compositing, RGB conversion, centre crop, and 224×224 standardisation;
+- rejects blank or near-constant standardized images with variance, luminance-entropy, and dominant-pixel checks;
 - rejects exact duplicates and close same-category candidates using dHash and normalized grayscale similarity;
 - compares candidates with the original train, validation, and sealed-test images;
 - stores raw downloads only under ignored `.cache/` storage.
@@ -84,20 +85,18 @@ The selected multimodal model uses auxiliary image-category and text-category su
 
 See [docs/strict_evaluation_protocol.md](docs/strict_evaluation_protocol.md).
 
-## One-command Dataset V2 pipeline
+## Reproducible Dataset V2 pipeline
 
-The supplied patch package contains a PowerShell workflow that:
+The complete refresh sequence:
 
-1. verifies clean base commit `41bbd57267d500b3ba0cac613be477b87e1ab81b`;
-2. creates a rollback backup;
-3. applies the Dataset V2 source, tests, and documentation;
-4. acquires the hybrid public image sources;
-5. rebuilds all CSVs and manifests deterministically;
-6. audits leakage, similarity, shortcuts, provenance, licensing, and the test lock;
-7. records the exact environment;
-8. retrains all eight models under canonical PyTorch `2.13.0`;
-9. rebuilds and executes the notebook;
-10. runs the complete tests and cross-artifact verifier.
+1. acquires or accepts the documented hybrid public image sources;
+2. applies automotive-domain, license, integrity, duplicate, and low-information image checks;
+3. rebuilds all CSVs and manifests deterministically;
+4. audits leakage, similarity, shortcuts, provenance, licensing, and the test lock;
+5. records the exact environment;
+6. retrains all eight models under canonical PyTorch `2.10.0`;
+7. rebuilds and executes the notebook;
+8. runs the complete tests and cross-artifact verifier.
 
 Manual commands are:
 
@@ -124,11 +123,11 @@ python -m src.import_dataset_v2 `
   --force
 ```
 
-Without `--commons-source-root`, the importer uses the Wikimedia Commons API only for a fallback category that is unavailable or insufficient in Kaggle. Thumbnail and original-file URLs are both attempted, and selected files retain per-file attribution and license metadata.
+Without `--commons-source-root`, the importer uses the Wikimedia Commons API only for a fallback category that is unavailable or insufficient in Kaggle. Thumbnail and original-file URLs are both attempted, and selected files retain per-file attribution and license metadata. Commons candidates must also carry automotive context, transparent sources are composited on white before RGB conversion, and every standardized image must pass variance, luminance-entropy, and dominant-pixel checks.
 
 ## Reproducibility and artifact consistency
 
-- `requirements.txt` pins canonical PyTorch `2.13.0`;
+- `requirements.txt` pins canonical PyTorch `2.10.0`;
 - `results/environment_lock.txt` and `.json` record the exact final environment;
 - `src.train` refuses to overwrite canonical artifacts with another PyTorch version;
 - `results/result_summary.md` is generated from predictions, not typed manually;
@@ -138,7 +137,7 @@ Without `--commons-source-root`, the importer uses the Wikimedia Commons API onl
 
 ## Repository map
 
-- `src/import_dataset_v2.py` — hybrid acquisition, deterministic selection, deduplication, standardisation, attribution;
+- `src/import_dataset_v2.py` — hybrid acquisition, automotive-domain screening, transparency-safe standardisation, content checks, deterministic selection, deduplication, and attribution;
 - `src/captions_v2.py` — split-specific caption banks;
 - `src/build_dataset.py` — balanced six-pair relation construction and manifests;
 - `src/audit.py` — identity, hash, perceptual similarity, shortcut, provenance, licensing, and lock audit;

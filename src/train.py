@@ -41,7 +41,7 @@ AUXILIARY_LOSS_WEIGHT = 0.40
 REAL_ONLY_SLUG = "torch_multimodal_real_only"
 SYNTHETIC_SLUG = "torch_multimodal_real_plus_synthetic"
 MAIN_MODEL_SLUG = REAL_ONLY_SLUG
-CANONICAL_TORCH_VERSION = "2.13.0"
+CANONICAL_TORCH_VERSION = "2.10.0"
 
 
 def require_canonical_torch_version() -> None:

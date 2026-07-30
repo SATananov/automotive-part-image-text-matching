@@ -47,6 +47,9 @@ MIN_VALIDATION_PER_CATEGORY = 1
 MIN_TOTAL_PER_CATEGORY = MIN_TRAIN_PER_CATEGORY + MIN_VALIDATION_PER_CATEGORY
 DUPLICATE_DHASH_DISTANCE = 2
 DUPLICATE_COSINE_LIMIT = 0.995
+MIN_STANDARDIZED_PIXEL_STD = 8.0
+MIN_STANDARDIZED_LUMA_ENTROPY = 2.0
+MAX_STANDARDIZED_SINGLE_LUMA_FRACTION = 0.985
 
 KAGGLE_CATEGORY_ALIASES: dict[str, tuple[str, ...]] = {
     "air_filter": ("AIR FILTER", "AIR FILTERS", "ENGINE AIR FILTER", "AIR CLEANER"),
@@ -332,8 +335,9 @@ def commons_pages(category: str) -> list[dict[str, Any]]:
                 "gsrnamespace": "6",
                 "gsrsearch": f"{term} filetype:bitmap",
                 "gsrlimit": "50",
-                "prop": "imageinfo",
+                "prop": "imageinfo|categories",
                 "iiprop": "url|mime|size|extmetadata",
+                "cllimit": "max",
                 "iiurlwidth": "1200",
                 "format": "json",
                 "formatversion": "2",
@@ -350,14 +354,58 @@ def commons_pages(category: str) -> list[dict[str, Any]]:
     return [pages[key] for key in sorted(pages)]
 
 
-def commons_candidate_relevant(category: str, title: str, description: str) -> bool:
-    haystack = f"{title} {description}".lower()
-    excluded = ("diagram", "schematic", "advert", "advertisement", "logo", "icon", "drawing")
+def commons_candidate_relevant(
+    category: str,
+    title: str,
+    description: str,
+    categories: tuple[str, ...] | list[str] = (),
+) -> bool:
+    haystack = " ".join((title, description, *categories)).lower()
+    excluded = (
+        "advert",
+        "advertisement",
+        "logo",
+        "icon",
+        "washing machine",
+        "taipei",
+        "skyscraper",
+        "tuned mass damper",
+        "fall arrest",
+        "safety lanyard",
+        "steelprotection",
+        "aircraft",
+        "landing gear",
+        "industrial shock absorber",
+        "railway",
+        "bicycle",
+        "motorcycle",
+    )
     if any(term in haystack for term in excluded):
         return False
     if category == "air_filter":
-        return "air filter" in haystack or "luftfilter" in haystack
-    return any(term in haystack for term in ("shock absorber", "shockabsorber", "damper", "strut"))
+        part_match = "air filter" in haystack or "luftfilter" in haystack
+        vehicle_context = any(
+            term in haystack
+            for term in ("automobile", "automotive", "motor vehicle", "car ", "engine air filter")
+        )
+        return part_match and vehicle_context
+    automotive_context = (
+        "automobile shock absorber",
+        "automobile shock absorbers",
+        "automobile suspension",
+        "automotive suspension",
+        "vehicle shock absorber",
+        "vehicle shock absorbers",
+        "vehicle suspension",
+        "car shock absorber",
+        "macpherson strut",
+        "lever arm shock absorber",
+        "lever arm shock absorbers",
+        "friction disk shock absorber",
+        "friction disc shock absorber",
+        "coilover",
+    )
+    return any(term in haystack for term in automotive_context)
 
 
 def build_commons_candidates_from_api(category: str) -> list[Candidate]:
@@ -380,7 +428,10 @@ def build_commons_candidates_from_api(category: str) -> list[Candidate]:
             continue
         title = str(page.get("title", ""))
         description = plain_text(value("ImageDescription"))
-        if not commons_candidate_relevant(category, title, description):
+        categories = tuple(
+            str(item.get("title", "")) for item in page.get("categories", [])
+        )
+        if not commons_candidate_relevant(category, title, description, categories):
             continue
         source_urls = [
             str(value)
@@ -631,14 +682,58 @@ def select_candidates(candidates: dict[str, list[Candidate]]) -> dict[str, dict[
     return selected
 
 
+def prepare_rgb_image(image: Image.Image) -> Image.Image:
+    oriented = ImageOps.exif_transpose(image)
+    if oriented.mode in {"RGBA", "LA"} or "transparency" in oriented.info:
+        rgba = oriented.convert("RGBA")
+        background = Image.new("RGBA", rgba.size, (255, 255, 255, 255))
+        return Image.alpha_composite(background, rgba).convert("RGB")
+    return oriented.convert("RGB")
+
+
+def image_content_metrics(image: Image.Image) -> tuple[float, float, float]:
+    gray = np.asarray(image.convert("L"), dtype=np.uint8)
+    counts = np.bincount(gray.reshape(-1), minlength=256)
+    probabilities = counts[counts > 0].astype(np.float64) / gray.size
+    entropy = float(-(probabilities * np.log2(probabilities)).sum())
+    return float(gray.std()), entropy, float(counts.max() / gray.size)
+
+
+def validate_standardized_image(image_or_path: Image.Image | Path) -> tuple[float, float, float]:
+    if isinstance(image_or_path, Path):
+        with Image.open(image_or_path) as image:
+            if image.size != TARGET_SIZE or image.mode != "RGB":
+                raise ValueError(
+                    f"Standardized image must be RGB {TARGET_SIZE[0]}x{TARGET_SIZE[1]}: {image_or_path}"
+                )
+            metrics = image_content_metrics(image)
+    else:
+        if image_or_path.size != TARGET_SIZE or image_or_path.mode != "RGB":
+            raise ValueError(
+                f"Standardized image must be RGB {TARGET_SIZE[0]}x{TARGET_SIZE[1]}"
+            )
+        metrics = image_content_metrics(image_or_path)
+    pixel_std, entropy, dominant_fraction = metrics
+    if pixel_std < MIN_STANDARDIZED_PIXEL_STD:
+        raise ValueError(f"Image pixel standard deviation is too low: {pixel_std:.4f}")
+    if entropy < MIN_STANDARDIZED_LUMA_ENTROPY:
+        raise ValueError(f"Image luminance entropy is too low: {entropy:.4f}")
+    if dominant_fraction > MAX_STANDARDIZED_SINGLE_LUMA_FRACTION:
+        raise ValueError(
+            f"One luminance value occupies too much of the image: {dominant_fraction:.4f}"
+        )
+    return metrics
+
+
 def standardize_image(source: Path, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     with Image.open(source) as image:
         transformed = ImageOps.fit(
-            ImageOps.exif_transpose(image).convert("RGB"),
+            prepare_rgb_image(image),
             TARGET_SIZE,
             method=Image.Resampling.LANCZOS,
         )
+        validate_standardized_image(transformed)
         transformed.save(destination, format="JPEG", quality=92, optimize=True)
 
 
@@ -677,7 +772,7 @@ def write_selected(selected: dict[str, dict[str, list[Candidate]]], *, force: bo
                         "source_sha256": candidate.original_sha256,
                         "sha256": sha256(destination),
                         "dhash": difference_hash(destination),
-                        "modifications": "EXIF orientation applied; RGB conversion; center crop and resize to 224x224; JPEG quality 92.",
+                        "modifications": "EXIF orientation applied; transparency composited on white; RGB conversion; center crop and resize to 224x224; JPEG quality 92; low-information content validation passed.",
                     }
                 )
     manifest = pd.DataFrame(rows, columns=MANIFEST_COLUMNS).sort_values(
@@ -715,6 +810,10 @@ def validate_import(manifest: pd.DataFrame) -> dict[str, object]:
         path = PROJECT_ROOT / row.local_path
         if not path.is_file() or sha256(path) != row.sha256:
             raise AssertionError(f"Imported image hash mismatch: {row.asset_id}")
+        try:
+            validate_standardized_image(path)
+        except ValueError as error:
+            raise AssertionError(f"Imported image content check failed: {row.asset_id}: {error}") from error
     summary = {
         "status": "PASS",
         "selection_policy": "largest_balanced_quota_after_exact_and_near_duplicate_filtering",
@@ -733,6 +832,9 @@ def validate_import(manifest: pd.DataFrame) -> dict[str, object]:
         "minimum_per_category_validation": MIN_VALIDATION_PER_CATEGORY,
         "duplicate_dhash_threshold": DUPLICATE_DHASH_DISTANCE,
         "duplicate_cosine_threshold": DUPLICATE_COSINE_LIMIT,
+        "minimum_pixel_standard_deviation": MIN_STANDARDIZED_PIXEL_STD,
+        "minimum_luminance_entropy": MIN_STANDARDIZED_LUMA_ENTROPY,
+        "maximum_single_luminance_fraction": MAX_STANDARDIZED_SINGLE_LUMA_FRACTION,
         "manifest_sha256": hashlib.sha256(MANIFEST_PATH.read_bytes()).hexdigest(),
     }
     SUMMARY_PATH.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")

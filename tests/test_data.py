@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import pytest
 from PIL import Image
@@ -137,3 +138,23 @@ def test_test_lock_hash_matches_without_using_normal_loader() -> None:
     assert lock["test_rows"] == 60
     assert lock["test_images"] == 10
     assert sha256(DATA_DIR / "test.csv") == lock["test_sha256"]
+
+def test_dataset_v2_images_have_nontrivial_visual_content() -> None:
+    from src.import_dataset_v2 import (
+        MAX_STANDARDIZED_SINGLE_LUMA_FRACTION,
+        MIN_STANDARDIZED_LUMA_ENTROPY,
+        MIN_STANDARDIZED_PIXEL_STD,
+        image_content_metrics,
+    )
+
+    manifest = pd.read_csv(DATA_DIR / "dataset_v2_manifest.csv")
+    for row in manifest.itertuples(index=False):
+        path = PROJECT_ROOT / row.local_path
+        with Image.open(path) as image:
+            assert image.mode == "RGB"
+            assert image.size == (224, 224)
+            pixel_std, entropy, dominant_fraction = image_content_metrics(image)
+        assert pixel_std >= MIN_STANDARDIZED_PIXEL_STD, row.asset_id
+        assert entropy >= MIN_STANDARDIZED_LUMA_ENTROPY, row.asset_id
+        assert dominant_fraction <= MAX_STANDARDIZED_SINGLE_LUMA_FRACTION, row.asset_id
+

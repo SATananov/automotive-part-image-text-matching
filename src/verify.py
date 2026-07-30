@@ -11,7 +11,7 @@ from sklearn.metrics import accuracy_score, f1_score
 from src.data import DATA_DIR, PROJECT_ROOT, RESULTS_DIR
 from src.evaluation import grouped_paired_randomization
 
-CANONICAL_TORCH_VERSION = "2.13.0"
+CANONICAL_TORCH_VERSION = "2.10.0"
 MAIN_MODEL_SLUG = "torch_multimodal_real_only"
 NON_NEURAL_MULTIMODAL_SLUG = "image_text_logistic_regression"
 SYNTHETIC_MODEL_SLUG = "torch_multimodal_real_plus_synthetic"
@@ -187,8 +187,8 @@ def write_pending_verification_summary() -> None:
     pending = {
         "status": "PENDING_NOTEBOOK_REEXECUTION",
         "reason": (
-            "Dataset V2 training artifacts were regenerated. Rebuild and execute project.ipynb, "
-            "then run python -m src.verify before submission."
+            "Dataset V2 training artifacts were regenerated. Rebuild the report, "
+            "Execute project.ipynb, then run python -m src.verify before submission."
         ),
     }
     VERIFICATION_SUMMARY_PATH.write_text(

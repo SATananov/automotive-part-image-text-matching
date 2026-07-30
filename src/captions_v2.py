@@ -77,14 +77,14 @@ PART_LANGUAGE: dict[str, PartLanguage] = {
 
 _TEMPLATE_BANKS: dict[str, tuple[str, ...]] = {
     "train": (
-        "An automotive {noun} used in the {system}.",
-        "A vehicle {noun} designed to {function}.",
-        "This component is a {noun} with {form}.",
-        "A replacement {noun} for a road vehicle; its job is to {function}.",
+        "Automotive component: {noun}, used in the {system}.",
+        "Vehicle component identified as {noun}, designed to {function}.",
+        "This component is the {noun}, with {form}.",
+        "Road-vehicle replacement part: {noun}; its job is to {function}.",
     ),
     "validation": (
-        "The pictured part is a {noun}; it helps {function}.",
-        "A {noun} associated with the {system}, recognizable by {form}.",
+        "The pictured part is the {noun}; it helps {function}.",
+        "This {noun} belongs to the {system} and is recognizable by {form}.",
     ),
     "test": (
         "A motor-vehicle {noun} whose role is to {function}.",

@@ -6,7 +6,9 @@ import types
 import zipfile
 from pathlib import Path
 
+import numpy as np
 import pytest
+from PIL import Image
 
 import src.import_dataset_v2 as import_module
 
@@ -222,3 +224,43 @@ def test_balanced_selection_quota_rejects_too_few_independent_images() -> None:
     counts["air_filter"] = 3
     with pytest.raises(ValueError, match="minimum balanced quota"):
         import_module.balanced_selection_quota(counts)
+
+def test_commons_relevance_requires_automotive_context() -> None:
+    assert import_module.commons_candidate_relevant(
+        "shock_absorber",
+        "File:Land Rover dampers.jpg",
+        "Vehicle suspension dampers",
+        ("Category:Automobile shock absorbers",),
+    )
+    assert not import_module.commons_candidate_relevant(
+        "shock_absorber",
+        "File:The shock absorber in Taipei 101.jpg",
+        "Tuned mass damper in a skyscraper",
+        (),
+    )
+    assert not import_module.commons_candidate_relevant(
+        "shock_absorber",
+        "File:SteelProtection absorber.jpg",
+        "Fall arrest safety lanyard",
+        (),
+    )
+
+
+def test_standardizer_composites_transparency_and_rejects_empty_output(tmp_path: Path) -> None:
+    source = tmp_path / "transparent.png"
+    destination = tmp_path / "standardized.jpg"
+    Image.new("RGBA", (400, 400), (0, 0, 0, 0)).save(source)
+
+    with pytest.raises(ValueError, match="standard deviation|entropy|luminance"):
+        import_module.standardize_image(source, destination)
+    assert not destination.exists()
+
+
+def test_image_content_metrics_accept_visual_information() -> None:
+    gradient = np.tile(np.arange(224, dtype=np.uint8), (224, 1))
+    image = Image.fromarray(gradient, mode="L").convert("RGB")
+    pixel_std, entropy, dominant_fraction = import_module.validate_standardized_image(image)
+    assert pixel_std >= import_module.MIN_STANDARDIZED_PIXEL_STD
+    assert entropy >= import_module.MIN_STANDARDIZED_LUMA_ENTROPY
+    assert dominant_fraction <= import_module.MAX_STANDARDIZED_SINGLE_LUMA_FRACTION
+

@@ -176,7 +176,9 @@ def test_environment_lock_matches_run_info() -> None:
     info = json.loads((RESULTS_DIR / "run_info.json").read_text(encoding="utf-8"))
     lock = json.loads((RESULTS_DIR / "environment_lock.json").read_text(encoding="utf-8"))
     assert lock["python_version"] == info["python_version"]
-    assert lock["packages"]["torch"].split("+", 1)[0] == "2.13.0"
+    from src.verify import CANONICAL_TORCH_VERSION
+
+    assert lock["packages"]["torch"].split("+", 1)[0] == CANONICAL_TORCH_VERSION
     assert (RESULTS_DIR / "environment_lock.txt").is_file()
 
 def test_readme_states_the_independent_evaluation_unit() -> None:

@@ -1,18 +1,18 @@
 {
-  "python_version": "3.13.13",
+  "python_version": "3.13.5",
   "packages": {
-    "torch": "2.13.0",
-    "numpy": "2.5.1",
-    "pandas": "2.3.3",
-    "scikit-learn": "1.9.0",
-    "scipy": "1.18.0",
-    "matplotlib": "3.11.0",
-    "pillow": "12.3.0",
-    "jupyter": "1.1.1",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.8.0",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.8",
+    "pillow": "12.2.0",
+    "jupyter": "NOT_INSTALLED",
     "nbformat": "5.10.4",
-    "nbclient": "0.11.0",
-    "pytest": "9.1.1",
-    "kagglehub": "1.0.2"
+    "nbclient": "0.10.4",
+    "pytest": "9.0.2",
+    "kagglehub": "NOT_INSTALLED"
   },
-  "text_lock_sha256": "b56beb8988e607ad792fa093e3cbffe3ac4c9ad89662bd14326698217694008c"
+  "text_lock_sha256": "f84ac117947e817482cb23453fc3d127c2ed7297a4463bd4729f3f1ccdc3a2e4"
 }

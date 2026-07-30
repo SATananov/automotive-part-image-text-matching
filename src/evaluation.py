@@ -100,7 +100,7 @@ def _common_result(
         "left_wrong_right_correct_rows": right_only_rows,
         "row_discordant_predictions": left_only_rows + right_only_rows,
         "randomization_assignments": int(assignments),
-        "randomization_seed": randomization_seed,
+        "randomization_seed": np.nan if randomization_seed is None else int(randomization_seed),
         "grouped_two_sided_p_value": float(p_value),
     }
 

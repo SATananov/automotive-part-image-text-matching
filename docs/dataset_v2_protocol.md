@@ -34,16 +34,17 @@ The established ontology contains air filter, alternator, brake disc, brake pad,
 
 The importer first validates and deduplicates every category, then computes one balanced quota from the smallest surviving category. This avoids inventing statistical strength when an open source cannot supply the originally planned fixed count.
 
-1. validate readable image files and source metadata;
+1. validate readable image files, source metadata, open-license fields, and automotive-domain relevance;
 2. remove exact duplicate source hashes;
 3. compute dHash and normalized grayscale vectors;
 4. reject candidates too close to original project images or previously accepted same-category candidates;
-5. count surviving non-duplicate candidates in every category;
-6. choose the largest equal quota supported by all categories, capped at 20 train and 5 validation images per category;
-7. require at least 3 imported train and 1 imported validation image per category;
-8. prefer original validation/test source directories for the new development-validation subset where source splits exist;
-9. standardize and hash the selected files;
-10. write complete provenance, license metadata, actual quotas, and manifest hash.
+5. composite transparent source images on white before RGB conversion and reject standardized images with insufficient variance or luminance entropy;
+6. count surviving non-duplicate candidates in every category;
+7. choose the largest equal quota supported by all categories, capped at 20 train and 5 validation images per category;
+8. require at least 3 imported train and 1 imported validation image per category;
+9. prefer original validation/test source directories for the new development-validation subset where source splits exist;
+10. standardize and hash the selected files;
+11. write complete provenance, license metadata, actual quotas, and manifest hash.
 
 The validation quota is approximately one quarter of the bottleneck category, capped at five; the remaining balanced quota is assigned to training. No random sampling is used. Re-running against the same local source content produces the same selected source hashes and standardized files. Public online collections can evolve; the committed selected files and their manifest are therefore the canonical exam data snapshot.
 

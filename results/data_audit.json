@@ -183,11 +183,12 @@
       },
       "recorded_licenses": [
         "Apache-2.0",
-        "CC BY 2.0",
-        "CC BY 4.0",
+        "CC BY-SA 2.0 FR",
         "CC BY-SA 3.0",
+        "CC BY-SA 3.0 IT",
         "CC BY-SA 4.0",
-        "CC0"
+        "CC0 1.0",
+        "Public domain"
       ],
       "all_provenance_fields_present": true,
       "all_images_covered": true,

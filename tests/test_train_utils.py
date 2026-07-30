@@ -33,7 +33,7 @@ def test_training_requires_canonical_torch_version(monkeypatch) -> None:
     monkeypatch.setattr(torch, "__version__", f"{CANONICAL_TORCH_VERSION}+cpu")
     require_canonical_torch_version()
 
-    monkeypatch.setattr(torch, "__version__", "2.10.0+cpu")
+    monkeypatch.setattr(torch, "__version__", "2.11.0+cpu")
     import pytest
 
     with pytest.raises(RuntimeError, match="pins PyTorch"):
