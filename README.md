@@ -228,3 +228,15 @@ unauthorized and unevaluated at this checkpoint.
 
 See `docs/dataset_v3/final_selection_lock.md`.
 
+## Dataset V3 final-test authorization
+
+The Dataset V3 model selection is frozen. Exactly one final evaluation of
+the selected `torch_multimodal_dataset_v3` checkpoint is authorized.
+No further tuning or checkpoint replacement is permitted. Test results may
+be used only for final reporting and error analysis.
+
+At this checkpoint the authorization is not yet consumed and the locked
+test has not been read or evaluated.
+
+See `docs/dataset_v3/final_test_authorization.md`.
+
