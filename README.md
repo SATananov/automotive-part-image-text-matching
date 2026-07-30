@@ -217,3 +217,14 @@ python -m src.verify_notebook_v3
 ```
 
 The existing `project.ipynb` remains unchanged while the Dataset V3 notebook is reviewed independently.
+
+## Dataset V3 final model-selection lock
+
+The Dataset V3 multimodal checkpoint and executed notebook are frozen before
+any locked-test evaluation. The selected model is
+`torch_multimodal_dataset_v3`, chosen from development validation only.
+Further tuning is not permitted after this lock. The locked test remains
+unauthorized and unevaluated at this checkpoint.
+
+See `docs/dataset_v3/final_selection_lock.md`.
+
