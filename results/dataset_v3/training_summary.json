@@ -1,0 +1,40 @@
+{
+  "status": "PASS_DATASET_V3_DEVELOPMENT_TRAINING_ARTIFACTS_READY",
+  "dataset_version": "3.0-development",
+  "models": 7,
+  "main_model_slug": "torch_multimodal_dataset_v3",
+  "main_validation_accuracy": 0.7854166666666667,
+  "main_validation_macro_f1": 0.787284319325806,
+  "main_correct_predictions": 377,
+  "main_total_predictions": 480,
+  "main_accuracy_ci": [
+    0.7083333333333334,
+    0.8625
+  ],
+  "baseline_validation_accuracy": 0.3333333333333333,
+  "baseline_validation_macro_f1": 0.16666666666666666,
+  "paired_comparison_method": "monte_carlo_image_group_sign_flip",
+  "paired_independent_groups": 80,
+  "paired_two_sided_p_value": 9.99990000099999e-06,
+  "training_rows": 2880,
+  "training_images": 480,
+  "validation_rows": 480,
+  "validation_images": 80,
+  "categories": [
+    "alternator",
+    "brake_disc",
+    "brake_pad",
+    "coil_spring",
+    "headlight",
+    "oil_filter",
+    "starter",
+    "taillight"
+  ],
+  "test_lock_status": "LOCKED_NOT_AUTHORIZED_FOR_TRAINING_OR_SELECTION",
+  "test_lock_sha256": "162de671f97c43e3f5afe6c25f577e65228d1f759b699ff93a0d74d9726764a5",
+  "test_manifest_read": false,
+  "test_images_read": false,
+  "test_split_used": false,
+  "test_evaluation_executed": false,
+  "environment_lock_sha256": "c3933c86708f2d1ce5b5e6c77016a9d07c110213001708bca602ecbeae0fc7aa"
+}
