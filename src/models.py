@@ -62,8 +62,14 @@ class ImageRelationCNN(nn.Module):
 class MultimodalRelationCNN(nn.Module):
     """CNN + text MLP with auxiliary category supervision during training."""
 
-    def __init__(self, text_dimension: int) -> None:
+    def __init__(
+        self,
+        text_dimension: int,
+        number_of_part_categories: int = NUMBER_OF_PART_CATEGORIES,
+    ) -> None:
         super().__init__()
+        if number_of_part_categories < 2:
+            raise ValueError("At least two part categories are required.")
         self.image_encoder = ImageEncoder()
         self.text_encoder = nn.Sequential(
             nn.Linear(text_dimension, 64),
@@ -80,8 +86,8 @@ class MultimodalRelationCNN(nn.Module):
             nn.ReLU(),
             nn.Linear(48, NUMBER_OF_RELATION_CLASSES),
         )
-        self.image_category_head = nn.Linear(48, NUMBER_OF_PART_CATEGORIES)
-        self.text_category_head = nn.Linear(32, NUMBER_OF_PART_CATEGORIES)
+        self.image_category_head = nn.Linear(48, number_of_part_categories)
+        self.text_category_head = nn.Linear(32, number_of_part_categories)
 
     def forward(
         self,

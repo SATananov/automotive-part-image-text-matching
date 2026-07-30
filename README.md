@@ -168,3 +168,19 @@ A local Kaggle directory can be supplied with `--source-root`. An offline review
 ## Previous research and sources
 
 The notebook discusses VSE++, VisualBERT, CLIP, and ResNet. The external real-image dataset and Wikimedia Commons are also cited. Original Wikimedia attribution is stored in `data/licenses.csv`, and Dataset V2 provenance is stored in `data/dataset_v2_manifest.csv`.
+
+## Dataset V3 development branch
+
+The `dataset-v3` branch contains a separately curated eight-category image pool with 480 train images, 80 validation images, and 80 physically separated locked-test images. The original Kaggle split labels are retained only as provenance; the project uses its own deterministic `60/10/10` split per category.
+
+At this checkpoint, Dataset V3 development relation tables are generated under `data/manifests/dataset_v3/`. They do not replace the saved Dataset V2 results or the executed Dataset V2 notebook. No Dataset V3 model has been trained and the locked test split has not been evaluated.
+
+Build and audit the Dataset V3 development relations with:
+
+```bash
+python -m src.build_dataset_v3
+python -m src.audit_dataset_v3
+python -m pytest -q tests/test_dataset_v3_integrity.py tests/test_dataset_v3_relations.py
+```
+
+The Dataset V3 relation protocol is documented in `docs/dataset_v3/relation_protocol.md`.

@@ -52,3 +52,9 @@ The test split is physically separated under
 `data/locked_test/dataset_v3/`.
 
 It is not authorized for training, model selection, or validation analysis.
+
+## Development relation tables
+
+The relation-building foundation uses only the train and validation image manifests. It creates six image-text rows per image under `data/manifests/dataset_v3/` and refuses test access. The exact semantics and balancing rules are described in `relation_protocol.md`.
+
+The saved Dataset V2 notebook and results remain unchanged until Dataset V3 training and notebook re-execution are completed in later checkpoints.

@@ -1,0 +1,79 @@
+{
+  "status": "PASS_DATASET_V3_DEVELOPMENT_AUDIT",
+  "dataset_version": "3.0-development",
+  "train_images": 480,
+  "validation_images": 80,
+  "train_rows": 2880,
+  "validation_rows": 480,
+  "train_image_manifest_rows": 480,
+  "validation_image_manifest_rows": 80,
+  "broad_families": {
+    "alternator": "engine_support",
+    "oil_filter": "engine_support",
+    "starter": "engine_support",
+    "brake_disc": "chassis",
+    "brake_pad": "chassis",
+    "coil_spring": "chassis",
+    "headlight": "lighting",
+    "taillight": "lighting"
+  },
+  "overlap": {
+    "part_group_overlap": 0,
+    "object_group_overlap": 0,
+    "image_id_overlap": 0,
+    "image_path_overlap": 0
+  },
+  "exact_cross_split_image_hash_overlap": 0,
+  "unique_descriptions_train": 32,
+  "unique_descriptions_validation": 16,
+  "exact_description_overlap": 0,
+  "validation_rows_with_exact_seen_description": 0,
+  "label_counts_train": {
+    "MATCH": 960,
+    "MISMATCH": 960,
+    "PARTIAL_MATCH": 960
+  },
+  "label_counts_validation": {
+    "MATCH": 160,
+    "MISMATCH": 160,
+    "PARTIAL_MATCH": 160
+  },
+  "shortcut_baselines": [
+    {
+      "features": "source",
+      "accuracy": 0.3333333333333333,
+      "macro_f1": 0.16666666666666666
+    },
+    {
+      "features": "part_category",
+      "accuracy": 0.3333333333333333,
+      "macro_f1": 0.16666666666666666
+    },
+    {
+      "features": "text_category",
+      "accuracy": 0.3333333333333333,
+      "macro_f1": 0.16666666666666666
+    },
+    {
+      "features": "source+part_category",
+      "accuracy": 0.3333333333333333,
+      "macro_f1": 0.16666666666666666
+    }
+  ],
+  "image_only_relation_ceiling_accuracy": 0.3333333333333333,
+  "curation_exact_duplicate_groups": 0,
+  "curation_near_duplicate_review_pairs": 0,
+  "curation_current_project_overlap_pairs": 0,
+  "test_lock_status": "LOCKED_NOT_AUTHORIZED_FOR_TRAINING_OR_SELECTION",
+  "test_lock_sha256": "162de671f97c43e3f5afe6c25f577e65228d1f759b699ff93a0d74d9726764a5",
+  "test_manifest_read": false,
+  "test_images_read": false,
+  "test_split_used": false,
+  "test_evaluation_executed": false,
+  "warnings": [
+    "Each image contributes six dependent rows; validation statistics must use complete image groups.",
+    "PARTIAL_MATCH means a different part from the same broad vehicle subsystem: engine support, chassis, or lighting.",
+    "Validation contains 80 independent curated images and is used for development model comparison.",
+    "The locked 80-image test split remains unavailable to development loaders and audits."
+  ]
+}

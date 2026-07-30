@@ -1,0 +1,52 @@
+{
+  "status": "PASS_DATASET_V3_DEVELOPMENT_RELATIONS_READY",
+  "dataset_version": "3.0-development",
+  "categories": [
+    "alternator",
+    "brake_disc",
+    "brake_pad",
+    "coil_spring",
+    "headlight",
+    "oil_filter",
+    "starter",
+    "taillight"
+  ],
+  "broad_families": {
+    "alternator": "engine_support",
+    "oil_filter": "engine_support",
+    "starter": "engine_support",
+    "brake_disc": "chassis",
+    "brake_pad": "chassis",
+    "coil_spring": "chassis",
+    "headlight": "lighting",
+    "taillight": "lighting"
+  },
+  "partial_target": {
+    "alternator": "starter",
+    "starter": "oil_filter",
+    "oil_filter": "alternator",
+    "brake_disc": "brake_pad",
+    "brake_pad": "coil_spring",
+    "coil_spring": "brake_disc",
+    "headlight": "taillight",
+    "taillight": "headlight"
+  },
+  "train_images": 480,
+  "validation_images": 80,
+  "train_rows": 2880,
+  "validation_rows": 480,
+  "rows_per_image": 6,
+  "pairs_per_label_per_image": 2,
+  "split_overlap": {
+    "part_group_overlap": 0,
+    "object_group_overlap": 0,
+    "image_id_overlap": 0,
+    "image_path_overlap": 0
+  },
+  "exact_description_overlap": 0,
+  "test_manifest_read": false,
+  "test_images_read": false,
+  "test_evaluation_executed": false,
+  "train_relations": "data/manifests/dataset_v3/dataset_v3_train_relations.csv",
+  "validation_relations": "data/manifests/dataset_v3/dataset_v3_validation_relations.csv"
+}
