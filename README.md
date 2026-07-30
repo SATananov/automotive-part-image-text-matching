@@ -184,3 +184,23 @@ python -m pytest -q tests/test_dataset_v3_integrity.py tests/test_dataset_v3_rel
 ```
 
 The Dataset V3 relation protocol is documented in `docs/dataset_v3/relation_protocol.md`.
+
+### Dataset V3 training workflow
+
+The Dataset V3 development training implementation is isolated from the saved Dataset V2 report. It writes only to `results/dataset_v3/` and compares seven baselines and neural models on 480 train images and 80 independent validation images.
+
+The independent evaluation unit is the curated image group. Confidence intervals and paired comparisons operate on complete image groups, not on the six relation rows as if they were independent.
+
+The training implementation can be checked without running a long experiment:
+
+```bash
+python -m pytest -q tests/test_dataset_v3_integrity.py tests/test_dataset_v3_relations.py tests/test_dataset_v3_training.py
+```
+
+After the implementation checkpoint is reviewed, the controlled training command is:
+
+```bash
+python -m src.train_dataset_v3
+```
+
+The command does not expose or evaluate the locked test split. The exact protocol is documented in `docs/dataset_v3/training_protocol.md`.
