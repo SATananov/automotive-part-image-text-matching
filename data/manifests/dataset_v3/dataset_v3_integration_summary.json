@@ -1,0 +1,31 @@
+{
+  "status": "PASS_DATA_FILES_INTEGRATED_UNCOMMITTED",
+  "total_images": 640,
+  "split_counts": {
+    "test": 80,
+    "train": 480,
+    "validation": 80
+  },
+  "categories": [
+    "alternator",
+    "brake_disc",
+    "brake_pad",
+    "coil_spring",
+    "headlight",
+    "oil_filter",
+    "starter",
+    "taillight"
+  ],
+  "unique_candidate_ids": 640,
+  "unique_image_groups": 640,
+  "unique_sha256": 640,
+  "test_lock_status": "LOCKED_NOT_AUTHORIZED_FOR_TRAINING_OR_SELECTION",
+  "test_lock_sha256": "162de671f97c43e3f5afe6c25f577e65228d1f759b699ff93a0d74d9726764a5",
+  "development_root": "data/images/dataset_v3",
+  "locked_test_root": "data/locked_test/dataset_v3",
+  "manifest_root": "data/manifests/dataset_v3",
+  "docs_root": "docs/dataset_v3",
+  "repository_relative_paths_only": true,
+  "training_executed": false,
+  "test_evaluation_executed": false
+}

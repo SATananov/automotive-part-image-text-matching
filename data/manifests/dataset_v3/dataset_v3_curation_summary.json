@@ -1,0 +1,34 @@
+{
+  "final_images": 640,
+  "categories": {
+    "alternator": 80,
+    "brake_disc": 80,
+    "brake_pad": 80,
+    "coil_spring": 80,
+    "headlight": 80,
+    "oil_filter": 80,
+    "starter": 80,
+    "taillight": 80
+  },
+  "exact_duplicate_groups": 0,
+  "near_duplicate_review_pairs": 0,
+  "near_duplicate_high_confidence_pairs": 0,
+  "high_confidence_cross_category_pairs": 0,
+  "current_project_review_pairs": 0,
+  "current_project_high_confidence_pairs": 0,
+  "selected_coil_targeted_ranks": [
+    1,
+    4,
+    5,
+    7,
+    10,
+    11,
+    12,
+    14,
+    18,
+    19,
+    38,
+    50
+  ],
+  "status": "PASS_PENDING_MANUAL_REVIEW"
+}
