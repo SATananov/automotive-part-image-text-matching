@@ -173,7 +173,7 @@ The notebook discusses VSE++, VisualBERT, CLIP, and ResNet. The external real-im
 
 The `dataset-v3` branch contains a separately curated eight-category image pool with 480 train images, 80 validation images, and 80 physically separated locked-test images. The original Kaggle split labels are retained only as provenance; the project uses its own deterministic `60/10/10` split per category.
 
-At this checkpoint, Dataset V3 development relation tables are generated under `data/manifests/dataset_v3/`. They do not replace the saved Dataset V2 results or the executed Dataset V2 notebook. No Dataset V3 model has been trained and the locked test split has not been evaluated.
+Dataset V3 development relation tables are stored under `data/manifests/dataset_v3/`. Seven development models have now been trained and independently verified on the 80-image validation split. The saved Dataset V3 artifacts are isolated under `results/dataset_v3/`. The locked 80-image test split remains unopened and unevaluated.
 
 Build and audit the Dataset V3 development relations with:
 
@@ -204,3 +204,16 @@ python -m src.train_dataset_v3
 ```
 
 The command does not expose or evaluate the locked test split. The exact protocol is documented in `docs/dataset_v3/training_protocol.md`.
+
+### Dataset V3 executed notebook
+
+`project_v3.ipynb` is the executed Dataset V3 development report. It reads only train, validation, and saved development artifacts. It presents the data protocol, leakage checks, model comparison, grouped uncertainty, error analysis, training histories, and limitations without opening the locked test split.
+
+Rebuild and execute it with:
+
+```bash
+python -m src.build_notebook_v3 --execute
+python -m src.verify_notebook_v3
+```
+
+The existing `project.ipynb` remains unchanged while the Dataset V3 notebook is reviewed independently.
