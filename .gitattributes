@@ -17,3 +17,11 @@ results/dataset_v3_final_test/authorization_consumption.json -text
 results/dataset_v3_final_test/environment.json -text
 results/dataset_v3_final_test/execution_state.json -text
 results/dataset_v3_final_test/test_metrics.json -text
+
+# Preserve byte-exact Dataset V3 frozen selection components.
+data/manifests/dataset_v3/dataset_v3_development_audit.json -text
+data/manifests/dataset_v3/dataset_v3_image_manifest.csv -text
+data/manifests/dataset_v3/dataset_v3_relation_summary.json -text
+data/manifests/dataset_v3/dataset_v3_train_images.csv -text
+data/manifests/dataset_v3/dataset_v3_validation_images.csv -text
+project_v3.ipynb -text
