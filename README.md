@@ -240,3 +240,15 @@ test has not been read or evaluated.
 
 See `docs/dataset_v3/final_test_authorization.md`.
 
+## Dataset V3 final-test evaluator protocol
+
+The final Dataset V3 model is frozen and exactly one locked-test evaluation
+is authorized. The evaluator protocol, relation construction, frozen
+vectorizer fingerprint, checkpoint loader, output schema, and one-time
+execution guard are committed before test-image access.
+
+The preparation snapshot contained test metadata but no locked-test image
+bytes. No final prediction or test metric has been produced yet.
+
+See `docs/dataset_v3/final_test_evaluation_protocol.md`.
+
