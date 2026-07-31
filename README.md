@@ -252,3 +252,24 @@ bytes. No final prediction or test metric has been produced yet.
 
 See `docs/dataset_v3/final_test_evaluation_protocol.md`.
 
+## Dataset V3 final test results
+
+The frozen `torch_multimodal_dataset_v3` checkpoint was evaluated exactly
+once on 80 locked-test images and 480 relation rows. It obtained 354 correct
+predictions, 0.7375 accuracy, and 0.7382299830 macro F1.
+
+The one-time authorization is consumed. Further tuning, checkpoint
+replacement, and post-test model selection are prohibited.
+
+The original nine result artifacts are preserved byte for byte. A missing
+relation-protocol fingerprint field in the metrics summary is reconciled by
+a deterministic manifest and verifier without rerunning inference or
+rewriting the result files.
+
+The historical protocol regression that asserts final results are absent
+remains hash-locked. After the verified one-time evaluation it is
+transparently skipped as a completed phase invariant, while the new
+final-results tests verify the post-execution state.
+
+See `docs/dataset_v3/final_test_results.md`.
+
