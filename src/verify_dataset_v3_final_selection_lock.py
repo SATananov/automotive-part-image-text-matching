@@ -82,19 +82,32 @@ def verify_final_selection_lock() -> dict:
         raise RuntimeError("Unexpected final-selection source commit.")
 
     current_head = git("rev-parse", "HEAD")
-    current_parent = None
 
-    try:
-        current_parent = git("rev-parse", "HEAD^")
-    except subprocess.CalledProcessError:
-        current_parent = None
+    ancestry = subprocess.run(
+        [
+            "git",
+            "merge-base",
+            "--is-ancestor",
+            EXPECTED_SOURCE_COMMIT,
+            current_head,
+        ],
+        cwd=PROJECT_ROOT,
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
 
-    if EXPECTED_SOURCE_COMMIT not in {
-        current_head,
-        current_parent,
-    }:
+    if ancestry.returncode not in {0, 1}:
         raise RuntimeError(
-            "The final-selection lock is not based on the expected commit."
+            "Could not verify final-selection source ancestry: "
+            f"{ancestry.stderr.strip()}"
+        )
+
+    if ancestry.returncode != 0:
+        raise RuntimeError(
+            "The final-selection source commit is not an ancestor "
+            "of the current commit."
         )
 
     if lock["selected_model_slug"] != EXPECTED_MODEL:
@@ -185,6 +198,7 @@ def verify_final_selection_lock() -> dict:
         "status": "PASS_DATASET_V3_FINAL_SELECTION_LOCK_VERIFIED",
         "source_commit": lock["source_commit"],
         "current_commit": current_head,
+        "source_commit_is_ancestor": True,
         "selected_model_slug": lock["selected_model_slug"],
         "selected_checkpoint_sha256": (
             lock["selected_checkpoint_sha256"]
