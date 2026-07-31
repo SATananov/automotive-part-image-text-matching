@@ -8,3 +8,12 @@
 *.png binary
 *.jpg binary
 *.jpeg binary
+
+# Preserve byte-exact Dataset V3 lock and final-test evidence.
+data/manifests/dataset_v3/dataset_v3_final_selection_lock.json -text
+data/manifests/dataset_v3/dataset_v3_final_test_authorization.json -text
+data/manifests/dataset_v3/dataset_v3_final_test_protocol.json -text
+results/dataset_v3_final_test/authorization_consumption.json -text
+results/dataset_v3_final_test/environment.json -text
+results/dataset_v3_final_test/execution_state.json -text
+results/dataset_v3_final_test/test_metrics.json -text
