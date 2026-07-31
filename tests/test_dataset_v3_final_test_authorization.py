@@ -25,3 +25,14 @@ def test_dataset_v3_final_test_authorization() -> None:
     assert result["test_manifest_read"] is False
     assert result["test_images_read"] is False
     assert result["test_results_may_be_used_for_tuning"] is False
+    assert result["historical_notebook_blob"] == (
+        "6eb357a2997b0a660cfa57a8c42afab7ecc3d5f9"
+    )
+    assert result["historical_notebook_blob_verified"] is True
+    assert result["current_notebook_sha256"] == (
+        "4f87a9818cf91d1011b4b09794da086b6cc8fc9469e10d612a7c6ae6efb1900a"
+    )
+    assert result["current_notebook_blob_sha256"] == (
+        "4f87a9818cf91d1011b4b09794da086b6cc8fc9469e10d612a7c6ae6efb1900a"
+    )
+    assert result["current_notebook_frozen_bytes_verified"] is True

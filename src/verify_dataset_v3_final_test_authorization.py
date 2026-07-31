@@ -59,6 +59,17 @@ def git(*arguments: str) -> str:
     return completed.stdout.rstrip("\r\n")
 
 
+def git_bytes(*arguments: str) -> bytes:
+    completed = subprocess.run(
+        ["git", *arguments],
+        cwd=PROJECT_ROOT,
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    return completed.stdout
+
+
 def verify_final_test_authorization() -> dict:
     if not SELECTION_LOCK_PATH.is_file():
         raise RuntimeError("Final-selection lock is missing.")
@@ -241,11 +252,47 @@ def verify_final_test_authorization() -> dict:
             "Training-results Git tree differs from authorization."
         )
 
-    if git("rev-parse", "HEAD:project_v3.ipynb") != (
+    historical_notebook_spec = (
+        f"{authorization['authorization_source_commit']}:"
+        f"{authorization['selected_notebook']}"
+    )
+    historical_notebook_blob = git(
+        "rev-parse",
+        historical_notebook_spec,
+    )
+    if historical_notebook_blob != (
         authorization["selected_notebook_blob"]
     ):
         raise RuntimeError(
-            "Selected-notebook blob differs from authorization."
+            "Authorization-source notebook blob differs from "
+            "the historical authorization record."
+        )
+
+    current_notebook_path = (
+        PROJECT_ROOT / authorization["selected_notebook"]
+    )
+    current_notebook_sha256 = sha256(current_notebook_path)
+    if current_notebook_sha256 != (
+        authorization["selected_notebook_sha256"]
+    ):
+        raise RuntimeError(
+            "Current selected-notebook bytes differ from "
+            "the authorized frozen SHA-256."
+        )
+
+    current_notebook_blob_bytes = git_bytes(
+        "show",
+        f"{current_head}:{authorization['selected_notebook']}",
+    )
+    current_notebook_blob_sha256 = hashlib.sha256(
+        current_notebook_blob_bytes
+    ).hexdigest()
+    if current_notebook_blob_sha256 != (
+        authorization["selected_notebook_sha256"]
+    ):
+        raise RuntimeError(
+            "Current committed notebook blob bytes differ from "
+            "the authorized frozen SHA-256."
         )
 
     if git(
@@ -274,6 +321,13 @@ def verify_final_test_authorization() -> dict:
         "selected_notebook_sha256": (
             authorization["selected_notebook_sha256"]
         ),
+        "historical_notebook_blob": historical_notebook_blob,
+        "historical_notebook_blob_verified": True,
+        "current_notebook_sha256": current_notebook_sha256,
+        "current_notebook_blob_sha256": (
+            current_notebook_blob_sha256
+        ),
+        "current_notebook_frozen_bytes_verified": True,
         "final_selection_lock_sha256": (
             authorization["final_selection_lock_sha256"]
         ),
