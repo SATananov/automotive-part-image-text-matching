@@ -206,19 +206,32 @@ def verify_final_test_authorization() -> dict:
         )
 
     current_head = git("rev-parse", "HEAD")
-    current_parent = None
 
-    try:
-        current_parent = git("rev-parse", "HEAD^")
-    except subprocess.CalledProcessError:
-        current_parent = None
+    ancestry = subprocess.run(
+        [
+            "git",
+            "merge-base",
+            "--is-ancestor",
+            EXPECTED_SOURCE_COMMIT,
+            current_head,
+        ],
+        cwd=PROJECT_ROOT,
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
 
-    if EXPECTED_SOURCE_COMMIT not in {
-        current_head,
-        current_parent,
-    }:
+    if ancestry.returncode not in {0, 1}:
         raise RuntimeError(
-            "Authorization is not based on the expected commit."
+            "Could not verify authorization source ancestry: "
+            f"{ancestry.stderr.strip()}"
+        )
+
+    if ancestry.returncode != 0:
+        raise RuntimeError(
+            "The authorization source commit is not an ancestor "
+            "of the current commit."
         )
 
     if git("rev-parse", "HEAD:results/dataset_v3") != (
@@ -251,6 +264,7 @@ def verify_final_test_authorization() -> dict:
             authorization["authorization_source_commit"]
         ),
         "current_commit": current_head,
+        "authorization_source_is_ancestor": True,
         "selected_model_slug": (
             authorization["selected_model_slug"]
         ),
